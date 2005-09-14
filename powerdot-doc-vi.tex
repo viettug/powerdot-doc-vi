@@ -1,11 +1,34 @@
+\typeout{***********************************}
+\typeout{* This file is part of VietTUG    *}
+\typeout{* See the source for details      *}
+\typeout{***********************************}
+
+\IfFileExists{/home/users/kyanh/.kyanh.}{}{
+\typeout{***********************************}
+\typeout{* You are*NOT* kyanh, aren't you? *}
+\typeout{***********************************}
+}
+
 \documentclass[a4paper]{ltxdoc}
 
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
-\usepackage{ktv-buildnum,hyperref,indentfirst,url}
-\usepackage{varioref}
-\usepackage[varioref]{vnhook}
+\usepackage{hyperref,indentfirst,url}
+
+\IfFileExists{/home/users/kyanh/.kyanh.}{
+	\usepackage{ktv-buildnum}
+	\usepackage{varioref}
+	\usepackage[varioref]{vnhook}
+}{
+	\newcount\buildnum
+	\buildnum=99999
+	\let\vref=\ref
+}
+
+\makeatletter
+\let\old@DeclareOption=\DeclareOption
+\makeatother
 
 \def\fileversion{v1.0}
 \def\filedate{2005/09/04}
@@ -458,9 +481,10 @@ Như trên, nhưng cho bên phải.
 %% it is referring to.}
 Tuỳ chọn này xác định cánh đáng số các |slide|.
 Giá trị mặc định là |\arabic{slide}~/~\pageref*{lastslide}|, mà với nó,
-các |slide| sẽ đánh số tương tự như |5/22| (trang 5, tổng số trang 22).
-Chú ý rằng |\arabic{slide}| cho biết trang hiện tại, và |\pageref*{lastslide}|
-tổng số |slide|.\footnote{Ta phải dùng |\pageref*|, phiên bản có sao của |pageref|,
+các |slide| sẽ đánh số tương tự như |5/22| (slide 5, tổng số slide 22).
+Chú ý rằng, |\arabic{slide}| cho biết |slide| hiện tại, và |\pageref*{lastslide}|
+tổng số |slide|.%
+\footnote{Ta phải dùng \cs{pageref*}, phiên bản có sao của \cs{pageref},
 được định nghĩa bởi \pf{hyperref} nhở đó ta thu đưọc số trang chứ không phải
 là liên kết đến trang.}
 \item\DescribeOption{thenote}\option{thenote}\\
@@ -483,72 +507,110 @@ như sau: |ghi chú~\arabic{note}~/~\arabic{slide}|.
 %% a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,
 %% |Cover|, |Uncover| or |Fade|. It is important to notice that most
 %% viewers are case sensitive, so, for instance, |box| will not work.
-Xác định hiệu ứng mặc định cho trình diễn.
-
-The default effect is |Replace| which just replaces one slide with
-another when browsing the slides. Note that some PDF viewers (like
-Acrobat Reader 5 and higher) only produce the transition effect in
-full screen mode. If you want to use a custom transition effect that
-is not listed in the list above (for instance, a wipe effect with a
-custom wipe direction), then that is possible. However,
-\pf{powerdot} will put a warning in your log file that the effect
-that you have chosen, might not work in the PDF viewer. Here is an
-example that does work.
+Xác định hiệu ứng biến đổi mặc định cho trình diễn. Các hiệu ứng này
+chỉ thấy được trong kết quả |PDF|. Xem thêm ở Mục~\vref{sec:compiling}.
+Các hiệu ứng được hỗ trợ bao gồm: |Split|, |Blinds|,
+|Box|, |Wipe|, |Dissolve|, |Glitter| và |Replace|.
+Nếu bạn dùng chương trình xem hiểu dạng |PDF| 1.5 trở lên, bạn
+có thêm các hiệu ứng |Fly|, |Push|, |Cover|, |Uncover| và |Fade|.
+Điều quan trọng cần phải nhớ là, hầu hết các trình xem |PDF| đều phân
+biệt hoa thường, nên bạn phải chỉ ra |Box| thay vì |box|,...
+%% The default effect is |Replace| which just replaces one slide with
+%% another when browsing the slides. Note that some PDF viewers (like
+%% Acrobat Reader 5 and higher) only produce the transition effect in
+%% full screen mode. If you want to use a custom transition effect that
+%% is not listed in the list above (for instance, a wipe effect with a
+%% custom wipe direction), then that is possible. However,
+%% \pf{powerdot} will put a warning in your log file that the effect
+%% that you have chosen, might not work in the PDF viewer. Here is an
+%% example that does work.
+Hiệu ứng mặc định là |Replace| -- theo đó, khi xem trình diễn, |slide|
+sau sẽ thay thế |slide| trước. Để ý rằng, vài trình xem |PDF| (ví dụ
+Acrobat Reader 5) chỉ tạo các hiệu ứng khi xem ở chế độ toàn màn hình.
+Nếu bạn dùng một hiệu ứng riêng không có trong danh sách trên (ví dụ
+hiệu ứng |Wipe| với hướng theo ý bạn), \pf{powerdot} sẽ nhắc nhở về
+hiệu ứng đó (rằng có thể chúng không xem được). Dưới đây là ví dụ
 \begin{example}
  trans=Wipe /Di 0
 \end{example}
-In Acrobat (Reader), this wipes from left to right instead of the
-default top to bottom. For more information, see a PDF Reference
-Manual.
+%% In Acrobat (Reader), this wipes from left to right instead of the
+%% default top to bottom. For more information, see a PDF Reference
+%% Manual.
+Trong Acrobat (Reader), hiệu ứng |Wipe| khai báo như trên sẽ có hướng
+từ trái sang phải, thay vì từ trên xuống dưới như mặc định.
+Để biết thêm chi tiết, xem tài liệu tham khảo về định dạng |PDF|.
 \item\DescribeOption{counters}\option{counters}\\
-The |counters| option lists counters that you might want to protect
-on overlays. As material on overlays (see
-section~\ref{sec:overlays}) is processed multiple times, also
-\LaTeX\ counters, like the |equation| counter, might be increased
-too often. To avoid that your equations get different numbers on
-every overlay, use this option. The |equation|, |table|, |figure|,
-|footnote| and |mpfootnote| counters are already protected for you.
-If you use extra counters, for instance for theorems, list them in
-this option. Example:
+%% The |counters| option lists counters that you might want to protect
+%% on overlays. As material on overlays (see
+%% section~\ref{sec:overlays}) is processed multiple times, also
+%% \LaTeX\ counters, like the |equation| counter, might be increased
+%% too often. To avoid that your equations get different numbers on
+%% every overlay, use this option. The |equation|, |table|, |figure|,
+%% |footnote| and |mpfootnote| counters are already protected for you.
+%% If you use extra counters, for instance for theorems, list them in
+%% this option. Example:
+Danh sách các |counter| (bộ đếm) cần được bảo vệ khi |overlay|.
+Tại sao? Các phương trình chẳng hạn, khi |overlay| (xem Mục~\vref{sec:overlays}
+sẽ được xử lý nhiều lần, do đó, số đếm của chúng không ngừng tăng lên
+nếu không được bảo vệ. Các bộ đếm được bảo vệ theo mặc định là |equation|,
+|table|, |figure|, |footnote| và |mpfootnote|. Nếu bạn muốn bảo vệ thêm
+chẳng hạn bộ đếm |theorem| và |lemma|, hãy dùng như ví dụ sau:
 \begin{example}
  counters={theorem,lemma}
 \end{example}
 \item\DescribeOption{list}\option{list}\\
-This option takes a list of options that will be passed on to the
-\pf{enumitem} package that controls the layout of lists created by
-the |enumerate| and |itemize| environments. Example:
+%% This option takes a list of options that will be passed on to the
+%% \pf{enumitem} package that controls the layout of lists created by
+%% the |enumerate| and |itemize| environments. Example:
+Tuỳ chọn này chấp nhận một tham số, là danh sách các tuỳ chọn
+dành riêng cho gói \pf{enumitem} để điều khiển kết quả của danh sách
+tạo bởi các môi trường |enumerate| và |itemize|. Ví dụ
 \begin{example}
  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
 \end{example}
-See for more information on controlling the layout of lists the
-\pf{enumitem} package \cite{enumitem}.
+%% See for more information on controlling the layout of lists the
+%% \pf{enumitem} package \cite{enumitem}.
+Hãy xem tài liệu hướng dẫn của gói \pf{enumitem} để có thêm các tuỳ chọn.
 \item\DescribeOption{enumerate}\option{enumerate}\\
-As the |list| option, but only control |enumerate| environments.
+%As the |list| option, but only control |enumerate| environments.
+Tương tự tuỳ chọn |list|, nhưng chỉ dành cho môi trường |enumerate|.
 \item\DescribeOption{itemize}\option{itemize}\\
-As the |list| option, but only control |itemize| environments.
+%As the |list| option, but only control |itemize| environments.
+Tương tự tuỳ chọn |list|, nhưng chỉ dành cho môi trường |itemize|.
 \end{description}
 
-Here is an example of a |\pdsetup| command that one could use to set up
-the presentation.
+%% Here is an example of a |\pdsetup| command that one could use to set up
+%% the presentation.
+Dưới đây là ví dụ về cài đặt cho trình diễn dùng lệnh |\pdfsetup|.
 \begin{example}
  \pdsetup{
-   lf=My first presentation,
-   rf=For some conference,
+   lf=Trinh dien cua toi,
+   rf=VietTUG,
    trans=Wipe,
    theslide=\arabic{slide}
  }
 \end{example}
-This sets the left and right footers and will initialize the
-transition effect to |Wipe|. Further, slide numbers will not include
-the number of the last slide, but only the number of the current
-slide.
+%% This sets the left and right footers and will initialize the
+%% transition effect to |Wipe|. Further, slide numbers will not include
+%% the number of the last slide, but only the number of the current
+%% slide.
+Với thiết lập như trên, sẽ có chân trang bên trái và bên phải,
+hiệu ứng mặc định cho trình diễn là |Wipe|; ngoải ra,
+chỉ số |slide| sẽ không bao gồm tổng số |slide| như mặc định,
+mà chỉ gồm số chỉ |slide| hiện tại.
 
-A small note is necessary with respect to the appearance of footers.
-The slide number (controlled by the |theslide| option) will be added
-to a footer. Most styles add it too the right footer. If both the
-footer and the slide number are non empty, |~--~| will be inserted
-in between them to separate them. Styles might modify this default
-behavior however.
+%% A small note is necessary with respect to the appearance of footers.
+%% The slide number (controlled by the |theslide| option) will be added
+%% to a footer. Most styles add it too the right footer. If both the
+%% footer and the slide number are non empty, |~--~| will be inserted
+%% in between them to separate them. Styles might modify this default
+%% behavior however.
+Một chú ý nhỏ về cách thể hiện ở chân trang (|footer|).
+Chỉ số |slide| (điều khiển bởi tuỳ chọn |theslide|) sẽ được thêm vào
+chân trang (|footer|). Hầu hầu các kiểu trình diễn đều thêm vào bên phải.
+Nếu cả |footer| và chỉ số |slide| đều không rỗng, |~--~| sẽ được thêm
+vào để ngăn cách chúng. Khi thiết kế kiểu, ta có thể thay đổi
+cách xử lý này.
 
 \section{Making slides}\label{sec:slides}
 \subsection{The title slide}\label{sec:titleslide}
