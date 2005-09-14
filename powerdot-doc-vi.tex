@@ -1,10 +1,11 @@
-
 \documentclass[a4paper]{ltxdoc}
+
+\input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
 \usepackage{ktv-buildnum,hyperref,indentfirst,url}
-
-\input{pdpream.ble}
+\usepackage{varioref}
+\usepackage[varioref]{vnhook}
 
 \def\fileversion{v1.0}
 \def\filedate{2005/09/04}
@@ -31,7 +32,7 @@ the first beta releases.
 information on installing \pf{powerdot} into your \LaTeX\
 distribution and for the license of this class.}}
 \author{Hendri Adriaens\and Christopher Ellison
-	\\\and Biên dịch: kyanh <\url{mailto:kyanh@o2.pl}>}
+	\\\and \emph{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
 \date{Bản dịch số {\the\buildnum}}
 \maketitle
 
@@ -125,10 +126,10 @@ Cấu trúc của trình diễn luôn tương tự như ví dụ sau đây:
 %% be discussed in section~\ref{sec:pdsetup}.
 Có vài yếu tố tạo nên cấu trúc đó.
 Đầu tiên, lớp chấp nhận vài tuỳ chọn (|class options|) cho phép điều khiển kết quả xuất
-ví dụ, cỡ giấy, kiểu. Các tuỳ chọn này được bàn kỹ đến trong Mục~\ref{sec:classopts}.
+ví dụ, cỡ giấy, kiểu. Các tuỳ chọn này được bàn kỹ đến trong Mục~\vref{sec:classopts}.
 Thứ đến, là các tuỳ chọn trình diễn (|pd options|) điều khiển toàn cục các
 tính chất của trình diễn, ví dụ, các ghi chú ở chân trang.
-Những tuỳ chọn này đưọc nói đến ở Mục~\ref{sec:pdsetup}.
+Những tuỳ chọn này đưọc nói đến ở Mục~\vref{sec:pdsetup}.
 
 %% Once the setup has been decided on, you can use the slide
 %% environment to produce slides (see section~\ref{sec:slides}) and the
@@ -143,14 +144,14 @@ Những tuỳ chọn này đưọc nói đến ở Mục~\ref{sec:pdsetup}.
 %% output. This section contains important information on required
 %% packages.
 Sau khi thiết lập với các tuỳ chọn, bạn có thể dùng môi truờng |slide|
-để tạo các trang (|slide|) trình diễn (xem Mục~\ref{sec:slides}) và môi trường |note|
-để tạo các ghi chú đi cùng với |slide| (xem Mục~\ref{sec:notes}).
+để tạo các trang (|slide|) trình diễn (xem Mục~\vref{sec:slides}) và môi trường |note|
+để tạo các ghi chú đi cùng với |slide| (xem Mục~\vref{sec:notes}).
 Bạn có thể dùng |overlay| để thể hiện nội dung theo từng bước
-(xem Mục~\ref{sec:overlays}). Lệnh |\section| giúp bạn tạo cấu trúc
+(xem Mục~\vref{sec:overlays}). Lệnh |\section| giúp bạn tạo cấu trúc
 cho trình diễn, giống như việc tạo chương, mục với tài liệu \LaTeX{} thông thường
-(xem Mục~\ref{sec:structure}). Bạn cũng có thể lựa chọn các kiểu dáng
-của trình diễn sau khi xem Mục~\ref{sec:styles}. Cuối cùng,
-với Mục~\ref{sec:compiling}, bạn sẽ biết cách biên dịch tài liệu nguồn
+(xem Mục~\vref{sec:structure}). Bạn cũng có thể lựa chọn các kiểu dáng
+của trình diễn sau khi xem Mục~\vref{sec:styles}. Cuối cùng,
+với Mục~\vref{sec:compiling}, bạn sẽ biết cách biên dịch tài liệu nguồn
 để có kết quả là trình diễn thật sự. Ở mục này cũng có vài lưu ý về
 việc cài đặt lớp \pf{powerdot}.
 
@@ -160,146 +161,229 @@ việc cài đặt lớp \pf{powerdot}.
 %% devoted to questions (section~\ref{sec:questions}), like `Where can
 %% I find examples?'. It also tells you where to turn to in case your
 %% questions are still not solved.
-Mục~\ref{sec:writestyle} có lẽ là phần hấp dẫn đối với ai quan tâm
+Mục~\vref{sec:writestyle} có lẽ là phần hấp dẫn đối với ai quan tâm
 đến việc tạo kiểu dáng riêng cho trình diễn của mình, hoặc làm đẹp
 các kiểu dáng đã có.
 
-Tài liệu này kết thúc với Hỏi-Đáp (Mục~\ref{sec:questions}), có thể
+Tài liệu này kết thúc với Hỏi-Đáp (Mục~\vref{sec:questions}), có thể
 giúp bạn trong những bước đầu làm quen với lớp \pf{powerdot}.
 
-\section{Setting up the presentation}\label{sec:setup}
-This section will describe all options that are available to control
-the output of the presentation and the looks of it.
+%\section{Setting up the presentation}
+\section{\texorpdfstring{Thiết lập cho trình diễn}{Thiet lap cho trinh dien}}
+\label{sec:setup}
 
-\subsection{Document class options}\label{sec:classopts} We will
-start with the class options that are typed in the |\documentclass|
-command as a comma-separated list. For each option, the default
-value will be mentioned in the description. This is the value that
-will be used if you decide to not give a value to the option or not
-use the option at all.
+% This section will describe all options that are available to control
+% the output of the presentation and the looks of it.
+Mục này mô tả các tuỳ chọn để điều khiển kết quả xuất của trình diễn.
+
+%\subsection{Document class options}
+\subsection{Tuỳ chọn cho lớp}
+\label{sec:classopts}
+
+%% We will start with the class options that are typed in the |\documentclass|
+%% command as a comma-separated list. For each option, the default
+%% value will be mentioned in the description. This is the value that
+%% will be used if you decide to not give a value to the option or not
+%% use the option at all.
+Các tuỳ chọn được cho khi gọi lệnh |\documentclass|, cách nhau
+bởi dấu phảy. Với mỗi tuỳ chọn dưới đây, giá trị mặc định được nêu
+trong mô tả -- đó là giá trị sẽ được dùng khi bạn không nêu ra tuỳ chọn
+khi gọi lệnh |\documentclass|, hoặc khi bạn nêu tuỳ chọn đó nhưng không
+đi kèm giá trị nào.
 
 \DescribeOption{mode}
-This options controls the kind of output that we want to produce.
-The default value is |present|.
+%% This options controls the kind of output that we want to produce.
+%% The default value is |present|.
+Tuỳ chọn này xác định loại kết quả xuất, mặc định là |present|.
 \begin{description}
 \item\option{mode=present}\\
-This mode is used when you want to create the actual presentation. It
-will enable overlays and transition effects. You can read more about
-overlays in section~\ref{sec:overlays}.
+%% This mode is used when you want to create the actual presentation. It
+%% will enable overlays and transition effects. You can read more about
+%% overlays in section~\ref{sec:overlays}.
+Dùng |present| nếu bạn muốn tạo trình diễn thật sự (thay vì chỉ để kiểm tra
+trên màn hình). Với tuỳ chọn này, bạn có thể dùng |overlay| hoặc các hiệu ứng
+biến đổi. Đọc thêm ở Mục~\vref{sec:overlays} về |overlay|.
 \item\option{mode=print}\\
-This mode can be used when printing the slides including their visual
-markup, but without any overlay or transition effects.
+%% This mode can be used when printing the slides including their visual
+%% markup, but without any overlay or transition effects.
+Dùng |print| nếu bạn muốn in trình diễn của mình -- với bản in, hiển nhiên
+các hiệu ứng hoặc overlay sẽ bị bỏ qua.
 \item\option{mode=handout}\\
-This mode will produce a black and white overview of your slides that
-can be used to make personal notes on, for distribution to students,
-a personal guide during your talk, etcetera.
+%% This mode will produce a black and white overview of your slides that
+%% can be used to make personal notes on, for distribution to students,
+%% a personal guide during your talk, etcetera.
+Dùng |handout| để có được bản xem qua (|overview|) trình diễn, với hai màu
+đen và trắng. Bản này thích hợp cho mục đích cá nhân, để phân phối cho sinh viên,
+để minh họa trong khi bạn đang thuyết trình,...
 \begin{description}
 \item\option{nopagebreaks}\\
-By default, the handout mode produces a document with two slides per
-page. If you want to fit more slides on a page, specify this option
-in the |\documentclass| command and \pf{powerdot} will let \LaTeX\
-decide on the places to insert a page break, namely when a page is
-full.
+%% By default, the handout mode produces a document with two slides per
+%% page. If you want to fit more slides on a page, specify this option
+%% in the |\documentclass| command and \pf{powerdot} will let \LaTeX\
+%% decide on the places to insert a page break, namely when a page is
+%% full.
+Theo mặc định, với bản |handout|, mỗi trang sẽ bố trí hai |slide|.
+Nếu bạn muốn có nhiều hơn hai |slide| trên một trang, bạn hãy dùng tuỳ chọn
+này (tuỳ chọn này không có giá trị) khi gọi |\documentclass|, nhờ đó
+\pf{powerdot} giúp \LaTeX{} lựa chọn cách ngắt trang thích hợp.
 \end{description}
 \end{description}
 
-\DescribeOption{paper} This option has three possible values. The default
-value is |screen|.
+\DescribeOption{paper}
+%% This option has three possible values. The default value is |screen|.
+Tuỳ chọn này có thể nhận ba giá trị sau. Mặc định là |screen|.
 \begin{description}
 \item\option{paper=screen}\\
-This is a special format with screen optimized ratio (4/3). The
-actual page dimensions will be 8.25 inch by 11 inch. This paper format
-is not available for print or handout mode. In these modes, \pf{powerdot}
-will switch to a4 paper and put a warning that it did this in the
-log file of your presentation.
+%% This is a special format with screen optimized ratio (4/3). The
+%% actual page dimensions will be 8.25 inch by 11 inch. This paper format
+%% is not available for print or handout mode. In these modes, \pf{powerdot}
+%% will switch to a4 paper and put a warning that it did this in the
+%% log file of your presentation.
+Trang trình diễn có tỷ lệ thông thường của màn hình (4/3).
+Kích thước trang thực sự là 8.25 inch -- 11 inch. Kiểu này không
+phù hợp với |mode=print| hoặc |mode=handout|. Nếu bạn cố dùng
+|paper=screen| cùng với một trong |mode| vừa nói, \pf{powerdot} sẽ
+tự động chuyển qua kiểu trang a4 kèm với lời nhắc nhở.
 \item\option{paper=a4paper}\\
-A4 paper will be used for the presentation or handout.
+%A4 paper will be used for the presentation or handout.
+Trang trình diễn bằng khổ a4, dùng với |mode=present| hoặc |mode=handout|.
 \item\option{paper=letterpaper}\\
-Letter size paper will be used.
+%Letter size paper will be used.
+Trang trình diễn kiểu |letter|
 \end{description}
-Some important information with respect to paper size, compiling and
-viewing presentations is available in section~\ref{sec:compiling}.
+%% Some important information with respect to paper size, compiling and
+%% viewing presentations is available in section~\ref{sec:compiling}.
+Vài thông tin quan trọng về cỡ trang, biên dịch và xem trình diễn
+đưọc cho ở Mục~\vref{sec:compiling}.
 
-\DescribeOption{orient} This controls the orientation of the
-presentation. The default value is |landscape|.
+\DescribeOption{orient}
+%% This controls the orientation of the
+%% presentation. The default value is |landscape|.
+Tuỳ chọn này điều khiển hướng của trang, mặc định là |landscape| (nằm ngang).
 \begin{description}
 \item\option{orient=landscape}\\
-The presentation will be in landscape format. This value is not
-available in handout mode. In that mode, \pf{powerdot} will switch
-to portrait orientation and will warn you about this in the log
-file.
-\item\option{orient=portrait}\\ This produces slides in portrait
-format. Notice that not all styles support portrait orientation. Please
-refer to section~\ref{sec:styles} for information about which styles
-do support the portrait orientation.
+%% The presentation will be in landscape format. This value is not
+%% available in handout mode. In that mode, \pf{powerdot} will switch
+%% to portrait orientation and will warn you about this in the log
+%% file.
+Trang trình diễn nằm ngang. Giá trị này không thích hợp với |mode=handout|.
+Nếu cố dùng |mode| đó với tuỳ chọn |landscape|, \pf{powerdot} sẽ tự động
+chuyển qua kiểu |portrait| kèm theo lời nhắc nhở.
+\item\option{orient=portrait}\\
+%% This produces slides in portrait
+%% format. Notice that not all styles support portrait orientation. Please
+%% refer to section~\ref{sec:styles} for information about which styles
+%% do support the portrait orientation.
+Bố trí trang theo chiều đứng. Chú ý rằng không phải mọi kiểu trình diễn
+đều hỗ trợ chiều này. Vui lòng xem Mục~\vref{sec:styles} để biết thêm chi tiết.
 \end{description}
 
-\DescribeOption{display} This controls the production of slides and
-notes. The default value is |slides|.
+\DescribeOption{display}
+%% This controls the production of slides and
+%% notes. The default value is |slides|.
+Điều khiển việc xuất ra các trang trình diễn (|slide|) và ghi chú cá nhân (|note|).
+Mặc định là |slides|.
 \begin{description}
 \item\option{display=slides}\\
-This will only typeset the slides in your presentation.
+%% This will only typeset the slides in your presentation.
+Chỉ trình bày các trang trình diễn.
 \item\option{display=slidesnotes}\\
-This will typeset both the slides and the notes in your
-presentation. See also section~\ref{sec:notes} for more information
-about notes.
-\item\option{display=notes}\\ This will typeset the notes only. To
-be able to typeset the slide numbers of the notes correctly, one should
-first run the presentation in slidesnotes mode once.
+%% This will typeset both the slides and the notes in your
+%% presentation. See also section~\ref{sec:notes} for more information
+%% about notes.
+Trình bày đồng thời trang trình diễn và ghi chú cá nhân.
+Xem thêm ở Mục~\vref{sec:notes}.
+\item\option{display=notes}\\
+%% This will typeset the notes only. To
+%% be able to typeset the slide numbers of the notes correctly, one should
+%% first run the presentation in slidesnotes mode once.
+Chỉ xuất ra kết quả gồm các ghi chú cá nhân.
+Để có thể cho đúng số trang, bạn cần phải biên dịch ở chế độ |slidenotes| trước.
 \end{description}
 
-Here are some more options to control the output.
+%Here are some more options to control the output.
+Dưới đây là vài tuỳ chọn khác điều khiển kết quả xuất.
 \begin{description}
 \item\DescribeOption{size}\option{size}\\
-This is the size of the normal text font in points. Possible values
-are 8, 9, 10, 11, 12, 14, 17, 20 and the default value is
-11.\footnote{Note that sizes other than 10, 11 and 12 are
-non-standard and it is assumed that you have the \pf{extsizes}
-bundle \cite{extsizes} installed, which provides these sizes.}
+%% This is the size of the normal text font in points. Possible values
+%% are 8, 9, 10, 11, 12, 14, 17, 20 and the default value is
+%% 11.\footnote{Note that sizes other than 10, 11 and 12 are
+%% non-standard and it is assumed that you have the \pf{extsizes}
+%% bundle \cite{extsizes} installed, which provides these sizes.}
+Xác định cỡ chữ (văn bản). Các giá trị có thể là 8, 9, 10, 11, 12, 14, 17, 20.
+Giá trị mặc định là 11.\footnote{Chú ý rằng, các cỡ không phải là 10, 11 hay 12
+không phải là kiểu chuẩn -- nên nếu dùng, trên hệ thống của bạn
+phải có cài đặt gói \pf{extsizes} \cite{extsizes}.}
 \item\DescribeOption{style}\option{style}\\
-This controls the style to be loaded for the presentation. By
-default, the \pf{default} style will be loaded. For more styles, see
-section~\ref{sec:styles}.
+%% This controls the style to be loaded for the presentation. By
+%% default, the \pf{default} style will be loaded. For more styles, see
+%% section~\ref{sec:styles}.
+Xác định kiểu trình diễn, mặc định là \pf{default}. Xem thêm Mục~\vref{sec:styles}
+để biết thêm chi tiết về các kiểu.
 \item\DescribeOption{fleqn}\option{fleqn}\\
-This option makes equations flushed left. It does the same as the
-equally named option for the article class.
+%% This option makes equations flushed left. It does the same as the
+%% equally named option for the article class.
+Đánh chỉ số cho phương trình ở bên trái.
 \item\DescribeOption{leqno}\option{leqno}\\
-Put equation numbers at the left. Also the same as in the article
-class.
+% Put equation numbers at the left. Also the same as in the article class.
+Đánh chỉ số cho phương trình ở bên phải.
 \item\DescribeOption{nopsheader}\option{nopsheader}\\
-By default, \pf{powerdot} will write a postscript command to the ps
-file to make sure that post processors like ps2pdf know which paper
-to use without the need to specify it on the command line. See also
-section~\ref{sec:compiling}. If you experience problems with post
-processing or printing or you want to specify the paper size in the
-post processing steps yourself, use this option.
+%% By default, \pf{powerdot} will write a postscript command to the ps
+%% file to make sure that post processors like ps2pdf know which paper
+%% to use without the need to specify it on the command line. See also
+%% section~\vref{sec:compiling}. If you experience problems with post
+%% processing or printing or you want to specify the paper size in the
+%% post processing steps yourself, use this option.
+Theo mặc định, \pf{powerdot} sẽ ghi các lệnh |postscript| vào kết quả
+xuất dạng |PS|, nhờ đó các chương trình tương tự |ps2pdf| khi chuyển
+kết quả xuất |PS| sang dạng |PDF| sẽ xác định đúng kiểu trang -- bạn không
+cần phải chỉ ra khi gọi các chương trình đó ở dòng lệnh. Xem thêm
+Mục~\vref{sec:compiling}. Nếu bạn gặp trở ngại khi chuyển sang dạng |PDF|
+với các chương trình đó, hoặc khi in ấn, bạn có thể dùng tuỳ chọn này --
+và khi đó bạn nhớ chỉ ra kiểu giấy khi gọi các chương trình chuyển.
 \item\DescribeOption{hlentries}\option{hlentries}\\
-This highlights table of contents entries when the entry matches
-with the current slide and is |true| by default. See also
-section~\ref{sec:structure}. If you don't want highlighting of table
-of contents entries (for instance in print mode), use
-|hlentries=false|.
+%% This highlights table of contents entries when the entry matches
+%% with the current slide and is |true| by default. See also
+%% section~\vref{sec:structure}. If you don't want highlighting of table
+%% of contents entries (for instance in print mode), use
+%% |hlentries=false|.
+Ở bảng Mục lục, mỗi thành phần sẽ được tô màu nổi bật (|highlight|)
+nếu nó tương ứng với |slide| hiện tại. Nếu bạn không muốn điều này,
+hãy dùng |hlentries=false|. Mặc định là |hlentries=true|. Xem thêm
+ở Mục~\vref{sec:structure}.
 \item\DescribeOption{hlsections}\option{hlsections}\\
-This highlights table of contents sections when the section matches
-with the current section in the presentation and is |false| by
-default. See also section~\ref{sec:structure}. Specifying this
-option turns highlighting of sections on. This could be useful when
-you are using a style that implements a split table of contents.
+%% This highlights table of contents sections when the section matches
+%% with the current section in the presentation and is |false| by
+%% default. See also section~\vref{sec:structure}. Specifying this
+%% option turns highlighting of sections on. This could be useful when
+%% you are using a style that implements a split table of contents.
+Tương tự như trên, nhưng là các thành phần tương đương với |section|.
+Giá trị mặc định là |false|. Giá trị |true| có ích khi bạn dùng các kiểu
+trình diễn chia nhỏ bản Mục lục.
 \item\DescribeOption{blackslide}\option{blackslide}\\
-This option inserts a black slide in the presentation on page 1 and
-will automatically advance to page 2 when opening the presentation
-in a PDF viewer like Acrobat (Reader). The black slide has an
-embedded target called |blackslide| and you can make a clickable
-link to this slide by using
+%% This option inserts a black slide in the presentation on page 1 and
+%% will automatically advance to page 2 when opening the presentation
+%% in a PDF viewer like Acrobat (Reader). The black slide has an
+%% embedded target called |blackslide| and you can make a clickable
+%% link to this slide by using
+Với tuỳ chọn này, một trang |slide| đen sẽ chèn vào đầu trình diễn (như vậy
+|slide| đen ở trang 1); trình diễn của bạn sẽ tự động nhảy qua trang 2 khi 
+xem trong chương trình xem PDF (ví dụ Acrobat Reader). Trang |slide| đen
+đã được nhúng trước một đích gọi là |blackslide| nhờ đó bạn có thể thêm
+ở trang |slide| khác, chẳng hạn liên kết sau
 \begin{example}
  \hyperlink{blackslide}{Click here to go to the black slide}
 \end{example}
-When you click anywhere in the black slide, you will go back to the
-originating slide. This option can be used to temporarily pause a
-presentation, for instance, to do a proof on the black board.
+%% When you click anywhere in the black slide, you will go back to the
+%% originating slide. This option can be used to temporarily pause a
+%% presentation, for instance, to do a proof on the black board.
+Khi bạn |click| ở bất kỳ vị trí nào của |slide| đen, bạn sẽ đi về đúng
+trang |slide| ban đầu. Tuỳ chọn này có ích, chẳng hạn khi bạn muốn tạm
+ngưng trình diễn để thuyết minh trên bảng đen.
 \end{description}
 
-Here is an example of a |\documentclass| command.
+%Here is an example of a |\documentclass| command.
+Dưới đây là vài ví dụ giúp bạn hình dung lại các điều đã nói.
 \begin{example}
  \documentclass[
    size=12,
@@ -312,8 +396,10 @@ Here is an example of a |\documentclass| command.
    fleqn
  ]{powerdot}
 \end{example}
-This example sets up a presentation in \pf{tycja} style, with a black
-slide, normal size 12 points and flushed left equations.
+%% This example sets up a presentation in \pf{tycja} style, with a black
+%% slide, normal size 12 points and flushed left equations.
+Với ví dụ này, trình diễn sẽ dùng kiểu \pf{tycja}, với trang |slide| đen,
+cỡ chữ 12 điểm, các phương trình được đánh số bên trái.
 \begin{example}
  \documentclass[
    size=12,
@@ -326,11 +412,16 @@ slide, normal size 12 points and flushed left equations.
    fleqn
  ]{powerdot}
 \end{example}
-Changing the |paper| and |mode| options, now produces a handout with
-possibly more than two slides per page due to the |nopagebreaks|
-option.
+%% Changing the |paper| and |mode| options, now produces a handout with
+%% possibly more than two slides per page due to the |nopagebreaks|
+%% option.
+Ở ví dụ này, ta thay đổi kiểu trabg (|paper|) và chọn |mode=handout|
+cùng với tuỳ chọn |nopagebreaks| -- nhờ đó nhiều hơn hai trang |slide|
+sẽ được bố trí trên một trang giấy!
 
-\subsection{Setup options}\label{sec:pdsetup}
+%\subsection{Setup options}
+\subsection{Thiết lập trình diễn}
+\label{sec:pdsetup}
 \DescribeMacro{\pdsetup}
 There are several extra options that can help customizing your
 presentation. These options are not available via the
