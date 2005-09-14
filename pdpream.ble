@@ -36,7 +36,7 @@
 %% and powerdot-example2.tex.
 %%
 \usepackage{url}
-\usepackage{fourier}
+%\usepackage{fourier}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{pst-char}

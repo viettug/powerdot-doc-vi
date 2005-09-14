@@ -16,12 +16,13 @@
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
-\usepackage{hyperref,indentfirst,url}
 
 \IfFileExists{/home/users/kyanh/.kyanh.}{
+	\usepackage{hyperref,indentfirst,url}
 	\usepackage{ktv-buildnum}
 	\usepackage{varioref}
 	\usepackage[varioref]{vnhook}
+	\usepackage[left=35mm,right=25mm,top=15mm,bottom=15mm]{geometry}
 }{
 	\newcount\buildnum
 	\buildnum=99999
@@ -964,7 +965,16 @@ trong phần tham số bổ sung của môi trường (giá trị mặc định 
 Bây giờ, mọi phần tử đều được thể hiện với \emph{màu nhạt}\index{màu nhạt}
 (màu được định nghĩa bởi kiểu trình diễn); khi |overlay| của một phần
 tử được thể hiện, phần tử đó sẽ được tô đậm để làm nổi bật nó so
-với các phần tử khác. 
+với các phần tử khác. Sự phân biệt của hai |type| có thể minh họa như
+sau (dấu |*| chỉ màu nhạt):
+\begin{example}
+x------       x------
+xx-----       *x----- 
+xxx----       **x---- 
+xxxx---       ***x--- 
+xxxxx--       ****x--
+xxxxxx-       *****x-
+\end{example}
 
 %% Lists can also be nested to create complicated structures. When a
 %% list is nested, it inherits the setting of the |type| option from
@@ -996,36 +1006,47 @@ sẽ được tô màu đậm, và ở |overlay| thứ ba, |C| sẽ được tô
 
 % =====================================================================
 
-\subsection{The \cs{item} command}
-
+%\subsection{The \cs{item} command}
+\subsection{Lệnh \cs{item}}
 
 \DescribeMacro{\item}
-The |\item| command has an extra \emph{optional} argument in
-\pf{powerdot} which allows for creating overlays in a more flexible
-way then |\pause| provides.
+%% The |\item| command has an extra \emph{optional} argument in
+%% \pf{powerdot} which allows for creating overlays in a more flexible
+%% way then |\pause| provides.
+Lệnh |\item| để tạo phần tử cho danh sách có thể nhận tham số bổ sung (\emph{optional})
+cho phép tạo các |overlay| linh hoạt hơn lệnh |\pause|.
 \begin{command}
  `\cs{item}\oarg{label}\larg{overlays}'
 \end{command}
-This optional argument should contain an overlay specification
-stating on which overlays you want the item to appear. This
-specification is a comma separated list where each item can used the
-notation as in table~\ref{tab:item}.
+%% This optional argument should contain an overlay specification
+%% stating on which overlays you want the item to appear. This
+%% specification is a comma separated list where each item can used the
+%% notation as in table~\ref{tab:item}.
+Tham số bổ sung \meta{overlays} này danh sách các |overlay|
+mà phần tử của danh sách sẽ xuất hiện (có nghĩa, một phần tử
+có thể xuất hiện ở một hay nhiều |overlay| khác nhau). Trong
+danh sách này, các |overlay| được cho bởi số, cách nhau bởi dấu phảy.
 \begin{table}[htb]\centering
 \begin{tabular}{d}
-Syntax&Meaning\\\hline
-\texttt{x}&Only overlay \texttt{x}\\
-\texttt{-x}&All overlays up to and including \texttt{x}\\
-\texttt{x-}&All overlays from \texttt{x}, including \texttt{x}\\
-\texttt{x-y}&All overlays from \texttt{x} to \texttt{y},
-including \texttt{x} and \texttt{y}\\
+Cú pháp&Ý nghĩa\\\hline
+\texttt{x}&Chỉ ở |overlay| \texttt{x}\\
+\texttt{-x}&Các |overlay| nhỏ hơn hoặc bằng \texttt{x}\\
+\texttt{x-}&Các |overlay| lớn hơn hoặc bằng \texttt{x}\\
+\texttt{x-y}&Các |overlay| từ \texttt{x} đến \texttt{y},
+bao gồm cả \texttt{x} và \texttt{y}\\
 \end{tabular}
-\caption{\cs{item} and \cs{onslide} notation}\label{tab:item}
+%\caption{\cs{item} and \cs{onslide} notation}
+\caption{Quy ước cho \cs{item} và \cs{onslide}}
+\label{tab:item}
 \end{table}
-The \meta{label} argument is the standard optional argument for
-|\item| in \LaTeX. A \LaTeX\ manual \cite{companion} can tell you
-more about this argument.
+%% The \meta{label} argument is the standard optional argument for
+%% |\item| in \LaTeX. A \LaTeX\ manual \cite{companion} can tell you
+%% more about this argument.
+Tham số \meta{label} được hiểu tương tự như trong \LaTeX{} chuẩn,
+xem chi tiết ở chẳng hạn \cite{companion}.
 
-Here is an example.
+%Here is an example.
+Dưới đây là ví dụ
 \begin{example}
  \begin{slide}{Active itemize}
    \begin{itemize}[type=1]
@@ -1035,16 +1056,36 @@ Here is an example.
    \end{itemize}
  \end{slide}
 \end{example}
-Here we have said that |A| should only be active on overlay 1, |B|
-should only be active on overlay 2, and |C| should only be active on
-overlay 3. Again, when the item is not active, it appears in the
-inactive color because of |type=1|.
+%% Here we have said that |A| should only be active on overlay 1, |B|
+%% should only be active on overlay 2, and |C| should only be active on
+%% overlay 3. Again, when the item is not active, it appears in the
+%% inactive color because of |type=1|.
+Với ví dụ này, phần tử |A| chỉ xuất hiện với màu tô đậm ở |overlay 1|,
+phần tử |B| chỉ xuất hiện + tô đậm ở |overlay| thứ hai,... Để ý rằng,
+do chỉ định |type=1|, nếu phần tử không phải là phần tử hiện tại,
+màu của nó được tô nhạt. Ta có thể minh họa như sau (dấu |*| chỉ màu nhạt):
+\begin{example}
+--A---- 
+--*B--- 
+--**C--
+\end{example}
 
-If |type=0| is specified and if each item is given an overlay
-option, then each item will appear only when it is active. When the
-item is not active, then it will not show on the slide at all. More
-examples demonstrating the syntax for \meta{overlays} will be
-discussed in the next section.
+%% If |type=0| is specified and if each item is given an overlay
+%% option, then each item will appear only when it is active. When the
+%% item is not active, then it will not show on the slide at all. More
+%% examples demonstrating the syntax for \meta{overlays} will be
+%% discussed in the next section.
+Nếu chỉ định |type=0| và nếu mỗi phần tử của danh sách đểu có thêm
+tham số bổ sung chỉ định |overlay|, thì tại mỗi thời điểm chỉ có một
+và chỉ một phần tử xuất hiện, các phần tử khác không phải xuất hiện với
+màu nhạt, mà \emph{không xuất hiện}:
+\begin{example}
+--A---- 
+---B--- 
+----C--
+\end{example}
+
+Ví dụ nhiều hơn về cú pháp của \meta{overlays} được cho ở Mục tiếp theo.
 
 \subsection{The \cs{onslide} command}\label{sec:onslide}
 \DescribeMacro{\onslide} Overlays can also be achieved using the
