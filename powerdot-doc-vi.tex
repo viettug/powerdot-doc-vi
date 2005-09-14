@@ -59,13 +59,12 @@ the first beta releases.
 
 \PrintChangesX\PrintIndexX
 
-\title{\vspace*{-2cm}\mktitledecor The \pf{powerdot} class
-\thanks{This class can be downloaded from the CTAN mirrors:
-\texttt{/macros/latex/contrib/powerdot}. See \texttt{powerdot.dtx} for
-information on installing \pf{powerdot} into your \LaTeX\
-distribution and for the license of this class.}}
+\title{\vspace*{-2cm}\mktitledecor Sử dụng lớp \pf{powerdot} tạo trình diễn
+ \thanks{Lớp này có thể tài về tại CTAN:
+ \texttt{/macros/latex/contrib/powerdot}. Xem \texttt{powerdot.dtx} để biết
+ thông tin về bản quyền của lớp \pf{powerdot}.}}
 \author{Hendri Adriaens\and Christopher Ellison
-	\\\and \emph{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
+	\\\and \underline{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
 \date{Bản dịch số {\the\buildnum}}
 \maketitle
 
@@ -814,35 +813,56 @@ cho ta |slide| đặc biệt ở đó không xuất hiện Mục lục. Xem thê
 
 % =====================================================================
 
-\section{Overlays}\label{sec:overlays}
+\section{Overlay}\label{sec:overlays}
 
 %% It is often the case that you don't want all the information on the
 %% slide to appear at once. Rather, the information should appear one
 %% item at a time. In \pf{powerdot}, this is achieved with overlays.
 %% Each slide can be comprised of many overlays, and the overlays are
 %% displayed one at a time.
+Với trình diễn, nhiều khi bạn không muốn mọi thông tin trên |slide|
+xuất hiện cùng một lúc, mà tuần tự từng ý từng ý một. Với \pf{powerdot},
+bạn có thể đạt kết quả này nhờ |overlay|. Mỗi |slide| hiển nhiên
+có thể gồm nhiều |overlay|; tại mỗi thời điểm, chỉ có một |overlay|
+được thể hiện.
 
-\subsection{The \cs{pause} command}\label{sec:pause}
-\DescribeMacro{\pause} The easiest way to display information
-sequentially is to use the |\pause| command.
+% =====================================================================
+
+%\subsection{The \cs{pause} command}
+\subsection{Lệnh \cs{pause}}
+
+\label{sec:pause}
+
+\DescribeMacro{\pause}
+%% The easiest way to display information
+%% sequentially is to use the |\pause| command.
+Cách đơn giản nhất để tuần tự hóa thông tin trên |slide|
+là dùng lệnh |\pause|.
 \begin{command}
  `\cs{pause}\oarg{number}'
 \end{command}
-Below is a simple example:
+Dưới đây là ví dụ đơn giản:
 \begin{example}
  \begin{slide}{Simple overlay}
    power\pause dot
  \end{slide}
 \end{example}
-The slide's information is displayed and continues until the
-|\pause| command is encountered. No further output within the same
-slide is displayed until the click of the mouse or the touch of the
-keyboard. Then, the content will continue to display until all the
-information is displayed or until another |\pause| command is
-encountered. In this example, |power| is displayed on the first
-overlay, and |powerdot| is the displayed on the second overlay.  The
-|\pause| command is often used within the |itemize| and |enumerate|
-environments. For example,
+%% The slide's information is displayed and continues until the
+%% |\pause| command is encountered. No further output within the same
+%% slide is displayed until the click of the mouse or the touch of the
+%% keyboard. Then, the content will continue to display until all the
+%% information is displayed or until another |\pause| command is
+%% encountered. In this example, |power| is displayed on the first
+%% overlay, and |powerdot| is the displayed on the second overlay.  The
+%% |\pause| command is often used within the |itemize| and |enumerate|
+%% environments. For example,
+Thông tin của |slide| được thể hiện và tiếp tục cho đến khi gặp lệnh |\pause|
+đầu tiên. Không có thêm kết quả nào xuất hiện cho đến khi bạn |click|
+chuột hoặc gõ phím bất kỳ. Sau đó, nội dung |slide| sẽ được thể hiện
+cho đến khi mọi thông tin đều xuất hiện hoặc cho tới khi gặp lệnh |\pause|
+kế tiếp. Trong ví dụ trên, |power| sẽ xuất hiện trong |overlay| đầu tiên,
+và |powerdot| sẽ xuất hiện ở |overlay| tiếp theo. Lệnh |\pause| thường được
+dùng cùng với các môi trường |itemize| hoặc |enumerate|. Ví dụ
 \begin{example}
  \begin{slide}{Multiple pauses}
    power\pause dot \pause
@@ -854,13 +874,19 @@ environments. For example,
    \end{itemize}
  \end{slide}
 \end{example}
-Since |\pause| was used before the |itemize| environment, no item
-will appear until the third overlay. Then, each item will be
-displayed one at a time, each on their own overlay. More information
-on using lists will follow in the next section.
+%% Since |\pause| was used before the |itemize| environment, no item
+%% will appear until the third overlay. Then, each item will be
+%% displayed one at a time, each on their own overlay. More information
+%% on using lists will follow in the next section.
+Bởi vì |\pause| được dùng trước môi trường |itemize|, không có
+phần tử nào của danh sách xuất hiện cho tới |overlay| thứ ba.
+Sau đó, các phần tử sẽ lần lượt xuất hiện trong các |overlay|
+kế tiếp. Việc điều khiển danh sách sẽ được bàn kỹ hơn ở Mục kế tiếp.
 
-The optional argument of the |\pause| command specifies the number
-of overlays to pause. An example usage is:
+%% The optional argument of the |\pause| command specifies the number
+%% of overlays to pause. An example usage is:
+Lệnh |\pause| có thể tham số bổ sung cho phép chỉ ra bao nhiêu |overlay|
+phải dừng. Ví dụ
 \begin{example}
  \begin{slide}{Pause longer}
    \begin{itemize}
@@ -870,20 +896,35 @@ of overlays to pause. An example usage is:
    \end{itemize}
  \end{slide}
 \end{example}
-In the example above, item |C| will appear on the fourth overlay.
-The usefulness of this option will become more apparent in the next
-section; so we will revisit a similar example at that time.
+%% In the example above, item |C| will appear on the fourth overlay.
+%% The usefulness of this option will become more apparent in the next
+%% section; so we will revisit a similar example at that time.
+Trong ví dụ trên, phần tử |C| của danh sách xuất hiện ở |overlay|
+thứ bốn. Tuỳ chọn có vẻ vô dụng này sẽ được đề cập lại ở Mục tiếp theo,
+ở đó ta sẽ gặp lại ví dụ tương tự ví dụ trên đây.
 
-\subsection{List environments}\label{sec:lists}
-The list environments, |itemize| and |enumerate|, have special
-treatments in \pf{powerdot}. They have an optional argument that
-will be taken care off by the \pf{enumitem} package (see
-\cite{enumitem}). \pf{powerdot} supplies an extra key for this
-optional argument. In the examples that follow, features will be
-described using the |itemize| environment but they also apply to the
-|enumerate| environment.
+% =====================================================================
 
-Here is the typical usage of the |itemize| environment:
+%\subsection{List environments}
+\subsection{Tạo danh sách}
+\label{sec:lists}
+
+%% The list environments, |itemize| and |enumerate|, have special
+%% treatments in \pf{powerdot}. They have an optional argument that
+%% will be taken care off by the \pf{enumitem} package (see
+%% \cite{enumitem}). \pf{powerdot} supplies an extra key for this
+%% optional argument. In the examples that follow, features will be
+%% described using the |itemize| environment but they also apply to the
+%% |enumerate| environment.
+Các môi trường tạo danh sách |itemize| và |enumerate| được xử lý
+đặc biệt trong \pf{powerdot}. Chúng đều có tham số tuỳ chọn điều khiển
+bởi gói \pf{enumitem} (xem \cite{enumitem}). Lớp \pf{powerdot} cung
+cấp nhiều khóa cho tuỳ chọn này. Trong các ví dụ sau đây, các tính năng
+được minh họa với môi trường |itemize|, nhưng bạn cũng có thể áp dụng
+cách làm tương tự cho môi trường |enumerate|.
+
+%Here is the typical usage of the |itemize| environment:
+Dưới đây là ví dụ đơn giản nhất về cách dùng môi trường |itemize|:
 \begin{example}
  \begin{slide}{Basic itemize}
    \begin{itemize}
@@ -893,13 +934,19 @@ Here is the typical usage of the |itemize| environment:
    \end{itemize}
  \end{slide}
 \end{example}
-The display is simple, each item appears one at a time with each
-overlay.
+%% The display is simple, each item appears one at a time with each
+%% overlay.
+Kết quả của ví dụ là danh sách đơn giản, mỗi phần tử của nó
+được thể hiện ở một |overlay|.
 
 \DescribeOption{type}
-Suppose we wanted every item to show, but we only wanted one item to
-appear `active' at once. This can be accomplished via the |type|
-option for the |itemize| environment. The default value is |0|.
+%% Suppose we wanted every item to show, but we only wanted one item to
+%% appear `active' at once. This can be accomplished via the |type|
+%% option for the |itemize| environment. The default value is |0|.
+Giả định rằng ta muốn mọi phần tử của danh sách sẽ được thể hiện,
+nhưng tại mỗi thời điểm chỉ một và một phần tử của danh sách xuất hiện
+ở |slide|. Điều này có thể đạt được bằng cách chỉ định kiểu với |type|
+trong phần tham số bổ sung của môi trường (giá trị mặc định là |0|).
 \begin{example}
  \begin{slide}{Type 1 itemize}
    \begin{itemize}[type=1]
@@ -909,18 +956,26 @@ option for the |itemize| environment. The default value is |0|.
    \end{itemize}
  \end{slide}
 \end{example}
-Now, every item will be displayed in the \emph{inactive
-color}\index{inactive color} (which is defined by the style that you
-use), and the item's font color will become the active one on the
-overlay that it would normally appear on. The default behavior is
-given by |type=0|.
+%% Now, every item will be displayed in the \emph{inactive
+%% color}\index{inactive color} (which is defined by the style that you
+%% use), and the item's font color will become the active one on the
+%% overlay that it would normally appear on. The default behavior is
+%% given by |type=0|.
+Bây giờ, mọi phần tử đều được thể hiện với \emph{màu nhạt}\index{màu nhạt}
+(màu được định nghĩa bởi kiểu trình diễn); khi |overlay| của một phần
+tử được thể hiện, phần tử đó sẽ được tô đậm để làm nổi bật nó so
+với các phần tử khác. 
 
-Lists can also be nested to create complicated structures. When a
-list is nested, it inherits the setting of the |type| option from
-the `parent' list, but that can be overruled by specifying the
-|type| option in the optional argument of the nested list. We
-present here one example, but many more can be created by nesting
-lists of different types in different ways.
+%% Lists can also be nested to create complicated structures. When a
+%% list is nested, it inherits the setting of the |type| option from
+%% the `parent' list, but that can be overruled by specifying the
+%% |type| option in the optional argument of the nested list. We
+%% present here one example, but many more can be created by nesting
+%% lists of different types in different ways.
+Các danh sách có thể lồng nhau. Khi xảy ra trường hợp này, các danh sách
+thứ cấp sẽ thừa hưởng giá trị của |type| ở môi trường cấp cao hơn.
+Tất nhiên, với bất kỳ danh sách nào, ta cũng có thể đặt lại giá trị cho |type|.
+Dưới đây là ví dụ về hai danh sách lồng nhau:
 \begin{example}
  \begin{slide}{Nested lists}
    \begin{itemize}
@@ -932,11 +987,18 @@ lists of different types in different ways.
    \end{itemize}
  \end{slide}
 \end{example}
-This displays |A| and |B| on the first overlay, but |B| is inactive.
-On overlay 2, |B| will become active and on overlay 3, |C| will
-become visible.
+%% This displays |A| and |B| on the first overlay, but |B| is inactive.
+%% On overlay 2, |B| will become active and on overlay 3, |C| will
+%% become visible.
+Kết quả là phần tử |A| và |B| được thể hiện ở |overlay| đầu tiên,
+nhưng phần tử |B| được tô màu nhạt. Ở |overlay| thứ hai, phần tử |B|
+sẽ được tô màu đậm, và ở |overlay| thứ ba, |C| sẽ được tô đậm.
+
+% =====================================================================
 
 \subsection{The \cs{item} command}
+
+
 \DescribeMacro{\item}
 The |\item| command has an extra \emph{optional} argument in
 \pf{powerdot} which allows for creating overlays in a more flexible
