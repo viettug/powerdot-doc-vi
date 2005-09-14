@@ -423,47 +423,67 @@ sẽ được bố trí trên một trang giấy!
 \subsection{Thiết lập trình diễn}
 \label{sec:pdsetup}
 \DescribeMacro{\pdsetup}
-There are several extra options that can help customizing your
-presentation. These options are not available via the
-|\documentclass| command. This has a technical reason.\footnote{The
-interested reader is referred to the section about the \pf{xkvltxp}
-package in the \pf{xkeyval} package documentation \cite{xkeyval}.}
-The options can be accessed via the |\pdsetup| command, which can
-only be used in the preamble of your presentation. The command takes
-one argument, which should contain a comma-separated list of
-options. The available options are described below.
-
+%% There are several extra options that can help customizing your
+%% presentation. These options are not available via the
+%% |\documentclass| command. This has a technical reason.\footnote{The
+%% interested reader is referred to the section about the \pf{xkvltxp}
+%% package in the \pf{xkeyval} package documentation \cite{xkeyval}.}
+%% The options can be accessed via the |\pdsetup| command, which can
+%% only be used in the preamble of your presentation. The command takes
+%% one argument, which should contain a comma-separated list of
+%% options. The available options are described below.
+Dưới đây là các tuỳ chọn giúp bạn điều khiển tốt hơn nữa trình diễn của mình.
+Các tuỳ chọn này không phải chỉ ra khi gọi lệnh |\documentclass|,
+mà được chỉ ra trong tham số của lệnh |\pdsetup|.
+Có sự phân biệt này là vì lý do kỹ thuật.\footnote{%
+Nếu bạn quan tâm, thử tìm đọc mục về \pf{xkvltxp}
+trong tài liệu \cite{xkeyval} về gói \pf{xkeyval}).}
+Lệnh |\pdsetup| chấp nhận chỉ một tham số, là chuỗi các tuỳ chọn cách
+nhau bằng dấu phảy.
 \begin{description}
 \item\DescribeOption{lf}\option{lf}\\
-This determines the content of the left footer. By default, this is
-empty.
+%This determines the content of the left footer. By default, this is empty.
+Xác định nội dung của |footer| (chân trang) bên trái. Mặc định là rỗng.
 \item\DescribeOption{rf}\option{rf}\\
-This determines the content of the right footer. By default, this is
-empty.
+% This determines the content of the right footer. By default, this is empty.
+Như trên, nhưng cho bên phải.
 \item\DescribeOption{theslide}\option{theslide}\\
-This option controls how the slide number appears on the slide. By
-default this has the value |\arabic{slide}~/~\pageref*{lastslide}|,
-which could appear like |5/22|. Notice that the |\arabic{slide}|
-typesets the number of the current slide and that
-|\pageref*{lastslide}| typesets the number of the last
-slide.\footnote{We use the starred version of \cs{pageref} which is
-defined by \pf{hyperref} and does not create a link to the page that
-it is referring to.}
+%% This option controls how the slide number appears on the slide. By
+%% default this has the value |\arabic{slide}~/~\pageref*{lastslide}|,
+%% which could appear like |5/22|. Notice that the |\arabic{slide}|
+%% typesets the number of the current slide and that
+%% |\pageref*{lastslide}| typesets the number of the last
+%% slide.\footnote{We use the starred version of \cs{pageref} which is
+%% defined by \pf{hyperref} and does not create a link to the page that
+%% it is referring to.}
+Tuỳ chọn này xác định cánh đáng số các |slide|.
+Giá trị mặc định là |\arabic{slide}~/~\pageref*{lastslide}|, mà với nó,
+các |slide| sẽ đánh số tương tự như |5/22| (trang 5, tổng số trang 22).
+Chú ý rằng |\arabic{slide}| cho biết trang hiện tại, và |\pageref*{lastslide}|
+tổng số |slide|.\footnote{Ta phải dùng |\pageref*|, phiên bản có sao của |pageref|,
+được định nghĩa bởi \pf{hyperref} nhở đó ta thu đưọc số trang chứ không phải
+là liên kết đến trang.}
 \item\DescribeOption{thenote}\option{thenote}\\
-This is similar to the |theslide| option, but typesets the slide
-numbers of notes. The default value is
-|note~\arabic{note}~of~slide~\arabic{slide}| and |\arabic{note}|
-here typesets the number of the current note that goes with the
-current slide. This could appear like |note 2 of slide 7|.
+%% This is similar to the |theslide| option, but typesets the slide
+%% numbers of notes. The default value is
+%% |note~\arabic{note}~of~slide~\arabic{slide}| and |\arabic{note}|
+%% here typesets the number of the current note that goes with the
+%% current slide. This could appear like |note 2 of slide 7|.
+Tương tự như tuỳ chọn |theslide|, nhưng dành cho các ghi chú.
+Giá trị mặc định là |note~\arabic{note}~of~slide~\arabic{slide}|,
+ở đây |\arabic{note}| là số chỉ ghi chú hiện tại. Kết quả sẽ tương tự
+như |note 2 of slide 7|. Với người dùng Việt, có lẽ phải định nghĩa lại
+như sau: |ghi chú~\arabic{note}~/~\arabic{slide}|.
 \item\DescribeOption{trans}\option{trans}\\
-This option sets the default transition effect to be used in the
-presentation. These transition effects only work after compiling the
-presentation to PDF format. See also section~\ref{sec:compiling}.
-The following transition effects are supported: |Split|, |Blinds|,
-|Box|, |Wipe|, |Dissolve|, |Glitter| and |Replace|. When you are using
-a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,
-|Cover|, |Uncover| or |Fade|. It is important to notice that most
-viewers are case sensitive, so, for instance, |box| will not work.
+%% This option sets the default transition effect to be used in the
+%% presentation. These transition effects only work after compiling the
+%% presentation to PDF format. See also section~\ref{sec:compiling}.
+%% The following transition effects are supported: |Split|, |Blinds|,
+%% |Box|, |Wipe|, |Dissolve|, |Glitter| and |Replace|. When you are using
+%% a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,
+%% |Cover|, |Uncover| or |Fade|. It is important to notice that most
+%% viewers are case sensitive, so, for instance, |box| will not work.
+Xác định hiệu ứng mặc định cho trình diễn.
 
 The default effect is |Replace| which just replaces one slide with
 another when browsing the slides. Note that some PDF viewers (like
