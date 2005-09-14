@@ -1,0 +1,154 @@
+%%
+%% This is file `pdpream.ble',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% powerdot.dtx  (with options: `preamble')
+%% 
+%% ----------------------------------------------------------
+%% Copyright (C) 2005 Hendri Adriaens and Christopher Ellison
+%% ----------------------------------------------------------
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%% This work has the LPPL maintenance status "maintained".
+%%
+%% This Current Maintainer of this work is Christopher Ellison.
+%%
+%% This work consists of the file powerdot.dtx and derived files
+%% powerdot.cls, powerdot-default.sty, powerdot-tycja.sty,
+%% powerdot-ikeda.sty, powerdot-fyma.sty, powerdot-simple.sty,
+%% powerdot-ciment.sty, powerdot-styletest.tex, powerdot-example1.tex
+%% and powerdot-example2.tex.
+%%
+%% The following files constitute the powerdot bundle and must be
+%% distributed as a whole: readme, powerdot.pdf, powerdot.dtx,
+%% powerdot.cls, powerdot-default.sty, powerdot-default.ps,
+%% powerdot-tycja.sty, powerdot-ikeda.sty, powerdot-fyma.sty,
+%% powerdot-simple.sty, powerdot-ciment.sty, powerdot-example1.tex
+%% and powerdot-example2.tex.
+%%
+\usepackage{url}
+\usepackage{fourier}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{pst-char}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{xkeyval}
+\lstnewenvironment{command}{%
+  \lstset{columns=flexible,frame=single,backgroundcolor=\color{blue!20},%
+    xleftmargin=\fboxsep,xrightmargin=\fboxsep,escapeinside=`',gobble=1}}{}
+\lstnewenvironment{example}[1][]{%
+  \lstset{basicstyle=\footnotesize\ttfamily,columns=flexible,frame=single,%
+    backgroundcolor=\color{yellow!20},xleftmargin=\fboxsep,%
+    xrightmargin=\fboxsep,gobble=1,%
+    }\lstset{#1}}{}
+\def\option#1{\fcolorbox{black}{red!20}{\texttt{#1}}\vspace*{.2cm}}
+\def\mktitledecor{%
+  \rput[tl]{90}(-5.5,-25.51){%
+    \psline[linewidth=1pt](0,1.5)(\paperheight,1.5)%
+    \rput[lB](.075\paperheight,.5){\pscharpath[linecolor=blue!50,%
+      fillcolor=yellow!20,fillstyle=solid,linewidth=.5pt]%
+      {\Huge\bfseries\sffamily powerdot}%
+    }%
+    \rput[rB](.925\paperheight,.5){\pscharpath[linecolor=blue!50,%
+      fillcolor=yellow!20,fillstyle=solid,linewidth=.5pt]%
+      {\Huge\bfseries Documentation}%
+    }%
+    \psline[linewidth=1pt](0,0)(\paperheight,0)%
+  }%
+}
+\makeatletter
+\def\tableofcontents{\@starttoc{toc}}
+\renewenvironment{theglossary}{%
+  \section*{Version history}%
+  \GlossaryParms \let\item\@idxitem \ignorespaces
+}{}%
+\def\DescribeMacros{\leavevmode\@bsphack
+  \begingroup\MakePrivateLetters\Describe@Macros}
+\def\Describe@Macros#1{\endgroup\strut
+  \marginpar{\raggedleft
+  \def\@tempa{#1}\count@\z@
+  \XKV@for@o\@tempa\@tempa{%
+    \ifnum\count@>\z@\\\fi\advance\count@\@ne
+    \MacroFont\expandafter\string\@tempa
+    \expandafter\SpecialUsageIndex\expandafter{\@tempa}%
+  }}%
+  \@esphack\ignorespaces
+}
+\def\DescribeOption#1{\leavevmode\@bsphack
+              \marginpar{\raggedleft\PrintDescribeOption{#1}}%
+              \SpecialOptionIndex{#1}\@esphack\ignorespaces}
+\def\PrintDescribeOption#1{\strut\emph{option}\\\MacroFont #1\ }
+\def\SpecialOptionIndex#1{\@bsphack
+    \index{#1\actualchar{\protect\ttfamily#1}
+           (option)\encapchar usage}\@esphack}
+\def\DescribeOptions#1{\leavevmode\@bsphack
+  \marginpar{\raggedleft\strut\emph{options}%
+  \@for\@tempa:=#1\do{%
+    \\\strut\MacroFont\@tempa\SpecialOptionIndex\@tempa
+  }}\@esphack\ignorespaces}
+\def\SpecialEnvIndex#1{\@bsphack
+    \index{#1\actualchar{\protect\ttfamily#1}
+           (environment)\encapchar usage}\@esphack}
+\def\changes@#1#2#3{%
+  \protected@edef\@tempa{%
+    \noexpand\glossary{\textbf{#1}\hfill\emph{(#2)}%
+    \levelchar
+    \ifx\saved@macroname\@empty
+      \space\actualchar\generalname
+    \else
+      \expandafter\@gobble\saved@macroname
+      \actualchar\string\verb\quotechar*%
+      \verbatimchar\saved@macroname\verbatimchar
+    \fi
+    :\levelchar #3}%
+  }%
+  \@tempa\endgroup\@esphack
+}
+\makeatother
+\def\PrintChangesX{%
+  \begingroup
+    \let\efill\relax
+    \PrintChanges
+  \endgroup
+}
+\def\PrintIndexX{%
+  \begingroup
+    \setcounter{IndexColumns}{2}
+    \setlength{\columnsep}{18pt}%
+    \setlength{\columnseprule}{.4pt}%
+    \PrintIndex
+  \endgroup
+}
+\def\larg#1{{\ttfamily\char`\<}\meta{#1}{\ttfamily\char`\>}}
+\let\pf\textsf
+\newcolumntype{d}{c|l}
+\newcolumntype{e}{c|c|c|c}
+\RecordChanges
+\CodelineIndex
+\newcounter{FAQ}
+\def\question{%
+  \stepcounter{FAQ}%
+  \parskip4pt plus 2pt minus 1pt
+  \itemsep4pt plus 2pt minus 1pt
+  \parsep4pt plus 2pt minus 1pt
+  \item[\textbf{Q\arabic{FAQ}}]%
+}
+\def\answer{%
+  \parskip0pt
+  \itemsep0pt
+  \parsep0pt
+  \item[\textbf{A\arabic{FAQ}}]%
+}
+\endinput
+%%
+%% End of file `pdpream.ble'.
