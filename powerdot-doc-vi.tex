@@ -1,10 +1,13 @@
+
 \documentclass[a4paper]{ltxdoc}
-\input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
+\usepackage{ktv-buildnum,hyperref,indentfirst,url}
+
+\input{pdpream.ble}
 
 \def\fileversion{v1.0}
-\def\filedate{2005/09/14}
+\def\filedate{2005/09/04}
 
 %\let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
 
@@ -27,18 +30,25 @@ the first beta releases.
 \texttt{/macros/latex/contrib/powerdot}. See \texttt{powerdot.dtx} for
 information on installing \pf{powerdot} into your \LaTeX\
 distribution and for the license of this class.}}
-\author{Hendri Adriaens\and Christopher Ellison}
-\date{\fileversion\ (\filedate)}
+\author{Hendri Adriaens\and Christopher Ellison
+	\\\and Biên dịch: kyanh <\url{mailto:kyanh@o2.pl}>}
+\date{Bản dịch số {\the\buildnum}}
 \maketitle
 
-\begin{abstract}\noindent
-\pf{powerdot} is a presentation class for \LaTeX\ that allows for
-the quick and easy development of professional presentations. It
-comes with many tools that enhance presentations and aid the
-presenter. Examples are automatic overlays, personal notes and a
-handout mode. To view a presentation, DVI, PS or PDF output can be
-used. A powerful template system is available to easily develop new
-styles.
+\begin{abstract}
+\noindent
+%% \pf{powerdot} is a presentation class for \LaTeX\ that allows for
+%% the quick and easy development of professional presentations. It
+%% comes with many tools that enhance presentations and aid the
+%% presenter. Examples are automatic overlays, personal notes and a
+%% handout mode. To view a presentation, DVI, PS or PDF output can be
+%% used. A powerful template system is available to easily develop new
+%% styles.
+\pf{powerdot} là lớp \LaTeX\ cho phép tạo trình diễn nhanh chóng,
+chuyên nghiệp với kiểu dáng dễ dàng thay đổi. Lớp cung cấp nhiều công cụ
+giúp thiết kế trình diễn: overlay, ghi chú cá nhân, chế độ handout.
+Để xem trình diễn, bản DVI, PS, PDF của tài liệu đều có thể dùng được.
+Lớp cung cấp hệ thống mẫu mạnh, giúp phát triển dễ dàng các mẫu mới.
 \end{abstract}
 
 \begin{multicols}{2}
@@ -49,75 +59,113 @@ styles.
 \end{multicols}
 
 \newpage
-\section{Introduction}\label{sec:intro}
-This class gives you the possibility to easily create professionally
-looking slides. The class is designed to make the development of
-presentations as simple as possible so that you can concentrate on
-the actual content instead of keeping yourself busy with technical
-details. Of course, some knowledge of \LaTeX\ is still required
-though.
+\section{\texorpdfstring{Giới thiệu}{Gioi thieu}}\label{sec:intro}
 
-This class builds on and extends the \pf{prosper} class
-\cite{prosper} and the \pf{HA-prosper} package \cite{HA-prosper}.
-The \pf{HA-prosper} package was initially intended to extend
-\pf{prosper} and correct some bugs and problems of that class. As
-developments on that package progressed, it was found that
-unfortunately, not all of the problems could be overcome with the
-package. That discovery was the start of a new project set up to
-make a new class to replace the \pf{prosper} plus \pf{HA-prosper}
-combination. You're currently reading the result of that project.
+%% This class gives you the possibility to easily create professionally
+%% looking slides. The class is designed to make the development of
+%% presentations as simple as possible so that you can concentrate on
+%% the actual content instead of keeping yourself busy with technical
+%% details. Of course, some knowledge of \LaTeX\ is still required
+%% though.
+Lớp \pf{powerdot} cung cấp khả năng tạo trình diễn dễ dàng, chuyên nghiệp.
+Lớp được thiết kế để việc thiết kế trình diễn trở nên đơn giản nhất có thể,
+nhờ đó bạn không phải tốn thời gian với các yếu tố kỹ thụât.
+Tất nhiên, bạn phải có các kiến thức cơ bản về \LaTeX{}.
 
-The remainder of this section will be devoted to giving a feel of
-what the \pf{powerdot} presentation source looks like and giving an
-overview of this documentation.
+%% This class builds on and extends the \pf{prosper} class
+%% \cite{prosper} and the \pf{HA-prosper} package \cite{HA-prosper}.
+%% The \pf{HA-prosper} package was initially intended to extend
+%% \pf{prosper} and correct some bugs and problems of that class. As
+%% developments on that package progressed, it was found that
+%% unfortunately, not all of the problems could be overcome with the
+%% package. That discovery was the start of a new project set up to
+%% make a new class to replace the \pf{prosper} plus \pf{HA-prosper}
+%% combination. You're currently reading the result of that project.
+Lớp được xây dựng nhờ mở rộng lớp \pf{prosper} \cite{prosper}
+và gói \pf{HA-prosper} \cite{HA-prosper}. Gói \pf{HA-prosper}
+có mục đích ban đầu là mở rộng và khắc phục vài lỗi, nhược điểm của lớp
+\pf{prosper}. Thật không may là, không phải mọi nhưọc điểm của \pf{propser}
+đều có thể khắc phục được. Chính vì lý do này, một dự án mới ra đời
+nhằm thay thế cho cả \pf{prosper} và \pf{HA-prosper}.
+Bạn đang đọc tài liệu về chính dự án đó ;)
 
-The document structure of a presentation is always the same. You can
-find it in the example below.
+%% The remainder of this section will be devoted to giving a feel of
+%% what the \pf{powerdot} presentation source looks like and giving an
+%% overview of this documentation.
+Phần còn lại của mục này giúp bạn có cái nhìn tổng quan về lớp \pf{powerdot}
+và tài liệu hướng dẫn này.
+
+%% The document structure of a presentation is always the same. You can
+%% find it in the example below.
+Cấu trúc của trình diễn luôn tương tự như ví dụ sau đây:
 
 \begin{example}
  \documentclass[<class options>]{powerdot}
- \pdsetup{<presentation options>}
+ \pdsetup{<pd options>}
  \begin{document}
-   \begin{slide}{a slide}
-     Contents of the slide.
+   \begin{slide}{slide}
+     noi dung
    \end{slide}
-   \section{first section}
-   \begin{slide}[<slide options>]{another slide}
-     Contents of the slide.
+   \section{section}
+   \begin{slide}[<slide options>]{slide}
+     noi dung
    \end{slide}
-   \begin{note}{personal note}
-     The note.
+   \begin{note}{ghi chu ca nhan}
+     ghi chu
    \end{note}
  \end{document}
 \end{example}
 
-There are several elements that define the document structure. First
-of all, the class accepts some class options that control the output
-of the class, for instance, paper type and style. These class
-options will be discussed in section~\ref{sec:classopts}. Then there
-are presentation specific options which control some of the elements
-of the presentation globally, for instance, the footers. These will
-be discussed in section~\ref{sec:pdsetup}.
+%% There are several elements that define the document structure. First
+%% of all, the class accepts some class options that control the output
+%% of the class, for instance, paper type and style. These class
+%% options will be discussed in section~\ref{sec:classopts}. Then there
+%% are presentation specific options which control some of the elements
+%% of the presentation globally, for instance, the footers. These will
+%% be discussed in section~\ref{sec:pdsetup}.
+Có vài yếu tố tạo nên cấu trúc đó.
+Đầu tiên, lớp chấp nhận vài tuỳ chọn (|class options|) cho phép điều khiển kết quả xuất
+ví dụ, cỡ giấy, kiểu. Các tuỳ chọn này được bàn kỹ đến trong Mục~\ref{sec:classopts}.
+Thứ đến, là các tuỳ chọn trình diễn (|pd options|) điều khiển toàn cục các
+tính chất của trình diễn, ví dụ, các ghi chú ở chân trang.
+Những tuỳ chọn này đưọc nói đến ở Mục~\ref{sec:pdsetup}.
 
-Once the setup has been decided on, you can use the slide
-environment to produce slides (see section~\ref{sec:slides}) and the
-note environment to produce notes that go with the slides (see
-section~\ref{sec:notes}). You can use overlays to display material
-in steps. This is described in section~\ref{sec:overlays}. The
-|\section| command provides a way to structure your presentation.
-This is discussed in section~\ref{sec:structure}.
-Section~\ref{sec:styles} will show an overview of the styles that
-come with this class and the characteristics of each style.
-Section~\ref{sec:compiling} will tell you more about how to produce
-output. This section contains important information on required
-packages.
+%% Once the setup has been decided on, you can use the slide
+%% environment to produce slides (see section~\ref{sec:slides}) and the
+%% note environment to produce notes that go with the slides (see
+%% section~\ref{sec:notes}). You can use overlays to display material
+%% in steps. This is described in section~\ref{sec:overlays}. The
+%% |\section| command provides a way to structure your presentation.
+%% This is discussed in section~\ref{sec:structure}.
+%% Section~\ref{sec:styles} will show an overview of the styles that
+%% come with this class and the characteristics of each style.
+%% Section~\ref{sec:compiling} will tell you more about how to produce
+%% output. This section contains important information on required
+%% packages.
+Sau khi thiết lập với các tuỳ chọn, bạn có thể dùng môi truờng |slide|
+để tạo các trang (|slide|) trình diễn (xem Mục~\ref{sec:slides}) và môi trường |note|
+để tạo các ghi chú đi cùng với |slide| (xem Mục~\ref{sec:notes}).
+Bạn có thể dùng |overlay| để thể hiện nội dung theo từng bước
+(xem Mục~\ref{sec:overlays}). Lệnh |\section| giúp bạn tạo cấu trúc
+cho trình diễn, giống như việc tạo chương, mục với tài liệu \LaTeX{} thông thường
+(xem Mục~\ref{sec:structure}). Bạn cũng có thể lựa chọn các kiểu dáng
+của trình diễn sau khi xem Mục~\ref{sec:styles}. Cuối cùng,
+với Mục~\ref{sec:compiling}, bạn sẽ biết cách biên dịch tài liệu nguồn
+để có kết quả là trình diễn thật sự. Ở mục này cũng có vài lưu ý về
+việc cài đặt lớp \pf{powerdot}.
 
-Section~\ref{sec:writestyle} is mostly interesting for people that
-want to develop their own style for this class or want to modify
-an existing style. This documentation concludes with a section
-devoted to questions (section~\ref{sec:questions}), like `Where can
-I find examples?'. It also tells you where to turn to in case your
-questions are still not solved.
+%% Section~\ref{sec:writestyle} is mostly interesting for people that
+%% want to develop their own style for this class or want to modify
+%% an existing style. This documentation concludes with a section
+%% devoted to questions (section~\ref{sec:questions}), like `Where can
+%% I find examples?'. It also tells you where to turn to in case your
+%% questions are still not solved.
+Mục~\ref{sec:writestyle} có lẽ là phần hấp dẫn đối với ai quan tâm
+đến việc tạo kiểu dáng riêng cho trình diễn của mình, hoặc làm đẹp
+các kiểu dáng đã có.
+
+Tài liệu này kết thúc với Hỏi-Đáp (Mục~\ref{sec:questions}), có thể
+giúp bạn trong những bước đầu làm quen với lớp \pf{powerdot}.
 
 \section{Setting up the presentation}\label{sec:setup}
 This section will describe all options that are available to control
