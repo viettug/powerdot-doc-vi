@@ -97,10 +97,10 @@
 \section*{Acknowledgements}
 
 \begin{example}
-The authors are grateful to Darren Dale and Herbert Vo\ss\ for
-testing the class and its output. Further, we like to thank all
-style contributors (see section~\ref{sec:styles}) and the testers of
-the first beta releases.
+ The authors are grateful to Darren Dale and Herbert Vo\ss\ for
+ testing the class and its output. Further, we like to thank all
+ style contributors (see section~\ref{sec:styles}) and the testers of
+ the first beta releases.
 \end{example}
 
 \newpage
@@ -1419,57 +1419,90 @@ của các kiểu khác nhau.
 Cuối cùng, mọi tuỳ chọn của |slide| đều có thể dùng cho |\section|,
 ví dụ |toc=|, |bm=|,\ldots Xem thêm ở Mục~\vref{sec:slides}.
 
-\subsection{Making an overview}\label{sec:tableofcontents}
+% =====================================================================
+
+%\subsection{Making an overview}
+\subsection{Tạo slide Mục lục}
+\label{sec:tableofcontents}
+
 \DescribeMacro{\tableofcontents}
-This command creates an overview of your presentation and can only
-be used on a slide.
+%% This command creates an overview of your presentation and can only
+%% be used on a slide.
+Lệnh này tạo |slide| Mục lục giúp bạn có cái nhìn tổng quan về trình diễn
+hoặc một phần (mục) của trình diễn.
+Lệnh  này chỉ được dùng bên trong môi trường tạo |slide|,
+và bạn có thể gọi nó bao nhiêu lần tuỳ thích.
+
+Nội dung được nói đến trong mục này là nội dung của |slide| Mục lục.
+Để ý rằng, |slide| Mục lục khác với Bảng Mục lục. Một trình diễn chỉ
+có một Bảng Mục lục nhưng có thể có nhiều |slide| mục lục.
+
 \begin{command}
  `\cs{tableofcontents}\oarg{options}'
 \end{command}
-There are several \meta{options} to control the output of this
-command.
+%% There are several \meta{options} to control the output of this
+%% command.
+Có vài tuỳ chọn cho lệnh như sau:
 
 \DescribeOption{type}
-This option controls whether certain material (depending on the
-input in the |content| option below) will be hidden or displayed in
-the inactive color\index{inactive color}. The default value is |0|.
-Compare with the |type| option for list environments
-(section~\ref{sec:lists}).
+%% This option controls whether certain material (depending on the
+%% input in the |content| option below) will be hidden or displayed in
+%% the inactive color\index{inactive color}. The default value is |0|.
+%% Compare with the |type| option for list environments
+%% (section~\ref{sec:lists}).
+Xác định giấu hoặc tô nhạt một vài phần (phụ thuộc vào giá trị của |content| dưói đây).
+Giá trị mặc định là |0|. So sánh với tuỳ chọn |type| của môi trường
+tạo danh sách ở Mục~\vref{sec:lists}.
 
 \begin{description}
 \item\option{type=0}\\
-When material is not of the requested type as specified in the
-|content| option, it will be hidden.
+%% When material is not of the requested type as specified in the
+%% |content| option, it will be hidden.
+Nếu nội dung không đúng kiểu như chỉ ra ở tuỳ chọn |content|, nó sẽ được
+giấu đi.
 \item\option{type=1}\\
-As |type=0|, but instead of hiding material, it will be typeset in
-the inactive color.
+%% As |type=0|, but instead of hiding material, it will be typeset in
+%% the inactive color.
+Như trên, nhưng thay vì giấu đi, nội dung sẽ được hiện với màu tô nhạt.
 \end{description}
 
 \DescribeOption{content}
-The |content| option controls which elements will be included in the
-overview. The default value is |all|. The description below assumes
-that |type=0| was chosen, but the alternative text for |type=1| can
-easily be deduced.
+%% The |content| option controls which elements will be included in the
+%% overview. The default value is |all|. The description below assumes
+%% that |type=0| was chosen, but the alternative text for |type=1| can
+%% easily be deduced.
+Tuỳ chọn này cho phép xác định những phần tử nào sẽ được thể hiện ở
+|slide| mục lục. Giá trị mặc định là |all|. Mô tả dưới đây giả định rằng
+|type=0| được chọn. Bạn có thể dễ dàng suy ra kết quả khi |type=1| từ mô tả này.
 
 \begin{description}
 \item\option{content=all}\\
-This will display a full overview of your presentation including all
-sections and slides, except the slides in hidden sections (see
-section~\ref{sec:section}).
+%% This will display a full overview of your presentation including all
+%% sections and slides, except the slides in hidden sections (see
+%% section~\ref{sec:section}).
+Cho ra |slide| đầy đủ, gồm mọi mục và |slide| trong trình diễn
+của bạn, trừ các mục ẩn (xem mô tả trong Mục~\vref{sec:section}). 
 \item\option{content=sections}\\
-This displays only the sections in the presentation.
+%This displays only the sections in the presentation.
+Chỉ liệt kê các Mục của trình diễn.
 \item\option{content=currentsection}\\
-This displays the current section only.
+%This displays the current section only.
+Chỉ liệt kê các |slide| của mục hiện tại.
 \item\option{content=future}\\
-This displays all content starting from the current slide.
+%This displays all content starting from the current slide.
+Liệt kê mọi mục và |slide| bắt đầu từ |slide| hiện tại.
 \item\option{content=futuresections}\\
-This displays all sections, starting from the current section.
+%This displays all sections, starting from the current section.
+Liệt kê mọi mục bắt đầu từ mục hiện tại.
 \end{description}
 
-We finish this section with a small example that will demonstrate
-how you can make a presentation that contains an overall overview of
-sections in the presentation, giving a general idea of the content,
-and per section a detailed overview of the slides in that section.
+%% We finish this section with a small example that will demonstrate
+%% how you can make a presentation that contains an overall overview of
+%% sections in the presentation, giving a general idea of the content,
+%% and per section a detailed overview of the slides in that section.
+Dưới đây là ví dụ nhỏ. Trình diễn ở ví dụ này gồm các mục,
+dầu mỗi mục là |slide| mục lục có nhiệm vụ tóm tắt (liệt kê) các
+phần của Mục đó.
 \begin{example}
  \begin{slide}[toc=,bm=]{Overview}
    \tableofcontents[content=sections]
@@ -1484,54 +1517,80 @@ and per section a detailed overview of the slides in that section.
  ...
 \end{example}
 
-\section{Miscellaneous}
+% =====================================================================
+
+%\section{Miscellaneous}
+\section{Linh tinh}
+
+% =====================================================================
+
 \subsection{The \cs{twocolumn} command}\label{sec:twocolumn}
+
 \DescribeMacro{\twocolumn}
-The |\twocolumn| macro allows to split content into two columns.
+%The |\twocolumn| macro allows to split content into two columns.
+Lệnh |\twocolumn| cho phép bố trí nội dung ở hai cột của trang.
 \begin{command}
  `\cs{twocolumn}\marg{options}\marg{left}\marg{right}'
 \end{command}
-This typesets \meta{left} and \meta{right} in two columns. The
-dimensions of those columns can be controlled by \meta{options}.
-Below are the available options.
+%% This typesets \meta{left} and \meta{right} in two columns. The
+%% dimensions of those columns can be controlled by \meta{options}.
+%% Below are the available options.
+Lệnh này sẽ bố trí \meta{left} và \meta{right} vào hai cột bên trái
+và bên phải của |slide|. Kích thước của các cột được cho ở tuỳ chọn
+\meta{options}.
 \begin{description}
 \item\DescribeOption{lineheight}\option{lineheight}\\
-If |lineheight| is specified, a line of the specified height will be
-created using |\psline| in between the two columns. Example:
-|lineheight=6cm|.
+%% If |lineheight| is specified, a line of the specified height will be
+%% created using |\psline| in between the two columns. Example:
+%% |lineheight=6cm|.
+Nếu |lineheight| được chỉ ra, một dòng kẻ (tạo ra nhờ lệnh |\psline|)
+với chiều cao chỉ định được chèn để phân cách hai cột. Ví dụ |lineheight=6cm|.
 \item\DescribeOption{lineprop}\option{lineprop}\\
-Any \pf{pstricks} declaration to specify the line properties. Example:
+%Any \pf{pstricks} declaration to specify the line properties. Example:
+Các khai báo \pf{pstricks} để chỉ thuộc tính của dòng kẻ. Ví dụ
 \begin{example}
  lineprop={linestyle=dotted,linewidth=3pt}
 \end{example}
 \item\DescribeOption{lfrheight}\option{lfrheight}\\
-Creates a frame of the specified height around the left
-column.
+%% Creates a frame of the specified height around the left column.
+Tạo ra một khung (|frame|) với chiều cao chỉ định xung quanh cột bên trái.
 \item\DescribeOption{lfrprop}\option{lfrprop}\\
-As |lineprop|, but for the left frame.
+%As |lineprop|, but for the left frame.
+Như |lineprop|, nhưng cho đường kẻ của khung bên trái.
 \item\DescribeOption{rfrheight}\option{rfrheight}\\
-Creates a frame of the specified height around the right
-column.
+%% Creates a frame of the specified height around the right column.
+Tạo khung bên phải với chiều cao chỉ định.
 \item\DescribeOption{rfrprop}\option{rfrprop}\\
-As |lineprop|, but for the left frame.
+% As |lineprop|, but for the left frame.
+Như |lineprop| nhưng dành cho đường kẻ của khung phải.
 \item\DescribeOption{frsep}\option{frsep}\\
-Space between text and the frames. Default: |1.5mm|.
+% Space between text and the frames. Default: |1.5mm|.
+Khoảng cách giữa nội dung và khung (|frame|). Mặc định |1.5mm|.
 \item\DescribeOption{colsep}\option{colsep}\\
-Space between the two columns. Default: |0.06\linewidth|.
+% Space between the two columns. Default: |0.06\linewidth|.
+Khoảng cách giữa hai cột. Mặc định |0.06\linewidth|.
 \item\DescribeOption{lcolwidth}\option{lcolwidth}\\
-Width of the left column. Default: |0.47\linewidth|.
+%Width of the left column. Default: |0.47\linewidth|.
+Chiều rộng của khung bên trái. Mặc định |0.47\linewidth|.
 \item\DescribeOption{rcolwidth}\option{rcolwidth}\\
-Width of the right column. Default: |0.47\linewidth|.
+%Width of the right column. Default: |0.47\linewidth|.
+Chiều rộng của khung bên phải. Mặc định |0.47\linewidth|.
 \item\DescribeOption{topsep}\option{topsep}\\
-The extra space (additional to |\baselineskip|) between text above
-the columns and the text within the columns. Default: |0cm|.
+%% The extra space (additional to |\baselineskip|) between text above
+%% the columns and the text within the columns. Default: |0cm|.
+Khoảng trắng thêm vào bên trên cột và bên trên các dòng nội dung
+(cộng thêm vào giá trị đã có của |\baselineskip|). Mặc định |0cm|.
 \item\DescribeOption{bottomsep}\option{bottomsep}\\
-Idem for the bottom of the columns. Default: |0cm|.
+%Idem for the bottom of the columns. Default: |0cm|.
+Nhưng trên, nhưng cho bên dưới cột và dòng. Mặc định |0cm|.
 \item\DescribeOption{indent}\option{indent}\\
-Horizontal indent left to the left column. Default: |0cm|.
+%Horizontal indent left to the left column. Default: |0cm|.
+Khoảng cách thụt đầu dòng so với cột bên trái.\footnote{Horizontal indent left to the left column}
+Mặc định |0cm|.
 \end{description}
-The dimensions described above are represented graphically in
-figure~\ref{fig:twocolumndim}.
+%% The dimensions described above are represented graphically in
+%% figure~\ref{fig:twocolumndim}.
+Mô tả hình học của các tuỳ chọn trên được cho ở Hình~\vref{fig:twocolumndim}.
 \begin{figure}[htb]
 \centering
 \begin{pspicture}(0,.5)(13,10.5)
@@ -1551,8 +1610,8 @@ figure~\ref{fig:twocolumndim}.
 \psline{C-C}(11,7)(12,7)
 \psline{C-C}(9.2,8.3)(12,8.3)
 \psline{C-C}(9.2,8.3)(9.2,3)
-\rput[tl](1.75,8.25){Left column text}
-\rput[tl](9.25,8.25){Right column text}
+\rput[tl](1.75,8.25){Nội dung bên trái}
+\rput[tl](9.25,8.25){Nội dung bên phải}
 \rput[tl](.05,1){Bottom}
 \psset{linestyle=dotted,dotsep=2pt}
 \psline(0,8.3)(1.7,8.3)
@@ -1588,37 +1647,51 @@ figure~\ref{fig:twocolumndim}.
 \cput(1.7,9.6){\small 9}
 \end{pspicture}
 \begin{tabular}{c p{4cm}cl}
-\multicolumn{4}{c}{Meaning of the labels}\\\hline
+\multicolumn{4}{c}{Ý nghĩa của nhãn}\\\hline
 1&|lcolwidth|&5&|frsep|\\
 2&|rcolwidth|&6&|topsep|\\
 3&|colsep|&7&|indent|\\
 4&|lfrheight|, |rfrheight|,&8&|bottomsep|\\
-&|lineheight|&9&Reference point
+&|lineheight|&9&Điểm tham khảo
 \end{tabular}
-\caption{Two-column dimensions.}\label{fig:twocolumndim}
+\caption{Các kích thước ở chế độ  hai cột.}\label{fig:twocolumndim}
 \end{figure}
-Important to notice is that the |\twocolumn| macro uses the current
-cursor position as the reference point to position the first line of
-text of the left column (see also figure~\ref{fig:twocolumndim}). This
-means that optional frames can extend to the text on the previous
-line. Use for instance |topsep=0.3cm| in that case to add extra
-space between the two lines of text. The default value of |topsep|
-is based on the situation that there is no text on top of the two
-columns. In that case, it is best to locate the first line of text
-of the left column at the same spot as text that is not created by
-|\twocolumn| on other slides. The setting |topsep=0cm| does exactly
-this. However, with a combination of |topsep| and |indent| you can
-change this behavior and position the first line of text of the left
-column anywhere you want.
+%% Important to notice is that the |\twocolumn| macro uses the current
+%% cursor position as the reference point to position the first line of
+%% text of the left column (see also figure~\ref{fig:twocolumndim}). This
+%% means that optional frames can extend to the text on the previous
+%% line. Use for instance |topsep=0.3cm| in that case to add extra
+%% space between the two lines of text. The default value of |topsep|
+%% is based on the situation that there is no text on top of the two
+%% columns. In that case, it is best to locate the first line of text
+%% of the left column at the same spot as text that is not created by
+%% |\twocolumn| on other slides. The setting |topsep=0cm| does exactly
+%% this. However, with a combination of |topsep| and |indent| you can
+%% change this behavior and position the first line of text of the left
+%% column anywhere you want.
+Điều chú ý quan trọng là, lệnh |\twocolumn| dùng vị trí hiện tại của
+con trỏ như  là điểm tham khảo đến dòng đầu tiên của nội dung ở cột
+bên trái (xem ở Bảng~\vref{fig:twocolumndim}). Điều này có nghĩa rằng,
+khung được tạo ra sẽ ảnh hưởng đến dòng trước đó. Hãy dùng chẳng hạn |topsep=0.3cm|
+để thêm khoảng trắng thích hợp vào giữa hai dòng này. Giá trị mặc định của |topsep|
+là |0cm| được lấy với giả định rằng không có nội dung nào
+trước khi bắt đầu chế độ hai cột. Trong trường hợp này, dòng đầu tiên
+của cột bên trái có vị trí như các dòng (đầu tiên) tạo ở các |slide| khác.
+Việc cài đặt |topsep=0cm| bảo đảm điều này. Tuy nhiên, việc phối hợp
+hai giá trị |topsep| và |indent| cho phép bạn định vị dòng đầu tiên của
+cột bên trái theo ý bạn.
 
-The |\twocolumn| macro computes the height of the construction to
-position text below the construction correctly. The computation is
-done by taking the maximum height of |lfrheight|, |rfrheight|,
-|lineheight| (if requested) and the left and right column content.
-Hence when frames nor a line is requested, |bottomsep| is the
-vertical space between the lowest line of text in the columns and
-the text below the columns (additional to |\baselineskip|). Here is
-an example.
+%% The |\twocolumn| macro computes the height of the construction to
+%% position text below the construction correctly. The computation is
+%% done by taking the maximum height of |lfrheight|, |rfrheight|,
+%% |lineheight| (if requested) and the left and right column content.
+%% Hence when frames nor a line is requested, |bottomsep| is the
+%% vertical space between the lowest line of text in the columns and
+%% the text below the columns (additional to |\baselineskip|). Here is
+%% an example.
+Lệnh |\twoclumn| tính toán chiều cao của cột dựa trên nội dung của nó,
+nhờ đó mới có thể bố trí đúng nội dung vào các cột. Việc tính toán này
+đưọc tinh chỉnh nhờ lấy giá trị lớn nhất trong hai giá trị |lfrheight| và |rfrheight|.
 \begin{example}
  \begin{slide}{Two columns}
    Here are two columns.
@@ -1629,12 +1702,18 @@ an example.
  \end{slide}
 \end{example}
 
-\subsection{Notes}\label{sec:notes}
+% =====================================================================
+
+\subsection{Ghi chú}\label{sec:notes}
+
 \DescribeEnv{note}
-The |note| environment can be used to make personal notes that
-accompany a slide. You can control displaying notes using the
-|display| option (see section~\ref{sec:classopts}). Here is an
-example.
+%% The |note| environment can be used to make personal notes that
+%% accompany a slide. You can control displaying notes using the
+%% |display| option (see section~\ref{sec:classopts}). Here is an
+%% example.
+Môi trường |note| dùng để có các ghi chú (cá nhân) đi cùng với trình diễn.
+Có thể điều làm xuất hiện các ghi chú này nhờ tuỳ chọn |display|
+đã nói ở Mục~\ref{sec:classopts}. Dưới đây là ví dụ
 \begin{example}
  \begin{slide}{Chewing gum}
  ...
@@ -1644,11 +1723,19 @@ example.
  \end{note}
 \end{example}
 
-\subsection{Empty slides}\label{sec:emptyslides}
+% =====================================================================
+
+\subsection{Slide trắng}\label{sec:emptyslides}
+
 \DescribeEnv{emptyslide}
-The |emptyslide| environment creates a totally empty slide. The text
-box on the slide can be used for special things like displaying
-photos. This allows for creating a dia show. Example:
+%% The |emptyslide| environment creates a totally empty slide. The text
+%% box on the slide can be used for special things like displaying
+%% photos. This allows for creating a dia show. Example:
+Môi trường |emptyslide| tạo ra một |slide| trắng (không có nội dung gì).
+Nhờ đó, bạn có thể nạp vào hình vẽ chẳng hạn. Nên nhớ rằng, nếu
+không dùng |slide| trắng, bạn phải chỉ ra tựa đề của |slide|
+và điều này sẽ ảnh hưởng đến Bảng Mục lục cũng như danh sách |bookmakr|.
+Ví dụ
 \begin{example}
  \begin{emptyslide}{}
    \centering
@@ -1657,14 +1744,22 @@ photos. This allows for creating a dia show. Example:
    \vspace{\stretch{1}}
  \end{emptyslide}
 \end{example}
-The |\includegraphics| command is defined by the \pf{graphicx}
-package \cite{graphics}. The |\stretch| command is used to
-vertically center the picture. Both commands are described in your
-favorite \LaTeX\ manual, for instance \cite{companion}. Note that
-you can use the lengths |\slideheight| and |\slidewidth| to scale
-pictures to fit nicely on the slide.
+%% The |\includegraphics| command is defined by the \pf{graphicx}
+%% package \cite{graphics}. The |\stretch| command is used to
+%% vertically center the picture. Both commands are described in your
+%% favorite \LaTeX\ manual, for instance \cite{companion}. Note that
+%% you can use the lengths |\slideheight| and |\slidewidth| to scale
+%% pictures to fit nicely on the slide.
+Lệnh |\includegraphics| được lấy từ gói \pf{graphicx} \cite{graphics}.
+Lệnh |\stretch| dùng để canh hình vẽ theo chiều đứng. Cả hai lệnh này
+đưọc mô tả trong \cite{companion}. Chú ý rằng, các biến độ dài
+|\slideheight| và |slidewidth| được dùng để bố trí hình vẽ
+vừa vẹn lên |slide|.
+
+% =====================================================================
 
 \subsection{Bibliography slide}\label{sec:bib}
+
 \DescribeEnv{thebibliography}
 \pf{powerdot} redefines the standard \pf{article}
 |thebibliography| environment to suppress the creation of a section

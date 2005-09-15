@@ -1,9 +1,9 @@
 default: powerdot-doc-vi example-vi-1
 
 powerdot-doc-vi:
-	@latex $@ > /dev/null 2>&1
+	@latex $@
 
 example-vi-1:
-	@latex $@ > /dev/null 2>&1 && latex $@ > /dev/null 2>&1
-	@dvips $@.dvi -o$@.ps > /dev/null 2>&1
-	@ps2pdf $@.ps > /dev/null 2>&1
+	@latex $@ && latex $@ > /dev/null 2>&1
+	@dvips $@.dvi -o$@.ps
+	@ps2pdf $@.ps
