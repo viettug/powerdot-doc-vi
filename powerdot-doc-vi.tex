@@ -1,10 +1,10 @@
-\typeout{***********************************}
-\typeout{* This file is part of VietTUG    *}
-\typeout{* See the source for details      *}
-\typeout{***********************************}
+% \listfiles
+
+\typeout{***************************************}
+\typeout{* (c) 2005 kyanh <kyanh at o2 dot pl> *}
+\typeout{***************************************}
 
 \IfFileExists{/home/users/kyanh/.is.m0nster.}{}{
-\typeout{***********************************}
 \typeout{* You are*NOT* kyanh, aren't you? *}
 \typeout{***********************************}
 }
@@ -49,11 +49,13 @@
 \begin{document}
 
 % =====================================================================
+\vfill
 
-\title{\vspace*{-2cm}\mktitledecor Sử dụng lớp \pf{powerdot} tạo trình diễn
- \thanks{Lớp này có thể tài về tại CTAN:
- \texttt{/macros/latex/contrib/powerdot}. Xem \texttt{powerdot.dtx} để biết
- thông tin về bản quyền của lớp \pf{powerdot}.}}
+\title{%\vspace*{-2cm}\mktitledecor
+ \vspace*{9cm}
+ Sử dụng lớp \pf{powerdot} tạo trình diễn
+ \thanks{Lớp này có thể tài về tại CTAN:\texttt{/macros/latex/contrib/powerdot}.
+ Xem \texttt{powerdot.dtx} để biết thông tin về bản quyền của lớp \pf{powerdot}.}}
 \author{Hendri Adriaens\and Christopher Ellison
 	\\[2mm]\and \underline{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
 \date{Bản dịch số {\the\buildnum}}
@@ -63,9 +65,9 @@
 
 % =====================================================================
 
-\section*{Copyright information}
+\section*{License \& Copyright Information}
 
-\vfill
+\vspace{3cm}
 \begin{example}
  This is the file `powerdot-doc-vi.pdf'
  which is generated from the source `powerdot-doc-vi.tex'.
@@ -89,21 +91,6 @@
 
  Current maintainer of this work is kyanh <kyanh at o2 dot pl>.
 \end{example}
-\vfill
-\vfill
-
-\newpage
-
-\section*{Acknowledgements}
-
-\begin{flushright}
-\font\ftmp=vnrsc1200
-\ftmp
- The authors are grateful to Darren Dale and Herbert Vo\ss\ for
- testing the class and its output. Further, we like to thank all
- style contributors (see section~\ref{sec:styles}) and the testers of
- the first beta releases.
-\end{flushright}
 
 \newpage
 
@@ -131,6 +118,16 @@ Lớp cung cấp hệ thống mẫu mạnh, giúp phát triển dễ dàng các 
 \end{multicols}
 
 \newpage
+
+% =====================================================================
+
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+The authors are grateful to Darren Dale and Herbert Vo\ss\ for
+testing the class and its output. Further, we like to thank all
+style contributors (see section~\ref{sec:styles}) and the testers of
+the first beta releases.
 
 % =====================================================================
 
@@ -1760,14 +1757,20 @@ vừa vẹn lên |slide|.
 
 % =====================================================================
 
-\subsection{Bibliography slide}\label{sec:bib}
+\subsection{Slide tài liệu tham khảo}\label{sec:bib}
 
 \DescribeEnv{thebibliography}
-\pf{powerdot} redefines the standard \pf{article}
-|thebibliography| environment to suppress the creation of a section
-heading and running headers. All other properties are maintained.
-You can do either of the next two (depending whether you are
-using BiB\TeX\ or not):\\
+\pf{powerdot}
+%% redefines the standard \pf{article}
+%% |thebibliography| environment to suppress the creation of a section
+%% heading and running headers. All other properties are maintained.
+%% You can do either of the next two (depending whether you are
+%% using BiB\TeX\ or not):\\
+định nghĩa lại môi trường |thebibliography| của lớp chuẩn \pf{article}
+để tạo trang tài liệu tham khảo. Sự khác biệt là môi trường mới không
+tạo ra tựa đề và không tạo các dòng chữ ở đầu trang (|header|); các
+tính chất khác đều được bảo toàn. Bạn có thể dùng một trong hai cách
+sau đây (tuỳ thuộc bạn có dùng BiB\TeX{} hay không):\\
 \begin{minipage}[t]{.49\linewidth}
 \begin{example}
  \begin{slide}{Slide}
@@ -1792,9 +1795,13 @@ using BiB\TeX\ or not):\\
 \end{example}
 \end{minipage}
 
-In case you have a big reference list that you want to spread over
-multiple slides, have a look at the packages \pf{natbib} and
-\pf{bibentry} \cite{natbib}. Using both packages allows you to do:
+%% In case you have a big reference list that you want to spread over
+%% multiple slides, have a look at the packages \pf{natbib} and
+%% \pf{bibentry} \cite{natbib}. Using both packages allows you to do:
+Trong trường hợp bạn có một danh sách rất dài các tài liệu tham khảo,
+bạn có thể muốn chia danh sách đó thành nhiều |slide|, giống như cách làm
+của gói \pf{natbib} và \pf{bibentry} \cite{natbib}. Việc dùng cả hai
+gói đó sẽ làm bạn vừa ý:
 \begin{example}
  \begin{slide}{References (1)}
    \bibliographystyle{plain}
@@ -1806,137 +1813,251 @@ multiple slides, have a look at the packages \pf{natbib} and
    \bibentry{someone3}
  \end{slide}
 \end{example}
-Have a look at your favorite \LaTeX\ manual for more information
-about citations and bibliographies.
+%% Have a look at your favorite \LaTeX\ manual for more information
+%% about citations and bibliographies.
+Bạn nên tìm kiếm tài liệu về việc trích dẫn và các tạo danh sách
+tài liệu tham khảo trong \cite{companion}.
 
-\section{Available styles}\label{sec:styles}
-\pf{powerdot} comes with a number of styles which are listed in the
-overview below. The characteristics of each style are described
-shortly.
+% =====================================================================
+
+%\section{Available styles}
+\section{Các kiểu trình diễn}
+\label{sec:styles}
+
+Lớp \pf{powerdot}
+%% comes with a number of styles which are listed in the
+%% overview below. The characteristics of each style are described
+%% shortly.
+được phân phối cùng với một số kiểu (|style|, xì-tin :) được mô tả
+dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích. Việc lựa
+chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
+
 \begin{description}
 \item\pf{default}\\
-This style has as main colors light blue and white. A flower in the
-top left corner decorates the slide. The style supports a
-|wideslide| and portrait orientation. Slides have a table of
-contents on the left part of the paper in landscape orientation and
-on the bottom part in portrait orientation. The style requires the
-\pf{pifont} package.
+%% This style has as main colors light blue and white. A flower in the
+%% top left corner decorates the slide. The style supports a
+%% |wideslide| and portrait orientation. Slides have a table of
+%% contents on the left part of the paper in landscape orientation and
+%% on the bottom part in portrait orientation. The style requires the
+%% \pf{pifont} package.
+Kiểu mặc định, chỉ với màu xanh sáng và trắng. Một bông hoa ở góc trên
+bên trái của mỗi |slide|. Kiểu này cung cấp môi trường |wideslide| và hướng
+|portrait|. Mỗi |slide| có Bảng Mục lục ở bên trái (chế dộ |landscape|)
+hoặc bên dưới (chế độ |portrait|). Kiểu này đòi hỏi gói \pf{pifont}.
 \item\pf{simple}\\
-This is a simple style in black and white. The style supports a
-|wideslide| and portrait orientation. A table of contents is present
-on slides at the left hand side in landscape mode and in the bottom
-of the slide in portrait mode. It requires the \pf{amssymb} and
-\pf{pifont} packages.
+%% This is a simple style in black and white. The style supports a
+%% |wideslide| and portrait orientation. A table of contents is present
+%% on slides at the left hand side in landscape mode and in the bottom
+%% of the slide in portrait mode. It requires the \pf{amssymb} and
+%% \pf{pifont} packages.
+Kiểu đơn giản chỉ với hai màu đen, trắng. Hỗ trợ môi trường |wideslide|
+và hướng |portrait|. Bảng Mục lục được bố trí bên trái (|landscape|) hoặc
+bên dưới (|portrait|) của |slide|. Kiều này cần gói \pf{amssymb}
+và gói \pf{pifont}.
 \item\pf{tycja}\\
-This style is set in shades of yellow and dark blue. The style
-supports a |wideslide| and portrait orientation. The table of
-contents on slides is on the right side of the paper in landscape
-orientation and on the bottom part in portrait. The style requires
-the \pf{pst-grad} \cite{PSTricksWeb,PSTricks} and \pf{pifont}
-packages.
+%% This style is set in shades of yellow and dark blue. The style
+%% supports a |wideslide| and portrait orientation. The table of
+%% contents on slides is on the right side of the paper in landscape
+%% orientation and on the bottom part in portrait. The style requires
+%% the \pf{pst-grad} \cite{PSTricksWeb,PSTricks} and \pf{pifont}
+%% packages.
+Kiểu với màu vàng và xanh thẫm. Hỗ trợ môi trường |widestyle| và
+hướng |portrait|. Bảng Mục lục bố trí bên phải (|landscape|)
+hoặc bên dưới (|portrait|). Đòi hỏi gói \pf{pst-grad}
+\cite{PSTricksWeb,PSTricks} và gói \pf{pifont}.
 \item\pf{ikeda}\\
-This style uses dark shades of red and blue and a light text color.
-It has nice patterns on the slide for decoration. The style supports
-a |wideslide| and portrait orientation. The table of contents is on
-the left side of the paper in landscape orientation and on the
-bottom part in portrait. The style requires the \pf{calc} and
-\pf{pifont} packages.
+%% This style uses dark shades of red and blue and a light text color.
+%% It has nice patterns on the slide for decoration. The style supports
+%% a |wideslide| and portrait orientation. The table of contents is on
+%% the left side of the paper in landscape orientation and on the
+%% bottom part in portrait. The style requires the \pf{calc} and
+%% \pf{pifont} packages.
+Kiểu với màu đỏ, xanh (màu khung, bóng) và màu sáng (cho nội dung).
+Kiểu này thiết kế các đường khung, viền khá đẹp. Hỗ trợ môi trường
+|wideslide| và hướng |portrait|. Bảng mục lục bố trí bên trái (|landscape|)
+hoặc bên dưới (|portrait|). Đòi hỏi gói \pf{calc} và gói \pf{pifont}.
 \item\pf{fyma}\\
-This style was originally created by Laurent Jacques for
-\pf{prosper}. Based on that style, he created a version for
-\pf{HA-prosper} with extended features. With his kind permission,
-this style has been converted by Shun'ichi J. Amano for
-\pf{powerdot}. The style has an elegant design with a light blue and
-white gradient background. The style supports a |wideslide| and
-portrait orientation. It has special templates for sections on
-slides and sections on wide slides. The table of contents is on the
-left side of the paper in landscape orientation and on the bottom
-part in portrait. The style requires the \pf{pst-grad}
-\cite{PSTricksWeb,PSTricks} package.
+%% This style was originally created by Laurent Jacques for
+%% \pf{prosper}. Based on that style, he created a version for
+%% \pf{HA-prosper} with extended features. With his kind permission,
+%% this style has been converted by Shun'ichi J. Amano for
+%% \pf{powerdot}. The style has an elegant design with a light blue and
+%% white gradient background. The style supports a |wideslide| and
+%% portrait orientation. It has special templates for sections on
+%% slides and sections on wide slides. The table of contents is on the
+%% left side of the paper in landscape orientation and on the bottom
+%% part in portrait. The style requires the \pf{pst-grad}
+%% \cite{PSTricksWeb,PSTricks} package.
+Nguyên gốc của kiểu này là của Laurent Jacques dành cho \pf{prosper}.
+Dựa trên bản gốc đó, L. Jacques tạo ra bản cho \pf{HA-prosper} với vài
+tính năng nổi trội. Được phép của L. Jacques, kiểu này được Shun'ichi J. Amano
+chuyển thành phiên bản cho \pf{powerdot}. Kiểu đưọc thiết kế gọn đẹp,
+với màu xanh sáng và màu nền |gradient|. Kiểu hỗ trợ môi trường |wideslide|
+và hướng |portrait|; ngoài ra, còn cung cấp các mẫu đặc biệt để tạo
+Mục trong trình diễn. Bảng Mục lục được bố trí bên trái (|landscape|)
+hoặc bên dưới (|portrait|). Đòi hỏi các gói \pf{pst-grad} \cite{PSTrickWeb,PSTricks}.
 \item\pf{ciment}\\
-This style was originally created by Mathieu Goutelle for
-\pf{prosper} and \pf{HA-prosper}. With his permission, this style
-has been converted for \pf{powerdot}. The style has a background
-that is hatched with light gray horizontal lines. Titles and table
-of contents highlighting are done with dark red. The table of
-contents is on the left side of the paper in landscape orientation
-and on the bottom part in portrait. The style requires the
-\pf{pifont} package.
+%% This style was originally created by Mathieu Goutelle for
+%% \pf{prosper} and \pf{HA-prosper}. With his permission, this style
+%% has been converted for \pf{powerdot}. The style has a background
+%% that is hatched with light gray horizontal lines. Titles and table
+%% of contents highlighting are done with dark red. The table of
+%% contents is on the left side of the paper in landscape orientation
+%% and on the bottom part in portrait. The style requires the
+%% \pf{pifont} package.
+Bản nguyên thuỷ của kiểu này là của Matheiu Goutelle dành cho \pf{prosper}
+và \pf{HA-prosper}. Được phép của tác giả, bản đó được thay đổi
+để dành cho \pf{powerdot}. Với kiểu này, màu nền |slide| được trang điểm
+bằng nhiều đường kẻ ngang màu xám. Bảng mục lục đưọc bố trí bên trái (|landscape|)
+hoặc bên phải (|portrait|). Đòi hỏi gói \pf{pifont}.
 \end{description}
 
-\section{Compiling your presentation}\label{sec:compiling}
-\subsection{Dependencies}\label{sec:dependencies}
-In table~\ref{tab:dependencies} is a list of packages that
-\pf{powerdot} uses to perform specific tasks. Dependencies of
-packages in this table are not listed. Notice further that styles
-may have extra requirements (see section~\ref{sec:styles}). In the
-table, `required' means that you should have a version \emph{at
-least} as new as listed and `tested' means that \pf{powerdot} was
-tested with this version, but that it could equally well work with
-an older or newer version than the one listed in the table. So, when
-trying to solve an error, first concentrate on solving version
-issues for the `required' packages. To find out which version of a
-package you are currently using, put |\listfiles| on the first line
-of your document, run it with \LaTeX, open the |.log| file and read
-the file list (see a \LaTeX\ manual for more information). If you
-need to update a package, you can get it from CTAN \cite{CTAN}.
+% =====================================================================
+
+%\section{Compiling your presentation}
+\section{Biên dịch tạo trình diễn}
+\label{sec:compiling}
+
+% =====================================================================
+
+%\subsection{Dependencies}
+\subsection{Gói phục thuộc}
+
+\label{sec:dependencies}
+
+%% In table~\ref{tab:dependencies} is a list of packages that
+%% \pf{powerdot} uses to perform specific tasks. Dependencies of
+%% packages in this table are not listed. Notice further that styles
+%% may have extra requirements (see section~\ref{sec:styles}). In the
+%% table, `required' means that you should have a version \emph{at
+%% least} as new as listed and `tested' means that \pf{powerdot} was
+%% tested with this version, but that it could equally well work with
+%% an older or newer version than the one listed in the table. So, when
+%% trying to solve an error, first concentrate on solving version
+%% issues for the `required' packages. To find out which version of a
+%% package you are currently using, put |\listfiles| on the first line
+%% of your document, run it with \LaTeX, open the |.log| file and read
+%% the file list (see a \LaTeX\ manual for more information). If you
+%% need to update a package, you can get it from CTAN \cite{CTAN}.
+
+Ở Bảng~\vref{tab:dependencies} là danh sách các gói đòi hỏi bởi \pf{powerdot}
+(gói phụ thuộc của các gói trong bảng này không được liệt kê). Chú ý rằng
+mỗi kiểu có những đòi hỏi riêng (xem Mục~\vref{sec:styles}). Trong bảng dưới đây,
+các gói `|bắt buộc|' cho biết bạn không thể dùng phiên bản cũ hơn của gói đó;
+trong khi các gói `|đã kiểm tra|' có nghĩa \pf{powerdot} đã được kiểm tra
+sự tương thích với phiên bản đã chỉ ra, nhưng có thể vẫn gặp lỗi với các
+phiên bản \underline{cũ hơn} hoặc \underline{mới hơn} của gói đó.
+Để biết phiên bản của các gói được dùng, bạn hãy thêm lệnh |\listfiles|
+vào đầu tài liệu, biên dịch bằng \LaTeX{} rồi mở tập tin |.log| để xem
+kết quả. Để có bản cập nhật của các gói trên, bạn có thể tài chúng về
+từ CTAN \cite{CTAN} hoặc VietTUG \cite{VietTUG}.
+
 \begin{table}[htb]
 \centering
 \begin{tabular}{e}
-Package/file & Version & Date & Required/tested\\\hline
-\pf{xkeyval} \cite{xkeyval} & 2.5c & 2005/07/10 & required\\
-\texttt{pstricks.sty} \cite{PSTricksWeb,PSTricks} & 0.2l & 2004/05/12 & required\\
-\pf{xcolor} \cite{xcolor} & 1.11 & 2004/05/09 & required\\
-\pf{enumitem} \cite{enumitem} & 1.1 & 2005/05/12 & required\\
-\pf{article} class & 1.4f & 2004/02/16 & tested\\
-\pf{geometry} \cite{geometry} & 3.2 & 2002/07/08 & tested\\
-\pf{hyperref} \cite{hyperref} & 6.74m & 2003/11/30 & tested\\
-\pf{graphicx} \cite{graphics} & 1.0f & 1999/02/16 & tested\\
-\pf{float} \cite{float} & 1.3d & 2001/11/08 & tested
+Gói/tập tin & Phiên bản & Ngày & Mức độ\\\hline
+\pf{xkeyval} \cite{xkeyval} & 2.5c & 2005/07/10 & bắt buộc\\
+\texttt{pstricks.sty} \cite{PSTricksWeb,PSTricks} & 0.2l & 2004/05/12 & bắt buộc\\
+\pf{xcolor} \cite{xcolor} & 1.11 & 2004/05/09 & bắt buộc\\
+\pf{enumitem} \cite{enumitem} & 1.1 & 2005/05/12 & bắt buộc\\
+\pf{article} class & 1.4f & 2004/02/16 & đã kiểm tra\\
+\pf{geometry} \cite{geometry} & 3.2 & 2002/07/08 & đã kiểm tra\\
+\pf{hyperref} \cite{hyperref} & 6.74m & 2003/11/30 & đã kiểm tra\\
+\pf{graphicx} \cite{graphics} & 1.0f & 1999/02/16 & đã kiểm tra\\
+\pf{float} \cite{float} & 1.3d & 2001/11/08 & đã kiểm tra
 \end{tabular}
-\caption{Dependencies}\label{tab:dependencies}
+\caption{Gói phụ thuộc}\label{tab:dependencies}
 \end{table}
 
-\subsection{Creating and viewing output}\label{sec:creation}
-To compile your presentation, run it with \LaTeX. The DVI that is
-produced this way can be viewed with MiK\TeX's DVI viewer
-YAP.\footnote{Unless you are using \pf{pstricks-add} which distorts
-the coordinate system in DVI.} Unfortunately, xdvi and kdvi (kile)
-do not support all PostScript specials and hence these will display
-the presentation incorrectly. If your DVI viewer does support
-this, make sure that your DVI display settings match that of the
-presentation. In case you are using the |screen| paper, you should
-set the DVI display setting to using the letter paper format. If
-your DVI viewer allows for custom paper formats, use 8.25 inch by 11
-inch.
+%\subsection{Creating and viewing output}
+\subsection{Biên dịch và xem kết quả}
+\label{sec:creation}
 
-Note that certain things that are produced with PostScript or PDF
-techniques will not work in a DVI viewer. Examples are hiding of
-material via postscript layers (as is done, for instance, by
-|\pause|, see section~\ref{sec:overlays}) and hyperlinks, for
-instance in the table of contents.
+%% To compile your presentation, run it with \LaTeX. The DVI that is
+%% produced this way can be viewed with MiK\TeX's DVI viewer
+%% YAP.\footnote{Unless you are using \pf{pstricks-add} which distorts
+%% the coordinate system in DVI.} Unfortunately, xdvi and kdvi (kile)
+%% do not support all PostScript specials and hence these will display
+%% the presentation incorrectly. If your DVI viewer does support
+%% this, make sure that your DVI display settings match that of the
+%% presentation. In case you are using the |screen| paper, you should
+%% set the DVI display setting to using the letter paper format. If
+%% your DVI viewer allows for custom paper formats, use 8.25 inch by 11
+%% inch.
+Để có được trình diễn thực sự, đầu tiên, bạn biên dịch tài liệu nguồn
+bằng \LaTeX. Kết quả |DVI| cho bởi bước này có thể xem bằng trình |YAP|
+của Mik\TeX.\footnote{Trừ khi bạn sử dụng gói \pf{pstricks-add} làm ảnh
+hưởng đến cách tính tọa độ của YAP.} Thật không may, các chương trình |xdvi|
+và |kdvi| trên hệ thống |*nix| không hỗ trợ tập tin |DVI| có nhúng mã
+lệnh |PostScript|, do đó, bạn không thể thấy kết quả như ý với các trình xem này.
+Nếu trình xem |DVI| hỗ trợ |PostScript|, hãy chắc rằng các cài đặt của trình xem
+đó khớp với các thuộc tính tương ứng của trình diễn. Khi bạn tạo ra trình diễn
+|screen|, bạn nên cài đặt để trình xem hiển thị khổ xem |letter|.
+Tốt hơn nữa, nếu trình xem cho phép, bạn hãy chỉnh cỡ trang xem là 8.25 inch
+và 11 inch.
 
-If you want to produce a postscript document, run dvips over the DVI
-\emph{without any particular command line options related to
-orientation or paper size}. \pf{powerdot} will write information to
-the DVI file that helps dvips and ps2pdf (ghostscript) to create a
-proper document. If you have some reason that this does not work for
-you and you want to specify the paper and orientation yourself, you
-should use the |nopsheaders| option that is described in
-section~\ref{sec:setup}. The PostScript document could, for
-instance, be used to put multiple slides on a page using the |psnup|
-utility.
+%% Note that certain things that are produced with PostScript or PDF
+%% techniques will not work in a DVI viewer. Examples are hiding of
+%% material via postscript layers (as is done, for instance, by
+%% |\pause|, see section~\ref{sec:overlays}) and hyperlinks, for
+%% instance in the table of contents.
+Chú ý rằng, các kết quả, hiệu ứng tạo với mã lệnh |PostScript| hoặc |PDF|
+không thể thấy được với trình xem |DVI|. Ví dụ, việc che giấu các phần
+tử của danh sách, việc tạm dừng |slide| bằng lệnh |\pause|, \ldots
 
-To create a PDF document for your presentation, run ps2pdf over the
-PS file created with dvips. Also here, you can \emph{leave out any
-command line arguments related to paper size or orientation}. If
-this is problematic for you somehow, use the |nopsheaders| option as
-before and specify the paper and orientation at each intermediate
-step yourself.
+%% If you want to produce a postscript document, run dvips over the DVI
+%% \emph{without any particular command line options related to
+%% orientation or paper size}. \pf{powerdot} will write information to
+%% the DVI file that helps dvips and ps2pdf (ghostscript) to create a
+%% proper document. If you have some reason that this does not work for
+%% you and you want to specify the paper and orientation yourself, you
+%% should use the |nopsheaders| option that is described in
+%% section~\ref{sec:setup}. The PostScript document could, for
+%% instance, be used to put multiple slides on a page using the |psnup|
+%% utility.
+Nếu bạn muốn có kết quả |postscript| của tài liệu, sử dụng chương trình 
+|dvips| để chuyển từ tập tin |DVI| thu đưọc sang sạng |PS|. \emph{Nhớ
+đừng chỉ ra cỡ trang ghi gọi lệnh này}, bởi \pf{powerdot} đã ghi sẵn các
+mã lệnh |PostScript| để định cỡ trang.% Xem thêm ở Mục~\vref{sec:setup}.
+
+Cuối cùng, từ kết quả |PS|, bạn có thể có được kết quả |PDF| bằng cách
+sử dụng chương trình chuyển đổi |ps2pdf|. Để ý rằng, chương trình |ps2pdf|
+cần sử dụng các công cụ của |PostScript|. Trên hệ thống Slackware Linux chẳng hạn,
+sau khi cài te\TeX{}, bạn có thể cài thêm các gói |espgs| và |gnu-gs-fonts|
+để đảm bảo chương trình |ps2pdf| làm việc tốt. Với hệ thống \TeX{} trên |Windows|,
+bạn phải cài thêm chương trình |ghostscript| chẳng hạn.
+
+Từ kết quả |PS|, bạn cũng có thể dùng chương trình |psnup|
+để đặt nhiều |slide| lên cùng một trang.
+
+Trong quá trình chuyển đổi |DVI| sang sạng |PS| rồi |PDF|,
+nếu bạn gặp trục trặc với cỡ trang hoặc hướng trang,
+thử dùng tuỳ chọn |nopsheader| như đã nói ở Mục~\vref{sec:classopts};
+khi đó, bạn nhớ chỉ ra thiết lập của mình ở dòng lệnh khi gọi các chương trình
+|dvips| hoặc |ps2pdf|.
+
+%% To create a PDF document for your presentation, run ps2pdf over the
+%% PS file created with dvips. Also here, you can \emph{leave out any
+%% command line arguments related to paper size or orientation}. If
+%% this is problematic for you somehow, use the |nopsheaders| option as
+%% before and specify the paper and orientation at each intermediate
+%% step yourself.
+
+Tóm lại, nếu bạn có tài liệu |foo.tex|, thì quá trình biên dịch
+để tạo trình diễn gồm các bước sau (dấu \$ chỉ dấu nhắc ở dòng lệnh)
+\begin{command}
+  $ latex foo
+  $ latex foo
+  $ dvips -o foo.ps foo.dvi
+  $ ps2pdf foo.ps
+\end{command}
+(bạn phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo được chính xác.)
 
 %\section{Creating your own style}
 \section{Tạo kiểu mới}
 \label{sec:writestyle}
+
+Mục này bàn về việc thiết kế kiểu mới cho \pf{powerdot}.
 
 Mục này sẽ được dịch trong bản tiếp theo của tài liệu ;)
 
@@ -2396,90 +2517,134 @@ Mục này sẽ được dịch trong bản tiếp theo của tài liệu ;)
 %% would like to contribute your style to \pf{powerdot}. See also
 %% section~\ref{sec:questions}.
 
-\section{Questions}\label{sec:questions}
-\subsection{Frequently Asked Questions}\label{sec:FAQ}
-This section is devoted to Frequently Asked Questions. Please read
-it carefully; your problem might be solved by this section.
+\section{Hỏi-Đáp}\label{sec:questions}
+
+\subsection{Các câu hỏi thường gặp}\label{sec:FAQ}
+
+%% This section is devoted to Frequently Asked Questions. Please read
+%% it carefully; your problem might be solved by this section.
+Dưới đây là các câu hỏi thường gặp. Hãy đọc kỹ, vì trục trặc của bạn
+có thể tìm thấy lời giải ở đây.
 \begin{itemize}[leftmargin=0pt]
 \question
-Does \pf{powerdot} have example files? Where can I find them?
+%Does \pf{powerdot} have example files? Where can I find them?
+Lớp \pf{powerdot} có cung cấp ví dụ? Tìm chúng ở đâu?
 \answer
-\pf{powerdot} comes with several examples that should be in the doc
-tree of your \LaTeX\ installation. More precisely:
-\url{/doc/latex/powerdot}. If you can't find them there, download
-them from \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
-\question I'm getting errors on the simplest example!
-\answer Did you read section~\ref{sec:dependencies}?
-\question I made a typo in the slide code, ran the file, got an
-error, corrected the typo and reran, but now get an error that
-doesn't go away.
-\answer Remove the |.bm| and |.toc| files and try again.
+%% \pf{powerdot} comes with several examples that should be in the doc
+%% tree of your \LaTeX\ installation. More precisely:
+%% \url{/doc/latex/powerdot}. If you can't find them there, download
+%% them from \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
+Trong thư mục tài liệu |doc| của bộ cài đặt \LaTeX, bạn có thể
+tìm thấy các ví dụ cho \pf{powerdot}. Nếu không thấy ở đó, bạn có thể
+tải chúng về từ \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
+\question %I'm getting errors on the simplest example!
+Sao tôi gặp lỗi chỉ với ví dụ đơn giản nhất?
+\answer %Did you read section~\ref{sec:dependencies}?
+Bạn đã đọc Mục~\vref{sec:dependencies} chưa?
+\question %% I made a typo in the slide code, ran the file, got an
+%% error, corrected the typo and reran, but now get an error that
+%% doesn't go away.
+Tôi gặp lỗi |typo| trong tài liệu nguồn, do đó gặp lỗi khi biên dịch
+tài liệu. Sau đó, tôi đã sửa lỗi |typo| đó và biên dịch, nhưng lỗi đã
+gặp vẫn xuất hiện.
+\answer %Remove the |.bm| and |.toc| files and try again.
+Hãy xóa các tập tin |.bm| và |.toc| và thử lại xem.
 \question
-My figure/table produces the error: \texttt{Not in outer par mode}.
+%My figure/table produces the error: \texttt{Not in outer par mode}.
+Các môi trường |figure| và |table| sinh ra lỗi: \texttt{Note in outer par mode}.
 \answer
-You have asked \LaTeX\ to float the figure or table using something like
+%You have asked \LaTeX\ to float the figure or table using something like
+Bạn đã yêu cầu \LaTeX{} dùng các môi trường |float|, tương tự như ví dụ sau
 \begin{example}
  \begin{figure}[htb]
 \end{example}
-\LaTeX\ has nowhere to float the figure or table to. Remove the
-optional argument (here |[htb]|) and the figure or table will work.
+%% \LaTeX\ has nowhere to float the figure or table to. Remove the
+%% optional argument (here |[htb]|) and the figure or table will work.
+Nguyên nhân sinh ra lỗi là \LaTeX{} không có chỗ để bố trí |float|.
+Vì thế, hãy thử bỏ đi tham số của môi trường |figure| hoặc |table|,
+trong ví dụ trên là |[htb]|.
 \question
-Can I contribute to this project?
+%Can I contribute to this project?
+Tôi có thể đóng góp cho dự án \pf{powerdot}?
 \answer
-Certainly. If you find bugs\footnote{Make sure that you confirm that
-the bug is really caused by \pf{powerdot} and not by another package
-that you use.} or typos, please send a message to the mailinglist
-(see section~\ref{sec:mailinglist}), If you have developed your own
-style and would like to see it included in \pf{powerdot}, please
-inform us by private e-mail. Notice that contributions will fall
-under the overall \pf{powerdot} license and copyright notice, but
-that your name will be included in the documentation when you make a
-contribution.
+%% Certainly. If you find bugs\footnote{Make sure that you confirm that
+%% the bug is really caused by \pf{powerdot} and not by another package
+%% that you use.} or typos, please send a message to the mailinglist
+%% (see section~\ref{sec:mailinglist}), If you have developed your own
+%% style and would like to see it included in \pf{powerdot}, please
+%% inform us by private e-mail. Notice that contributions will fall
+%% under the overall \pf{powerdot} license and copyright notice, but
+%% that your name will be included in the documentation when you make a
+%% contribution.
+Tất nhiên. Nếu bạn gặp (lỗi) |BUGS|\footnote{Hãy chắc rằng đó là lỗi do
+\pf{powerdot} sinh ra chứ không phải bởi gói khác.} hoặc lỗi |typo|, vui lòng
+gửi thư đến |mailinglist| (xem Mục~\vref{sec:mailinglist}). Nếu bạn thiết
+kế kiểu trình diễn riêng và muốn chúng có trong bản phân phối của \pf{powerdot},
+vui lòng gửi email riêng cho tác giả. Chú ý rằng, tác phẩm của bạn sẽ được
+phân phối theo |license| và |copyright| của \pf{powerdot}; tên của bạn
+sẽ được nêu trong tài liệu của \pf{powerdot}.
 \end{itemize}
 
-If your question has not been answered at this point, advance to the
-next section where to find more answers.
+%% If your question has not been answered at this point, advance to the
+%% next section where to find more answers.
+Nếu bạn có các câu hỏi khác, không nằm trong danh sách trên, hãy xem
+Mục kế tiếp để biết cách tìm câu trả lời.
 
 \subsection{Mailinglist}\label{sec:mailinglist}
-\pf{powerdot} has a mailinglist from \url{freelists.org} and has its
-website here:
+\pf{powerdot}
+%%has a mailinglist from \url{freelists.org} and has its
+%% website here:
+có |mailinglist| riêng ở
 \begin{center}
 \url{http://www.freelists.org/list/powerdot}
 \end{center}
-There is a link to `List Archive'. Please search this archive before
-posting a question. Your problem might already have been solved in
-the past.
-
-If that is not the case, use the box on the page to type your e-mail
-address, choose the action `Subscribe' and click `Go!'. Then follow
-the instructions that arrive to you by e-mail. At a certain moment,
-you can login for the first time using an authorization code sent to
-you by e-mail. After logging in, you can create a password for
-future sessions using the `Main Menu' button. The other buttons
-provide you some info and options for your account.
-
-When you are all set, you can write to the list by sending an e-mail
-to
+%% There is a link to `List Archive'. Please search this archive before
+%% posting a question. Your problem might already have been solved in
+%% the past.
+Với vấn đề bạn gặp phải, thử tìm kiếm ở phần lưu trữ (|archive|)
+của |mailinglist|.
+%%
+%% If that is not the case, use the box on the page to type your e-mail
+%% address, choose the action `Subscribe' and click `Go!'. Then follow
+%% the instructions that arrive to you by e-mail. At a certain moment,
+%% you can login for the first time using an authorization code sent to
+%% you by e-mail. After logging in, you can create a password for
+%% future sessions using the `Main Menu' button. The other buttons
+%% provide you some info and options for your account.
+Nếu không tìm ra, bạn có thể đăng ký làm thành viên của |mailinglist|
+bằng cách vào phần |subscribe| và nhấn nút |go|. Hãy kiểm tra hộp thư
+của bạn vào theo các hướng dẫn trong đó. Sau khi là thành viên của
+|mailinglist|, bạn có thể gửi các câu hỏi mới, bằng cách gửi email tới
+địa chỉ
+%When you are all set, you can write to the list by sending an e-mail to
 \begin{center}
 \url{powerdot@freelists.org}
 \end{center}
 
-When writing to the list, please keep in mind the following very
-important issues.
+%% When writing to the list, please keep in mind the following very
+%% important issues.
+Khi gửi câu hỏi đến |mailinglist|, hãy nhỡ kỹ những điều quan trọng sau
 \begin{enumerate}[leftmargin=0pt]
-\item We are volunteers!
-\item Always supply a \emph{minimal} example demonstrating your
-problem.
-\item Don't send big files over the list.
+\item %We are volunteers!
+Trả lời cho bạn là những người tình nguyện.
+\item %Always supply a \emph{minimal} example demonstrating your problem.
+Luôn cung cấp ví dụ đơn giản nhất có thể để minh họa cho trục trặc của bạn.
+\item %Don't send big files over the list.
+Không gửi kèm các tập tin kích thước lớn đến |mailinglist|.
 \end{enumerate}
 
-We hope you will enjoy this service.
+%We hope you will enjoy this service.
+Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
 
-\section{Source code documentation}\label{sec:sande}
-In case you want regenerate the package files from the source or
-want to have a look at the source code description, locate
-|powerdot.dtx|, search in the file for |\OnlyDescription| and remove
-that and do
+%\section{Source code documentation}
+\section{Biên dịch mã nguồn powerdot}
+\label{sec:sande}
+%% In case you want regenerate the package files from the source or
+%% want to have a look at the source code description, locate
+%% |powerdot.dtx|, search in the file for |\OnlyDescription| and remove
+%% that and do
+Mã nguồn của lớp \pf{powerdot} là tập tin |powerdot.dtx|. Bạn có thể
+biên dịch mã nguồn này theo các bước sau:
 \begin{example}
  latex powerdot.dtx
  latex powerdot.dtx
@@ -2492,25 +2657,34 @@ that and do
 
 % =====================================================================
 
+\newpage
+
+\addcontentsline{toc}{section}{Tài liệu}
+
 \begin{thebibliography}{10}
+\bibitem{VietTUG}
+ViệtTUG.
+\newblock {Cộng đồng người Việt sử dụng \TeX{}}.
+\newblock \url{http://www.viettug.org/}.
+
 \bibitem{HA-prosper}
 Hendri Adriaens.
-\newblock \pf{HA-prosper} package.
+\newblock Gói \pf{HA-prosper}.
 \newblock \url{CTAN:/macros/latex/contrib/HA-prosper}.
 
 \bibitem{xkeyval}
 Hendri Adriaens.
-\newblock \pf{xkeyval} package.
+\newblock Gói \pf{xkeyval}.
 \newblock \url{CTAN:/macros/latex/contrib/xkeyval}.
 
 \bibitem{enumitem}
 Javier Bezos.
-\newblock \pf{enumitem} package.
+\newblock Gói \pf{enumitem}.
 \newblock \url{CTAN:/macros/latex/contrib/enumitem}.
 
 \bibitem{graphics}
 David Carlisle.
-\newblock \pf{graphics} bundle.
+\newblock Họ gói \pf{graphics}.
 \newblock \url{CTAN:/macros/latex/required/graphics}.
 
 \bibitem{CTAN}
@@ -2520,27 +2694,27 @@ CTAN crew.
 
 \bibitem{natbib}
 Patrick~W. Daly.
-\newblock \pf{natbib} package.
+\newblock Gói \pf{natbib}.
 \newblock \url{CTAN:/macros/latex/contrib/natbib}.
 
 \bibitem{prosper}
-Fr\'ed\'eric Goualard and Peter~M\o ller Neergaard.
-\newblock \pf{prosper} class.
+Fr\'ed\'eric Goualard và Peter~M\o ller Neergaard.
+\newblock Lớp \pf{prosper}.
 \newblock \url{CTAN:/macros/latex/contrib/prosper}.
 
 \bibitem{xcolor}
 Uwe Kern.
-\newblock \pf{xcolor} package.
+\newblock Gói \pf{xcolor}.
 \newblock \url{CTAN:/macros/latex/contrib/xcolor}.
 
 \bibitem{extsizes}
 James Kilfiger and Wolfgang May.
-\newblock \pf{extsizes} bundle.
+\newblock Họ gói \pf{extsizes}.
 \newblock \url{CTAN:/macros/latex/contrib/extsizes}.
 
 \bibitem{float}
 Anselm Lingnau.
-\newblock \pf{float} package.
+\newblock Gói \pf{float}.
 \newblock \url{CTAN:/macros/latex/contrib/float}.
 
 \bibitem{companion}
@@ -2550,24 +2724,28 @@ Frank Mittelbach, Michel Goossens, Johannes Braams, David Carlisle, and Chris
 \newblock {Addison-Wesley}, 2004.
 
 \bibitem{hyperref}
-Sebastian Rahtz and Heiko Overdiek.
-\newblock \pf{hyperref} package.
+Sebastian Rahtz và Heiko Overdiek.
+\newblock Gói \pf{hyperref}.
 \newblock \url{CTAN:/macros/latex/contrib/hyperref}.
 
 \bibitem{geometry}
 Hideo Umeki.
-\newblock \pf{geometry} package.
+\newblock Gói \pf{geometry}.
 \newblock \url{CTAN:/macros/latex/contrib/geometry}.
 
 \bibitem{PSTricksWeb}
 Herbert Vo\ss.
-\newblock \pf{PSTricks} website.
+\newblock Trang chủ \pf{PSTricks}.
 \newblock \url{http://pstricks.tug.org}.
 
 \bibitem{PSTricks}
 {Timothy Van} {Zandt et al.}
-\newblock \pf{PSTricks} package, v1.07, 2005/05/06.
+\newblock Gói \pf{PSTricks}, v1.07, 2005/05/06.
 \newblock \url{CTAN:/graphics/pstricks}.
 \end{thebibliography}
+
+\typeout{***************************************}
+\typeout{* (c) 2005 kyanh <kyanh at o2 dot pl> *}
+\typeout{***************************************}
 
 \end{document}

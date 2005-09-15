@@ -1,42 +1,5 @@
-%%
-%% This is file `pdpream.ble',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% powerdot.dtx  (with options: `preamble')
-%% 
-%% ----------------------------------------------------------
-%% Copyright (C) 2005 Hendri Adriaens and Christopher Ellison
-%% ----------------------------------------------------------
-%%
-%% This work may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either version 1.3
-%% of this license or (at your option) any later version.
-%% The latest version of this license is in
-%%   http://www.latex-project.org/lppl.txt
-%% and version 1.3 or later is part of all distributions of LaTeX
-%% version 2003/12/01 or later.
-%%
-%% This work has the LPPL maintenance status "maintained".
-%%
-%% This Current Maintainer of this work is Christopher Ellison.
-%%
-%% This work consists of the file powerdot.dtx and derived files
-%% powerdot.cls, powerdot-default.sty, powerdot-tycja.sty,
-%% powerdot-ikeda.sty, powerdot-fyma.sty, powerdot-simple.sty,
-%% powerdot-ciment.sty, powerdot-styletest.tex, powerdot-example1.tex
-%% and powerdot-example2.tex.
-%%
-%% The following files constitute the powerdot bundle and must be
-%% distributed as a whole: readme, powerdot.pdf, powerdot.dtx,
-%% powerdot.cls, powerdot-default.sty, powerdot-default.ps,
-%% powerdot-tycja.sty, powerdot-ikeda.sty, powerdot-fyma.sty,
-%% powerdot-simple.sty, powerdot-ciment.sty, powerdot-example1.tex
-%% and powerdot-example2.tex.
-%%
+%% taken from `pdpream.ble' generated from `powerdot.dtx'.
 \usepackage{url}
-%\usepackage{fourier}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{pst-char}
@@ -57,12 +20,12 @@
     \psline[linewidth=1pt](0,1.5)(\paperheight,1.5)%
     \rput[lB](.075\paperheight,.5){\pscharpath[linecolor=blue!50,%
       fillcolor=yellow!20,fillstyle=solid,linewidth=.5pt]%
-      {\Huge\bfseries\sffamily powerdot}%
+      {\Huge\bfseries\sffamily VietTUG, \url{http://viettug.org/}}%
     }%
-    \rput[rB](.925\paperheight,.5){\pscharpath[linecolor=blue!50,%
-      fillcolor=yellow!20,fillstyle=solid,linewidth=.5pt]%
-      {\Huge\bfseries Documentation}%
-    }%
+    %\rput[rB](.925\paperheight,.5){\pscharpath[linecolor=blue!50,%
+    %  fillcolor=yellow!20,fillstyle=solid,linewidth=.5pt]%
+    %  {\Huge\bfseries Documentation}%
+    %}%
     \psline[linewidth=1pt](0,0)(\paperheight,0)%
   }%
 }
