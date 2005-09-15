@@ -22,7 +22,7 @@
 	\usepackage{ktv-buildnum}
 	\usepackage{varioref}
 	\usepackage[varioref]{vnhook}
-	\usepackage[left=35mm,right=25mm,top=15mm,bottom=15mm]{geometry}
+	\usepackage[left=35mm,right=25mm,top=15mm,bottom=20mm]{geometry}
 }{
 	\newcount\buildnum
 	\buildnum=99999
@@ -131,6 +131,34 @@ the first beta releases.
 
 % =====================================================================
 
+\section*{Ghi chú của kyanh}
+\addcontentsline{toc}{section}{Ghi chú của kyanh}
+
+Tài liệu này được biên dịch từ tài liệu chính thức của lớp \pf{powerdot}.
+
+Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
+
+Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ và hình ảnh như sau
+đây. Nếu bạn chỉ có bản |PDF|, bạn có thể xem các hình minh họa ở
+\url{http://img.viettug.org/powerdot/}; còn các ví dụ có thể tải về từ
+\url{http://download.viettug.org/}.
+\begin{description}
+\item[img/]
+\item[lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
+\item[tab-contents.png] Bảng Mục lục ở một |slide|
+\item[tab-slide-contents.png] Trang Mục lục và Bảng Mục lục ở một |slide|
+\item[powerdot-default.png] Kiểu trình diễn mặc định
+\item[powerdot-simple.png] Kiểu trình diễn |simple|
+\item[powerdot-tyjca.png] Kiểu trình diễn |tyjca|
+\item[powerdot-ikeda.png] Kiểu trình diễn |ikeda|
+\item[powerdot-fyma.png] Kiểu trình diễn |fyma|
+\item[powerdot-ciment.png] Kiểu trình diễn |ciment|
+\item[exa/]
+\item[example-1.tex] Ví dụ đơn giản về \pf{powerdot}.
+\end{description}
+
+% =====================================================================
+
 \section{\texorpdfstring{Giới thiệu}{Gioi thieu}}\label{sec:intro}
 
 %% This class gives you the possibility to easily create professionally
@@ -141,7 +169,7 @@ the first beta releases.
 %% though.
 Lớp \pf{powerdot} cung cấp khả năng tạo trình diễn dễ dàng, chuyên nghiệp.
 Lớp được thiết kế để việc thiết kế trình diễn trở nên đơn giản nhất có thể,
-nhờ đó bạn không phải tốn thời gian với các yếu tố kỹ thụât.
+nhờ đó bạn không phải tốn thời gian với các yếu tố kỹ thuật.
 Tất nhiên, bạn phải có các kiến thức cơ bản về \LaTeX{}.
 
 %% This class builds on and extends the \pf{prosper} class
@@ -1895,7 +1923,7 @@ chuyển thành phiên bản cho \pf{powerdot}. Kiểu đưọc thiết kế g�
 với màu xanh sáng và màu nền |gradient|. Kiểu hỗ trợ môi trường |wideslide|
 và hướng |portrait|; ngoài ra, còn cung cấp các mẫu đặc biệt để tạo
 Mục trong trình diễn. Bảng Mục lục được bố trí bên trái (|landscape|)
-hoặc bên dưới (|portrait|). Đòi hỏi các gói \pf{pst-grad} \cite{PSTrickWeb,PSTricks}.
+hoặc bên dưới (|portrait|). Đòi hỏi các gói \pf{pst-grad} \cite{PSTricksWeb,PSTricks}.
 \item\pf{ciment}\\
 %% This style was originally created by Mathieu Goutelle for
 %% \pf{prosper} and \pf{HA-prosper}. With his permission, this style
@@ -2643,8 +2671,11 @@ Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
 %% want to have a look at the source code description, locate
 %% |powerdot.dtx|, search in the file for |\OnlyDescription| and remove
 %% that and do
-Mã nguồn của lớp \pf{powerdot} là tập tin |powerdot.dtx|. Bạn có thể
-biên dịch mã nguồn này theo các bước sau:
+Mã nguồn của lớp \pf{powerdot} là tập tin |powerdot.dtx|.
+Biên dịch mã nguồn này bạn thu được tài liệu đầy đủ nhất về \pf{powerdot},
+kể cả mã \LaTeX{} của lớp với các chú thích kỹ thuật.
+
+Bạn có thể biên dịch mã nguồn này theo các bước sau:
 \begin{example}
  latex powerdot.dtx
  latex powerdot.dtx
