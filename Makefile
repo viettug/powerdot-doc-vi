@@ -1,8 +1,9 @@
-default: powerdot-doc-vi example-vi-1
+DOC=powerdot-doc-vi
+default: $(DOC) example-vi-1
 
-doc: powerdot-doc-vi
+doc: $(DOC)
 
-powerdot-doc-vi:
+$(DOC):
 	@latex $@ && \
 	dvips $@.dvi -o$@.ps && \
 	ps2pdf $@.ps
@@ -14,8 +15,12 @@ example-1:
 	ps2pdf $@.ps
 
 dist:
-	@rm -fv distro/powerdot-doc-vi-$(gawk -F '=' '{print $2}' $@.ktvnum).zip
-	@zip -9r distro/powerdot-doc-vi-$(gawk -F '=' '{print $2}' $@.ktvnum).zip exa/* img/* $@.pdf
+	@rm -fv distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip
+	@zip -9r distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip \
+	exa/*{README,tex} \
+	img/*png \
+	$(DOC).pdf \
+	README
 
 clean:
 	@0texclean
