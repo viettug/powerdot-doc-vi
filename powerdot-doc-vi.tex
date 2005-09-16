@@ -1,3 +1,29 @@
+%% ====================================================================
+%%
+%% This is the file `powerdot-doc-vi.tex'
+%% This file provides powerdot documentation (vietnamese version)
+%% 
+%% ---------------------------------------------
+%% Copyright (C) 2005 kyanh <kyanh at o2 dot pl>
+%% ---------------------------------------------
+%% 
+%% This is a compiled work as described in
+%% 	http://www.latex-project.org/lppl.txt
+%% 
+%% This compiled work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%% http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% Current maintainer of this work is kyanh <kyanh at o2 dot pl>.
+%%
+%% ====================================================================
+
 % \listfiles
 
 \typeout{***************************************}
@@ -11,22 +37,47 @@
 
 % =====================================================================
 
+\newif\ifprint \printfalse
+
+\IfFileExists{printctl.tex}{\input{printctl.tex}}{}
+
+% =====================================================================
+
 \documentclass[a4paper]{ltxdoc}
 
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
 
+\setlength{\hoffset}{-1cm}
+\setlength{\voffset}{-1cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{23cm}
+
 \IfFileExists{/home/users/kyanh/.is.m0nster.}{
-	\usepackage{hyperref,indentfirst,url}
-	\usepackage{ktv-buildnum}
+	% \usepackage[bottom=20mm]{geometry}
+	\ifprint
+		\gdef\texorpdfstring##1##2{##1}
+	\else
+		\usepackage{hyperref}
+	\fi
+
+	\usepackage{indentfirst,url}
+
+	\ifprint
+		\newcount\buildnum
+		\input \jobname.ktvnum
+	\else
+		\usepackage{ktv-buildnum}
+	\fi
+
 	\usepackage{varioref}
 	\usepackage[varioref]{vnhook}
-	\usepackage[left=35mm,right=25mm,top=15mm,bottom=20mm]{geometry}
 }{
 	\newcount\buildnum
 	\buildnum=99999
 	\let\vref=\ref
+	\gdef\texorpdfstring##1##2{##1}
 }
 
 % =====================================================================
@@ -52,7 +103,7 @@
 \vfill
 
 \title{%\vspace*{-2cm}\mktitledecor
- \vspace*{9cm}
+ \vspace*{4cm}
  Sử dụng lớp \pf{powerdot} tạo trình diễn
  \thanks{Lớp này có thể tài về tại CTAN:\texttt{/macros/latex/contrib/powerdot}.
  Xem \texttt{powerdot.dtx} để biết thông tin về bản quyền của lớp \pf{powerdot}.}}
@@ -69,7 +120,7 @@
 
 \vspace{3cm}
 \begin{example}
- This is the file `powerdot-doc-vi.pdf'
+ This is the file `powerdot-doc-vi(-print).pdf'
  which is generated from the source `powerdot-doc-vi.tex'.
 
  ----------------------------------------------------------
@@ -90,6 +141,27 @@
  This work has the LPPL maintenance status "maintained".
 
  Current maintainer of this work is kyanh <kyanh at o2 dot pl>.
+ 
+ The following files constitute the `powerdot-doc-vi' bundle
+ and *MUST* be distributed as a whole
+ 
+  README
+  powerdot-doc-vi.pdf
+  powerdot-doc-vi-print.pdf
+  img/
+   lst-bookmarks.png
+   powerdot-ciment.png
+   powerdot-default.png
+   powerdot-fyma.png
+   powerdot-ikeda.png
+   powerdot-simple.png
+   powerdot-tyjca.png
+   tab-contents.png
+   tab-slide-contents.png
+  exa/
+   README
+   example-1.tex
+   example-1.pdf
 \end{example}
 
 \newpage
@@ -135,18 +207,24 @@ the first beta releases.
 \addcontentsline{toc}{section}{Ghi chú của kyanh}
 
 Tài liệu này được biên dịch từ tài liệu chính thức của lớp \pf{powerdot}.
+Có nhiều phần được thêm vào, một số phần khác được lượt bớt.
+Riêng Mục~\vref{sec:styles} chưa được dịch vì chưa cần thiết lắm
+cho người dùng bình thường.
 
+\medskip
+Nếu bạn muốn tin tài liệu này, hãy sử dụng tập tin |powerdot-doc-vi-print.pdf|.
+
+\medskip
 Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
 
+\medskip
 Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ và hình ảnh như sau
-đây. Nếu bạn chỉ có bản |PDF|, bạn có thể xem các hình minh họa ở
-\url{http://img.viettug.org/powerdot/}; còn các ví dụ có thể tải về từ
-\url{http://download.viettug.org/}.
+đây. Bạn có thể tải về bản đầy đủ của tài liệu ở \url{http://download.viettug.org/}.
 \begin{description}
 \item[img/]
 \item[lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
 \item[tab-contents.png] Bảng Mục lục ở một |slide|
-\item[tab-slide-contents.png] Trang Mục lục và Bảng Mục lục ở một |slide|
+\item[tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
 \item[powerdot-default.png] Kiểu trình diễn mặc định
 \item[powerdot-simple.png] Kiểu trình diễn |simple|
 \item[powerdot-tyjca.png] Kiểu trình diễn |tyjca|
@@ -159,7 +237,8 @@ Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ v
 
 % =====================================================================
 
-\section{\texorpdfstring{Giới thiệu}{Gioi thieu}}\label{sec:intro}
+\section{\texorpdfstring{Giới thiệu}{Gioi thieu}}
+\label{sec:intro}
 
 %% This class gives you the possibility to easily create professionally
 %% looking slides. The class is designed to make the development of
@@ -280,7 +359,8 @@ Mục này mô tả các tuỳ chọn để điều khiển kết quả xuất c
 % =====================================================================
 
 %\subsection{Document class options}
-\subsection{Tuỳ chọn cho lớp}
+\subsection{\texorpdfstring{Tuỳ chọn cho lớp}{Tuy chon cho lop}}
+
 \label{sec:classopts}
 
 %% We will start with the class options that are typed in the |\documentclass|
@@ -527,8 +607,9 @@ sẽ được bố trí trên một trang giấy!
 % =====================================================================
 
 %\subsection{Setup options}
-\subsection{Thiết lập trình diễn}
+\subsection{\texorpdfstring{Thiết lập trình diễn}{Thiet lap trinh dien}}
 \label{sec:pdsetup}
+
 \DescribeMacro{\pdsetup}
 %% There are several extra options that can help customizing your
 %% presentation. These options are not available via the
@@ -704,11 +785,14 @@ cách xử lý này.
 
 % =====================================================================
 
-\section{Tạo trình diễn}\label{sec:slides}
+\section{\texorpdfstring{Tạo trình diễn}{Tao trinh dien}}
+\label{sec:slides}
 
 % =====================================================================
 
-\subsection{Trang tiêu đề}\label{sec:titleslide}
+\subsection{\texorpdfstring{Trang tiêu đề}{Trang tieu de}}
+\label{sec:titleslide}
+
 \DescribeMacro{\title}
 \DescribeMacro{\author}
 \DescribeMacro{\and}
@@ -742,7 +826,7 @@ về chi tiết của các lệnh |\title| và |\author|.
 % =====================================================================
 
 %\subsection{Other slides}
-\subsection{Tạo slide}
+\subsection{\texorpdfstring{Tạo slide}{Tao slide}}
 
 \label{sec:otherslides}
 
@@ -883,7 +967,8 @@ cho ta |slide| đặc biệt ở đó không xuất hiện Mục lục. Xem thê
 
 % =====================================================================
 
-\section{Overlay}\label{sec:overlays}
+\section{Overlay}
+\label{sec:overlays}
 
 %% It is often the case that you don't want all the information on the
 %% slide to appear at once. Rather, the information should appear one
@@ -899,7 +984,7 @@ có thể gồm nhiều |overlay|; tại mỗi thời điểm, chỉ có một |
 % =====================================================================
 
 %\subsection{The \cs{pause} command}
-\subsection{Lệnh \cs{pause}}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{pause}}
 
 \label{sec:pause}
 
@@ -976,7 +1061,8 @@ thứ bốn. Tuỳ chọn có vẻ vô dụng này sẽ được đề cập l�
 % =====================================================================
 
 %\subsection{List environments}
-\subsection{Tạo danh sách}
+\subsection{\texorpdfstring{Tạo danh sách}{Tao danh sach}}
+
 \label{sec:lists}
 
 %% The list environments, |itemize| and |enumerate|, have special
@@ -1076,7 +1162,7 @@ sẽ được tô màu đậm, và ở |overlay| thứ ba, |C| sẽ được tô
 % =====================================================================
 
 %\subsection{The \cs{item} command}
-\subsection{Lệnh \cs{item}}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{item}}
 
 \DescribeMacro{\item}
 %% The |\item| command has an extra \emph{optional} argument in
@@ -1158,7 +1244,7 @@ Ví dụ nhiều hơn về cú pháp của \meta{overlays} được cho ở Mụ
 % =====================================================================
 
 %\subsection{The \cs{onslide} command}
-\subsection{Lệnh \cs{onslide}}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{onslide}}
 \label{sec:onslide}
 
 \DescribeMacro{\onslide}
@@ -1281,7 +1367,7 @@ các |overlay| theo cú pháp ở Bản~\vref{tab:item}.
 % =====================================================================
 
 %\subsection{Relative overlays}
-\subsection{Overlay tương đối}
+\subsection{Overlay \texorpdfstring{tương đối}{tuong doi}}
 
 %% Sometimes it is a pain to keep track of when an item should appear
 %% or become active. You might, for example, just care that some text
@@ -1349,14 +1435,14 @@ trên như sau đây (dấu |*| đại diện cho tham số của các lệnh |\
 % =====================================================================
 
 %\section{Presentation structure}
-\section{Cấu trúc trình diễn}
+\section{\texorpdfstring{Cấu trúc trình diễn}{Cau truc trinh dien}}
 
 \label{sec:structure}
 
 % =====================================================================
 
 %\subsection{Making sections}
-\subsection{Tạo mục}
+\subsection{\texorpdfstring{Tạo mục}{Tao muc}}
 \label{sec:section}
 
 \DescribeMacro{\section}
@@ -1449,7 +1535,7 @@ ví dụ |toc=|, |bm=|,\ldots Xem thêm ở Mục~\vref{sec:slides}.
 % =====================================================================
 
 %\subsection{Making an overview}
-\subsection{Tạo slide Mục lục}
+\subsection{\texorpdfstring{Tạo slide Mục lục}{Tao slide Muc luc}}
 \label{sec:tableofcontents}
 
 \DescribeMacro{\tableofcontents}
@@ -1551,7 +1637,11 @@ phần của Mục đó.
 
 % =====================================================================
 
-\subsection{The \cs{twocolumn} command}\label{sec:twocolumn}
+%\subsection{The \cs{twocolumn} command}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{twocolumn} \texorpdfstring{chia cột}{chia cot}}
+
+\label{sec:twocolumn}
+
 
 \DescribeMacro{\twocolumn}
 %The |\twocolumn| macro allows to split content into two columns.
@@ -1731,7 +1821,7 @@ nhờ đó mới có thể bố trí đúng nội dung vào các cột. Việc t
 
 % =====================================================================
 
-\subsection{Ghi chú}\label{sec:notes}
+\subsection{\texorpdfstring{Ghi chú}{Ghi chu}}\label{sec:notes}
 
 \DescribeEnv{note}
 %% The |note| environment can be used to make personal notes that
@@ -1752,7 +1842,9 @@ Có thể điều làm xuất hiện các ghi chú này nhờ tuỳ chọn |disp
 
 % =====================================================================
 
-\subsection{Slide trắng}\label{sec:emptyslides}
+\subsection{Slide \texorpdfstring{trắng}{trang}}
+
+\label{sec:emptyslides}
 
 \DescribeEnv{emptyslide}
 %% The |emptyslide| environment creates a totally empty slide. The text
@@ -1785,7 +1877,9 @@ vừa vẹn lên |slide|.
 
 % =====================================================================
 
-\subsection{Slide tài liệu tham khảo}\label{sec:bib}
+\subsection{Slide \texorpdfstring{tài liệu tham khảo}{tai lieu tham khao}}
+
+\label{sec:bib}
 
 \DescribeEnv{thebibliography}
 \pf{powerdot}
@@ -1849,7 +1943,7 @@ tài liệu tham khảo trong \cite{companion}.
 % =====================================================================
 
 %\section{Available styles}
-\section{Các kiểu trình diễn}
+\section{\texorpdfstring{Các kiểu trình diễn}{Cac kieu trinh dien}}
 \label{sec:styles}
 
 Lớp \pf{powerdot}
@@ -1943,13 +2037,13 @@ hoặc bên phải (|portrait|). Đòi hỏi gói \pf{pifont}.
 % =====================================================================
 
 %\section{Compiling your presentation}
-\section{Biên dịch tạo trình diễn}
+\section{\texorpdfstring{Biên dịch. Cài đặt}{Bien dich. Cai dat}. Xem}
 \label{sec:compiling}
 
 % =====================================================================
 
 %\subsection{Dependencies}
-\subsection{Gói phục thuộc}
+\subsection{\texorpdfstring{Gói phụ thuộc}{Goi phu thuoc}}
 
 \label{sec:dependencies}
 
@@ -1997,8 +2091,82 @@ Gói/tập tin & Phiên bản & Ngày & Mức độ\\\hline
 \caption{Gói phụ thuộc}\label{tab:dependencies}
 \end{table}
 
+% =====================================================================
+
+\subsection{\texorpdfstring{Cài đặt}{Cai dat}}
+
+Bạn tải về các gói sau đây:
+
+\noindent
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/powerdot.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/enumitem.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/xcolor.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/xkeyval.zip}\\
+\url{ftp://ftp.jaist.ac.jp/pub/TeX/tex-archive/graphics/pstricks/latex/pstricks.sty}
+
+Sau khi xả nén các tập tin |.zip| (vào cùng thư mục nào đó),
+bạn có được cấu trúc thư mục như sau.
+\begin{example}
+  enumitem
+  `-- enumitem.sty
+  powerdot
+  |-- doc
+  |-- run
+  |   |-- powerdot-*.sty
+  |   `-- powerdot.cls
+  `-- source
+      `-- powerdot.dtx
+  xcolor
+  |-- xcolor.ins
+  xkeyval
+  |-- doc
+  |-- run
+  |   |-- *.tex
+  |   |-- *.sty
+\end{example}
+
+Bạn phải làm công việc tương đối phức tạp sau đây: biên dịch 
+tập tin |xcolor.ins|. Nếu chương trình soạn thảo của bạn không
+hỗ trợ  việc biên dịch tập tin này, bạn thử chạy từ dòng lệnh
+(tại thư mục |xcolor|)
+\begin{example}
+  latex xcolor.ins
+\end{example}
+Việc biên dịch này đảm bảo rằng trong thư mục |xcolor| ở trên
+sẽ xuất hiện thêm các tập tin |.def|, |.sty| và |.pro|.
+
+Bây giờ hãy tìm đến thư mục |LocalTeXMF| trên hệ thống của bạn.
+Đó thường là |c:\localtexmf| đối với Mik\TeX{} hoặc là |~/texmf|
+đối với te\TeX. Hãy tạo các thư mục sau bên dưới thư mục |LocalTeXMF|
+\begin{example}
+  tex/latex/xcolor
+  tex/latex/enumitem
+  tex/latex/xkeyval
+  tex/latex/powerdot
+  tex/latex/pstricks
+  dvips/xcolor
+\end{example}
+Hãy chép các tập tin vào thư mục tương ứng
+\begin{example}
+  dvips/xcolor        <= xcolor/*.pro
+  tex/latex/xcolor    <= xcolor/*.def xcolor/*.sty
+  tex/latex/enumitem  <= enumitem/enumitem.sty
+  tex/latex/xkeyval   <= xkeyval/run/*
+  tex/latex/powerdot  <= powerdot/run/*
+  tex/latex/pstricks  <= pstricks.sty
+\end{example}
+Cuối cùng, hãy cập nhật hệ thống \TeX{} của bạn.
+Với te\TeX{}, bạn thi hành lệnh sau
+\begin{command}
+  $ texhash ~/texmf
+\end{command}
+còn với Mik\TeX{}, bạn chạy chương trình |mo.exe| (từ Menu |RUN|
+chẳng hạn) rồi chọn `\textbf{Refresh now}' để cập nhật hệ thống \TeX.
+
+% =====================================================================
+
 %\subsection{Creating and viewing output}
-\subsection{Biên dịch và xem kết quả}
+\subsection{\texorpdfstring{Biên dịch và xem kết quả}{Bien dich va xem ket qua}}
 \label{sec:creation}
 
 %% To compile your presentation, run it with \LaTeX. The DVI that is
@@ -2079,475 +2247,28 @@ Tóm lại, nếu bạn có tài liệu |foo.tex|, thì quá trình biên dịch
   $ dvips -o foo.ps foo.dvi
   $ ps2pdf foo.ps
 \end{command}
-(bạn phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo được chính xác.)
+(phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo được chính xác.)
 
 %\section{Creating your own style}
-\section{Tạo kiểu mới}
+
+\section{\texorpdfstring{Tạo kiểu mới}{Tao kieu moi}}
 \label{sec:writestyle}
 
 Mục này bàn về việc thiết kế kiểu mới cho \pf{powerdot}.
 
 Mục này sẽ được dịch trong bản tiếp theo của tài liệu ;)
 
-%% \subsection{General information}
-%% Writing or customizing styles is simple. If you want to modify a
-%% style or build a new one, locate the style that you want to use as
-%% basis in your \TeX\ tree (styles are named as
-%% |powerdot-<style_name>.sty|), copy that and rename it as to avoid
-%% license\footnote{The \LaTeX\ Public Project License requires
-%% renaming files when modifying them, see
-%% \url{http://www.latex-project.org/lppl}.} or naming conflicts. You
-%% might want to install the new style in your local \TeX\ tree to be
-%% able to access it from any place on your hard drive. See your
-%% \LaTeX\ distribution for more information.
-%% 
-%% Once that has been taken care of, we can start creating the style.
-%% We strongly recommend to study a style file (for example,
-%% |powerdot-default.sty|) while reading the remainder of this section
-%% as it provides good examples for the content of this section.
-%% 
-%% A style has several components. We describe these components below.
-%% \begin{description}
-%% \item\textbf{Identification}\\
-%% This identifies the package in the log of a presentation. The default
-%% style contains:
-%% \begin{example}
-%%  \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-%%  \ProvidesPackage{powerdot-default}[2005/09/04 v1.0 default style (HA)]
-%% \end{example}
-%% See for more information about these commands a \LaTeX\ manual, for
-%% instance \cite{companion}.
-%% \item\textbf{Color definitions}\\
-%% This section contains the definitions of the colors that you want to
-%% use in the style. \pf{powerdot} uses \pf{xcolor} (via
-%% \pf{pstricks}). Hence, for more information about colors, see the
-%% \pf{xcolor} documentation.
-%% \item\textbf{Template definitions}\\
-%% We will come back to this in the subsequent sections.
-%% \item\textbf{Custom declarations}\\
-%% These can include anything that you want to be part of the style.
-%% The default style, for instance, includes definitions for the labels
-%% in list environments like |itemize| and some initializations for
-%% lists in general (done with |\pdsetup|, see
-%% section~\ref{sec:pdsetup}).
-%% \item\textbf{Color and font initializations}\\
-%% This is a very important part. Here you \emph{must} initialize the
-%% main text color and put font definitions (which can be done by
-%% loading a package like \pf{helvet}). If you don't initialize the
-%% color here, most of the text will appear in black.
-%% \end{description}
-%% 
-%% \subsection{Defining templates}
-%% We start off with a definition of what a template is. A template is
-%% a collection of settings for slide components together with custom
-%% definitions, which controls the visual appearance of a slide. A
-%% style can contain multiple templates.
-%% 
-%% \begin{command}
-%%  `\cs{pddefinetemplate}\oarg{basis}\marg{name}\marg{options}\marg{commands}'
-%% \end{command}
-%% \DescribeMacro{\pddefinetemplate}
-%% This defines the environment \meta{name} to produce a slide with
-%% characteristics determined by \meta{basis}, \meta{options} and
-%% \meta{commands}. We will discuss these elements in more detail
-%% in the coming sections.
-%% 
-%% If you want to create several templates that differ only slightly
-%% from each other, define a \meta{basis} template, and then use it to
-%% define other templates. All \meta{options} and \meta{commands} for
-%% the new template \meta{name} will be appended to the existing list
-%% of \meta{options} and \meta{commands} from the \meta{basis}
-%% template.
-%% 
-%% Make sure you choose a \emph{proper} name for the template, and
-%% avoid redefining existing templates or environments. \pf{powerdot}
-%% defines |blackslide|, |note| and |emptyslide| internally, so you
-%% shouldn't use these names unless you know what you're doing.
-%% Furthermore, each style needs to define at least the templates
-%% |slide| and |titleslide|. The |titleslide| environment will be used
-%% to create the title slide and |slide| will (by default) also be used
-%% to create section slides. Titles and sections are a bit special in
-%% the way they use the \meta{options} and will be discussed in more
-%% detail in section~\ref{sec:specialtemps}.
-%% 
-%% \subsection{Controlling setup}
-%% \DescribeOption{ifsetup}
-%% The \meta{options} (keys) are described in the following sections.
-%% You can control how these options apply to the various setups by
-%% using the |ifsetup| key. Any key appearing before the first
-%% |ifsetup| declaration in \meta{options} will apply to every possible
-%% setup. Once the |ifsetup| key is used, then all subsequent key
-%% declarations will apply \textit{only} to the setups declared in the
-%% |ifsetup| key. The |ifsetup| key can be used multiple times.
-%% 
-%% By possible setups, we mean the allowed values of the |mode|,
-%% |paper|, |orient|, and |display| keys that are described in
-%% section~\ref{sec:classopts}. If a value (or values!) for any of
-%% these four keys is not specified in a |ifsetup| declaration, then
-%% all subsequent key declarations will apply to any layout of that
-%% type. Consider the following as an example.
-%% \begin{example}[numbers=left,numberstyle=\tiny\ttfamily,%
-%%   escapeinside=`',numbersep=1em,xleftmargin=1em]
-%%  ...
-%%  textpos={.2\slidewidth,.3\slideheight},%
-%%  ifsetup={portrait,screen},%
-%%  textpos={.3\slidewidth,.2\slideheight}%
-%%  ...
-%%  ifsetup=landscape,%
-%%  ...
-%%  ifsetup,
-%%  ...
-%% \end{example}
-%% Assuming there was no |ifsetup| declaration before the first
-%% |textpos| declaration, this first |textpos| will apply to every
-%% possible setup. However, for the screen format in portrait
-%% orientation, the next |textpos| declaration will be used. In fact,
-%% all declarations that appear until we switch to the next |ifsetup|
-%% (which specifies all paper sorts and only landscape orientation)
-%% will be used in the portrait screen layout. All keys after the next
-%% |ifsetup| declaration will be used in landscape orientation,
-%% \emph{with any paper, mode and display}. If, after declaring some
-%% specializations, you want to switch back to settings that apply to
-%% all possible setups, set |ifsetup| to empty as is done in the
-%% example. All subsequent declarations will then again be applied
-%% under any setup.
-%% 
-%% The following command is a stand-alone implementation of the
-%% mechanism described above. It allows you to control the setup
-%% outside the \meta{options} argument of the |\pddefinetemplate|
-%% command.
-%% \begin{command}
-%%  `\cs{pdifsetup}\marg{desired}\marg{yes}\marg{no}'
-%% \end{command}
-%% \DescribeMacro{\pdifsetup}
-%% This macro executes \meta{yes} when the setup that the user chose
-%% matches with the \meta{desired} setup, \meta{no} in all other cases.
-%% For instance, if the user has chosen landscape, then
-%% \begin{example}
-%%  \pdifsetup{landscape}{yes}{no}
-%% \end{example}
-%% will typeset |yes|. If the user would have chosen portrait instead,
-%% then |no| would have been typeset.
-%% 
-%% This macro can be used to check setup requests from the user and,
-%% for instance, generate an error if a certain setup is not supported
-%% by your style. \pf{powerdot} provides one predefined error message
-%% which can be used in one of the first lines of your style.
-%% \begin{command}
-%%  `\cs{pd@noportrait}'
-%% \end{command}
-%% \DescribeMacro{\pd@noportrait}
-%% This macro generates an error when the user requests portrait
-%% orientation. Notice that the handout mode only works in portrait
-%% orientation. This macro takes that into account and doesn't generate
-%% an error in that case.
-%% 
-%% \subsection{Main components}
-%% The \meta{options} control several key components of a slide. Every
-%% component has several properties. A key that can be used in the
-%% \meta{options} argument is the name of the component postfixed by
-%% its property that you want to control.
-%% 
-%% The components |title|, |text|, |toc|, |stoc| and |ntoc| have
-%% properties |hook|, |pos|, |width| and |font|. Additionally, the
-%% |text| component has a |height| property. The components |lf| and
-%% |rf| have properties |hook|, |pos|, |temp| and |font|. Hence,
-%% examples of valid keys are |titlefont|, |tocpos| and |lftemp|. All
-%% components and properties will be discussed below.
-%% 
-%% Here is an overview of the components that can be controlled from
-%% the \meta{options} argument in |\pddefinetemplate|.
-%% \begin{description}
-%% \item\DescribeOption{title-}\option{title-}\\
-%% The slide title.
-%% \item\DescribeOption{text-}\option{text-}\\
-%% The main text box on the slide.
-%% \item\DescribeOption{toc-}\option{toc-}\\
-%% The (full) table of contents on a slide containing sections and
-%% slides.
-%% \item\DescribeOption{stoc-}\option{stoc-}\\
-%% This is a table of contents containing only the sections. See also
-%% |ntoc| below.
-%% \item\DescribeOption{ntoc-}\option{ntoc-}\\
-%% This is a table of contents containing only the entries for the
-%% active section. Together with |stoc|, this can be used to create a
-%% split table of contents. In a particular template, one would usually
-%% have a |toc|, a combination of |stoc| and |ntoc| or no table of
-%% contents at all.
-%% \item\DescribeOption{lf-}\option{lf-}\\
-%% The left footer.
-%% \item\DescribeOption{rf-}\option{rf-}\\
-%% The right footer.
-%% \end{description}
-%% 
-%% Notice that all positioning of components described above will be
-%% done with |\rput| from \pf{pstricks} \cite{PSTricksWeb,PSTricks}
-%% internally. See the \pf{pstricks} documentation for more information
-%% about this command. It should also be noted that all components
-%% (except |lf| and |rf|) put their content in a |minipage|
-%% environment.
-%% 
-%% Now we list all properties of the components listed above and
-%% describe what they mean. Remember that keys are formed by combining
-%% a component name and a property.
-%% 
-%% \begin{description}
-%% \item\DescribeOption{-hook}\option{-hook}\\
-%% This option defines the |\rput| hook that will be used when
-%% positioning the item. This can be |tl|, |t|, |tr|, |r|, |Br|, |br|,
-%% |b|, |bl|, |Bl|, |l|, |B| and |c|. See the \pf{pstricks}
-%% documentation for more information.
-%% \item\DescribeOption{-pos}\option{-pos}\\
-%% This defines the position of the |hook| on the paper. The lower left
-%% corner of the paper is given by the point |{0,0}| and the upper right
-%% corner by the point |{\slidewidth,\slideheight}|. So if you want to
-%% position the main text box at 20\% from the left edge and 30\% from
-%% the top edge of the paper, you have to do the following.
-%% \begin{example}
-%%  textpos={.2\slidewidth,.7\slideheight}
-%% \end{example}
-%% If the position of any component has not been specified, this
-%% component will not be placed on the slide. This gives an opportunity
-%% to design slides without footers or table of contents, for instance.
-%% \item\DescribeOption{-width}\option{-width}\\
-%% The width of the component. All component positioned by
-%% \pf{powerdot} will be put in a surrounding |minipage| environment.
-%% The |width| property determines the width of the |minipage|. Example:
-%% \begin{example}
-%%  textwidth=.7\slidewidth
-%% \end{example}
-%% This property does not exist for the |lf| and |rf| components.
-%% \item\DescribeOption{-height}\option{-height}\\
-%% This option is only available for the |text| component. In other
-%% words, for this property, there is only one key, namely
-%% |textheight|. This can be used to specify the height of the
-%% |minipage| used for the main text. This does not imply that users
-%% are restricted to this length or that \pf{powerdot} does automatic
-%% slide breaking. This height is only used for vertical alignments of
-%% material, for instance by footnotes. The default value is
-%% |\slideheight|.
-%% \item\DescribeOption{-font}\option{-font}\\
-%% This will be inserted just before the text that is about to be
-%% typeset. This can be used to declare deviations from the main text
-%% font and color. It can be a font declaration, like
-%% |\large\bfseries|, but can also contain other things like
-%% |\color{red}| or |\raggedright|.
-%% \item\DescribeOption{-temp}\option{-temp}\\
-%% This property is only available for the footers (|lf| and |rf|) and
-%% can be used to change the template of the footers. This means that
-%% you can, for instance, add content to the footer, besides the
-%% content specified by the user. The default declaration by
-%% \pf{powerdot} is the following.
-%% \begin{example}
-%%  rftemp=\pd@@rf\ifx\pd@@rf\@empty
-%%    \else\ifx\theslide\@empty\else~--~\fi\fi\theslide
-%% \end{example}
-%% Here |\pd@@rf| will contain the content of the right footer defined
-%% by the user via the |\pdsetup| command. Similarly, |\pd@@lf|
-%% contains the content of the left footer. The above declaration
-%% checks whether the footer and |\theslide| are both non-empty and if
-%% so, it inserts |~--~| to separate both.
-%% \end{description}
-%% 
-%% Below, we have copied the default setting for the keys described
-%% above done by \pf{powerdot}. These will be used if you didn't supply
-%% other input for these keys in a particular template. If the default
-%% value meets your needs, you don't have to specify it again in your
-%% style.
-%% \begin{example}
-%%  titlehook=Bl,titlepos,titlewidth=\slidewidth,
-%%  titlefont=\raggedright,texthook=lt,textpos,
-%%  textwidth=\slidewidth,textfont=\raggedright,
-%%  textheight=\slideheight,
-%%  tochook=lt,tocpos,tocwidth=.2\slidewidth,
-%%  tocfont=\tiny\raggedright,
-%%  stochook=lt,stocpos,stocwidth=.2\slidewidth,
-%%  stocfont=\tiny\raggedright,
-%%  ntochook=lt,ntocpos,ntocwidth=.2\slidewidth,
-%%  ntocfont=\tiny\raggedright,
-%%  tocfrsep=.5mm,tocsecsep=2ex,tocitemsep=0ex,
-%%  tocsecm,toctcolor=black,tochlcolor=black,tochltcolor=white,
-%%  lfhook=lB,lfpos,lffont=\scriptsize,lftemp=\pd@@lf,
-%%  rfhook=rB,rfpos,rffont=\scriptsize,rftemp=\pd@@rf\ifx\pd@@rf\@empty
-%%    \else\ifx\theslide\@empty\else~--~\fi\fi\theslide,
-%%  iacolor=lightgray,sectionskip=0pt,sectionfont=\centering
-%% \end{example}
-%% 
-%% \subsection{Slide toc}
-%% The small table of contents that is placed on slides can be
-%% controlled by four macros and several options.
-%% 
-%% \DescribeMacro{\pd@tocentry}
-%% \DescribeMacro{\pd@tocsection}
-%% These macros take one argument. When building the table of contents,
-%% \pf{powerdot} first passes the content through |\pd@tocentry| or
-%% |\pd@tocsection|, depending on the type of entry that it is building
-%% at that moment. You could, for instance, do
-%% \begin{example}
-%%  \def\pd@tocentry#1{$\bullet$\ #1}
-%%  \def\pd@tocsection#1{#1}
-%% \end{example}
-%% which will prefix all normal entries (not the sections) with a
-%% bullet. By default, these two macros are defined to just pass on
-%% their argument.
-%% 
-%% \DescribeMacro{\pd@tocdisplay}
-%% \DescribeMacro{\pd@tochighlight}
-%% These two macros also take one argument. After processing an entry
-%% with the command |\pd@tocentry| or |\pd@tocsection|, \pf{powerdot}
-%% continues building the entry by passing it through |\pd@tocdisplay|,
-%% when the entry needs to be displayed only, or |\pd@tochighlight|,
-%% when the entry needs to be highlighted. These macros are a little
-%% more involved and take care of putting the content in the proper
-%% font and color in a |minipage|. Further, |\pd@tochighlight| also
-%% puts a box around the item.
-%% 
-%% Several aspects of this process can be controlled via the keys that
-%% are available in the |\pddefinetemplate| command that will be
-%% described in a moment. If these keys do not provide enough handles
-%% to do what you want, you might need to have a look at these two
-%% macros in the source and decide to rewrite them in your style as to
-%% fit your needs.
-%% 
-%% \begin{description}
-%% \item\DescribeOption{tocfrsep}\option{tocfrsep}\\
-%% This length is the distance between the box around the content
-%% created by the |minipage| and the highlight frame box created by
-%% |\pd@tochighlight|. Default: |0.5mm|.
-%% \item\DescribeOption{tocsecsep}\option{tocsecsep}\\
-%% The vertical distance inserted above a section (unless it is the
-%% first element in the table of contents). Default: |2ex|
-%% \item\DescribeOption{tocitemsep}\option{tocitemsep}\\
-%% The vertical distance inserted above other entries (unless it is the
-%% first element in the table of contents). Default: |0ex|.
-%% \item\DescribeOption{tocsecm}\option{tocsecm}\\
-%% This is inserted just before typesetting a section. This can be used
-%% to mark a section, for instance with a line as in the \pf{default}
-%% style. Default: empty.
-%% \item\DescribeOption{toctcolor}\option{toctcolor}\\
-%% This is the text color used for non-highlighted elements in the
-%% table of contents. Default: |black|.
-%% \item\DescribeOption{tochltcolor}\option{tochltcolor}\\
-%% This is the text color used for highlighted elements in the table of
-%% contents. Default: |white|.
-%% \item\DescribeOption{tochlcolor}\option{tochlcolor}\\
-%% This is the color used for the frame behind highlighted elements.
-%% Default: |black|.
-%% \end{description}
-%% 
-%% \subsection{Miscellaneous options}\label{sec:miscoptions}
-%% There are some options the fall outside of the scope of the previous
-%% section. These will be discussed here.
-%% 
-%% \DescribeOption{iacolor}
-%% The |iacolor| option can be used to specify the color that is used
-%% for inactive things, produced for instance by |\onslide|, |\pause|
-%% (see section~\ref{sec:overlays}) and |\tableofcontents| (see
-%% section~\ref{sec:tableofcontents}). As \pf{xcolor} is used by
-%% \pf{powerdot}, one can use special notation here, like
-%% \begin{example}
-%%  iacolor=black!20
-%% \end{example}
-%% The default value for this key is |lightgray|.
-%% 
-%% \DescribeOptions{sectionskip,sectionfont}
-%% These options can be specified in any template and will be used when
-%% the user chooses to use this specific template for creating a
-%% section with |\section| (see section~\ref{sec:section}). The section
-%% title will be put in the main text box at a vertical distance
-%% specified by |sectionskip| from the top and in |sectionfont|. The
-%% default values are |sectionskip=0pt| and |sectionfont=\centering|.
-%% Specify values for these keys for every template that can be used
-%% for creating sections. More details about this are in
-%% section~\ref{sec:specialtemps}.
-%% 
-%% \subsection{The background}
-%% This leaves only one argument of the |\pddefinetemplate| macro
-%% undiscussed. This is the \meta{commands} argument. This argument can
-%% contain any code that you want to execute \textit{after} setting the
-%% options and \textit{before} building the slide components like the
-%% slide title, main text, and footers. This argument is designed to
-%% contain declarations that will build the background of a template
-%% using, for instance, \pf{pstricks}, but it can also hold other
-%% commands you might need for building your template.
-%% 
-%% \subsection{Title slide, titles and sections}\label{sec:specialtemps}
-%% As mentioned before, the style that you write needs to define at
-%% least the templates |slide| and |titleslide|. The latter treats some
-%% of the keys in a special way. Besides, a section slide is also done
-%% in a special way.
-%% 
-%% The title slide (made with |\maketitle|) puts the title with
-%% author(s) and date in the main text box. This means that you have to
-%% supply a position for the main text box (|textpos|). It will use the
-%% main text font for the text (together with declarations in the
-%% |textfont| key) for the author(s) and the date. But it will use the
-%% declarations in |titlefont| for the title of the presentation. This
-%% is done so that title and author(s) form a coherent block and to
-%% make sure that long titles can push down the author(s) instead of
-%% overwriting it.
-%% 
-%% \DescribeMacro{\pd@slidetitle}
-%% The |\pd@slidetitle| macro is used to typeset the slide title on
-%% slides. This macro is comparable to for instance |\pd@tocentry|. The
-%% macro takes one argument which is the slide title in the right font
-%% and formatting. By default, this macro just passes on the content
-%% for typesetting, but you could redefine this macro so do something
-%% with its input prior to typesetting it. An example is in the
-%% \pf{fyma} style which underlines the title using the following code.
-%% \begin{example}
-%%  \def\pd@slidetitle#1{%
-%%    \settowidth\@tempdima{#1}%
-%%    \psline[linewidth=.8pt,linecolor=pddblue]%
-%%      (0,-.15cm)(\@tempdima,-.15cm)#1%
-%%  }
-%% \end{example}
-%% \DescribeMacros{\pd@title,\pd@sectiontitle}
-%% These macros are similar to |\pd@slidetitle| and typeset the title
-%% on the title slide and the title on section slides respectively. By
-%% default, these also pass there argument (which is the presentation
-%% title or section title), but these can be redefined to do something
-%% with the input prior to typesetting it, just as |\pd@slidetitle|.
-%% 
-%% \DescribeOptions{sectemp,widesectemp}
-%% The |\section| command uses (by default) the |slide| environment and
-%% puts the section title in the main text box with font |sectionfont|
-%% and vertical distance from the top of the main text box
-%% |sectionskip| (see section~\ref{sec:miscoptions}). You should
-%% specify values for these keys for all templates that the user can
-%% use to create a section. If you want to change the default use of
-%% the |slide| environment for sections to, for instance, the
-%% |sectionslide| environment or any other especially designed section
-%% template, change the section template preset in your style, using
-%% \begin{example}
-%%  \setkeys[pd]{section}{sectemp=sectionslide}
-%% \end{example}
-%% This means that if the user asks for |template=slide| in the
-%% |\section| command, the |sectionslide| environment will be used
-%% silently. A similar option is available in case the user asks for
-%% |template=wideslide|. One could for instance do the following.
-%% \begin{example}
-%%  \setkeys[pd]{section}{widesectemp=sectionwideslide}
-%% \end{example}
-%% Whenever the user requests a |wideslide| to be used for a
-%% |\section|, instead, the |sectionwideslide| environment will be
-%% used. Other input to the |template| key by the user does not get a
-%% special treatment.
-%% 
-%% Notice that these keys are available in the |section| family of keys
-%% and that you cannot use them in the |\pddefinetemplate| command.
-%% 
-%% \subsection{Testing the style}\label{sec:styletest}
-%% \pf{powerdot} has a test file that should test most of the style.
-%% This test file can be produced by running \LaTeX\ over
-%% |powerdot.dtx|. This generates |powerdot-styletest.tex| which will
-%% help you with the testing job. Feel free to contact us when you
-%% would like to contribute your style to \pf{powerdot}. See also
-%% section~\ref{sec:questions}.
+% =====================================================================
 
-\section{Hỏi-Đáp}\label{sec:questions}
+\section{\texorpdfstring{Hỏi-Đáp}{Hoi-Dap}}
 
-\subsection{Các câu hỏi thường gặp}\label{sec:FAQ}
+\label{sec:questions}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Câu hỏi thường gặp}{Cau hoi thuong gap}}
+
+\label{sec:FAQ}
 
 %% This section is devoted to Frequently Asked Questions. Please read
 %% it carefully; your problem might be solved by this section.
@@ -2618,7 +2339,12 @@ sẽ được nêu trong tài liệu của \pf{powerdot}.
 Nếu bạn có các câu hỏi khác, không nằm trong danh sách trên, hãy xem
 Mục kế tiếp để biết cách tìm câu trả lời.
 
-\subsection{Mailinglist}\label{sec:mailinglist}
+% =====================================================================
+
+\subsection{Mailinglist}
+
+\label{sec:mailinglist}
+
 \pf{powerdot}
 %%has a mailinglist from \url{freelists.org} and has its
 %% website here:
@@ -2664,9 +2390,13 @@ Không gửi kèm các tập tin kích thước lớn đến |mailinglist|.
 %We hope you will enjoy this service.
 Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
 
+% =====================================================================
+
 %\section{Source code documentation}
-\section{Biên dịch mã nguồn powerdot}
+\section{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot}
+
 \label{sec:sande}
+
 %% In case you want regenerate the package files from the source or
 %% want to have a look at the source code description, locate
 %% |powerdot.dtx|, search in the file for |\OnlyDescription| and remove
@@ -2690,7 +2420,9 @@ Bạn có thể biên dịch mã nguồn này theo các bước sau:
 
 \newpage
 
-\addcontentsline{toc}{section}{Tài liệu}
+\addcontentsline{toc}{section}{\texorpdfstring{Tài liệu}{Tai lieu}}
+
+\small
 
 \begin{thebibliography}{10}
 \bibitem{VietTUG}

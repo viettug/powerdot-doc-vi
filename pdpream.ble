@@ -7,14 +7,20 @@
 \usepackage{array}
 \usepackage{xkeyval}
 \lstnewenvironment{command}{%
-  \lstset{columns=flexible,frame=single,backgroundcolor=\color{blue!20},%
+  \lstset{columns=flexible,frame=single,backgroundcolor=\ifprint\color{white}\else\color{blue!20}\fi,%
     xleftmargin=\fboxsep,xrightmargin=\fboxsep,escapeinside=`',gobble=1}}{}
 \lstnewenvironment{example}[1][]{%
   \lstset{basicstyle=\footnotesize\ttfamily,columns=flexible,frame=single,%
-    backgroundcolor=\color{yellow!20},xleftmargin=\fboxsep,%
+    backgroundcolor=\ifprint\color{white}\else\color{yellow!20}\fi,xleftmargin=\fboxsep,%
     xrightmargin=\fboxsep,gobble=1,%
     }\lstset{#1}}{}
-\def\option#1{\fcolorbox{black}{red!20}{\texttt{#1}}\vspace*{.2cm}}
+\def\option#1{%
+	\ifprint
+		\fcolorbox{black}{white}{\texttt{#1}}\vspace*{.2cm}%
+	\else
+		\fcolorbox{black}{red!20}{\texttt{#1}}\vspace*{.2cm}%
+	\fi%
+}
 \def\mktitledecor{%
   \rput[tl]{90}(-5.5,-25.51){%
     \psline[linewidth=1pt](0,1.5)(\paperheight,1.5)%
