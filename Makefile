@@ -1,9 +1,9 @@
 DOC = powerdot-doc-vi
 
-default: $(DOC) example-vi-1
+default: latex
 
-latex: clean
-	@latex $(DOC)
+latex:
+	@latex -src-specials $(DOC)
 
 doc: $(DOC)
 
@@ -20,6 +20,7 @@ $(DOC):
 
 example-1:
 	@cd exa && \
+	echo '\documentclass[a4paper,style=default]{powerdot}' > header.tex & \
 	latex $@ && latex $@ > /dev/null 2>&1 && \
 	dvips $@.dvi -o$@.ps && \
 	ps2pdf $@.ps
@@ -27,11 +28,17 @@ example-1:
 dist:
 	@rm -fv distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip
 	@zip -9r distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip \
-	exa/*{README,tex,pdf} \
-	img/*png \
+	exa/*{README,tex} exa/example-1.pdf \
 	$(DOC).pdf $(DOC)-print.pdf \
+	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 	README
+	@cd img && \
+	rm -fv ../distro/powerdot-styles.zip && \
+	zip -9r ../distro/powerdot-styles.zip powerdot*.png README
 
 clean:
 	@0texclean
-	@rm -fv *.{ps,bm,glo,bib}
+	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls
+
+backup:
+	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
