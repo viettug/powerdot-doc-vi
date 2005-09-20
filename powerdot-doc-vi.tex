@@ -82,6 +82,11 @@
 
 % =====================================================================
 
+\newenvironment{version}[1]{%
+\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
+
+% =====================================================================
+
 % << pdpream.ble
 \def\PrintDescribeOption#1{\MacroFont #1\ }
 
@@ -109,7 +114,8 @@
  Xem \texttt{powerdot.dtx} để biết thông tin về bản quyền của lớp \pf{powerdot}.}}
 \author{Hendri Adriaens\and Christopher Ellison
 	\\[2mm]\and \underline{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
-\date{Bản dịch số {\the\buildnum}}
+\date{Bản dịch số {\the\buildnum} (\the\year/\the\month/\the\day)
+	\\[2mm]dành cho \pf{powerdot} 1.1 (2005/9/19)}
 \maketitle
 
 \newpage
@@ -150,12 +156,6 @@
   powerdot-doc-vi-print.pdf
   img/
    lst-bookmarks.png
-   powerdot-ciment.png
-   powerdot-default.png
-   powerdot-fyma.png
-   powerdot-ikeda.png
-   powerdot-simple.png
-   powerdot-tyjca.png
    tab-contents.png
    tab-slide-contents.png
   exa/
@@ -197,9 +197,11 @@ Lớp cung cấp hệ thống mẫu mạnh, giúp phát triển dễ dàng các 
 \addcontentsline{toc}{section}{Acknowledgements}
 
 The authors are grateful to Darren Dale and Herbert Vo\ss\ for
-testing the class and its output. Further, we like to thank all
-style contributors (see section~\ref{sec:styles}) and the testers of
-the first beta releases.
+testing the class and its output. We also wish to thank Mael
+Hill\'ereau for contributing the |LyX| layout file and description.
+Further, we like to thank all style contributors (see
+section~\ref{sec:styles}) and everyone who provided feedback
+through the mailinglist.
 
 % =====================================================================
 
@@ -207,9 +209,15 @@ the first beta releases.
 \addcontentsline{toc}{section}{Ghi chú của kyanh}
 
 Tài liệu này được biên dịch từ tài liệu chính thức của lớp \pf{powerdot}.
-Có nhiều phần được thêm vào, một số phần khác được lượt bớt.
-Riêng Mục~\vref{sec:styles} chưa được dịch vì chưa cần thiết lắm
+Có nhiều phần được thêm vào, một số phần khác được lược bớt.
+Riêng Mục~\vref{sec:writestyle} chưa được dịch vì chưa cần thiết lắm
 cho người dùng bình thường.
+
+%% \medskip
+%% \begin{version}{1.1}
+%% Một số tùy chọn, hướng dẫn,... chỉ phù hợp với phiên bản nhất định của \pf{powerdot}.
+%% Ví dụ, dòng này chỉ phù hợp với phiên bản 1.1 (về sau) của \pf{powerdot}.
+%% \end{version}
 
 \medskip
 Nếu bạn muốn tin tài liệu này, hãy sử dụng tập tin |powerdot-doc-vi-print.pdf|.
@@ -219,21 +227,19 @@ Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \u
 
 \medskip
 Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ và hình ảnh như sau
-đây. Bạn có thể tải về bản đầy đủ của tài liệu ở \url{http://download.viettug.org/}.
+đây. Bạn có thể tải về bản đầy đủ của tài liệu ở \url{http://www.viettug.org/}.
 \begin{description}
 \item[img/]
 \item[lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
 \item[tab-contents.png] Bảng Mục lục ở một |slide|
 \item[tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
-\item[powerdot-default.png] Kiểu trình diễn mặc định
-\item[powerdot-simple.png] Kiểu trình diễn |simple|
-\item[powerdot-tyjca.png] Kiểu trình diễn |tyjca|
-\item[powerdot-ikeda.png] Kiểu trình diễn |ikeda|
-\item[powerdot-fyma.png] Kiểu trình diễn |fyma|
-\item[powerdot-ciment.png] Kiểu trình diễn |ciment|
 \item[exa/]
 \item[example-1.tex] Ví dụ đơn giản về \pf{powerdot}.
 \end{description}
+
+\medskip
+Các hình ảnh minh họa các cho kiểu trình diễn
+có thể tìm thấy trong tập tin nén |powerdot-dot-styles.zip|.
 
 % =====================================================================
 
@@ -493,10 +499,15 @@ Dưới đây là vài tuỳ chọn khác điều khiển kết quả xuất.
 %% 11.\footnote{Note that sizes other than 10, 11 and 12 are
 %% non-standard and it is assumed that you have the \pf{extsizes}
 %% bundle \cite{extsizes} installed, which provides these sizes.}
-Xác định cỡ chữ (văn bản). Các giá trị có thể là 8, 9, 10, 11, 12, 14, 17, 20.
-Giá trị mặc định là 11.\footnote{Chú ý rằng, các cỡ không phải là 10, 11 hay 12
+Xác định cỡ chữ (văn bản). Các giá trị có thể là 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt.
+Giá trị mặc định là 11pt.\footnote{Chú ý rằng, các cỡ không phải là 10pt, 11pt hay 12pt
 không phải là kiểu chuẩn -- nên nếu dùng, trên hệ thống của bạn
 phải có cài đặt gói \pf{extsizes} \cite{extsizes}.}
+
+\textbf{\underline{Chú ý quan trọng:}}\\
+Nếu dùng \pf{powerdot} phiên bản 1.0, các giá trị của |size|
+là các số 8, 9, \ldots Với \pf{powerdot} phiên bản 1.1 trở về sau,
+bạn chỉ ra 8pt, 9pt, \ldots khi dùng tuỳ chọn này.
 \item\DescribeOption{style}\option{style}\\
 %% This controls the style to be loaded for the presentation. By
 %% default, the \pf{default} style will be loaded. For more styles, see
@@ -1954,6 +1965,10 @@ Lớp \pf{powerdot}
 dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích. Việc lựa
 chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
 
+\medskip
+Bạn có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
+|powerdot-styles.zip| (tài về từ \url{http://www.viettug.org}).
+
 \begin{description}
 \item\pf{default}\\
 %% This style has as main colors light blue and white. A flower in the
@@ -2032,6 +2047,27 @@ và \pf{HA-prosper}. Được phép của tác giả, bản đó được thay �
 để dành cho \pf{powerdot}. Với kiểu này, màu nền |slide| được trang điểm
 bằng nhiều đường kẻ ngang màu xám. Bảng mục lục đưọc bố trí bên trái (|landscape|)
 hoặc bên phải (|portrait|). Đòi hỏi gói \pf{pifont}.
+\item[]
+Dưới đây là các kiểu được thêm vào từ \pf{powerdot} phiên bản 1.1.
+\item\pf{elcolors}\\
+%% This is a style using light shades of the elementary colors red,
+%% blue and yellow.\\
+Kiểu với các màu cơ bản: đỏ, xanh và vàng.
+\item\pf{aggie}\\
+%% This style was created by Jack Stalnaker for \pf{HA-prosper} and he
+%% has converted this style for \pf{powerdot}. The style uses dark red
+%% and light brown colors.\\
+Kiểu tạo bởi Jack Stalnaker dành cho \pf{HA-prosper}. Tác giả đã
+chuyển đổi thành kiểu cho \pf{powerdot}. Sử dụng các màu đỏ sẫm và nâu sáng.
+\item\pf{husky}\\
+%% This style is created by Jack Stalnaker and has a background of
+%% light gray sun beams combined with dark red highlights.\\
+Tác giả là Jack Stalnaker. Sử dụng nền mô phỏng chùm ánh sáng mặt trời.
+Màu cho khung là đỏ sẫm.
+\item\pf{sailor}\\
+%% This style is contributed by Mael Hill\'ereau and uses rounded shapes
+%% in dark blue and shades of light blue.\\
+Đóng góp bởi Mael Hill\'ereau. Sử dụng các màu xanh sáng và xanh tối.
 \end{description}
 
 % =====================================================================
@@ -2312,6 +2348,54 @@ Bạn đã yêu cầu \LaTeX{} dùng các môi trường |float|, tương tự n
 Nguyên nhân sinh ra lỗi là \LaTeX{} không có chỗ để bố trí |float|.
 Vì thế, hãy thử bỏ đi tham số của môi trường |figure| hoặc |table|,
 trong ví dụ trên là |[htb]|.
+\question
+%How can I put verbatim text on slides?
+Làm thế nào để dùng môi trường |verbatim| trong |slide|?
+\answer
+%% You can do this by using a temporary box to store the material
+%% in or, for instance, the \pf{fancyvrb} package which has a special
+%% environment for this. See two examples below.
+Lưu nội dung cần tạm thời vào một |box| hoặc sử dụng gói \pf{fancyvrb}.
+Hãy xem ví dụ sau đây
+\begin{minipage}[t]{.49\linewidth}
+\begin{example}
+  \documentclass{powerdot}
+  \usepackage{listings}
+  \newsavebox\someverb
+  \begin{document}
+  \begin{lrbox}{\someverb}
+    \begin{lstlisting}
+      Some text.
+    \end{lstlisting}
+  \end{lrbox}
+  \begin{slide}{Listing}
+    \usebox\someverb
+  \end{slide}
+  \end{document}
+\end{example}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\linewidth}
+\begin{example}
+  \documentclass{powerdot}
+  \usepackage{fancyvrb}
+  \begin{document}
+    \begin{SaveVerbatim}{someverb}
+      Some text.
+    \end{SaveVerbatim}
+    \begin{slide}{Verbatim}
+      \BUseVerbatim{someverb}
+    \end{slide}
+  \end{document}
+\end{example}
+\end{minipage}
+\question
+% |\pause| does not work in the |align| environment.
+Lệnh |\pause| không làm việc bên trong môi trường |align|?
+\answer
+%% |align| does several tricky things, which make it impossible
+%% to use |\pause|. Use |\onslide| instead. See section~\ref{sec:onslide}.
+Môi trường |align| có vài xử lý đặc biệt không tương thích với |\pause|.
+Sử dụng |\onslide| để thay thế cho |\pause|. Xem Mục~\vref{sec:onslide}.
 \question
 %Can I contribute to this project?
 Tôi có thể đóng góp cho dự án \pf{powerdot}?
