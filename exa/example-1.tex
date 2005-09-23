@@ -1,12 +1,16 @@
 \IfFileExists{./header.tex}{\input header.tex}{\documentclass[a4paper,style=default]{powerdot}}
 
-%% \item\pf{default}\\
-%% \item\pf{simple}\\
-%% \item\pf{tycja}\\
-%% \item\pf{ikeda}\\
-%% \item\pf{fyma}\\
+\newif\ifvntex
+\IfFileExists{vietnam.sty}{\vntextrue}{}
 
-\title{powerdot example 1}
+\ifvntex
+	\usepackage[utf8x]{vietnam}
+	\long\def\text#1#2{#1}
+\else
+	\long\def\text#1#2{#2}	
+\fi
+
+\title{\text{Ví dụ về powerdot}{Powerdot example}}
 \author{kyanh, kyanh@o2.pl}
 \date{\today}
 
@@ -14,24 +18,27 @@
 
 \maketitle
 
-\begin{slide}{muc luc}
+\begin{slide}{\text{Mục lục}{Contents}}
 \tableofcontents
 \end{slide}
 
-\section{A}
+\section{\text{Mục A}{Section A}}
 
-\begin{slide}{Simple onslide+}
+\begin{slide}{\text{Lệnh onslide}{Onslide command}}
  \texttt{onslide }: \onslide{1}{power}\onslide{2}{dot}\\
  \texttt{onslide+}: \onslide+{1}{power}\onslide+{2}{dot}\\
- \texttt{onslide+}: \onslide*{1}{power}\onslide*{2}{dot}\\\end{slide}
+ \texttt{onslide*}: \onslide*{1}{power}\onslide*{2}{dot}\\\end{slide}
 
-\begin{slide}{twocolumn}
+\begin{slide}{\text{Chế độ hai cột}{Two columns}}
 \twocolumn{lineheight=1cm}%
 	{asdfl;kjas;dfkjpoej;laksdjf;laksdjf;askdjf;lasjkdf}%
 	{;asdkfj;askdjf ;klasjdf;lkj2;rja;sdlkfj;asdf}
 \end{slide}
 
-\begin{slide}{Slide 1}
+\section{\text{Danh sách}{Danh sach}}
+
+\begin{slide}{\text{Danh sách kiểu 1}{List, type=1}}
+\text{Danh sách này sử dụng các item mặc định}{Default items}\pause
   \begin{enumerate}[type=1]
     \item Here
       \item we
@@ -40,18 +47,18 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{Slide 2}
+\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\text{Danh sách này sử dụng các item mặc định}{Default items}\pause
   \begin{enumerate}[type=0]
-    \item<1-> Here
-      \item<2-> we
-        \item<3-> demonstrate
-          \item<4-> the enumerate environment
+    \item Here
+      \item we
+        \item demonstrate
+          \item the enumerate environment
   \end{enumerate}
 \end{slide}
 
-\section{B}
-
-\begin{slide}{Slide 3}
+\begin{slide}{\text{Danh sách kiểu 1}{List, type=0}}
+\text{Item xuất hiện ở mọi overlay}{Items xuat hien o moi overlay}\pause
   \begin{enumerate}[type=1]
     \item<1-> Here
       \item<2-> we
@@ -60,18 +67,27 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{Slide 4}
+\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\text{Item xuất hiện ở mọi overlay}{Items xuat hien o moi overlay}\pause
+  \begin{enumerate}[type=0]
+    \item<1-> Here
+      \item<2-> we
+        \item<3-> demonstrate
+          \item<4-> the enumerate environment
+  \end{enumerate}
+\end{slide}
+
+\begin{slide}{\text{Danh sách kiểu 1}{List, type=0}}
+\text{Chỉ xuất hiện dúng một phần tử ở mỗi overlay}{Xuat hien dung mot phan tu o moi overlay}
   \begin{enumerate}[type=1]
     \item<1> Here
-      \item<2> we
-        \item<3> demonstrate
+      \item<2> we        \item<3> demonstrate
           \item<4> the enumerate environment
   \end{enumerate}
 \end{slide}
 
-\section{C}
-
-\begin{slide}{Slide 5}
+\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\text{Chỉ xuất hiện dúng một phần tử ở mỗi overlay}{Xuat hien dung mot phan tu o moi overlay}
   \begin{enumerate}[type=0]
     \item<1> Here
       \item<2> we
@@ -80,7 +96,11 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{Relative overlays}
+\section{\text{Mục C}{Section C}}
+
+\text{Mục này nói về Overlay tương đối}{}
+
+\begin{slide}{\text{Overlay tương đối}{Relative overlays}}
    \begin{itemize}
      \item A \pause
      \item B \onslide{+1}{(visible 1 overlay after B)}\pause

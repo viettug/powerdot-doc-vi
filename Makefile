@@ -1,4 +1,5 @@
 DOC = powerdot-doc-vi
+DOCDIST = powerdot-1.1-doc-vi
 
 default: latex
 
@@ -26,8 +27,8 @@ example-1:
 	ps2pdf $@.ps
 
 dist:
-	@rm -fv distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip
-	@zip -9r distro/$(DOC)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip \
+	@rm -fv distro/$(DOCDIST)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip
+	@zip -9r distro/$(DOCDIST)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip \
 	exa/*{README,tex} exa/example-1.pdf \
 	$(DOC).pdf $(DOC)-print.pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \

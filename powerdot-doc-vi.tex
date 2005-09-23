@@ -43,11 +43,12 @@
 
 % =====================================================================
 
-\documentclass[a4paper]{ltxdoc}
+\documentclass[a4paper,11pt]{ltxdoc}
 
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
+\usepackage{pifont}
 
 \setlength{\hoffset}{-1cm}
 \setlength{\voffset}{-1cm}
@@ -85,6 +86,9 @@
 \newenvironment{version}[1]{%
 \fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
 
+\def\LyX{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+\def\LyXarrow{\leavevmode\,$\triangleright$\,\allowbreak}
+
 % =====================================================================
 
 % << pdpream.ble
@@ -93,7 +97,7 @@
 % =====================================================================
 
 \def\fileversion{v1.0}
-\def\filedate{2005/09/04}
+\def\filedate{2005/09/19}
 
 %\let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
 
@@ -205,8 +209,35 @@ through the mailinglist.
 
 % =====================================================================
 
-\section*{Ghi chú của kyanh}
-\addcontentsline{toc}{section}{Ghi chú của kyanh}
+\section*{\texorpdfstring{Chú ý}{Chu y}}
+\addcontentsline{toc}{section}{\texorpdfstring{Chú ý}{Chu y}}
+
+% =====================================================================
+
+\subsection*{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
+\addcontentsline{toc}{subsection}{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
+
+Có vài tính năng ở phiên bản này có thể không được hỗ trợ ở phiên bản khác.
+Mục này điểm qua các thay đổi quan trọng nhất bạn cần phải biết.
+Chú ý đến các thay đổi được đánh dấu \ding{53}.
+
+\begin{description}
+\item[1.1] Cập nhật ngày 20/9/2005.
+	\begin{dinglist}{51}
+	\item[\ding{53}] phải dùng |size=12pt| thay vì |size=12| khi xác định
+	cỡ chữ khi khai báo lớp. (Các cỡ khác tương tự.) Xem Mục~\vref{sec:classopts}.
+	\item Thêm các kiểu trình diễn |elcolors|, |aggie|, |husky|, |sailor|.
+	Các kiểu |tycja|, |ciment|, |fyma| được cải tiến. Xem Mục~\vref{sec:styles}.
+	\item Hỗ trợ \LyX.
+	\end{dinglist}
+\item[1.0] Phiên bản đầu tiên, công bố ngày 5/9/2005.
+\end{description}
+
+
+% =====================================================================
+
+\subsection*{\texorpdfstring{Ghi chú của kyanh}{Ghi chu cua kyanh}}
+\addcontentsline{toc}{subsection}{\texorpdfstring{Ghi chú của kyanh}{Ghi chu cua kyanh}}
 
 Tài liệu này được biên dịch từ tài liệu chính thức của lớp \pf{powerdot}.
 Có nhiều phần được thêm vào, một số phần khác được lược bớt.
@@ -234,12 +265,14 @@ Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ v
 \item[tab-contents.png] Bảng Mục lục ở một |slide|
 \item[tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
 \item[exa/]
-\item[example-1.tex] Ví dụ đơn giản về \pf{powerdot}.
+\item[example-1.tex] Ví dụ về \pf{powerdot} (nguồn).
+\item[example-1.pdf] Ví dụ về \pf{powerdot} (PDF).
 \end{description}
 
 \medskip
 Các hình ảnh minh họa các cho kiểu trình diễn
-có thể tìm thấy trong tập tin nén |powerdot-dot-styles.zip|.
+có thể tìm thấy trong tập tin nén |powerdot-dot-styles.zip|
+(tải về ở \url{http://www.viettug.org/}).
 
 % =====================================================================
 
@@ -1967,7 +2000,7 @@ chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
 
 \medskip
 Bạn có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
-|powerdot-styles.zip| (tài về từ \url{http://www.viettug.org}).
+|powerdot-styles.zip| (tải về từ \url{http://www.viettug.org}).
 
 \begin{description}
 \item\pf{default}\\
@@ -2296,6 +2329,320 @@ Mục này sẽ được dịch trong bản tiếp theo của tài liệu ;)
 
 % =====================================================================
 
+%\section{Using \LyX\ for presentations}
+\section{\texorpdfstring{Tạo trình diễn với \LyX}{Tao trinh dien voi \LyX}%
+\protect\footnote{Mục này được dịch chay ;) kyanh chưa có thời gian và điều kiện kiểm tra các hướng dẫn ở mục này.
+Vui lòng feedback. Cám ơn!}}
+\label{sec:lyx}
+
+%% \LyX\ \cite{LyXWeb} is a WYSIWYM (What You See Is What You Mean)
+%% document processor based on \LaTeX. It supports standard \LaTeX\
+%% classes but needs special files, called layout files, in order to
+%% support non-standard classes such as \pf{powerdot}.
+\LyX\ là chương trình soạn thảo \LaTeX{} với nguyên lý WYSIWYM
+(What You See Is What You Mean), chạy trên môi trường |*nix|.
+\LyX\ hỗ trợ các lớp \LaTeX{} chuẩn; với các lớp mới, ví dụ \pf{powerdot},
+\LyX\ cần thêm các tập tin đặc biệt, gọi là tập tin |layout|.
+
+%% To start using \LyX\ for \pf{powerdot} presentations, copy the
+%% layout file |powerdot.layout| to the \LyX\ layout directory. You can
+%% find this file in the doc tree of your \LaTeX\ installation:
+%% \url{texmf/doc/latex/powerdot}. If you can't find it there, download
+%% it from \url{CTAN:/macros/latex/contrib/powerdot/doc}. Once that is
+%% done, reconfigure \LyX\ (\texttt{Edit\LyXarrow Reconfigure} and
+%% restart \LyX\ afterwards). Now you can use the \pf{powerdot}
+%% document class as any other supported class. Go to
+%% \texttt{Layout\LyXarrow Document} and select \texttt{powerdot
+%% presentation} as document class. For more information, see the \LyX\
+%% documentation, which is accessible from the |Help| menu.
+Để có thể dùng \pf{powerdot} trong \LyX, trước hết, hãy chép tập tin |powerdot.layout|
+vào thư mục của \LyX. Tập tin |layout| có thể tìm thấy trong thư mục
+\url{texmf/doc/latex/powerdot} (khi vừa xả nén tập tin |powerdot.zip|).
+Nếu bạn không tìm thấy ở đó, hãy tải về từ \url{CTAN:/macros/latex/contrib/powerdot/doc}.
+Sau đó, hãy cấu hình lại cho \LyX{} nhờ sử dụng \texttt{Edit\LyXarrow Reconfigure}
+rồi khởi động lại chương trình \LyX. Bây giờ bạn có thể thưởng thức
+\pf{powerdot} trong \LyX ;) Để biết thêm chi tiết, tham khảo tài liệu
+của \LyX{} (xem từ Menu |Help| của \LyX).
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Cách dùng layout}{Su dung layout the nao}}% {How to use the layout}
+
+%% \pf{powerdot} \LyX\ layout provides some environments\footnote{Don't
+%% confuse these with \LaTeX\ environments.} which can be used in \LyX.
+%% Some of these environments (for instance |Title| or |Itemize|) are
+%% natural to use since they exist also in the standard document
+%% classes such as \pf{article}. For more information on these standard
+%% environments, see the \LyX\ documentation.
+|layout| dành cho \LyX{} của \pf{powerdot} hỗ trợ vài môi trường (không phải
+là môi trường trong \LaTeX{}). Một vài môi trường như |Title| và |Itemize|
+là chuẩn, đã có trong lớp \pf{article}. Xem thêm tài liệu của \LyX{}
+về các môi trường chuẩn này.
+
+%% This section will explain how to use the \pf{powerdot} specific
+%% environments |Slide|, |WideSlide|, |EmptySlide| and |Note|. These
+%% environments correspond to the \pf{powerdot} environments |slide|,
+%% |emptyslide|, |wideslide| and |note|.
+Mục này giải thích cách dùng các môi trường riêng của \pf{powerdot}
+trong \LyX, đó là |Slide|, |WideSlide|, |EmptySlide| và |Note|.
+Các môi trường này lần lượt tương ứng với |slide|, |wideslide|,
+|emptyslide| và |note| (môi trường \LaTeX{} của \pf{powerdot}).
+
+%We start with a simple example. The following \LaTeX\ code
+Hãy bắt đầu bằng ví dụ đơn giản sau, tương ứng với đoạn mã \LaTeX{}
+\begin{example}
+ \begin{slide}{Slide title}
+   Slide content.
+ \end{slide}
+\end{example}
+%% can be obtained using the following \LyX\ environments. The right
+%% column represents the text typed into the \LyX\ window and the left
+%% column represents the environment applied to this text).
+trong \LyX{} ta dùng các đoạn mã như sau (cột phải chỉ ra nội dung của |slide|,
+cột bên trái là môi trường \LyX):
+\begin{example}
+  Slide         Slide title
+  Standard      Slide content.
+  EndSlide
+  ...
+\end{example}
+%Some remarks concerning this example.
+Có vài lưu ý liên quan đến ví dụ này
+\begin{itemize}[leftmargin=0pt,itemsep=0pt,parsep=0pt]
+\item
+%% You can use the environment menu (under the menu bar, top-left
+%% corner) to change the environment applied to text.
+Bạn có thể dùng môi trường |menu| (dưới thanh công cụ |menu| nằm ở
+góc trên bên trái của \LyX) để thay đổi môi trường cho phần nội dung được chọn.
+\item
+%%  The slide title should be typed on the line of the |Slide|
+%% environment.
+Tựa của |slide| (ở trên là |Slide title|) nên đặt trên cùng một dòng với
+từ khóa |Slide| bắt đầu môi trường \LyX.
+\item% |EndSlide| finishes the slide and its line is left blank.
+|EndSlide| kết thúc |slide|, theo sau là khoảng trắng.
+\end{itemize}
+
+%% In the \LyX\ window, the |Slide| environment (that is, the slide
+%% title) is displayed in magenta, the |WideSlide| style in green, the
+%% |EmptySlide| style in cyan and the |Note| style in red and hence
+%% these are easily identifiable.
+Ở của sổ của \LyX, môi trường |Slide| (cùng với tựa đề của |slide|)
+được bắt đầu với màu |magenta|, trong khi màu cho |WideSlide| là |green|,
+cho |EmptySlide| là |cyan| và cho |Note| là đỏ. Rất dễ phân biệt, nhỉ ;)
+
+%Here is another example.
+Dưới đây là ví dụ khác (trước hết là mã \LaTeX{})
+\begin{example}
+ \begin{slide}{First slide title}
+   The first slide.
+ \end{slide}
+ \begin{note}{First note title}
+   The first note, concerning slide 1.
+ \end{note}
+ \begin{slide}{Second slide title}
+   The second slide.
+ \end{slide}
+\end{example}
+%This can be done in \LyX\ in the following way.
+Tương ứng, ta có mã \LyX{} như sau đây:
+\begin{example}
+ Slide         First slide title
+ Standard      The first slide.
+ Note          First note title
+ Standard      The first note, concerning slide 1.
+ Slide         Second slide title
+ Standard      The second slide.
+ EndSlide
+\end{example}
+%% This example demonstrates that it is often sufficient to insert the
+%% |EndSlide| style after the last slide or note only. Only when you
+%% want certain material not to be part of a slide, you need to finish
+%% the preceding slide manually using the |EndSlide| style. Example:
+Ví dụ này cho thấy rằng chỉ cần dùng |EndSlide| một lần cho nhiều |slide|
+kế tiếp nhau. Chỉ khi nào cần thêm nội dung không thuộc vào |slide| nào cả,
+bạn mới phải dùng thêm |EndSlide| như ví dụ sau đây:
+\begin{example}
+ Slide         First slide title
+ Standard      The first slide.
+ EndSlide
+ [ERT box with some material]
+ Slide         Second slide title
+ ...
+\end{example}
+%% You could use this, for instance, to have verbatim material on
+%% slides (see also section~\ref{sec:FAQ}).
+Trường hơp này xảy ra, ví dụ khi bạn cần sử dụng môi trường |verbatim|
+với |slide|. Xem thêm ở Mục~\vref{sec:FAQ}.
+
+\subsection{\texorpdfstring{Cú pháp được hỗ trợ}{Cu phap duoc ho tro}} % {Support of syntax}
+
+%% This section lists options, commands and environments that are
+%% supported through the \LyX\ interface directly, without using an ERT
+%% box (\TeX-mode).
+Mục này liệt kê các tùy chọn, lệnh và môi trường mà \pf{powerdot}
+hỗ trợ cho \LyX{} một cách trực tiếp, không phải thông qua việc sử dụng
+|ERT| |box| (hay chế độ \TeX).
+
+%% All class options (see section~\ref{sec:classopts}) are supported
+%% via the \texttt{Layout\LyXarrow Document} dialog (|Layout| pane).
+%% Options for the |\pdsetup| command (see section~\ref{sec:setup})
+%% should be specified in the |Preamble| pane of the
+%% \texttt{Layout\LyXarrow Document} dialog.
+Mọi tùy chọn cho lớp (Mục~\vref{sec:classopts}) được hỗ trợ thông
+qua hộp thoại \texttt{Layout\LyXarrow Document}. Các tùy chọn của lệnh |\pdsetup|
+đã nói ở Mục~\vref{sec:setup} được thay đổi thông qua phần |Preamble|
+tìm thấy ở hộp thoại \texttt{Layout\LyXarrow Document} của \LyX.
+
+%% Table \vref{tab:lyxcommands} lists the \pf{powerdot} commands that
+%% are supported in \LyX.
+Bảng~\vref{tab:lyxcommands} liệt kê các lệnh \pf{powerdot} hỗ trợ cho \LyX.
+\begin{table}[htb]
+\centering
+\begin{tabular}{r|l}
+Lệnh & Tương ứng trong \LyX\\\hline
+\cs{title} & môi trường \texttt{Title}\\
+\cs{author} & môi trường \texttt{Author}\\
+\cs{date} & môi trường \texttt{Date} \\
+\cs{maketitle} & điều khiển bởi \LyX.\\
+\cs{section} & môi trường \texttt{Section}.
+%% Options to this command (see section~\ref{sec:section}) can be specified using
+%% \texttt{Insert\LyXarrow Short title} in front of the section title.\\
+Tuỳ chọn cho lệnh này (xem Mục~\ref{sec:section}) được thay đổi\\
+& thông qua \texttt{Insert\LyXarrow Short title} ở trước tựa của |slide|.\\
+\cs{tableofcontents} & dùng \texttt{Insert\LyXarrow Lists \& TOC\LyXarrow Table of contents}.
+\\&Cần dùng |ERT box| nếu lệnh này được dùng với tùy chọn. Xem bên dưới.
+\end{tabular}
+%\caption{Supported \pf{powerdot} commands in \LyX}
+\caption{Lệnh \pf{powerdot} được hỗ trợ trong \LyX}
+\label{tab:lyxcommands}
+\end{table}
+%% Table \vref{tab:lyxenvs} lists the \pf{powerdot} environments that,
+%% besides the earlier discussed |slide|, |wideslide|, |note| and
+%% |emptyslide| environments, are supported in \LyX.
+Bảng~\vref{tab:lyxenvs} liệt kê các môi truờng \pf{powerdot}
+được hỗ trợ trong \LyX, bên cạnh các môi trường |slide|, |wideslide|,
+|emptyslide|, |note| đã nói.
+\begin{table}[htb]
+\centering
+\begin{tabular}{r|l}
+môi trường & tương ứng trong \LyX\\\hline
+\texttt{itemize} & môi trường \texttt{Itemize} hoặc \texttt{ItemizeType1}.
+\\& |..Type1| tương ứng với |type=1| nói ở Mụ~\vref{sec:lists}).\\
+\texttt{enumerate} & môi trường \texttt{Enumerate} hoặc \texttt{EnumerateType1}.\\
+\texttt{thebibliography} & môi trường \texttt{Bibliography}.
+\end{tabular}
+%\caption{Supported \pf{powerdot} environments in \LyX}
+\caption{Môi trường \pf{powerdot} được hỗ trợ trong \LyX}
+\label{tab:lyxenvs}
+\end{table}
+%% Table \vref{tab:lyxERT} lists commands that can only be done by using
+%% an ERT box (via \texttt{Insert\LyXarrow TeX}).
+Bảng~\vref{tab:lyxERT} liệt kê các lệnh chỉ dùng được bằng cách sử dụng |ERT| |box|
+(thông quan \texttt{Insert\LyXarrow TeX}).
+\begin{table}[htb]
+\centering
+\begin{tabular}{r|l}
+lệnh & tương ứng trong \LyX\\\hline
+\cs{and} & bên trong môi trường \texttt{Author}.\\
+\cs{pause} & \\
+\cs{item} & %An ERT box is only required for the optional argument,
+%not mandatory for overlays specifications.\\
+ERT box chỉ cần thiết khi dùng tham số tùy chọn,\\
+& tham số bắt buộc thì không cần ERT box\\
+\cs{onslide} & cùng với \cs{onslide+} và \cs{onslide*}\\
+\cs{twocolumn} & \\
+\cs{tableofcontents} & chỉ dùng khi có tham số tuỳ chọn.
+\end{tabular}
+%\caption{\pf{powerdot} commands needing an ERT box in \LyX}
+\caption{Lệnh \pf{powerdot} cần ERT box của \LyX}
+\label{tab:lyxERT}
+\end{table}
+%% Note that you may use the clipboard in order to repeat often used
+%% commands like |\pause|. Finally, table \vref{tab:lyxadd} lists
+%% additional commands and environments that are supported by the layout.
+Bạn có thể dùng bộ nhớ đệm |clipboard| để giữ các lệnh hay dùng như |\pause|.
+Cuối cùng, Bảng~\vref{tab:lyxadd} liệt kê các lệnh và môi trường khác
+được hỗ trợ trong \LyX.
+\begin{table}[htb]
+\centering
+\begin{tabular}{r|l}
+lệnh/môi trường & tương tứng trong \LyX\\\hline
+\texttt{quote} & môi trường \texttt{Quote}.\\
+\texttt{quotation} & môi trường \texttt{Quotation}.\\
+\texttt{verse} & môi trường \texttt{Verse}.\\
+\cs{caption} & môi trường \texttt{Caption} với float chuẩn
+\end{tabular}
+%\caption{Additional environments for \LyX}
+\caption{Lệnh,môi trường bổ sung cho \LyX}
+\label{tab:lyxadd}
+\end{table}
+
+\subsection{\texorpdfstring{Biên dịch với LyX}{Bien dich voi \LyX}} %{Compiling with \LyX}
+
+%% First of all, make sure that you have also read
+%% section~\ref{sec:compiling}. Then, in order to get a proper
+%% PostScript or PDF file, you have to set your \LyX\ document
+%% properties depending on which paper and orientation you want. When
+%% your \LyX\ document is open, go to the \texttt{Layout\LyXarrow
+%% Document} dialog. In the \texttt{Layout} pane, put the |nopsheader|,
+%% |orient| and |paper| keys as class options (see
+%% section~\ref{sec:classopts} for a description). Then, go to the
+%% |Paper| pane and select corresponding paper size and orientation
+%% (you may choose |letter| paper in the case you set |paper=screen| in
+%% the class options). Finally, go to the |View| (or
+%% \texttt{File\LyXarrow Export}) menu and select your output
+%% (PostScript or PDF).
+Trước hết, cần nắm được các ý ở Mục~\vref{sec:compiling}.
+Để có kết quả |PostScript| hoặc |PDF| như ý với \LyX, cần phải
+đặt cài đặt hợp lý cho tài liệu \LyX{}: kiểu giấy, hướng giấy.
+Khi tài liệu \LyX{} được mở, hãy mở hộp thoại \texttt{Layout\LyXarrow Document}.
+Ở phần \texttt{Layout}, thiết lập cho các tuỳ chọn |nopsheader|, |orient| và |paper|
+(theo các đã trình bày ở Mục~\vref{sec:classopts}). Sau đó, ở phần |Paper|,
+chọn khổ giấy và hướng giấy tương ứng với thiết lập ấy. Có thể chọn
+|letter| nếu dùng tuỳ chọn |paper=screen|. Cuối cùng, trong menu |View|
+hoặc (\texttt{File\LyXarrow Export}), chọn kết quả |PostScript| hoặc |PDF|.
+
+%% \subsection{Extending the layout}
+%% If you have created a custom style (see section~\ref{sec:writestyle})
+%% which defines custom templates, you may want to extend the layout
+%% file\footnote{The LPPL dictates to rename a file if you modify it as
+%% to avoid confusion.} so that these templates are also supported in
+%% \LyX. The explanation below assumes that you have defined a template
+%% called |sunnyslide|.
+%% 
+%% To support this new template in \LyX, you have to use the following
+%% command.
+%% \begin{command}
+%%  `\cs{pddefinelyxtemplate}\meta{cs}\marg{template}'
+%% \end{command}
+%% \DescribeMacro{\pddefinelyxtemplate}
+%% This will define the control sequence \meta{cs} such that it will
+%% create a slide with template \meta{template} (which has been defined
+%% using |\pddefinetemplate|. This new control sequence can be used in
+%% the layout file as follows.
+%% \begin{example}
+%%  # SunnySlide environment definition
+%%  Style SunnySlide
+%%    CopyStyle     Slide
+%%    LatexName     lyxend\lyxsunnyslide
+%%    Font
+%%      Color       Yellow
+%%    EndFont
+%%    Preamble
+%%      \pddefinelyxtemplate\lyxsunnyslide{sunnyslide}
+%%    EndPreamble
+%%  End
+%% \end{example}
+%% Note that you must begin the |LatexName| field with |lyxend|. The
+%% definition of the \LyX\ template has been inserted in between
+%% |Preamble| and |EndPreamble| which assures that the new \LyX\
+%% environment will work. After modifying the layout file, don't forget
+%% to restart \LyX. See for more information about creating \LyX\
+%% environments, the documentation of \LyX\ in the |Help| menu.
+
+% =====================================================================
+
 \section{\texorpdfstring{Hỏi-Đáp}{Hoi-Dap}}
 
 \label{sec:questions}
@@ -2589,6 +2936,11 @@ Herbert Vo\ss.
 {Timothy Van} {Zandt et al.}
 \newblock Gói \pf{PSTricks}, v1.07, 2005/05/06.
 \newblock \url{CTAN:/graphics/pstricks}.
+
+\bibitem{LyXWeb}
+LyX crew.
+\newblock Trang chủ \pf{LyX}.
+\newblock \url{http://www.lyx.org}.
 \end{thebibliography}
 
 \typeout{***************************************}
