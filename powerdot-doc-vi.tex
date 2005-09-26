@@ -217,7 +217,7 @@ through the mailinglist.
 \subsection*{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
 \addcontentsline{toc}{subsection}{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
 
-Có vài tính năng ở phiên bản này có thể không được hỗ trợ ở phiên bản khác.
+Vài tính năng ở phiên bản này có thể không được hỗ trợ ở phiên bản khác.
 Mục này điểm qua các thay đổi quan trọng nhất bạn cần phải biết.
 Chú ý đến các thay đổi được đánh dấu \ding{53}.
 
@@ -228,7 +228,7 @@ Chú ý đến các thay đổi được đánh dấu \ding{53}.
 	cỡ chữ khi khai báo lớp. (Các cỡ khác tương tự.) Xem Mục~\vref{sec:classopts}.
 	\item Thêm các kiểu trình diễn |elcolors|, |aggie|, |husky|, |sailor|.
 	Các kiểu |tycja|, |ciment|, |fyma| được cải tiến. Xem Mục~\vref{sec:styles}.
-	\item Hỗ trợ \LyX.
+	\item Hỗ trợ \LyX. Xem Mục~\vref{sec:lyx}.
 	\end{dinglist}
 \item[1.0] Phiên bản đầu tiên, công bố ngày 5/9/2005.
 \end{description}
@@ -251,7 +251,7 @@ cho người dùng bình thường.
 %% \end{version}
 
 \medskip
-Nếu bạn muốn tin tài liệu này, hãy sử dụng tập tin |powerdot-doc-vi-print.pdf|.
+Nếu bạn muốn tin tài liệu này (với hai màu đen-trắng), hãy sử dụng tập tin |powerdot-doc-vi-print.pdf|.
 
 \medskip
 Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
@@ -597,7 +597,7 @@ trình diễn chia nhỏ bản Mục lục.
 %% link to this slide by using
 Với tuỳ chọn này, một trang |slide| đen sẽ chèn vào đầu trình diễn (như vậy
 |slide| đen ở trang 1); trình diễn của bạn sẽ tự động nhảy qua trang 2 khi 
-xem trong chương trình xem PDF (ví dụ Acrobat Reader). Trang |slide| đen
+được mở trong chương trình xem PDF (ví dụ Acrobat Reader). Trang |slide| đen
 đã được nhúng trước một đích gọi là |blackslide| nhờ đó bạn có thể thêm
 ở trang |slide| khác, chẳng hạn liên kết sau
 \begin{example}
@@ -644,7 +644,7 @@ cỡ chữ 12 điểm, các phương trình được đánh số bên trái.
 %% Changing the |paper| and |mode| options, now produces a handout with
 %% possibly more than two slides per page due to the |nopagebreaks|
 %% option.
-Ở ví dụ này, ta thay đổi kiểu trabg (|paper|) và chọn |mode=handout|
+Ở ví dụ này, ta thay đổi kiểu trang (|paper|) và chọn |mode=handout|
 cùng với tuỳ chọn |nopagebreaks| -- nhờ đó nhiều hơn hai trang |slide|
 sẽ được bố trí trên một trang giấy!
 
@@ -712,7 +712,10 @@ Giá trị mặc định là
 \end{command}
 ở đây |\arabic{note}| là số chỉ ghi chú hiện tại. Kết quả sẽ tương tự
 như |note 2 of slide 7|. Với người dùng Việt, có lẽ phải định nghĩa lại
-như sau: |ghi chú~\arabic{note}~/~\arabic{slide}|.
+như sau:
+\begin{command}
+  thenote=ghi chu~`\cs{arabic}'{note}~/~`\cs{arabic}'{slide}
+\end{command}
 \item\DescribeOption{trans}\option{trans}\\
 %% This option sets the default transition effect to be used in the
 %% presentation. These transition effects only work after compiling the
@@ -746,7 +749,7 @@ Nếu bạn dùng một hiệu ứng riêng không có trong danh sách trên (v
 hiệu ứng |Wipe| với hướng theo ý bạn), \pf{powerdot} sẽ nhắc nhở về
 hiệu ứng đó (rằng có thể chúng không xem được). Dưới đây là ví dụ
 \begin{example}
- trans=Wipe /Di 0
+  trans=Wipe /Di 0
 \end{example}
 %% In Acrobat (Reader), this wipes from left to right instead of the
 %% default top to bottom. For more information, see a PDF Reference
@@ -764,14 +767,14 @@ từ trái sang phải, thay vì từ trên xuống dưới như mặc định.
 %% |footnote| and |mpfootnote| counters are already protected for you.
 %% If you use extra counters, for instance for theorems, list them in
 %% this option. Example:
-Danh sách các |counter| (bộ đếm) cần được bảo vệ khi |overlay|.
+Danh sách |counter| (bộ đếm) cần được bảo vệ khi |overlay|.
 Tại sao? Các phương trình chẳng hạn, khi |overlay| (xem Mục~\vref{sec:overlays}
 sẽ được xử lý nhiều lần, do đó, số đếm của chúng không ngừng tăng lên
 nếu không được bảo vệ. Các bộ đếm được bảo vệ theo mặc định là |equation|,
 |table|, |figure|, |footnote| và |mpfootnote|. Nếu bạn muốn bảo vệ thêm
-chẳng hạn bộ đếm |theorem| và |lemma|, hãy dùng như ví dụ sau:
+chẳng hạn |theorem| và |lemma|, hãy dùng như ví dụ sau:
 \begin{example}
- counters={theorem,lemma}
+  counters={theorem,lemma}
 \end{example}
 \item\DescribeOption{list}\option{list}\\
 %% This option takes a list of options that will be passed on to the
@@ -781,7 +784,7 @@ Tuỳ chọn này chấp nhận một tham số, là danh sách các tuỳ chọ
 dành riêng cho gói \pf{enumitem} để điều khiển kết quả của danh sách
 tạo bởi các môi trường |enumerate| và |itemize|. Ví dụ
 \begin{example}
- list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
 \end{example}
 %% See for more information on controlling the layout of lists the
 %% \pf{enumitem} package \cite{enumitem}.
@@ -1004,7 +1007,7 @@ Chú ý rằng, không có tựa nào được tạo ra ở Bảng Mục lục, 
 %% on the various environments provided by the styles.
 Cùng với môi trường |slide|, các kiểu trình diễn có cung cấp các
 môi trường riêng để tạo |slide|. Phổ biến nhất là môi trường |wideslide|
-để giả quyết vấn đề: đôi khi, nội dung của |slide| quá khổ, không thể
+để giải quyết vấn đề: đôi khi, nội dung của |slide| quá khổ, không thể
 bố trí trên một trang cùng với Bảng Mục lục; môi trường |wideslide|
 cho ta |slide| đặc biệt ở đó không xuất hiện Mục lục. Xem thêm Mục~\vref{sec:styles}
 để biết thêm các môi trường cung cấp bởi các kiểu trình diễn.
@@ -1084,8 +1087,7 @@ kế tiếp. Việc điều khiển danh sách sẽ được bàn kỹ hơn ở 
 
 %% The optional argument of the |\pause| command specifies the number
 %% of overlays to pause. An example usage is:
-Lệnh |\pause| có thể tham số bổ sung cho phép chỉ ra bao nhiêu |overlay|
-phải dừng. Ví dụ
+Lệnh |\pause| chấp nhận tham số bổ sung cho biết phải dừng bao nhiêu |overlay|.
 \begin{example}
  \begin{slide}{Pause longer}
    \begin{itemize}
@@ -1167,6 +1169,7 @@ tử được thể hiện, phần tử đó sẽ được tô đậm để làm
 với các phần tử khác. Sự phân biệt của hai |type| có thể minh họa như
 sau (dấu |*| chỉ màu nhạt):
 \begin{example}
+     type=0        type=1
   1: x------       x------
   2: xx-----       *x----- 
   3: xxx----       **x---- 
@@ -1182,7 +1185,7 @@ sau (dấu |*| chỉ màu nhạt):
 %% present here one example, but many more can be created by nesting
 %% lists of different types in different ways.
 Các danh sách có thể lồng nhau. Khi xảy ra trường hợp này, các danh sách
-thứ cấp sẽ thừa hưởng giá trị của |type| ở môi trường cấp cao hơn.
+thứ cấp sẽ thừa hưởng giá trị của |type| ở môi trường mẹ.
 Tất nhiên, với bất kỳ danh sách nào, ta cũng có thể đặt lại giá trị cho |type|.
 Dưới đây là ví dụ về hai danh sách lồng nhau:
 \begin{example}
@@ -1260,9 +1263,9 @@ Dưới đây là ví dụ
 %% overlay 3. Again, when the item is not active, it appears in the
 %% inactive color because of |type=1|.
 Với ví dụ này, phần tử |A| chỉ xuất hiện với màu tô đậm ở |overlay 1|,
-phần tử |B| chỉ xuất hiện + tô đậm ở |overlay| thứ hai,... Để ý rằng,
+phần tử |B| chỉ xuất hiện và được tô đậm ở |overlay| thứ hai,... Để ý rằng,
 do chỉ định |type=1|, nếu phần tử không phải là phần tử hiện tại,
-màu của nó được tô nhạt. Ta có thể minh họa như sau (dấu THƯỜNG chỉ màu nhạt):
+màu của nó được tô nhạt. Ta có thể minh họa như sau (chữ THƯỜNG chỉ màu nhạt):
 \begin{example}
   1: --A---- 
   2: --aB--- 
@@ -1274,7 +1277,7 @@ màu của nó được tô nhạt. Ta có thể minh họa như sau (dấu THƯ
 %% item is not active, then it will not show on the slide at all. More
 %% examples demonstrating the syntax for \meta{overlays} will be
 %% discussed in the next section.
-Nếu chỉ định |type=0| và nếu mỗi phần tử của danh sách đểu có thêm
+Nếu chỉ định |type=0| và nếu mỗi phần tử của danh sách đều có thêm
 tham số bổ sung chỉ định |overlay|, thì một phần tử sẽ bị giấu
 hoàn toàn chứ không phải được tô màu nhạt. Ví dụ:
 \begin{example}
@@ -1546,7 +1549,8 @@ Một |slide| được tạo ra với nội dung là tựa của mục.
 %% contents section (|tocsection=| |true| or |hidden|), its link will
 %% point to the first slide in the section as the section itself
 %% doesn't have a slide.
-Không |slide| được tạo ra. Nếu đồng thời |tocsection| nhận giá trị |false|,
+Không |slide| nào được tạo ra khi gặp lệnh |\section|.
+Nếu đồng thời |tocsection| nhận giá trị |false|,
 thì lệnh |\section| không làm gì cả. Nếu |tocsection| nhận giá trị |true|
 hoặc |hidden|, thì chọn mục tương ứng trong Bảng Mục lục, ta sẽ nhày đến
 |slide| đầu tiên của mục (bởi không có |slide| riêng cho Mục).
@@ -1592,7 +1596,8 @@ và bạn có thể gọi nó bao nhiêu lần tuỳ thích.
 
 Nội dung được nói đến trong mục này là nội dung của |slide| Mục lục.
 Để ý rằng, |slide| Mục lục khác với Bảng Mục lục. Một trình diễn chỉ
-có một Bảng Mục lục nhưng có thể có nhiều |slide| mục lục.
+có một Bảng Mục lục nhưng có thể có nhiều |slide| mục lục; hơn nữa,
+thường thì Bảng Mục lục được tự động tạo ra.
 
 \begin{command}
  `\cs{tableofcontents}\oarg{options}'
@@ -1981,7 +1986,7 @@ gói đó sẽ làm bạn vừa ý:
 \end{example}
 %% Have a look at your favorite \LaTeX\ manual for more information
 %% about citations and bibliographies.
-Bạn nên tìm kiếm tài liệu về việc trích dẫn và các tạo danh sách
+Nên tìm kiếm tài liệu về việc trích dẫn và các tạo danh sách
 tài liệu tham khảo trong \cite{companion}.
 
 % =====================================================================
@@ -1999,7 +2004,7 @@ dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích.
 chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
 
 \medskip
-Bạn có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
+Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
 |powerdot-styles.zip| (tải về từ \url{http://www.viettug.org}).
 
 \begin{description}
@@ -2140,8 +2145,8 @@ sự tương thích với phiên bản đã chỉ ra, nhưng có thể vẫn g�
 phiên bản \underline{cũ hơn} hoặc \underline{mới hơn} của gói đó.
 Để biết phiên bản của các gói được dùng, bạn hãy thêm lệnh |\listfiles|
 vào đầu tài liệu, biên dịch bằng \LaTeX{} rồi mở tập tin |.log| để xem
-kết quả. Để có bản cập nhật của các gói trên, bạn có thể tài chúng về
-từ CTAN \cite{CTAN} hoặc VietTUG \cite{VietTUG}.
+kết quả. Để có bản cập nhật của các gói trên, bạn có thể tải chúng về
+từ CTAN \cite{CTAN}.% hoặc VietTUG \cite{VietTUG}.
 
 \begin{table}[htb]
 \centering
@@ -2528,7 +2533,7 @@ Bảng~\vref{tab:lyxenvs} liệt kê các môi truờng \pf{powerdot}
 \begin{tabular}{r|l}
 môi trường & tương ứng trong \LyX\\\hline
 \texttt{itemize} & môi trường \texttt{Itemize} hoặc \texttt{ItemizeType1}.
-\\& |..Type1| tương ứng với |type=1| nói ở Mụ~\vref{sec:lists}).\\
+\\& |Type1| tương ứng với |type=1| nói ở Mụ~\vref{sec:lists}).\\
 \texttt{enumerate} & môi trường \texttt{Enumerate} hoặc \texttt{EnumerateType1}.\\
 \texttt{thebibliography} & môi trường \texttt{Bibliography}.
 \end{tabular}
@@ -2539,7 +2544,7 @@ môi trường & tương ứng trong \LyX\\\hline
 %% Table \vref{tab:lyxERT} lists commands that can only be done by using
 %% an ERT box (via \texttt{Insert\LyXarrow TeX}).
 Bảng~\vref{tab:lyxERT} liệt kê các lệnh chỉ dùng được bằng cách sử dụng |ERT| |box|
-(thông quan \texttt{Insert\LyXarrow TeX}).
+(thông qua \texttt{Insert\LyXarrow TeX}).
 \begin{table}[htb]
 \centering
 \begin{tabular}{r|l}
@@ -2667,7 +2672,7 @@ Lớp \pf{powerdot} có cung cấp ví dụ? Tìm chúng ở đâu?
 %% \url{/doc/latex/powerdot}. If you can't find them there, download
 %% them from \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
 Trong thư mục tài liệu |doc| của bộ cài đặt \LaTeX, bạn có thể
-tìm thấy các ví dụ cho \pf{powerdot}. Nếu không thấy ở đó, bạn có thể
+tìm thấy các ví dụ cho \pf{powerdot}. Nếu không thấy ở đó, có thể
 tải chúng về từ \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
 \question %I'm getting errors on the simplest example!
 Sao tôi gặp lỗi chỉ với ví dụ đơn giản nhất?
