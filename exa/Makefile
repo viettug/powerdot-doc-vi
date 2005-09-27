@@ -13,6 +13,7 @@ example-1:
 		dvips $@.dvi -o$@-$$style.ps && \
 		ps2pdf $@-$$style.ps ; \
 	done
+
 simple:
 	@rm header.tex; \
 	latex example-1 && latex example-1 && \
