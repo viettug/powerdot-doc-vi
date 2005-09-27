@@ -40,7 +40,7 @@ dist:
 
 src:
 	@uvconv $(DOC).tex -f UTF-8 -t TCVN3 -o tmp.tex
-	@sed -e 's/\[utf8x\]/\[tcvn\]/' tmp.tex > $(DOC)-tcvn.tex && \
+	@sed -e 's/\[utf8x\]{vietnam}/\[tcvn\]{vietnam}/' tmp.tex > $(DOC)-tcvn.tex && \
 	rm -f tmp.tex
 	@svn log $(DOC).tex > ChangeLog
 	@rm -fv ./distro/$(DOC)-src-$(VERSION).zip && \
@@ -59,3 +59,5 @@ clean:
 
 backup:
 	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
+
+all: clean doc src dist backup
