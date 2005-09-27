@@ -48,6 +48,7 @@
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
+% \usepackage[utf8]{vietnam}
 \usepackage{pifont}
 
 \setlength{\hoffset}{-1cm}
@@ -76,7 +77,11 @@
 	\usepackage[varioref]{vnhook}
 }{
 	\newcount\buildnum
-	\buildnum=99999
+	\IfFileExists{\jobname.ktvnum}%
+	{%
+		\input{\jobname.ktvnum}
+	}{%
+		\buildnum=99999\relax}
 	\let\vref=\ref
 	\gdef\texorpdfstring##1##2{##1}
 }
@@ -101,8 +106,8 @@
 
 %\let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
 
-\bibliographystyle{plain}
-\bibliography{powerdot}
+%\bibliographystyle{plain}
+%\bibliography{powerdot}
 
 % =====================================================================
 
@@ -119,7 +124,7 @@
 \author{Hendri Adriaens\and Christopher Ellison
 	\\[2mm]\and \underline{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
 \date{Bản dịch số {\the\buildnum} (\the\year/\the\month/\the\day)
-	\\[2mm]dành cho \pf{powerdot} 1.1 (2005/9/19)}
+	\\[2mm]\fcolorbox{black}{red!20}{dành cho \pf{powerdot} 1.1 (2005/9/19)}}
 \maketitle
 
 \newpage
@@ -251,7 +256,7 @@ cho người dùng bình thường.
 %% \end{version}
 
 \medskip
-Nếu bạn muốn tin tài liệu này (với hai màu đen-trắng), hãy sử dụng tập tin |powerdot-doc-vi-print.pdf|.
+Nếu bạn muốn in (đen-trắng) tài liệu này, sử dụng tập tin |powerdot-doc-vi-print.pdf|.
 
 \medskip
 Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
@@ -261,12 +266,12 @@ Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ v
 đây. Bạn có thể tải về bản đầy đủ của tài liệu ở \url{http://www.viettug.org/}.
 \begin{description}
 \item[img/]
-\item[lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
-\item[tab-contents.png] Bảng Mục lục ở một |slide|
-\item[tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
+\item[\ding{42} lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
+\item[\ding{42} tab-contents.png] Bảng Mục lục ở một |slide|
+\item[\ding{42} tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
 \item[exa/]
-\item[example-1.tex] Ví dụ về \pf{powerdot} (nguồn).
-\item[example-1.pdf] Ví dụ về \pf{powerdot} (PDF).
+\item[\ding{42} example-1.tex] Ví dụ về \pf{powerdot} (nguồn).
+\item[\ding{42} example-1.pdf] Ví dụ về \pf{powerdot} (PDF).
 \end{description}
 
 \medskip
@@ -2155,7 +2160,7 @@ Gói/tập tin & Phiên bản & Ngày & Mức độ\\\hline
 \pf{xkeyval} \cite{xkeyval} & 2.5c & 2005/07/10 & bắt buộc\\
 \texttt{pstricks.sty} \cite{PSTricksWeb,PSTricks} & 0.2l & 2004/05/12 & bắt buộc\\
 \pf{xcolor} \cite{xcolor} & 1.11 & 2004/05/09 & bắt buộc\\
-\pf{enumitem} \cite{enumitem} & 1.1 & 2005/05/12 & bắt buộc\\
+\pf{enumitem} \cite{enumitem} & 1.1 & 2005/05/12 & bắt buộc\\\hline
 \pf{article} class & 1.4f & 2004/02/16 & đã kiểm tra\\
 \pf{geometry} \cite{geometry} & 3.2 & 2002/07/08 & đã kiểm tra\\
 \pf{hyperref} \cite{hyperref} & 6.74m & 2003/11/30 & đã kiểm tra\\
@@ -2291,9 +2296,11 @@ Nếu bạn muốn có kết quả |postscript| của tài liệu, sử dụng c
 mã lệnh |PostScript| để định cỡ trang.% Xem thêm ở Mục~\vref{sec:setup}.
 
 Cuối cùng, từ kết quả |PS|, bạn có thể có được kết quả |PDF| bằng cách
-sử dụng chương trình chuyển đổi |ps2pdf|. Để ý rằng, chương trình |ps2pdf|
-cần sử dụng các công cụ của |PostScript|. Trên hệ thống Slackware Linux chẳng hạn,
-sau khi cài te\TeX{}, bạn có thể cài thêm các gói |espgs| và |gnu-gs-fonts|
+sử dụng chương trình chuyển đổi |ps2pdf|.\footnote{Hãy xem thêm về các chương
+trình ps2pdf12, ps2pdf13, ps2pdf14. Theo mặc định, ps2pdf tương đương với ps2pdf12.}
+Để ý rằng, chương trình |ps2pdf| cần sử dụng các công cụ của |PostScript|.
+Trên hệ thống Slackware Linux chẳng hạn, sau khi cài te\TeX{},
+bạn có thể cài thêm các gói |espgs| và |gnu-gs-fonts|
 để đảm bảo chương trình |ps2pdf| làm việc tốt. Với hệ thống \TeX{} trên |Windows|,
 bạn phải cài thêm chương trình |ghostscript| chẳng hạn.
 
@@ -2321,7 +2328,8 @@ Tóm lại, nếu bạn có tài liệu |foo.tex|, thì quá trình biên dịch
   $ dvips -o foo.ps foo.dvi
   $ ps2pdf foo.ps
 \end{command}
-(phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo được chính xác.)
+(phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo
+và bảng Mục lục được chính xác.)
 
 %\section{Creating your own style}
 
@@ -2707,8 +2715,8 @@ Làm thế nào để dùng môi trường |verbatim| trong |slide|?
 %% You can do this by using a temporary box to store the material
 %% in or, for instance, the \pf{fancyvrb} package which has a special
 %% environment for this. See two examples below.
-Lưu nội dung cần tạm thời vào một |box| hoặc sử dụng gói \pf{fancyvrb}.
-Hãy xem ví dụ sau đây
+Lưu nội dung của |verbatim| tạm thời vào một |box| hoặc sử dụng gói \pf{fancyvrb}.
+Hãy xem ví dụ sau đây\\
 \begin{minipage}[t]{.49\linewidth}
 \begin{example}
   \documentclass{powerdot}
@@ -2805,23 +2813,23 @@ Nếu không tìm ra, bạn có thể đăng ký làm thành viên của |mailin
 bằng cách vào phần |subscribe| và nhấn nút |go|. Hãy kiểm tra hộp thư
 của bạn vào theo các hướng dẫn trong đó. Sau khi là thành viên của
 |mailinglist|, bạn có thể gửi các câu hỏi mới, bằng cách gửi email tới
-địa chỉ
+%địa chỉ
 %When you are all set, you can write to the list by sending an e-mail to
-\begin{center}
+%\begin{center}
 \url{powerdot@freelists.org}
-\end{center}
+%\end{center}
 
 %% When writing to the list, please keep in mind the following very
 %% important issues.
-Khi gửi câu hỏi đến |mailinglist|, hãy nhỡ kỹ những điều quan trọng sau
-\begin{enumerate}[leftmargin=0pt]
+Khi gửi câu hỏi đến |mailinglist|, hãy nhớ kỹ những điều quan trọng sau
+\begin{dinglist}{44}%[leftmargin=0pt]
 \item %We are volunteers!
 Trả lời cho bạn là những người tình nguyện.
 \item %Always supply a \emph{minimal} example demonstrating your problem.
 Luôn cung cấp ví dụ đơn giản nhất có thể để minh họa cho trục trặc của bạn.
 \item %Don't send big files over the list.
 Không gửi kèm các tập tin kích thước lớn đến |mailinglist|.
-\end{enumerate}
+\end{dinglist}
 
 %We hope you will enjoy this service.
 Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
@@ -2829,9 +2837,12 @@ Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
 % =====================================================================
 
 %\section{Source code documentation}
-\section{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot}
+\section{\texorpdfstring{Mã nguồn}{Ma nguon}}
 
-\label{sec:sande}
+% =====================================================================
+
+\subsection{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot}
+\label{ssec:sande}
 
 %% In case you want regenerate the package files from the source or
 %% want to have a look at the source code description, locate
@@ -2851,6 +2862,14 @@ Bạn có thể biên dịch mã nguồn này theo các bước sau:
  latex powerdot.dtx
  latex powerdot.dtx
 \end{example}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot-doc-vi}
+
+Tập tin nguồn |powerdot-doc-vi.tex| của tài liệu này cần một số gói cá
+nhân (của |kyanh|) để biên dịch thành công. Vì lý do đó, tập tin chưa
+được công bố.
 
 % =====================================================================
 
