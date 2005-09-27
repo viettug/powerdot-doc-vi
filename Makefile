@@ -1,5 +1,6 @@
 DOC = powerdot-doc-vi
 DOCDIST = powerdot-1.1-doc-vi
+VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 
 default: latex
 
@@ -27,8 +28,8 @@ example-1:
 	ps2pdf $@.ps
 
 dist:
-	@rm -fv distro/$(DOCDIST)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip
-	@zip -9r distro/$(DOCDIST)-`gawk -F '=' '{print $$2}' $(DOC).ktvnum`.zip \
+	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
+	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
 	exa/*{README,tex} exa/example-1.pdf \
 	$(DOC).pdf $(DOC)-print.pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
@@ -36,6 +37,21 @@ dist:
 	@cd img && \
 	rm -fv ../distro/powerdot-styles.zip && \
 	zip -9r ../distro/powerdot-styles.zip powerdot*.png README
+
+src:
+	@uvconv $(DOC).tex -f UTF-8 -t TCVN3 -o tmp.tex
+	@sed -e 's/\[utf8x\]/\[tcvn\]/' tmp.tex > $(DOC)-tcvn.tex && \
+	rm -f tmp.tex
+	@svn log $(DOC).tex > ChangeLog
+	@rm -fv ./distro/$(DOC)-src-$(VERSION).zip && \
+	zip -9r ./distro/$(DOC)-src-$(VERSION).zip \
+	README COPYING ChangeLog \
+	Makefile \
+	$(DOC).tex $(DOC)-tcvn.tex $(DOC).ktvnum \
+	pdpream.ble
+#
+#	$(HOME)/texmf/tex/latex/kyanh/ktv-buildnum.sty \
+#	$(HOME)/texmf/tex/latex/vietnam/{vnhook,varioref-vi}*
 
 clean:
 	@0texclean
