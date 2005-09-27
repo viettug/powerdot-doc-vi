@@ -116,7 +116,7 @@
   \parskip0pt
   \itemsep0pt
   \parsep0pt
-  \item[\textbf{A\arabic{FAQ}}]%
+  \item[\ding{42}]%[\textbf{A\arabic{FAQ}}]%
 }
 \endinput
 %%
