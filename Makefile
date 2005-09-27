@@ -55,7 +55,7 @@ src:
 
 clean:
 	@0texclean
-	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls
+	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *-tcvn.*
 
 backup:
 	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
