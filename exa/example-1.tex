@@ -1,14 +1,6 @@
 \IfFileExists{./header.tex}{\input header.tex}{\documentclass[a4paper,style=default]{powerdot}}
 
-\newif\ifvntex
-\IfFileExists{vietnam.sty}{\vntextrue}{}
-
-\ifvntex
-	\usepackage[utf8x]{vietnam}
-	\long\def\text#1#2{#1}
-\else
-	\long\def\text#1#2{#2}	
-\fi
+\usepackage[utf8x]{vietnam}
 
 \title{\text{Ví dụ về powerdot}{Powerdot example}}
 \author{kyanh, kyanh@o2.pl}
@@ -18,26 +10,26 @@
 
 \maketitle
 
-\begin{slide}{\text{Mục lục}{Contents}}
+\begin{slide}{Mục lục}
 \tableofcontents
 \end{slide}
 
-\section{\text{Mục A}{Section A}}
+\section{Mục A}
 
 \begin{slide}{\text{Lệnh onslide}{Onslide command}}
  \texttt{onslide }: \onslide{1}{power}\onslide{2}{dot}\\
  \texttt{onslide+}: \onslide+{1}{power}\onslide+{2}{dot}\\
  \texttt{onslide*}: \onslide*{1}{power}\onslide*{2}{dot}\\\end{slide}
 
-\begin{slide}{\text{Chế độ hai cột}{Two columns}}
+\begin{slide}{Chế độ hai cột}
 \twocolumn{lineheight=1cm}%
 	{asdfl;kjas;dfkjpoej;laksdjf;laksdjf;askdjf;lasjkdf}%
 	{;asdkfj;askdjf ;klasjdf;lkj2;rja;sdlkfj;asdf}
 \end{slide}
 
-\section{\text{Danh sách}{Danh sach}}
+\section{Danh sách}
 
-\begin{slide}{\text{Danh sách kiểu 1}{List, type=1}}
+\begin{slide}{Danh sách kiểu 1}
 \text{Danh sách này sử dụng các item mặc định}{Default items}\pause
   \begin{enumerate}[type=1]
     \item Here
@@ -47,7 +39,7 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\begin{slide}{Danh sách kiểu 0}
 \text{Danh sách này sử dụng các item mặc định}{Default items}\pause
   \begin{enumerate}[type=0]
     \item Here
@@ -57,7 +49,7 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{\text{Danh sách kiểu 1}{List, type=0}}
+\begin{slide}{Danh sách kiểu 1}
 \text{Item xuất hiện ở mọi overlay}{Items xuat hien o moi overlay}\pause
   \begin{enumerate}[type=1]
     \item<1-> Here
@@ -67,7 +59,7 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\begin{slide}{Danh sách kiểu 0}
 \text{Item xuất hiện ở mọi overlay}{Items xuat hien o moi overlay}\pause
   \begin{enumerate}[type=0]
     \item<1-> Here
@@ -77,7 +69,7 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{\text{Danh sách kiểu 1}{List, type=0}}
+\begin{slide}{Danh sách kiểu 1}
 \text{Chỉ xuất hiện dúng một phần tử ở mỗi overlay}{Xuat hien dung mot phan tu o moi overlay}
   \begin{enumerate}[type=1]
     \item<1> Here
@@ -86,7 +78,7 @@
   \end{enumerate}
 \end{slide}
 
-\begin{slide}{\text{Danh sách kiểu 0}{List, type=0}}
+\begin{slide}{Danh sách kiểu 0}
 \text{Chỉ xuất hiện dúng một phần tử ở mỗi overlay}{Xuat hien dung mot phan tu o moi overlay}
   \begin{enumerate}[type=0]
     \item<1> Here
@@ -96,11 +88,11 @@
   \end{enumerate}
 \end{slide}
 
-\section{\text{Mục C}{Section C}}
+\section{Mục C}
 
 \text{Mục này nói về Overlay tương đối}{}
 
-\begin{slide}{\text{Overlay tương đối}{Relative overlays}}
+\begin{slide}{Overlay tương đối}
    \begin{itemize}
      \item A \pause
      \item B \onslide{+1}{(visible 1 overlay after B)}\pause
