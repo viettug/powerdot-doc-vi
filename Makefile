@@ -16,6 +16,8 @@ $(DOC):
 	@rm -fv printctl.tex
 	@latex $@ && latex $@ && latex $@ > /dev/null 2>&1 && \
 	dvips $@.dvi -o$@.ps && \
+	ps2pdf $@.ps && \
+	thumbpdf $@.pdf && \
 	ps2pdf $@.ps
 
 doc-fast:
