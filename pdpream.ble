@@ -61,9 +61,9 @@
     \index{#1\actualchar{\protect\ttfamily#1}
            (option)\encapchar usage}\@esphack}
 \def\DescribeOptions#1{\leavevmode\@bsphack
-  \marginpar{\raggedleft\strut\emph{options}%
+  \marginpar{\raggedleft%\strut{}
   \@for\@tempa:=#1\do{%
-    \\\strut\MacroFont\@tempa\SpecialOptionIndex\@tempa
+    \strut\MacroFont\@tempa\\\SpecialOptionIndex\@tempa
   }}\@esphack\ignorespaces}
 \def\SpecialEnvIndex#1{\@bsphack
     \index{#1\actualchar{\protect\ttfamily#1}
@@ -118,6 +118,19 @@
   \parsep0pt
   \item[\ding{42}]%[\textbf{A\arabic{FAQ}}]%
 }
+\def\styleexample#1{%
+  \IfFileExists{powerdot-styleexample-#1.001}{%
+    \IfFileExists{powerdot-styleexample-#1.002}{%
+      \hspace*{\stretch{1}}%
+      \fbox{\includegraphics[scale=.16,angle=-90,clip]%
+        {powerdot-styleexample-#1.001}}%
+      \hspace*{\stretch{2}}%
+      \fbox{\includegraphics[scale=.16,angle=-90,clip]%
+        {powerdot-styleexample-#1.002}}%
+      \hspace*{\stretch{1}}\par
+    }{\textbf{No example files found for style \pf{#1}.}}%
+  }{\textbf{No example files found for style \pf{#1}.}}%
+}%
 \endinput
 %%
 %% End of file `pdpream.ble'.
