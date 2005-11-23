@@ -1,3 +1,6 @@
+\newif\ifprint
+\IfFileExists{printctl.tex}{\input{printctl.tex}}{}
+
 \documentclass[a4paper,11pt]{ltxdoc}
 
 \usepackage{url}
@@ -14,6 +17,11 @@
 \usepackage{varioref}
 \usepackage[varioref]{vnhook}
 %% \usepackage[dvips]{thumbpdf}
+\usepackage[colorlinks,draft=false,
+	pdftitle={Powerdot Manual, Vietnamese edition},
+	pdfauthor={Hendri Adriaens - Christopher Ellison. Translator: kyanh <kyanh@o2.pl>},
+	pdfsubject={Presentation},
+	pdfkeywords={typesetting, presentation}]{hyperref}
 
 % =====================================================================
 
@@ -145,11 +153,7 @@
 
 \def\styleexample#1{\centerline{xem \url{powerdot-eg-vi-#1.jpg}}}
 
-\newif\ifprint
-\IfFileExists{printctl.tex}{\input{printctl.tex}}{}
-
 % =====================================================================
-
 
 % \usepackage[bottom=20mm]{geometry}
 \setlength{\hoffset}{-1cm}
@@ -165,7 +169,6 @@
 	\ifprint
 		\gdef\texorpdfstring##1##2{##1}
 	\else
-		\usepackage{hyperref}
 		\input pd1supp.def
 	\fi
 
@@ -196,13 +199,30 @@
 % =====================================================================
 
 \newenvironment{version}[1]{%
-	\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
+\ifprint
+	\fcolorbox{black}{white}{\texttt{#1}\space }\color{black}
+\else
+	\fcolorbox{black}{blue}{\texttt{#1}\space }\color{blue}
+\fi
+}{}
 
 \def\LyX{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
 \def\LyXarrow{\leavevmode\,$\triangleright$\,\allowbreak}
 
 %<<pdpream.ble>>
 \def\PrintDescribeOption#1{\MacroFont #1\ }
+
+% =====================================================================
+\makeatletter
+%<code>sty
+\def\index@prologue{%
+\section*{Index}%
+\addcontentsline{toc}{section}{Index}
+\markboth{Index}{Index}%
+}
+\makeatother
+
+% =====================================================================
 
 \endinput
 %%

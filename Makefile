@@ -14,9 +14,13 @@ doc: $(DOC)
 
 $(DOC):
 	@rm -fv printctl.tex
-	@latex $@ && latex $@ && latex $@ > /dev/null 2>&1 && \
-	dvips $@.dvi -o$@.ps && \
-	ps2pdf $@.ps
+	@latex $@
+	@latex $@
+	@sed -e 's/|hyperpage//g' $(DOC).idx > $(DOC).jdx
+	@makeindex -s gind.ist -o $(DOC).ind $(DOC).jdx
+	@latex $@
+	@dvips $@.dvi -o$@.ps
+	@ps2pdf $@.ps
 
 doc-fast:
 	@rm -fv printctl.tex
@@ -27,7 +31,7 @@ doc-fast:
 dist-doc:
 	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
-	$(DOC).pdf \
+	$(DOC){,-print}.pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 	README
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vi-$(VERSION).zip \
@@ -47,7 +51,7 @@ dist: dist-doc dist-src
 
 clean:
 	@0texclean
-	@rm -fv *.{bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *.tmp
+	@rm -fv *.{bm,glo,bib,jdx,tmp,cls,tpt,gls} powerdot*.sty powerdot-example* powerdot-style*
 
 clean-all: example-clean-all clean
 
@@ -83,9 +87,22 @@ example-images: known-styles
 	done
 
 example-clean:
-	@rm -fv $(EXAMPLE)-*.{jpg,png,pdf}
+	@rm -fv $(EXAMPLE)-*.{ps,p1,p2,1,2,dvi}
 
 example-clean-all:
 	@rm -fv $(EXAMPLE)-*.{ps,p1,p2,1,2,dvi}
 
 example-all: example-compile example-images
+
+# i don't why... there are many `|hyperpage' that cause errors :(
+index:
+	@sed -e 's/|hyperpage//g' $(DOC).idx > $(DOC).jdx
+	@makeindex -s gind.ist -o $(DOC).ind $(DOC).jdx
+
+doc-print:
+	@echo '\printtrue' > printctl.tex
+	@latex $(DOC)
+	@latex $(DOC)
+	@latex $(DOC)
+	@dvips $(DOC).dvi -o $(DOC)-print.ps
+	@ps2pdf $(DOC)-print.ps

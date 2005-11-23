@@ -29,6 +29,8 @@
 
 \input pd-preamble-vi
 
+\makeindex
+
 \begin{document}
 
 % =====================================================================
@@ -1277,7 +1279,7 @@ trong phần tham số bổ sung của môi trường (giá trị mặc định 
 %% use), and the item's font color will become the active one on the
 %% overlay that it would normally appear on. The default behavior is
 %% given by |type=0|.
-Bây giờ, mọi phần tử đều được thể hiện với \emph{màu nhạt}\index{tô màu nhạt}
+Bây giờ, mọi phần tử đều được thể hiện với \emph{màu nhạt}\index{inactive color}
 (màu được định nghĩa bởi kiểu trình diễn); khi |overlay| của một phần
 tử được thể hiện, phần tử đó sẽ được tô đậm để làm nổi bật nó so
 với các phần tử khác. Sự phân biệt của hai |type| có thể minh họa như
@@ -1455,7 +1457,7 @@ Ta hãy xét ví dụ trên, nhưng với một chút thay đổi như sau:
 %% |type=1| behavior for lists (see section~\ref{sec:lists}).
 %Lệnh |\onslide+| cho phép biểu diễn nội dung của nó nhiều cách khác nhau.
 Bây giờ, cụm từ |dot| xuất hiện ở mọi |overlay|, nhưng nó
-có màu tô nhạt,\index{tô màu nhạt} và được tô màu bình thường
+có màu tô nhạt,\index{inactive color} và được tô màu bình thường
 chỉ khi nó xuất hiện ở |overlay| thứ hai. Điều này có nét tương
 tự như khi dùng |type=1| đối với danh sách (xem Mục~\vref{sec:lists}).
 Để ý rằng, ở đây ta nói đến các |overlay| tổng quát, không chỉ đơn
@@ -2123,15 +2125,18 @@ Lớp \pf{powerdot}
 %support portrait orientation unless states otherwise.
 được phân phối cùng với một số kiểu (|style|, xì-tin :) được mô tả
 dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích.
-Nếu không có ghi chú đặc biệt,
-ta hiểu các kiểu hỗ trợ môi trường |wideslide|, bảng mục lục ở bên trái |slide|
-khi xem ở chế độ |landscape|, ở bên dưới |slide| khi xem ở chế độ |portrait|.
+Nếu không có ghi chú đặc biệt, ta hiểu các kiểu hỗ trợ môi trường |wideslide|,
+bảng mục lục ở bên trái |slide| khi xem ở chế độ |landscape|,
+ở bên dưới |slide| khi xem ở chế độ |portrait|.
 
 Việc lựa chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
 
-%% \medskip
+\medskip
 %% Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
 %% |powerdot-styles.zip| (tải về từ \url{http://download.viettug.org}).
+Hình ảnh minh họa cho các kiểu này có thể xem trong tập tin\\
+\centerline{\texttt{powerdot-\pdversion-styles-vi.zip}}
+tải về từ \url{http://download.viettug.org}.
 
 \begin{description}
 \item\pf{default}\\
@@ -3047,19 +3052,22 @@ Bạn có thể biên dịch mã nguồn này theo các bước sau:
 
 \subsection{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot-doc-vi}
 
-Mã nguồn tài liệu \pf{powerdot-doc-vi} có trong tập tin |powerdot-doc-vi-src-*.zip|.
-Có hai tập tin |*.tex| là |powerdot-doc-vi.tex| và |powerdot-doc-vi-tcvn.tex|.
-Bạn có thể biên dịch tập tin đầu tiên nếu gói |vntex| trên hệ thống của
-bạn hỗ trợ |UTF-8| (có thể bạn phải thay |\usepackage[utf8x]| bởi |\usepackage[utf8]|).
-Tập tin còn lại dùng với hỗ trợ |TCVN| của |vntex|.
+Mã nguồn tài liệu \pf{powerdot-doc-vi} có trong tập tin |powerdot-*-doc-vi-src-*.zip|.
+%% Có hai tập tin |*.tex| là |powerdot-doc-vi.tex| và |powerdot-doc-vi-tcvn.tex|.
+%% Bạn có thể biên dịch tập tin đầu tiên nếu gói |vntex| trên hệ thống của
+%% bạn hỗ trợ |UTF-8| (
+Tập tin |powerdot-doc-vi.tex| cần hỗ trợ UTF-8 của gói |vntex|.
+Có thể bạn phải thay |\usepackage[utf8x]| bởi |\usepackage[utf8]|
+nếu hệ thống của bạn không có gói |ucs|.
+%% Tập tin còn lại dùng với hỗ trợ |TCVN| của |vntex|.
 
-Việc biên dịch tập tin (|foo.tex|) để có bản |PDF| như sau:
+Việc biên dịch tập tin (|powerdot-doc-vi.tex|) để có bản |PDF| như sau:
 \begin{command}
-  latex foo
-  latex foo
-  latex foo
-  dvips -ofoo.ps foo.dvi
-  ps2pdf foo.ps
+  latex powerdot-doc-vi
+  latex powerdot-doc-vi
+  latex powerdot-doc-vi
+  dvips -o powerdot-doc-vi.ps powerdot-doc-vi.dvi
+  ps2pdf powerdot-doc-vi.ps
 \end{command}
 
 Nếu bạn muốn có bản in (hai màu đen trắng), trước khi biên dịch như trên,
@@ -3168,4 +3176,6 @@ Herbert Vo\ss.
 \newblock \url{CTAN:/graphics/pstricks}.
 \end{thebibliography}
 
+\newpage
+\PrintIndexX
 \end{document}
