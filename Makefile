@@ -38,14 +38,32 @@ src:
 	zip -9r ./distro/$(DOC)-src-$(VERSION).zip \
 	README COPYING ChangeLog \
 	Makefile \
-	$(DOC).tex $(DOC).tex $(DOC).ktvnum \
-	pdpream.ble
+	$(DOC).tex $(DOC).ktvnum \
+	pd-preamble-vi.tex \
+	powerdot-eg-vi.tex
 
 clean:
 	@0texclean
-	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *-tcvn.*
+	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *.tmp
 
 backup:
 	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
 
 all: clean doc src dist backup
+
+known-styles:
+	@echo '' > styles.tmp && \
+	for f in ~/texmf/tex/latex/powerdot/powerdot-*.sty; do \
+		echo $$(basename $$f .sty)| sed -e 's/powerdot-//' | tee -a styles.tmp; \
+	done
+
+example: known-styles
+	@for S in $$(cat styles.tmp); do \
+		latex '\def\style{'$$S"}\\input{$(EXAMPLE)}" ; \
+		mv $(EXAMPLE).dvi $(EXAMPLE)-$$S.dvi ; \
+		dvips $(EXAMPLE)-$$S.dvi ; \
+		psselect $(EXAMPLE)-$$S.ps -p1 $(EXAMPLE)-$$S.t1 ; \
+		psselect $(EXAMPLE)-$$S.ps -p2 $(EXAMPLE)-$$S.t2 ; \
+		ps2pdf $(EXAMPLE)-$$S.t1 $(EXAMPLE)-$$S.1 ; \
+		ps2pdf $(EXAMPLE)-$$S.t1 $(EXAMPLE)-$$S.2 ; \
+	done
