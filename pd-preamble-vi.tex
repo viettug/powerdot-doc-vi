@@ -119,17 +119,17 @@
   \item[\ding{42}]%[\textbf{A\arabic{FAQ}}]%
 }
 \def\styleexample#1{%
-  \IfFileExists{powerdot-styleexample-#1.001}{%
-    \IfFileExists{powerdot-styleexample-#1.002}{%
+  \IfFileExists{powerdot-eg-vi-#1.1}{%
+    \IfFileExists{powerdot-eg-vi-#1.2}{%
       \hspace*{\stretch{1}}%
       \fbox{\includegraphics[scale=.16,angle=-90,clip]%
-        {powerdot-styleexample-#1.001}}%
+        {powerdot-eg-vi-#1.1}}%
       \hspace*{\stretch{2}}%
       \fbox{\includegraphics[scale=.16,angle=-90,clip]%
-        {powerdot-styleexample-#1.002}}%
+        {powerdot-eg-vi-#1.2}}%
       \hspace*{\stretch{1}}\par
-    }{\textbf{No example files found for style \pf{#1}.}}%
-  }{\textbf{No example files found for style \pf{#1}.}}%
+    }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
+  }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
 }%
 \endinput
 %%
