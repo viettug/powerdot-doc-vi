@@ -1,7 +1,7 @@
 POWERDOT = 1.3
 DOC = powerdot-doc-vi
 DOCDIST = powerdot-$(POWERDOT)-doc-vi
-SRCDIST  = powerdot-$(POWERDOT)-src-vi
+SRCDIST  = powerdot-$(POWERDOT)-doc-vi
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 EXAMPLE = powerdot-eg-vi
 
@@ -16,8 +16,6 @@ $(DOC):
 	@rm -fv printctl.tex
 	@latex $@ && latex $@ && latex $@ > /dev/null 2>&1 && \
 	dvips $@.dvi -o$@.ps && \
-	ps2pdf $@.ps && \
-	thumbpdf $@.pdf && \
 	ps2pdf $@.ps
 
 doc-fast:
