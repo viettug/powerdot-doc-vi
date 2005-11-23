@@ -24,21 +24,10 @@
 %%
 %% ====================================================================
 
-% \listfiles
-
-\typeout{***************************************}
-\typeout{* (c) 2005 kyanh <kyanh at o2 dot pl> *}
-\typeout{***************************************}
-
-\IfFileExists{/home/users/kyanh/.is.m0nster.}{}{
-\typeout{* You are*NOT* kyanh, aren't you? *}
-\typeout{***********************************}
-}
-
+\def\pdversion{v1.3}\def\pddate{2005/11/22}
 % =====================================================================
 
-\newif\ifprint \printfalse
-
+\newif\ifprint
 \IfFileExists{printctl.tex}{\input{printctl.tex}}{}
 
 % =====================================================================
@@ -48,23 +37,29 @@
 \input{pdpream.ble}
 
 \usepackage[utf8x]{vietnam}
-% \usepackage[utf8]{vietnam}
 \usepackage{pifont}
+\usepackage{varioref}
+\usepackage[varioref]{vnhook}
 
+% =====================================================================
+
+% \usepackage[bottom=20mm]{geometry}
 \setlength{\hoffset}{-1cm}
 \setlength{\voffset}{-1cm}
 \setlength{\textwidth}{15cm}
 \setlength{\textheight}{23cm}
 
+\setcounter{tocdepth}{2}
+
+% =====================================================================
+
 \IfFileExists{/home/users/kyanh/.is.m0nster.}{
-	% \usepackage[bottom=20mm]{geometry}
 	\ifprint
 		\gdef\texorpdfstring##1##2{##1}
 	\else
 		\usepackage{hyperref}
+		\input pd1supp.def
 	\fi
-
-	\usepackage{indentfirst,url}
 
 	\ifprint
 		\newcount\buildnum
@@ -73,15 +68,19 @@
 		\usepackage{ktv-buildnum}
 	\fi
 
-	\usepackage{varioref}
-	\usepackage[varioref]{vnhook}
+	\usepackage{indentfirst,url}
+	
+	\font\ftitle=vnrsc2074
+	\font\fmysign=vnrsc1440
 }{
+	\font\ftitle=vnbx12 at 17pt
+	\font\fmysign=vnbx12
 	\newcount\buildnum
 	\IfFileExists{\jobname.ktvnum}%
 	{%
 		\input{\jobname.ktvnum}
 	}{%
-		\buildnum=99999\relax}
+		\buildnum=9999\relax}
 	\let\vref=\ref
 	\gdef\texorpdfstring##1##2{##1}
 }
@@ -89,43 +88,46 @@
 % =====================================================================
 
 \newenvironment{version}[1]{%
-\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
+	\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
 
 \def\LyX{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
 \def\LyXarrow{\leavevmode\,$\triangleright$\,\allowbreak}
 
-% =====================================================================
-
-% << pdpream.ble
+%<<pdpream.ble>>
 \def\PrintDescribeOption#1{\MacroFont #1\ }
 
 % =====================================================================
 
-\def\fileversion{v1.0}
-\def\filedate{2005/09/19}
-
-%\let\Section\section\def\section*#1{\Section*{#1}\addcontentsline{toc}{section}{#1}}
-
-%\bibliographystyle{plain}
-%\bibliography{powerdot}
-
-% =====================================================================
 
 \begin{document}
 
 % =====================================================================
 \vfill
 
+\thispagestyle{empty}
+
 \title{%\vspace*{-2cm}\mktitledecor
  \vspace*{4cm}
- Sử dụng lớp \pf{powerdot} tạo trình diễn
- \thanks{Lớp này có thể tài về tại CTAN:\texttt{/macros/latex/contrib/powerdot}.
- Xem \texttt{powerdot.dtx} để biết thông tin về bản quyền của lớp \pf{powerdot}.}}
-\author{Hendri Adriaens\and Christopher Ellison
-	\\[2mm]\and \underline{Biên dịch:} kyanh <\url{mailto:kyanh@o2.pl}>}
-\date{Bản dịch số {\the\buildnum} (\the\year/\the\month/\the\day)
-	\\[2mm]\fcolorbox{black}{red!20}{dành cho \pf{powerdot} 1.1 (2005/9/19)}}
+ {\ftitle Sử dụng lớp `powerdot' tạo trình diễn}
+%%  \thanks{Lớp này có thể tài về tại CTAN:\texttt{/macros/latex/contrib/powerdot}.
+%%  Xem \texttt{powerdot.dtx} để biết thông tin về bản quyền của lớp \pf{powerdot}.}
+}
+\author{%
+	\vspace*{2mm}
+	\fmysign Hendri Adriaens
+	\and \fmysign Christopher Ellison
+	\\[4mm]
+	\and \fmysign\underline{Biên dịch:} kyanh <{mailto:kyanh@o2.pl}>
+	\\[2mm]}
+\date{%
+	\Large
+	{Bản dịch số} \texttt{\the\buildnum} -- \texttt{\the\year/\the\month/\the\day}
+	\\[2mm]
+	\fcolorbox{black}{red!20}{\Large dành cho \pf{powerdot} \pdversion\ (\pddate)}}
 \maketitle
+
+\vfill
+\centerline{\LARGE\url{http://www.viettug.org/}}
 
 \newpage
 
@@ -189,6 +191,7 @@ chuyên nghiệp với kiểu dáng dễ dàng thay đổi. Lớp cung cấp nhi
 giúp thiết kế trình diễn: overlay, ghi chú cá nhân, chế độ handout.
 Để xem trình diễn, bản DVI, PS, PDF của tài liệu đều có thể dùng được.
 Lớp cung cấp hệ thống mẫu mạnh, giúp phát triển dễ dàng các mẫu mới.
+|powerdot| còn cung cấp hỗ trợ |layout| cho \LyX.
 \end{abstract}
 
 \begin{multicols}{2}
@@ -205,12 +208,19 @@ Lớp cung cấp hệ thống mẫu mạnh, giúp phát triển dễ dàng các 
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 
-The authors are grateful to Darren Dale and Herbert Vo\ss\ for
-testing the class and its output. We also wish to thank Mael
-Hill\'ereau for contributing the |LyX| layout file and description.
-Further, we like to thank all style contributors (see
-section~\ref{sec:styles}) and everyone who provided feedback
-through the mailinglist.
+The authors are grateful to Mael Hill\'ereau for contributing the
+\LyX\ layout file and description. Further, we like to thank all
+style contributors (see section~\ref{sec:styles}). Moreover, we wish
+to thank everyone who contributed to this package in any other
+way.\\[1em]
+\hspace*{\stretch{1}}
+\begin{minipage}{.9\linewidth}
+Ramon van den Akker, Pavel Cizek, Darren Dale, Hans Marius Eikseth,
+Andr\'as Horv\'ath, Laurent Jacques, Akira Kakuto, Uwe Kern, Theo
+Stewart, Don P. Story and Herbert Vo\ss.
+\end{minipage}
+\hspace*{\stretch{1}}\\[1em]
+We hope not to have forgotten anyone.
 
 % =====================================================================
 
@@ -222,11 +232,26 @@ through the mailinglist.
 \subsection*{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
 \addcontentsline{toc}{subsection}{\texorpdfstring{So sánh các phiên bản}{So sanh cac phien ban}}
 
-Vài tính năng ở phiên bản này có thể không được hỗ trợ ở phiên bản khác.
-Mục này điểm qua các thay đổi quan trọng nhất bạn cần phải biết.
+Mục này điểm qua các thay đổi quan trọng nhất của |powerdot|.
 Chú ý đến các thay đổi được đánh dấu \ding{53}.
 
 \begin{description}
+\item[1.3] Cập nhật ngày 22/11/2005.
+	\begin{dinglist}{51}
+	\item[\ding{53}] Thêm tuỳ chọn |clock|.
+	\item[\ding{53}] Thêm hỗ trợ |palette|.
+	\item[\ding{53}] Thêm hiệu ứng dấu chấm ngẫu nhiên.
+	Xem Mục~\ref{sec:glopts}.
+	\item Thêm tuỳ chọn cho lệnh |\maketitle|
+	\item Thêm các kiểu: |horatio|, |paintings| và |klope|.
+	\item Thêm |palette| cho các kiểu |default|, |fyma| và |sailor|
+	\end{dinglist}
+\item[1.2] Cập nhật ngày 09/10/2005.
+	\begin{dinglist}
+	{51}
+	\item Thêm kiểu |upen| và |bframe|.
+	\item Tăng tốc độ biên dịch.
+	\end{dinglist}
 \item[1.1] Cập nhật ngày 20/9/2005.
 	\begin{dinglist}{51}
 	\item[\ding{53}] phải dùng |size=12pt| thay vì |size=12| khi xác định
@@ -259,25 +284,28 @@ cho người dùng bình thường.
 Nếu bạn muốn in (đen-trắng) tài liệu này, sử dụng tập tin |powerdot-doc-vi-print.pdf|.
 
 \medskip
-Là người dùng Việt, bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
+Bản mới nhất của tài liệu này có thể tìm thấy tại
+\url{http://download.viettug.org/}
+%% Là người dùng Việt,
+%% bạn có thể tìm kiếm sự giúp đỡ tại \url{http://www.viettug.org/}.
 
-\medskip
-Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ và hình ảnh như sau
-đây. Bạn có thể tải về bản đầy đủ của tài liệu ở \url{http://www.viettug.org/}.
-\begin{description}
-\item[img/]
-\item[\ding{42} lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
-\item[\ding{42} tab-contents.png] Bảng Mục lục ở một |slide|
-\item[\ding{42} tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
-\item[exa/]
-\item[\ding{42} example-1.tex] Ví dụ về \pf{powerdot} (nguồn).
-\item[\ding{42} example-1.pdf] Ví dụ về \pf{powerdot} (PDF).
-\end{description}
-
-\medskip
-Các hình ảnh minh họa các cho kiểu trình diễn
-có thể tìm thấy trong tập tin nén |powerdot-dot-styles.zip|
-(tải về ở \url{http://www.viettug.org/}).
+%% \medskip
+%% Tài liệu này (bản |PDF|) được phân phối cùng với các ví dụ và hình ảnh như sau
+%% đây.
+%% \begin{description}
+%% \item[img/]
+%% \item[\ding{42} lst-bookmarks.png] Danh sách |bookmark| của một trình diễn
+%% \item[\ding{42} tab-contents.png] Bảng Mục lục ở một |slide|
+%% \item[\ding{42} tab-slide-contents.png] Slide Mục lục và Bảng Mục lục
+%% \item[exa/]
+%% \item[\ding{42} example-1.tex] Ví dụ về \pf{powerdot} (nguồn).
+%% \item[\ding{42} example-1.pdf] Ví dụ về \pf{powerdot} (PDF).
+%% \end{description}
+%% 
+%% \medskip
+%% Các hình ảnh minh họa các cho kiểu trình diễn
+%% có thể tìm thấy trong tập tin nén |powerdot-dot-styles.zip|
+%% (tải về ở \url{http://www.viettug.org/}).
 
 % =====================================================================
 
@@ -383,9 +411,16 @@ việc cài đặt lớp \pf{powerdot}.
 %% devoted to questions (section~\ref{sec:questions}), like `Where can
 %% I find examples?'. It also tells you where to turn to in case your
 %% questions are still not solved.
+%%<<1.3>>
+%% Section~\ref{sec:writestyle} is mostly interesting for people that
+%% want to develop their own style for this class or want to modify an
+%% existing style. Section~\ref{sec:lyx} explains how \LyX\
+%% \cite{LyXWeb} can be used to create \pf{powerdot} presentations.
+
 Mục~\vref{sec:writestyle} có lẽ là phần hấp dẫn đối với ai quan tâm
 đến việc tạo kiểu dáng riêng cho trình diễn của mình, hoặc làm đẹp
-các kiểu dáng đã có.
+các kiểu dáng đã có. Mục~\vref{sec:lyx} hướng dẫn tạo trình diễn bằng
+|powerdot| với \LyX\ \cite{LyXWeb}.
 
 Tài liệu này kết thúc với Hỏi-Đáp (Mục~\vref{sec:questions}), có thể
 giúp bạn trong những bước đầu làm quen với lớp \pf{powerdot}.
@@ -614,13 +649,18 @@ Với tuỳ chọn này, một trang |slide| đen sẽ chèn vào đầu trình 
 Khi bạn |click| ở bất kỳ vị trí nào của |slide| đen, bạn sẽ đi về đúng
 trang |slide| ban đầu. Tuỳ chọn này có ích, chẳng hạn khi bạn muốn tạm
 ngưng trình diễn để thuyết minh trên bảng đen.
+\item\DescribeOption{clock}\option{clock}\\
+%% This displays a small digital clock on slides which you can use to
+%% check the time left for your presentation.
+Khi dùng tùy chọn này, một đồng hồ điện tử nhỏ xuất hiện trên |slide|,
+giúp bạn kiểm tra thường xuyên thời gian cho trình diễn của mình.
 \end{description}
 
 %Here is an example of a |\documentclass| command.
 Dưới đây là vài ví dụ giúp bạn hình dung lại các điều đã nói.
 \begin{example}
  \documentclass[
-   size=12,
+   size=12pt,
    paper=screen,
    mode=present,
    display=slidesnotes,
@@ -636,7 +676,7 @@ Với ví dụ này, trình diễn sẽ dùng kiểu \pf{tycja}, với trang |sl
 cỡ chữ 12 điểm, các phương trình được đánh số bên trái.
 \begin{example}
  \documentclass[
-   size=12,
+   size=12pt,
    paper=letterpaper,
    mode=handout,
    display=slidesnotes,
@@ -677,13 +717,37 @@ Nếu bạn quan tâm, thử tìm đọc mục về \pf{xkvltxp}
 trong tài liệu \cite{xkeyval} về gói \pf{xkeyval}).}
 Lệnh |\pdsetup| chấp nhận chỉ một tham số, là chuỗi các tuỳ chọn cách
 nhau bằng dấu phảy.
+
+%We distinguish two types of options. Options that can only be set
+%globally (acting for the entire presentation) using the |\pdsetup|
+%command and options that can be accessed both globally (via
+%|\pdsetup|) and locally (via slide environments, see section~\ref{sec:slides}).
+Cần phân biệt hai loại tuỳ chọn dùng với |\pdfsetup|.
+Loại đầu tiên chỉ dùng để chỉ ra các thuộc tính toàn cục,
+ảnh hưởng đến toàn bộ trình diễn. Loại thứ hai vừa có tính toàn cục,
+vừa có tính địa phương. Như vậy, với loại sau, bạn có thể dùng chúng
+cho từng |slide|, như mô tả ở Mục~\vref{sec:slides}.
+
+Ví dụ về |\pdfsetup| có thể xem ở \ref{sec:pdsetup.example}.
+
+%\subsubsection{Global options}
+\subsubsection{Tuỳ chọn toàn cục}
+\label{sec:gopts}
+
 \begin{description}
-\item\DescribeOption{lf}\option{lf}\\
+\item\DescribeOption{palette}\option{palette}\\
+%This specifies the palette to be used. A palette is a set of colors
+%defined by a style. To find out which palettes are defined by each
+%style, see section~\ref{sec:styles}.
+Chọn |palette|. Mỗi |palette| là tập hợp các màu được cung cấp bởi kiểu
+trình diễn. Để biết các |palette| của các kiểu trình diễn khác nhau,
+xem Mục~\vref{sec:styles}.
+\item\DescribeOptions{lf,rf}\option{lf,rf}\\
 %This determines the content of the left footer. By default, this is empty.
-Xác định nội dung của |footer| (chân trang) bên trái. Mặc định là rỗng.
-\item\DescribeOption{rf}\option{rf}\\
+Nội dung của |footer| (chân trang) bên trái hoặc bên phải. Mặc định là rỗng.
+%\item\DescribeOption{rf}\option{rf}\\
 % This determines the content of the right footer. By default, this is empty.
-Như trên, nhưng cho bên phải.
+%Như trên, nhưng cho bên phải.
 \item\DescribeOption{theslide}\option{theslide}\\
 %% This option controls how the slide number appears on the slide. By
 %% default this has the value |\arabic{slide}~/~\pageref*{lastslide}|,
@@ -693,8 +757,7 @@ Như trên, nhưng cho bên phải.
 %% slide.\footnote{We use the starred version of \cs{pageref} which is
 %% defined by \pf{hyperref} and does not create a link to the page that
 %% it is referring to.}
-Tuỳ chọn này xác định cánh đáng số các |slide|.
-Giá trị mặc định là
+Tuỳ chọn này xác định cánh đáng số các |slide|. Giá trị mặc định là
 \begin{command}
   `\cs{arabic}'{slide}~/~`\cs{pageref}'*{lastslide}
 \end{command}
@@ -721,47 +784,7 @@ như sau:
 \begin{command}
   thenote=ghi chu~`\cs{arabic}'{note}~/~`\cs{arabic}'{slide}
 \end{command}
-\item\DescribeOption{trans}\option{trans}\\
-%% This option sets the default transition effect to be used in the
-%% presentation. These transition effects only work after compiling the
-%% presentation to PDF format. See also section~\ref{sec:compiling}.
-%% The following transition effects are supported: |Split|, |Blinds|,
-%% |Box|, |Wipe|, |Dissolve|, |Glitter| and |Replace|. When you are using
-%% a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,
-%% |Cover|, |Uncover| or |Fade|. It is important to notice that most
-%% viewers are case sensitive, so, for instance, |box| will not work.
-Xác định hiệu ứng biến đổi mặc định cho trình diễn. Các hiệu ứng này
-chỉ thấy được trong kết quả |PDF|. Xem thêm ở Mục~\vref{sec:compiling}.
-Các hiệu ứng được hỗ trợ bao gồm: |Split|, |Blinds|,
-|Box|, |Wipe|, |Dissolve|, |Glitter| và |Replace|.
-Nếu bạn dùng chương trình xem hiểu dạng |PDF| 1.5 trở lên, bạn
-có thêm các hiệu ứng |Fly|, |Push|, |Cover|, |Uncover| và |Fade|.
-Điều quan trọng cần phải nhớ là, hầu hết các trình xem |PDF| đều phân
-biệt hoa thường, nên bạn phải chỉ ra |Box| thay vì |box|,...
-%% The default effect is |Replace| which just replaces one slide with
-%% another when browsing the slides. Note that some PDF viewers (like
-%% Acrobat Reader 5 and higher) only produce the transition effect in
-%% full screen mode. If you want to use a custom transition effect that
-%% is not listed in the list above (for instance, a wipe effect with a
-%% custom wipe direction), then that is possible. However,
-%% \pf{powerdot} will put a warning in your log file that the effect
-%% that you have chosen, might not work in the PDF viewer. Here is an
-%% example that does work.
-Hiệu ứng mặc định là |Replace| -- theo đó, khi xem trình diễn, |slide|
-sau sẽ thay thế |slide| trước. Để ý rằng, vài trình xem |PDF| (ví dụ
-Acrobat Reader 5) chỉ tạo các hiệu ứng khi xem ở chế độ toàn màn hình.
-Nếu bạn dùng một hiệu ứng riêng không có trong danh sách trên (ví dụ
-hiệu ứng |Wipe| với hướng theo ý bạn), \pf{powerdot} sẽ nhắc nhở về
-hiệu ứng đó (rằng có thể chúng không xem được). Dưới đây là ví dụ
-\begin{example}
-  trans=Wipe /Di 0
-\end{example}
-%% In Acrobat (Reader), this wipes from left to right instead of the
-%% default top to bottom. For more information, see a PDF Reference
-%% Manual.
-Trong Acrobat (Reader), hiệu ứng |Wipe| khai báo như trên sẽ có hướng
-từ trái sang phải, thay vì từ trên xuống dưới như mặc định.
-Để biết thêm chi tiết, xem tài liệu tham khảo về định dạng |PDF|.
+
 \item\DescribeOption{counters}\option{counters}\\
 %% The |counters| option lists counters that you might want to protect
 %% on overlays. As material on overlays (see
@@ -802,32 +825,175 @@ Tương tự tuỳ chọn |list|, nhưng chỉ dành cho môi trường |enumera
 Tương tự tuỳ chọn |list|, nhưng chỉ dành cho môi trường |itemize|.
 \end{description}
 
-%% Here is an example of a |\pdsetup| command that one could use to set up
-%% the presentation.
+% =====================================================================
+
+%\subsubsection{Global and local options}
+\subsubsection{Tuỳ chọn toàn cục và địa phương}
+\label{sec:glopts}
+
+Các tuỳ chọn nói trong mục này vừa có tính toàn cục, vừa có tính địa phương:
+chúng được thiết lập nhờ |\pdsetup| hoặc nhờ chỉ ra trong phần tham số bổ
+sung của từng |slide| (xem Mục~\ref{sec:slides}).
+
+\begin{description}
+\item\DescribeOption{trans}\option{trans}\\
+%% This option sets the default transition effect to be used in the
+%% presentation. These transition effects only work after compiling the
+%% presentation to PDF format. See also section~\ref{sec:compiling}.
+%% The following transition effects are supported: |Split|, |Blinds|,
+%% |Box|, |Wipe|, |Dissolve|, |Glitter| and |Replace|. When you are using
+%% a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,
+%% |Cover|, |Uncover| or |Fade|. It is important to notice that most
+%% viewers are case sensitive, so, for instance, |box| will not work.
+Xác định hiệu ứng biến đổi mặc định cho trình diễn. Các hiệu ứng này
+chỉ thấy được trong kết quả |PDF|. Xem thêm ở Mục~\vref{sec:compiling}.
+Các hiệu ứng được hỗ trợ bao gồm: |Split|, |Blinds|,
+|Box|, |Wipe|, |Dissolve|, |Glitter| và |Replace|.
+Nếu bạn dùng chương trình xem hiểu dạng |PDF| 1.5 trở lên, bạn
+có thêm các hiệu ứng |Fly|, |Push|, |Cover|, |Uncover| và |Fade|.
+Điều quan trọng cần phải nhớ là, hầu hết các trình xem |PDF| đều phân
+biệt hoa thường, nên bạn phải chỉ ra |Box| thay vì |box|,...
+%% The default effect is |Replace| which just replaces one slide with%% another when browsing the slides. Note that some PDF viewers (like%% Acrobat Reader 5 and higher) only produce the transition effect in%% full screen mode. If you want to use a custom transition effect that%% is not listed in the list above (for instance, a wipe effect with a%% custom wipe direction), then that is possible. However,%% \pf{powerdot} will put a warning in your log file that the effect%% that you have chosen, might not work in the PDF viewer. Here is an%% example that does work.
+Hiệu ứng mặc định là |Replace| -- theo đó, khi xem trình diễn, |slide|
+sau sẽ thay thế |slide| trước. Để ý rằng, vài trình xem |PDF| (ví dụ
+Acrobat Reader 5) chỉ tạo các hiệu ứng khi xem ở chế độ toàn màn hình.
+Nếu bạn dùng một hiệu ứng riêng không có trong danh sách trên (ví dụ
+hiệu ứng |Wipe| với hướng theo ý bạn), \pf{powerdot} sẽ nhắc nhở về
+hiệu ứng đó (rằng có thể chúng không xem được). Dưới đây là ví dụ
+\begin{example}
+  trans=Wipe /Di 0
+\end{example}
+%% In Acrobat (Reader), this wipes from left to right instead of the%% default top to bottom. For more information, see a PDF Reference%% Manual.
+Trong Acrobat (Reader), hiệu ứng |Wipe| khai báo như trên sẽ có hướng
+từ trái sang phải, thay vì từ trên xuống dưới như mặc định.
+Để biết thêm chi tiết, xem tài liệu tham khảo về định dạng |PDF|.
+\end{description}
+% =====================================================================
+%% A special feature of \pf{powerdot}, which can be used to make
+%% presentations come alive, is the use of random dots. These dots will
+%% be placed anywhere on your slides and use the colors defined by the
+%% palette that you use. Overlays will carry the same dots. This
+%% feature uses |random.tex| \cite{random}. Several options are
+%% available to control the appearance of the random dots.
+\begin{version}{1.3}\space
+Một tính năng đặc biệt của \pf{powerdot}, được thêm vào từ bản 1.3,
+giúp cho trình diễn sống động hơn, đó là hỗ trợ \emph{chấm ngẫu nhiên}.
+Các dấu chấm sẽ xuất hiện ngẫu nhiên trên trình diễn, sử dụng chỉ ra trong
+|palette|. Các |overlay| sẽ sử dụng cùng các dấu chấm đó. Tính năng này
+sử dụng |random.tex| \cite{random}. Dưới đây là các tuỳ chọn điều khiển hiệu ứng này.
+\end{version}
+% =====================================================================
+\begin{description}
+\item\DescribeOption{randomdots}\option{randomdots}\\
+%% If set to |true|, random dots will be generated. |false| will turn
+%% off the feature. Default value is |true|.
+Giá trị mặc định là |true|, nghĩa là các dấu chấm sẽ được sinh ra.
+Dùng |false| nếu bạn muốn tắt hiệu ứng này.
+\item\DescribeOptions{dmindots,dmaxdots}\option{dmindots,dmaxdots}\\
+%% The number of dots per slide is also random. These options set the
+%% minimum and maximum dots per slide. Default values are |5| and |40|,
+%% respectively.
+Số dấu chấm tối đa và tối thiểu được sinh ra trong mỗi |slide|.
+Giá trị mặc định là |5| và |40|.
+\item\DescribeOptions{dminsize,dmaxsize}\option{dminsize,dmaxsize}\\
+%% The minimum and maximum radius of the dots. Default values are |5pt|
+%% and |40pt|, respectively.
+Bán kính tối đa và tối thiểu của dấu chấm. Mặc định là |5pt| và |40pt|.
+\item\DescribeOptions{dminwidth,dmaxwidth,dminheight,dmaxheight}
+\option{dminwidth,dmaxwidth,dminheight,dmaxheight}\\
+%% These options determine the area on the slide that can be used for
+%% the random dots. By default, these values are set such that dots can
+%% cover the entire slide, but you might want to adjust that such that,
+%% for instance, only the text area can be filled with dots. The
+%% default values are |0pt|, |\slidewidth|, |0pt|, |\slideheight|.
+Xác định khu vực (miền) nơi các dấu chấm xuất hiện. Theo mặc định,
+các dấu chấm sẽ xuất hiện có thể xuất hiện ở vị trí bất kỳ trên |slide|,
+ứng với các giá trị: |0pt|, |\slidewidth|, |0pt|, |\slideheight|.
+Bạn có thể thay đổi như trong ví dụ sau:
+%% 
+%% Here is an example that allows dots in a smaller rectangle on the
+%% slide.
+\begin{example}
+ \pdsetup{
+   dminwidth=.1\slidewidth,maxwidth=.9\slidewidth,
+   dminheight=.2\slideheight,maxheight=.8\slideheight
+ }
+\end{example}
+\item\DescribeOption{dbright}\option{dbright}\\
+%% This option can be used to adjust the brightness of the dots. The
+%% number should be an integer between -100 and 100. If the number is
+%% negative, the color will be adjusted towards black, with -100 giving
+%% black. If the number is positive, the color will be adjusted towards
+%% white, with 100 giving white. With a light background, you may want
+%% to choose |bright| to be positive. With a dark background, you may
+%% want to set it negative. The default value is |60|, meaning a mixture
+%% of 40\% of the original color and 60\% white.
+Tuỳ chọn này điều khiển độ sáng |brightness| của các dấu chấm.
+Giá trị của tùy chọn này là số nguyên nằm trong khoảng |-100| đến |100|.
+Nếu dùng số âm, màu sẽ tối hơn so với bình thường; giá trị |-100| tương
+đương với màu đen. Tương tự cho các giá trị âm. Với màu nền tối, bạn
+nên chọn giá trị dương cho |dbright|. Mặc định là |60|, nghĩa là
+độ sáng của dấu chấm là tổ hợp gồm \verb!50%! màu gốc và \verb!60%! màu trắng.
+\item\DescribeOption{dots}\option{dots}\\
+%% This option is used for passing extra parameters to the |\psdot|
+%% command, which creates the random dots. You could, for instance,
+%% change the style of the dots or the line width. See for more
+%% information about |\psdot| the \pf{pstricks} documentation
+%% \cite{PSTricksWeb,PSTricks}. \pf{powerdot} defines two extra dot
+%% styles that can be used for the random dots. These styles are
+%% |ocircle| (open circle) and |osquare| (open square). The
+Tuỳ chọn này nhằm chuyển các tham số đến lệnh |\psdot|. % để tạo dấu chấm.
+Bạn dùng tuỳ chọn này, chẳng hạn khi muốn chọn kiểu của dấu chấm.
+Xem thông tin về lệnh |\psdot| trong tài liệu của \pf{pstricks}
+\cite{PSTricksWeb,PSTricks}. Gói \pf{powerdot} định nghĩa trước hai kiểu
+dấu chấm là |ocircle| (vòng tròn) và |osquare| (đường vuông\footnote{biên của hình vuông ;)}).
+
+%% Here are two examples for the use of random dots.
+Dưới đây là hai ví dụ:
+\begin{example}
+ \pdsetup{
+   randomdots,dots={dotstyle=osquare}
+ }
+\end{example}
+Trong ví dụ trên ta dùng các đường vuông thay vì các dấu chấm
+được tô đầy.
+\begin{example}
+ \pdsetup{
+   randomdots,dminsize=500pt,dmaxsize=600pt,dmindots=2,
+   dmaxdots=5,dots={dotstyle=ocircle,linewidth=.5pt}
+ }
+\end{example}
+%This example puts at most 5 big circles on slides. These circles do
+%not fit on the slides and you will only see parts of them in the
+%shape of curves.
+Bây giờ, ở mỗi |slide| xuất hiện tối thiểu |5| dấu chấm -- là
+các vòng tròn. Do ta chỉ ra kích thước quá lớn,
+bạn sẽ thấy trên màn hình xuất hiện một phần của mối dấu chấm đó mà thôi.
+\end{description}
+
+\subsubsection{Ví dụ}
+\label{sec:pdsetup.example}
+%% Here is an example of a |\pdsetup| command that one could use to set up%% the presentation.
 Dưới đây là ví dụ về cài đặt cho trình diễn dùng lệnh |\pdfsetup|.
 \begin{example}
  \pdsetup{
    lf=Trinh dien cua toi,
    rf=VietTUG,
    trans=Wipe,
-   theslide=\arabic{slide}
+   theslide=\arabic{slide},
+   randomdots,dmaxdots=80
  }
 \end{example}
-%% This sets the left and right footers and will initialize the
-%% transition effect to |Wipe|. Further, slide numbers will not include
-%% the number of the last slide, but only the number of the current
-%% slide.
+%% This sets the left and right footers and will initialize the%% transition effect to |Wipe|. Further, slide numbers will not include%% the number of the last slide, but only the number of the current%% slide.
 Với thiết lập như trên, sẽ có chân trang bên trái và bên phải,
 hiệu ứng mặc định cho trình diễn là |Wipe|; ngoài ra,
 chỉ số |slide| sẽ không bao gồm tổng số |slide| như mặc định,
 mà chỉ gồm số chỉ |slide| hiện tại.
+%%<<1.3>>
+%% Finally, slides will be covered with at most 80 random dots.
+Cuối cùng, ở mỗi |slide| sẽ xuất hiện nhiều nhất 80 dấu chấm.
 
-%% A small note is necessary with respect to the appearance of footers.
-%% The slide number (controlled by the |theslide| option) will be added
-%% to a footer. Most styles add it too the right footer. If both the
-%% footer and the slide number are non empty, |~--~| will be inserted
-%% in between them to separate them. Styles might modify this default
-%% behavior however.
+%% A small note is necessary with respect to the appearance of footers.%% The slide number (controlled by the |theslide| option) will be added%% to a footer. Most styles add it too the right footer. If both the%% footer and the slide number are non empty, |~--~| will be inserted%% in between them to separate them. Styles might modify this default%% behavior however.
 Một chú ý nhỏ về cách thể hiện ở chân trang (|footer|).
 Chỉ số |slide| (điều khiển bởi tuỳ chọn |theslide|) sẽ được thêm vào
 chân trang (|footer|). Hầu hết các kiểu trình diễn đều thêm vào bên phải.
@@ -854,7 +1020,19 @@ cách xử lý này.
 %% the same as in the standard \LaTeX\ document classes. See an example
 %% below.
 Trang tiêu đề của trình diễn được tạo bởi |\maketitle|, tương tự như cách
-quen thuộc trong \LaTeX{} chuẩn. Ví dụ
+quen thuộc trong \LaTeX{} chuẩn. Từ phiên bản 1.3, lệnh này còn chấp nhận
+các tham số bổ sung:
+\begin{command}
+ `\cs{maketitle}\oarg{options}'
+\end{command}
+%Its use is the same as in the standard \LaTeX\ document classes. The
+%optional argument \meta{options} can contain any option from
+%section~\ref{sec:glopts}. Specifying such an option in the
+%|\maketitle| command will only have an effect on the title slide and
+%not on other slides. See an example below.
+Phần tham số bổ sung \meta{options} có thể chứa bất kỳ tùy chọn nào
+được nói đến trong Mục~\vref{sec:glopts}. Việc chỉ ra các bổ sung này
+tất nhiên chỉ ảnh hưởng đến |slide| tiêu đề mà thôi! Ví dụ
 \begin{example}
  \documentclass{powerdot}
    \title{Title}
@@ -936,9 +1114,14 @@ biên dịch kết quả thành dạng |PDF|.
 %% entries. There is also a |trans| option that works only for the
 %% current slide.
 Phần tham số bổ sung (hay tuỳ chọn) (\meta{options})
-của |slide| cho phép chỉ định tựa sẽ xuất hiện ở Bảng Mục lục
+của |slide| cho phép chỉ định tựa (tiêu đề) sẽ xuất hiện ở Bảng Mục lục
 và danh sách |bookmark|. Tuỳ chọn cũng giúp ta chỉ định hiệu ứng (|trans|)
-dùng riêng cho |slide| đó thôi.
+dùng riêng cho |slide| đó thôi. Phần tuỳ chọn này bao gồm bất kỳ
+tùy chọn nào được nói đến ở Mục~\vref{sec:glopts}.
+%The \meta{options} for the |slide| environment can contain any
+%option listed in section~\ref{sec:glopts}. Additionally, these allow
+%the user to specify alternative titles for the table of contents and
+%bookmark entries.
 
 \begin{description}
 \item\DescribeOption{toc}\option{toc}\\
@@ -953,14 +1136,15 @@ Bảng Mục lục.
 %% the slide title is used. If |bm=| is specified, then no entry is
 %% created.
 Tương tự như trên, nhưng cho danh sách |bookmark|.
-\item\DescribeOption{trans}\option{trans}\\
-%% This works the same as the |trans| option described in
-%% section~\ref{sec:pdsetup}, except that it sets the transition effect
-%% of the current slide only (when used in the slide \meta{options})
-%% and not for the entire presentation.
-Cách dùng tùy chọn này hoàn toàn tương tự như mô tả ở Mục~\vref{sec:pdsetup};
-các thay đổi mà tuỳ chọn này tạo ra chỉ có tác dụng trong |slide|
-đang xét, không phải cho toàn bộ trình diễn hay các |slide| khác.
+%%<<dropped since 1.3>>
+%% \item\DescribeOption{trans}\option{trans}\\
+%% %% This works the same as the |trans| option described in
+%% %% section~\ref{sec:pdsetup}, except that it sets the transition effect
+%% %% of the current slide only (when used in the slide \meta{options})
+%% %% and not for the entire presentation.
+%% Cách dùng tùy chọn này hoàn toàn tương tự như mô tả ở Mục~\vref{sec:pdsetup};
+%% các thay đổi mà tuỳ chọn này tạo ra chỉ có tác dụng trong |slide|
+%% đang xét, không phải cho toàn bộ trình diễn hay các |slide| khác.
 \end{description}
 
 %% These optional arguments are especially useful when the title of a
@@ -1722,38 +1906,40 @@ Các khai báo \pf{pstricks} để chỉ thuộc tính của dòng kẻ. Ví d�
 \begin{example}
  lineprop={linestyle=dotted,linewidth=3pt}
 \end{example}
-\item\DescribeOption{lfrheight}\option{lfrheight}\\
+\item\DescribeOptions{lfrheight,lfrprop}\option{lfrheight} \option{lfrpop}\\
 %% Creates a frame of the specified height around the left column.
 Tạo ra một khung (|frame|) với chiều cao chỉ định xung quanh cột bên trái.
-\item\DescribeOption{lfrprop}\option{lfrprop}\\
+%% \item\DescribeOption{lfrprop}\option{lfrprop}\\
 %As |lineprop|, but for the left frame.
-Như |lineprop|, nhưng cho đường kẻ của khung bên trái.
-\item\DescribeOption{rfrheight}\option{rfrheight}\\
+Tuỳ chọn |lfrprop| cũng như |lineprop|, nhưng cho đường kẻ của khung bên trái.
+\item\DescribeOptions{rfrheight,rfrprop}\option{rfrheight} \option{rfrprop}\\
 %% Creates a frame of the specified height around the right column.
-Tạo khung bên phải với chiều cao chỉ định.
-\item\DescribeOption{rfrprop}\option{rfrprop}\\
+%Tạo khung bên phải với chiều cao chỉ định.
+Như |lfrheight| và |lfrprop|, nhưng cho khung bên phải.
+%\item\DescribeOption{rfrprop}\option{rfrprop}\\
 % As |lineprop|, but for the left frame.
-Như |lineprop| nhưng dành cho đường kẻ của khung phải.
+%Như |lineprop| nhưng dành cho đường kẻ của khung phải.
 \item\DescribeOption{frsep}\option{frsep}\\
 % Space between text and the frames. Default: |1.5mm|.
 Khoảng cách giữa nội dung và khung (|frame|). Mặc định |1.5mm|.
 \item\DescribeOption{colsep}\option{colsep}\\
 % Space between the two columns. Default: |0.06\linewidth|.
 Khoảng cách giữa hai cột. Mặc định |0.06\linewidth|.
-\item\DescribeOption{lcolwidth}\option{lcolwidth}\\
+\item\DescribeOptions{lcolwidth,rcolwidth}\option{lcolwidth} \option{rcolwidth}\\
 %Width of the left column. Default: |0.47\linewidth|.
-Chiều rộng của khung bên trái. Mặc định |0.47\linewidth|.
-\item\DescribeOption{rcolwidth}\option{rcolwidth}\\
+Chiều rộng của khung bên trái và phải. Mặc định |0.47\linewidth|.
+%\item\DescribeOption{rcolwidth}\option{rcolwidth}\\
 %Width of the right column. Default: |0.47\linewidth|.
-Chiều rộng của khung bên phải. Mặc định |0.47\linewidth|.
-\item\DescribeOption{topsep}\option{topsep}\\
+%Chiều rộng của khung bên phải. Mặc định |0.47\linewidth|.
+\item\DescribeOptions{topsep,bottomsep}\option{topsep} \option{bottomsep}\\
 %% The extra space (additional to |\baselineskip|) between text above
 %% the columns and the text within the columns. Default: |0cm|.
 Khoảng trắng thêm vào bên trên cột và bên trên các dòng nội dung
 (cộng thêm vào giá trị đã có của |\baselineskip|). Mặc định |0cm|.
-\item\DescribeOption{bottomsep}\option{bottomsep}\\
+Tương tự, |bottomsep| chỉ khoảng cách bên dưới cột và dòng.
+%\item\DescribeOption{bottomsep}\option{bottomsep}\\
 %Idem for the bottom of the columns. Default: |0cm|.
-Nhưng trên, nhưng cho bên dưới cột và dòng. Mặc định |0cm|.
+%Nhưng trên, nhưng cho bên dưới cột và dòng. Mặc định |0cm|.
 \item\DescribeOption{indent}\option{indent}\\
 %Horizontal indent left to the left column. Default: |0cm|.
 Khoảng cách thụt đầu dòng so với cột bên trái.\footnote{Horizontal indent left to the left column}
@@ -2004,13 +2190,23 @@ Lớp \pf{powerdot}
 %% comes with a number of styles which are listed in the
 %% overview below. The characteristics of each style are described
 %% shortly.
+%<<1.3>>
+%shortly and a sample of a title slide and a normal slide is provided
+%for each style. Styles support the |wideslide| environment, have a
+%table of contents on the left part of the paper in landscape
+%orientation and on the bottom part in portrait orientation and
+%support portrait orientation unless states otherwise.
 được phân phối cùng với một số kiểu (|style|, xì-tin :) được mô tả
-dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích. Việc lựa
-chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
+dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích.
+Nếu không có ghi chú đặc biệt,
+ta hiểu các kiểu hỗ trợ môi trường |wideslide|, bảng mục lục ở bên trái |slide|
+khi xem ở chế độ |landscape|, ở bên dưới |slide| khi xem ở chế độ |portrait|.
 
-\medskip
-Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
-|powerdot-styles.zip| (tải về từ \url{http://www.viettug.org}).
+Việc lựa chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
+
+%% \medskip
+%% Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
+%% |powerdot-styles.zip| (tải về từ \url{http://download.viettug.org}).
 
 \begin{description}
 \item\pf{default}\\
@@ -2020,97 +2216,155 @@ Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
 %% contents on the left part of the paper in landscape orientation and
 %% on the bottom part in portrait orientation. The style requires the
 %% \pf{pifont} package.
-Kiểu mặc định, chỉ với màu xanh sáng và trắng. Một bông hoa ở góc trên
-bên trái của mỗi |slide|. Kiểu này cung cấp môi trường |wideslide| và hướng
-|portrait|. Mỗi |slide| có Bảng Mục lục ở bên trái (chế dộ |landscape|)
-hoặc bên dưới (chế độ |portrait|). Kiểu này đòi hỏi gói \pf{pifont}.
+%%<<1.3>>
+%% Kiểu mặc định, chỉ với màu xanh sáng và trắng. Một bông hoa ở góc trên
+%% bên trái của mỗi |slide|. Kiểu này cung cấp môi trường |wideslide| và hướng
+%% |portrait|. Mỗi |slide| có Bảng Mục lục ở bên trái (chế dộ |landscape|)
+%% hoặc bên dưới (chế độ |portrait|). Kiểu này đòi hỏi gói \pf{pifont}.
+%<<1.3>>
+%This style provides six different palettes. A flower in the top left
+%corner decorates the slides for all palettes. The default palette is
+%\texttt{blue} which has as main colors light blue and white. You can
+%see an example of that palette below. Other available palettes are
+%\texttt{red}, \texttt{green}, \texttt{yellow}, \texttt{brown} and
+%\texttt{purple}.\\
+Kiểu này cung cấp sáu |palette| khác nhau, gồm |red|, |green|, |yellow|
+|brown| và |purple|; mặc định là |palette| màu xanh (|blue|) với hai màu chính
+là xanh sáng và trắng.
+\\\styleexample{default}
 \item\pf{simple}\\
 %% This is a simple style in black and white. The style supports a
 %% |wideslide| and portrait orientation. A table of contents is present
 %% on slides at the left hand side in landscape mode and in the bottom
 %% of the slide in portrait mode. It requires the \pf{amssymb} and
 %% \pf{pifont} packages.
-Kiểu đơn giản chỉ với hai màu đen, trắng. Hỗ trợ môi trường |wideslide|
-và hướng |portrait|. Bảng Mục lục được bố trí bên trái (|landscape|) hoặc
-bên dưới (|portrait|) của |slide|. Kiều này cần gói \pf{amssymb}
-và gói \pf{pifont}.
+Kiểu đơn giản chỉ với hai màu đen, trắng.
+%%  Hỗ trợ môi trường |wideslide|
+%% và hướng |portrait|. Bảng Mục lục được bố trí bên trái (|landscape|) hoặc
+%% bên dưới (|portrait|) của |slide|. Kiều này cần gói \pf{amssymb}
+%% và gói \pf{pifont}.
+Kiể này có ích khi bạn muốn in trình diễn của mình.
+\\\styleexample{simple}
 \item\pf{tycja}\\
-%% This style is set in shades of yellow and dark blue. The style
-%% supports a |wideslide| and portrait orientation. The table of
+%% This style is set in shades of yellow and dark blue. The table of
 %% contents on slides is on the right side of the paper in landscape
-%% orientation and on the bottom part in portrait. The style requires
-%% the \pf{pst-grad} \cite{PSTricksWeb,PSTricks} and \pf{pifont}
-%% packages.
-Kiểu với màu vàng và xanh thẫm. Hỗ trợ môi trường |widestyle| và
-hướng |portrait|. Bảng Mục lục bố trí bên phải (|landscape|)
-hoặc bên dưới (|portrait|). Đòi hỏi gói \pf{pst-grad}
-\cite{PSTricksWeb,PSTricks} và gói \pf{pifont}.
+%% orientation and on the bottom part in portrait.\\
+Kiểu này được thiết kế với đường viền vàng và xanh sẫm.
+Bảng Mục lục được bố trí bên phải (chế độ |landscape|) hoặc bên dưới
+(chế độ |portrait|).
+\\\styleexample{tycja}
 \item\pf{ikeda}\\
 %% This style uses dark shades of red and blue and a light text color.
-%% It has nice patterns on the slide for decoration. The style supports
-%% a |wideslide| and portrait orientation. The table of contents is on
-%% the left side of the paper in landscape orientation and on the
-%% bottom part in portrait. The style requires the \pf{calc} and
-%% \pf{pifont} packages.
-Kiểu với màu đỏ, xanh (màu khung, bóng) và màu sáng (cho nội dung).
-Kiểu này thiết kế các đường khung, viền khá đẹp. Hỗ trợ môi trường
-|wideslide| và hướng |portrait|. Bảng mục lục bố trí bên trái (|landscape|)
-hoặc bên dưới (|portrait|). Đòi hỏi gói \pf{calc} và gói \pf{pifont}.
+%% It has nice patterns on the slide for decoration.
+Đường viền màu đỏ và xanh tối, màu chữ sáng.
+Kiểu có mẫu trang trí khá đẹp.
+\\\styleexample{ikeda}
 \item\pf{fyma}\\
 %% This style was originally created by Laurent Jacques for
 %% \pf{prosper}. Based on that style, he created a version for
 %% \pf{HA-prosper} with extended features. With his kind permission,
 %% this style has been converted by Shun'ichi J. Amano for
 %% \pf{powerdot}. The style has an elegant design with a light blue and
-%% white gradient background. The style supports a |wideslide| and
-%% portrait orientation. It has special templates for sections on
-%% slides and sections on wide slides. The table of contents is on the
-%% left side of the paper in landscape orientation and on the bottom
-%% part in portrait. The style requires the \pf{pst-grad}
-%% \cite{PSTricksWeb,PSTricks} package.
-Nguyên gốc của kiểu này là của Laurent Jacques dành cho \pf{prosper}.
-Dựa trên bản gốc đó, L. Jacques tạo ra bản cho \pf{HA-prosper} với vài
-tính năng nổi trội. Được phép của L. Jacques, kiểu này được Shun'ichi J. Amano
-chuyển thành phiên bản cho \pf{powerdot}. Kiểu đưọc thiết kế gọn đẹp,
-với màu xanh sáng và màu nền |gradient|. Kiểu hỗ trợ môi trường |wideslide|
-và hướng |portrait|; ngoài ra, còn cung cấp các mẫu đặc biệt để tạo
-Mục trong trình diễn. Bảng Mục lục được bố trí bên trái (|landscape|)
-hoặc bên dưới (|portrait|). Đòi hỏi các gói \pf{pst-grad} \cite{PSTricksWeb,PSTricks}.
+%% white gradient background in the default \texttt{blue} palette.
+%% Other available palettes are \texttt{green}, \texttt{gray},
+%% \texttt{brown} and \texttt{orange}. It has special templates for
+%% sections on slides and sections on wide slides. Below is a sample of
+%% the blue palette.\\
+Nguyên được viết cho \pf{propser} bởi Laurent Jaques.
+Dựa trên bản đó, L. Jaques viết một bản tương ứng cho \pf{HA-prosper}
+với vài tính năng mở rộng. Kiểu này được Shun'ichi J. Amano 
+viết lại cho \pf{powerdot}. Kiểu có màu xanh sáng, với màu nền
+|gradient| trắng. Các |palette| được hỗ trợ: |green|, |gray|,
+|blue| (mặc định), |brown| và |orange|. Kiểu này có một |template|
+(mẫu) đặc biệt để bố trí các mục trên |slide|.
+\\\styleexample{fyma}
 \item\pf{ciment}\\
 %% This style was originally created by Mathieu Goutelle for
-%% \pf{prosper} and \pf{HA-prosper}. With his permission, this style
+%% \pf{prosper} and \pf{HA-prosper}. With his kind permission, this style
 %% has been converted for \pf{powerdot}. The style has a background
 %% that is hatched with light gray horizontal lines. Titles and table
-%% of contents highlighting are done with dark red. The table of
-%% contents is on the left side of the paper in landscape orientation
-%% and on the bottom part in portrait. The style requires the
-%% \pf{pifont} package.
-Bản nguyên thuỷ của kiểu này là của Matheiu Goutelle dành cho \pf{prosper}
-và \pf{HA-prosper}. Được phép của tác giả, bản đó được thay đổi
-để dành cho \pf{powerdot}. Với kiểu này, màu nền |slide| được trang điểm
-bằng nhiều đường kẻ ngang màu xám. Bảng mục lục đưọc bố trí bên trái (|landscape|)
-hoặc bên phải (|portrait|). Đòi hỏi gói \pf{pifont}.
-\item[]
-Dưới đây là các kiểu được thêm vào từ \pf{powerdot} phiên bản 1.1.
+%% of contents highlighting are done with dark red.
+Kiểu này nguyên được viết bởi Mathieu Goutelle cho \pf{prosper} và \pf{HA-prosper}.
+Được phép của tác giả, kiểu này được viết lại cho \pf{powerdot}.
+Kiểu có màu nền có các đường thẳng ngang màu sáng bạc.
+Tiêu đề và trang mục lục có màu đỏ tối.
+\\\styleexample{ciment}
 \item\pf{elcolors}\\
 %% This is a style using light shades of the elementary colors red,
-%% blue and yellow.\\
-Kiểu với các màu cơ bản: đỏ, xanh và vàng.
+%% blue and yellow.
+Đường viền màu sáng, các màu cơ bản gồm đỏ, xanh và vàng.
+\\\styleexample{elcolors}
 \item\pf{aggie}\\
 %% This style was created by Jack Stalnaker for \pf{HA-prosper} and he
 %% has converted this style for \pf{powerdot}. The style uses dark red
-%% and light brown colors.\\
-Kiểu tạo bởi Jack Stalnaker dành cho \pf{HA-prosper}. Tác giả đã
-chuyển đổi thành kiểu cho \pf{powerdot}. Sử dụng các màu đỏ sẫm và nâu sáng.
+%% and light brown colors.
+Tác giả Jack Stalnaker đã từ chuyển kiểu tương ứng ông viết cho \pf{HA-propsper}.
+Kiểu có màu đỏ tối và nâu sáng.
+\\\styleexample{aggie}
 \item\pf{husky}\\
 %% This style is created by Jack Stalnaker and has a background of
-%% light gray sun beams combined with dark red highlights.\\
-Tác giả là Jack Stalnaker. Sử dụng nền mô phỏng chùm ánh sáng mặt trời.
-Màu cho khung là đỏ sẫm.
+%% light gray sun beams combined with dark red highlights.
+Tác giả là Jack Stalnaker.% Kiểu có màu nền sáng bạc
+\\\styleexample{husky}
 \item\pf{sailor}\\
-%% This style is contributed by Mael Hill\'ereau and uses rounded shapes
-%% in dark blue and shades of light blue.\\
-Đóng góp bởi Mael Hill\'ereau. Sử dụng các màu xanh sáng và xanh tối.
+%% This style is contributed by Mael Hill\'ereau and supplies five
+%% different palettes: \texttt{Sea} (the default), \texttt{River},
+%% \texttt{Wine}, \texttt{Chocolate} and \texttt{Cocktail}. Below is a
+%% sample of the palette \texttt{Sea}.
+Kiểu này được đóng góp bởi Mael Hill\'ereau. Các |palette| màu
+gồm có: |Sea| (mặc định), |River|, |Wine|, |Chocolate| và |Cocktail|.
+\\\styleexample{sailor}
+\item\pf{upen}\\
+%% This style has a nice dark blue background and text in yellow. It is
+%% contributed by Piskala Upendran.
+Đóng góp bởi Piskal Upendran. Kiểu có  màu nền xanh tối, chữ vàng.
+\\\styleexample{upen}
+\item\pf{bframe}\\
+%% The \pf{bframe} style has blue frames on the slide in which text is
+%% positioned. The style is contributed by Piskala Upendran.
+Đóng góp bởi Piskala Upendran. Kiểu có các khung viền màu xanh.
+\\\styleexample{bframe}
+\item\pf{horatio}\\
+%% The \pf{horatio} style has been contributed by Michael Lundholm and
+%% is a more conservative blue style.
+Đóng góp bởi Michael Lundholm.
+\\\styleexample{horatio}
+\item\pf{paintings}\\
+%% This is a simple style without a table of contents on slides. It has
+%% been contributed by Thomas Koepsell and provides 10 different
+%% palettes. The colors used in the palettes are drawn from famous
+%% paintings.\footnote{The style defines a color \texttt{pdcolor7}
+%% which is not used in the style but comes from the same painting and
+%% complements the other colors. It can be used, for example, to
+%% highlight text against the main background color.} If you are
+%% interested, open the style file to read which paintings have been
+%% used. The available palettes are: \texttt{Syndics} (the default),
+%% \texttt{Skater}, \texttt{GoldenGate}, \texttt{Lamentation},
+%% \texttt{HolyWood}, \texttt{Europa}, \texttt{Moitessier},
+%% \texttt{MayThird}, \texttt{PearlEarring} and \texttt{Charon} (all
+%% case sensitive). Below is a sample of the \texttt{Syndics}
+%% palette.
+Đây là kiểu đơn giản, đóng góp bởi Thomas Koepsell, không có bảng Mục lục.
+Gồm 10 |palette| khác nhau, các màu của |palette| được lấy từ các tác phẩm
+hội họa nổi tiếng\footnote{%
+Kiểu này còn cung cấp màu \texttt{pdcolor7}. Màu này thực ra không dùng trong
+thiết kế của kiểu, nhưng bổ sung cho các màu khác và được lấy cũng từ các tác phẩm
+hội họa. Màu này có ích, chẳng hạn khi bạn muốn đánh dấu một đoạn văn, làm
+nó nổi bật so với màu nền}. Nếu thích, bạn có thể mở tập tin định nghĩa kiểu này
+để biết tác phẩm tương ứng với mỗi |palette|. Các |palette| đó là:
+|Syndics| (mặc định), |Skater|, |GoldenGate|, |Lamentation|,
+|HolyWood|, |Europa|, |Moitessier|, |MayThird|, |PearlEarring| và |Charon|.
+\\\styleexample{paintings}
+\item\pf{klope}\\
+%% The \pf{klope} style implements a horizontal table of contents that
+%% only lists the sections. The style is available in the following
+%% palettes: \texttt{Spring}, \texttt{PastelFlower}, \texttt{BlueWater}
+%% and \texttt{BlackWhite}. The \texttt{Spring} palette is the default
+%% and you can see a sample of that below.
+Kiểu này bố trí bảng Mục lục nằm ngang, trong đó chỉ liệt kê các Mục lớn.
+Các |palette| được hỗ trợ: |Spring| (mặc định), |PastelFlower|, |BlueWater|
+và |BlackWhite|.
+\\\styleexample{klope}
 \end{description}
 
 % =====================================================================
@@ -2160,7 +2414,7 @@ Gói/tập tin & Phiên bản & Ngày & Mức độ\\\hline
 \pf{xkeyval} \cite{xkeyval} & 2.5c & 2005/07/10 & bắt buộc\\
 \texttt{pstricks.sty} \cite{PSTricksWeb,PSTricks} & 0.2l & 2004/05/12 & bắt buộc\\
 \pf{xcolor} \cite{xcolor} & 1.11 & 2004/05/09 & bắt buộc\\
-\pf{enumitem} \cite{enumitem} & 1.1 & 2005/05/12 & bắt buộc\\\hline
+\pf{enumitem} \cite{enumitem} & 1.0 & 2004/07/19 & bắt buộc\\\hline
 \pf{article} class & 1.4f & 2004/02/16 & đã kiểm tra\\
 \pf{geometry} \cite{geometry} & 3.2 & 2002/07/08 & đã kiểm tra\\
 \pf{hyperref} \cite{hyperref} & 6.74m & 2003/11/30 & đã kiểm tra\\
