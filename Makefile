@@ -57,13 +57,20 @@ known-styles:
 		echo $$(basename $$f .sty)| sed -e 's/powerdot-//' | tee -a styles.tmp; \
 	done
 
-example: known-styles
+example-compile: known-styles
 	@for S in $$(cat styles.tmp); do \
 		latex '\def\style{'$$S"}\\input{$(EXAMPLE)}" ; \
 		mv $(EXAMPLE).dvi $(EXAMPLE)-$$S.dvi ; \
 		dvips $(EXAMPLE)-$$S.dvi ; \
-		psselect $(EXAMPLE)-$$S.ps -p1 $(EXAMPLE)-$$S.t1 ; \
-		psselect $(EXAMPLE)-$$S.ps -p2 $(EXAMPLE)-$$S.t2 ; \
-		ps2pdf $(EXAMPLE)-$$S.t1 $(EXAMPLE)-$$S.1 ; \
-		ps2pdf $(EXAMPLE)-$$S.t1 $(EXAMPLE)-$$S.2 ; \
 	done
+
+example-images: known-styles
+	@for S in $$(cat styles.tmp); do \
+		psselect -p1 $(EXAMPLE)-$$S.ps $(EXAMPLE)-$$S.1 ; \
+		psselect -p2 $(EXAMPLE)-$$S.ps $(EXAMPLE)-$$S.2 ; \
+	done
+
+example-clean:
+	@rm -fv $(EXAMPLE)-*.{p1,p2,1,2,dvi}
+
+example-all: example-compile example-images
