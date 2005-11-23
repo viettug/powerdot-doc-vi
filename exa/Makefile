@@ -19,3 +19,7 @@ simple:
 	latex example-1 && latex example-1 && \
 	dvips -oexample-1.ps example-1.dvi && \
 	ps2pdf example-1.ps
+
+clean:
+	@0texclean
+	@rm -fv *.ps *.pdf *.bm styles.tmp
