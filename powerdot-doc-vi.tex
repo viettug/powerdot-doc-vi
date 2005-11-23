@@ -27,77 +27,7 @@
 \def\pdversion{v1.3}\def\pddate{2005/11/22}
 % =====================================================================
 
-\newif\ifprint
-\IfFileExists{printctl.tex}{\input{printctl.tex}}{}
-
-% =====================================================================
-
-\documentclass[a4paper,11pt]{ltxdoc}
-
-\input{pd-preamble-vi}
-
-\usepackage[utf8x]{vietnam}
-\usepackage{pifont}
-\usepackage{varioref}
-\usepackage[varioref]{vnhook}
-
-% =====================================================================
-
-% \usepackage[bottom=20mm]{geometry}
-\setlength{\hoffset}{-1cm}
-\setlength{\voffset}{-1cm}
-\setlength{\textwidth}{15cm}
-\setlength{\textheight}{23cm}
-
-\setcounter{tocdepth}{2}
-
-% =====================================================================
-
-\IfFileExists{/home/users/kyanh/.is.m0nster.}{
-	\ifprint
-		\gdef\texorpdfstring##1##2{##1}
-	\else
-		\usepackage{hyperref}
-		\input pd1supp.def
-	\fi
-
-	\ifprint
-		\newcount\buildnum
-		\input \jobname.ktvnum
-	\else
-		\usepackage{ktv-buildnum}
-	\fi
-
-	\usepackage{indentfirst,url}
-	
-	\font\ftitle=vnrsc2074
-	\font\fmysign=vnrsc1440
-}{
-	\font\ftitle=vnbx12 at 17pt
-	\font\fmysign=vnbx12
-	\newcount\buildnum
-	\IfFileExists{\jobname.ktvnum}%
-	{%
-		\input{\jobname.ktvnum}
-	}{%
-		\buildnum=9999\relax}
-	\let\vref=\ref
-	\gdef\texorpdfstring##1##2{##1}
-}
-
-% =====================================================================
-
-\newenvironment{version}[1]{%
-	\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
-
-\def\LyX{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
-\def\LyXarrow{\leavevmode\,$\triangleright$\,\allowbreak}
-
-%<<pdpream.ble>>
-\def\PrintDescribeOption#1{\MacroFont #1\ }
-
-% =====================================================================
-
+\input pd-preamble-vi
 
 \begin{document}
 
@@ -137,7 +67,7 @@
 
 \vspace{3cm}
 \begin{example}
- This is the file `powerdot-doc-vi(-print).pdf'
+ This is the file `powerdot-doc-vi.pdf'
  which is generated from the source `powerdot-doc-vi.tex'.
 
  ----------------------------------------------------------
@@ -164,15 +94,11 @@
  
   README
   powerdot-doc-vi.pdf
-  powerdot-doc-vi-print.pdf
+  powerdot-eg-vi.pdf
   img/
-   lst-bookmarks.png
-   tab-contents.png
-   tab-slide-contents.png
-  exa/
-   README
-   example-1.tex
-   example-1.pdf
+  img/lst-bookmarks.png
+  img/tab-contents.png
+  img/tab-slide-contents.png
 \end{example}
 
 \newpage
@@ -280,9 +206,9 @@ cho người dùng bình thường.
 %% Ví dụ, dòng này chỉ phù hợp với phiên bản 1.1 (về sau) của \pf{powerdot}.
 %% \end{version}
 
-\medskip
-Nếu bạn muốn in (đen-trắng) tài liệu này, sử dụng tập tin |powerdot-doc-vi-print.pdf|.
-
+%% \medskip
+%% Nếu bạn muốn in (đen-trắng) tài liệu này, sử dụng tập tin |powerdot-doc-vi-print.pdf|.
+%% 
 \medskip
 Bản mới nhất của tài liệu này có thể tìm thấy tại
 \url{http://download.viettug.org/}

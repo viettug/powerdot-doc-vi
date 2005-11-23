@@ -1,5 +1,6 @@
+POWERDOT = 1.3
 DOC = powerdot-doc-vi
-DOCDIST = powerdot-1.1-doc-vi
+DOCDIST = powerdot-$(POWERDOT)-doc-vi
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 EXAMPLE = powerdot-eg-vi
 
@@ -14,37 +15,33 @@ $(DOC):
 	@rm -fv printctl.tex
 	@latex $@ && latex $@ && latex $@ > /dev/null 2>&1 && \
 	dvips $@.dvi -o$@.ps && \
-	ps2pdf14 $@.ps && \
-	echo '\printtrue' > printctl.tex && \
-	latex $@ && latex $@ > /dev/null 2>&1 && \
-	dvips $@.dvi -o$@-print.ps && \
-	ps2pdf14 $@-print.ps
-	@rm -fv printctl.tex
+	ps2pdf $@.ps
 
-dist:
+dist-doc:
 	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
-	exa/*{README,tex} exa/example-1.pdf \
-	$(DOC).pdf $(DOC)-print.pdf \
+	$(DOC).pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 	README
-	@cd img && \
-	rm -fv ../distro/powerdot-styles.zip && \
-	zip -9r ../distro/powerdot-styles.zip powerdot*.png README
+	@zip -9r distro/$(DOCDIST)-styles-$(VERSION).zip \
+	powerdot-eg-vi-*.pdf powerdot-eg-vi.tex
 
-src:
-	@svn log $(DOC).tex > ChangeLog
-	@rm -fv ./distro/$(DOC)-src-$(VERSION).zip && \
-	zip -9r ./distro/$(DOC)-src-$(VERSION).zip \
-	README COPYING ChangeLog \
+dist-src:
+	@rm -fv ./distro/$(DOC)-$(POWERDOT)-src-$(VERSION).zip && \
+	zip -9r ./distro/$(DOC)-$(POWERDOT)-src-$(VERSION).zip \
+	README TODO COPYING \
 	Makefile \
 	$(DOC).tex $(DOC).ktvnum \
 	pd-preamble-vi.tex \
 	powerdot-eg-vi.tex
 
+dist: dist-doc dist-src
+
 clean:
 	@0texclean
-	@rm -fv *.{ps,bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *.tmp
+	@rm -fv *.{bm,glo,bib} powerdot*.sty powerdot-example* powerdot-style* *.cls *.tmp
+
+clean-all: example-clean clean
 
 backup:
 	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
@@ -58,10 +55,12 @@ known-styles:
 	done
 
 example-compile: known-styles
+	@latex $(EXAMPLE)
 	@for S in $$(cat styles.tmp); do \
 		latex '\def\style{'$$S"}\\input{$(EXAMPLE)}" ; \
 		mv $(EXAMPLE).dvi $(EXAMPLE)-$$S.dvi ; \
 		dvips $(EXAMPLE)-$$S.dvi ; \
+		ps2pdf $(EXAMPLE)-$$S.ps ; \
 	done
 
 example-images: known-styles
@@ -71,6 +70,6 @@ example-images: known-styles
 	done
 
 example-clean:
-	@rm -fv $(EXAMPLE)-*.{p1,p2,1,2,dvi}
+	@rm -fv $(EXAMPLE)-*.{p1,p2,1,2,dvi,pdf}
 
 example-all: example-compile example-images

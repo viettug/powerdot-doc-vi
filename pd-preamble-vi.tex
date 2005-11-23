@@ -1,4 +1,5 @@
-%% taken from `pdpream.ble' generated from `powerdot.dtx'.
+\documentclass[a4paper,11pt]{ltxdoc}
+
 \usepackage{url}
 \usepackage{xcolor}
 \usepackage{enumitem}
@@ -6,6 +7,15 @@
 \usepackage{listings}
 \usepackage{array}
 \usepackage{xkeyval}
+\usepackage{graphicx}
+\usepackage{pifont}
+
+\usepackage[utf8x]{vietnam}
+\usepackage{varioref}
+\usepackage[varioref]{vnhook}
+
+% =====================================================================
+
 \lstnewenvironment{command}{%
   \lstset{columns=flexible,frame=single,backgroundcolor=\ifprint\color{white}\else\color{blue!20}\fi,%
     xleftmargin=\fboxsep,xrightmargin=\fboxsep,escapeinside=`',gobble=1}}{}
@@ -131,6 +141,66 @@
     }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
   }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
 }%
+
+\newif\ifprint
+\IfFileExists{printctl.tex}{\input{printctl.tex}}{}
+
+% =====================================================================
+
+
+% \usepackage[bottom=20mm]{geometry}
+\setlength{\hoffset}{-1cm}
+\setlength{\voffset}{-1cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{23cm}
+
+\setcounter{tocdepth}{2}
+
+% =====================================================================
+
+\IfFileExists{/home/users/kyanh/.is.m0nster.}{
+	\ifprint
+		\gdef\texorpdfstring##1##2{##1}
+	\else
+		\usepackage{hyperref}
+		\input pd1supp.def
+	\fi
+
+	\ifprint
+		\newcount\buildnum
+		\input \jobname.ktvnum
+	\else
+		\usepackage{ktv-buildnum}
+	\fi
+
+	\usepackage{indentfirst,url}
+	
+	\font\ftitle=vnrsc2074
+	\font\fmysign=vnrsc1440
+}{
+	\font\ftitle=vnbx12 at 17pt
+	\font\fmysign=vnbx12
+	\newcount\buildnum
+	\IfFileExists{\jobname.ktvnum}%
+	{%
+		\input{\jobname.ktvnum}
+	}{%
+		\buildnum=9999\relax}
+	\let\vref=\ref
+	\gdef\texorpdfstring##1##2{##1}
+}
+
+% =====================================================================
+
+\newenvironment{version}[1]{%
+	\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}}{}
+
+\def\LyX{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+\def\LyXarrow{\leavevmode\,$\triangleright$\,\allowbreak}
+
+%<<pdpream.ble>>
+\def\PrintDescribeOption#1{\MacroFont #1\ }
+
 \endinput
 %%
 %% End of file `pdpream.ble'.
