@@ -31,7 +31,7 @@ doc-fast:
 dist-doc:
 	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
-	$(DOC){,-print}.pdf \
+	$(DOC).pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 	README
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vi-$(VERSION).zip \
