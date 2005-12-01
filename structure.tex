@@ -1,0 +1,151 @@
+%\section{Presentation structure}
+\section{\texorpdfstring{Cấu trúc trình diễn}{Cau truc trinh dien}}
+
+\label{sec:structure}
+
+% =====================================================================
+
+%\subsection{Making sections}
+\subsection{\texorpdfstring{Tạo mục}{Tao muc}}
+\label{sec:section}
+
+\DescribeMacro{\section}
+%% This section describes the |\section| command which provides a way%% to structure a presentation.
+Lệnh |\section| cho phép tạo một mục mới trong trình diễn, tương tự
+như cách dùng lệnh |\section| của lớp \pf{article}.
+\begin{command}
+ `\cs{section}\oarg{options}\marg{section title}'
+\end{command}
+%% This command will produce a slide with \meta{section title} on it%% and will also use this text to create sections in the table of%% contents and in the bookmarks list. There are several \meta{options}%% to control its output.
+Lệnh này sẽ tạo một |slide| chỉ với nội dung là (tựa đề) \meta{section title}
+(hãy xem thêm về tuỳ chọn |slide| ở bên dưới).
+Tựa đề \meta{section title} cũng sẽ xuất hiện ở Bảng Mục lục và danh sách |bookmark|.
+Có vài tuỳ chọn cho lệnh này như sau:
+
+\DescribeOption{tocsection}
+%% This option controls the creation of a%% section in the table of contents. The default value is |true|.
+Tuỳ chọn điều khiển việc tạo phần tử tương ứng cho |section| ở Bảng Mục lục.
+Giá trị mặc định |true|.
+\begin{description}
+\item\option{tocsection=true}\\
+%% This does create a section in the table of contents. This means that%% all following slides, until the next section, will be nested under%% this section.
+Tạo mục tương ứng với |section| hiện tại trong Bảng Mục lục.
+\item\option{tocsection=false}\\
+%% This does not create a section in the table of contents and hence%% the section will be listed as an ordinary slide.
+Chỉ tạo |slide| cho mục nhưng không tạo phần tử tương ứng trong trang Mục lục.
+\item\option{tocsection=hidden}\\
+%% This does create a section in the table of contents, but this is%% only visible when you view a slide that is part of this section.%% This could be used to append a section to the presentation which you%% can discuss if there is some extra time.
+Tạo mục tương ứng trong Bảng Mục lục, nhưng mục này chỉ nhìn thấy khi bạn
+đang xem một trong các |slide| của Mục đang xét. Điều này có ích, chẳng hạn khi
+bạn có thêm thời gian để trình bày mục này (một cách dự trữ!).
+\end{description}
+
+\DescribeOption{slide}
+%% This option controls whether the |\section|%% command creates a slide. The default value is |true|.Tuỳ chọn này cho phép hay không lệnh |\section|
+tạo riêng cho nó một |slide|. Mặc định là |true|.
+\begin{description}
+\item\option{slide=true}\\
+% A slide is created.
+Một |slide| được tạo ra với nội dung là tựa của mục.
+\item\option{slide=false}\\
+%% No slide will be created. If also |tocsection| is |false|, the%% |\section| command doesn't do anything. If it does create a table of%% contents section (|tocsection=| |true| or |hidden|), its link will%% point to the first slide in the section as the section itself%% doesn't have a slide.Không |slide| nào được tạo ra khi gặp lệnh |\section|.
+Nếu đồng thời |tocsection| nhận giá trị |false|,
+thì lệnh |\section| không làm gì cả. Nếu |tocsection| nhận giá trị |true|
+hoặc |hidden|, thì chọn mục tương ứng trong Bảng Mục lục, ta sẽ nhày đến
+|slide| đầu tiên của mục (bởi không có |slide| riêng cho Mục).
+\end{description}
+
+\DescribeOption{template}
+%% This option can be used to make the%% section slide with another template. By default, a normal |slide|%% environment is used to create the section slide, but if a style%% offers other templates that could be used for this purpose (for%% instance, the |wideslide| environment), then you can use this option%% to select that template. See section~\ref{sec:styles} for an%% overview of the available templates with every style.Tuỳ chọn này cho phép Mục đang xét chọn một mẫu khác.
+Theo mặc định, môi trường |slide| được dùng để tạo ra |slide| cho mục,
+nhưng nếu bạn muốn mẫu khác được dùng cho mục đích này,
+ví dụ |wideslide|, thì bạn có thể dùng tuỳ chọn này để chỉ định mẫu đó.
+Xem thêm ở Mục~\vref{sec:styles} để biết thêm chi tiết về các mẫu
+của các kiểu khác nhau.
+
+%% Finally, all options available to normal slides are available to%% slides created by |\section| as well (see section~\ref{sec:slides}).%% However, when the section does make a |tocsection|, |toc=| or |bm=|%% won't remove the table of contents entry or the bookmark%% respectively.
+\medskip
+Cuối cùng, mọi tuỳ chọn của |slide| đều có thể dùng cho |\section|,
+ví dụ |toc=|, |bm=|,\ldots Xem thêm ở Mục~\vref{sec:slides}.
+
+% =====================================================================
+
+%\subsection{Making an overview}
+\subsection{\texorpdfstring{Tạo slide Mục lục}{Tao slide Muc luc}}
+\label{sec:tableofcontents}
+
+\DescribeMacro{\tableofcontents}
+%% This command creates an overview of your presentation and can only%% be used on a slide.
+Lệnh này tạo |slide| Mục lục giúp bạn có cái nhìn tổng quan về trình diễn
+hoặc một phần (mục) của trình diễn.
+Lệnh  này chỉ được dùng bên trong môi trường tạo |slide|,
+và bạn có thể gọi nó bao nhiêu lần tuỳ thích.
+
+Nội dung được nói đến trong mục này là nội dung của |slide| Mục lục.
+Để ý rằng, |slide| Mục lục khác với Bảng Mục lục. Một trình diễn chỉ
+có một Bảng Mục lục nhưng có thể có nhiều |slide| mục lục; hơn nữa,
+thường thì Bảng Mục lục được tự động tạo ra.
+
+\begin{command}
+ `\cs{tableofcontents}\oarg{options}'
+\end{command}
+%% There are several \meta{options} to control the output of this%% command.
+Có vài tuỳ chọn cho lệnh như sau:
+
+\DescribeOption{type}
+%% This option controls whether certain material (depending on the%% input in the |content| option below) will be hidden or displayed in%% the inactive color\index{inactive color}. The default value is |0|.%% Compare with the |type| option for list environments%% (section~\ref{sec:lists}).Xác định giấu hoặc tô nhạt một vài phần (phụ thuộc vào giá trị của |content| dưói đây).
+Giá trị mặc định là |0|. So sánh với tuỳ chọn |type| của môi trường
+tạo danh sách ở Mục~\vref{sec:lists}.
+
+\begin{description}
+\item\option{type=0}\\
+%% When material is not of the requested type as specified in the%% |content| option, it will be hidden.
+Nếu nội dung không đúng kiểu như chỉ ra ở tuỳ chọn |content|, nó sẽ được
+giấu đi.
+\item\option{type=1}\\
+%% As |type=0|, but instead of hiding material, it will be typeset in%% the inactive color.
+Như trên, nhưng thay vì giấu đi, nội dung sẽ được hiện với màu tô nhạt.
+\end{description}
+
+\DescribeOption{content}
+%% The |content| option controls which elements will be included in the%% overview. The default value is |all|. The description below assumes%% that |type=0| was chosen, but the alternative text for |type=1| can%% easily be deduced.Tuỳ chọn này cho phép xác định những phần tử nào sẽ được thể hiện ở
+|slide| mục lục. Giá trị mặc định là |all|. Mô tả dưới đây giả định rằng
+|type=0| được chọn. Bạn có thể dễ dàng suy ra kết quả khi |type=1| từ mô tả này.
+
+\begin{description}
+\item\option{content=all}\\
+%% This will display a full overview of your presentation including all%% sections and slides, except the slides in hidden sections (see%% section~\ref{sec:section}).
+Cho ra |slide| đầy đủ, gồm mọi mục và |slide| trong trình diễn
+của bạn, trừ các mục ẩn (xem mô tả trong Mục~\vref{sec:section}). 
+\item\option{content=sections}\\
+%This displays only the sections in the presentation.
+Chỉ liệt kê các Mục của trình diễn.
+\item\option{content=currentsection}\\
+%This displays the current section only.
+Chỉ liệt kê các |slide| của mục hiện tại.
+\item\option{content=future}\\
+%This displays all content starting from the current slide.
+Liệt kê mọi mục và |slide| bắt đầu từ |slide| hiện tại.
+\item\option{content=futuresections}\\
+%This displays all sections, starting from the current section.
+Liệt kê mọi mục bắt đầu từ mục hiện tại.
+\end{description}
+
+%% We finish this section with a small example that will demonstrate%% how you can make a presentation that contains an overall overview of%% sections in the presentation, giving a general idea of the content,%% and per section a detailed overview of the slides in that section.
+Dưới đây là ví dụ nhỏ. Trình diễn ở ví dụ này gồm các mục,
+dầu mỗi mục là |slide| mục lục có nhiệm vụ tóm tắt (liệt kê) các
+phần của Mục đó.
+\begin{example}
+ \begin{slide}[toc=,bm=]{Overview}
+   \tableofcontents[content=sections]
+ \end{slide}
+ \section{First section}
+ \begin{slide}[toc=,bm=]{Overview of the first section}
+   \tableofcontents[content=currentsection,type=1]
+ \end{slide}
+ \begin{slide}{Some slide}
+ \end{slide}
+ \section{Second section}
+ ...
+\end{example}
+\endinput

@@ -1,0 +1,222 @@
+%\section{Compiling your presentation}
+\section{\texorpdfstring{Biên dịch. Cài đặt}{Bien dich. Cai dat}. Xem}
+\label{sec:compiling}
+
+% =====================================================================
+
+%\subsection{Dependencies}
+\subsection{\texorpdfstring{Gói phụ thuộc}{Goi phu thuoc}}
+
+\label{sec:dependencies}
+
+%% In table~\ref{tab:dependencies} is a list of packages that
+%% \pf{powerdot} uses to perform specific tasks. Dependencies of
+%% packages in this table are not listed. Notice further that styles
+%% may have extra requirements (see section~\ref{sec:styles}). In the
+%% table, `required' means that you should have a version \emph{at
+%% least} as new as listed and `tested' means that \pf{powerdot} was
+%% tested with this version, but that it could equally well work with
+%% an older or newer version than the one listed in the table. So, when
+%% trying to solve an error, first concentrate on solving version
+%% issues for the `required' packages. To find out which version of a
+%% package you are currently using, put |\listfiles| on the first line
+%% of your document, run it with \LaTeX, open the |.log| file and read
+%% the file list (see a \LaTeX\ manual for more information). If you
+%% need to update a package, you can get it from CTAN \cite{CTAN}.
+
+Ở Bảng~\vref{tab:dependencies} là danh sách các gói đòi hỏi bởi \pf{powerdot}
+(gói phụ thuộc của các gói trong bảng này không được liệt kê). Chú ý rằng
+mỗi kiểu có những đòi hỏi riêng (xem Mục~\vref{sec:styles}). Trong bảng dưới đây,
+các gói `|bắt buộc|' cho biết bạn không thể dùng phiên bản cũ hơn của gói đó;
+trong khi các gói `|đã kiểm tra|' có nghĩa \pf{powerdot} đã được kiểm tra
+sự tương thích với phiên bản đã chỉ ra, nhưng có thể vẫn gặp lỗi với các
+phiên bản \underline{cũ hơn} hoặc \underline{mới hơn} của gói đó.
+Để biết phiên bản của các gói được dùng, bạn hãy thêm lệnh |\listfiles|
+vào đầu tài liệu, biên dịch bằng \LaTeX{} rồi mở tập tin |.log| để xem
+kết quả. Để có bản cập nhật của các gói trên, bạn có thể tải chúng về
+từ CTAN \cite{CTAN}.% hoặc VietTUG \cite{VietTUG}.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{e}
+Gói/tập tin & Phiên bản & Ngày & Mức độ\\\hline
+\pf{xkeyval} \cite{xkeyval} & 2.5c & 2005/07/10 & bắt buộc\\
+\texttt{pstricks.sty} \cite{PSTricksWeb,PSTricks} & 0.2l & 2004/05/12 & bắt buộc\\
+\pf{xcolor} \cite{xcolor} & 1.11 & 2004/05/09 & bắt buộc\\
+\pf{enumitem} \cite{enumitem} & 1.0 & 2004/07/19 & bắt buộc\\\hline
+\pf{article} class & 1.4f & 2004/02/16 & đã kiểm tra\\
+\pf{geometry} \cite{geometry} & 3.2 & 2002/07/08 & đã kiểm tra\\
+\pf{hyperref} \cite{hyperref} & 6.74m & 2003/11/30 & đã kiểm tra\\
+\pf{graphicx} \cite{graphics} & 1.0f & 1999/02/16 & đã kiểm tra
+%%<<1.3>>
+%% \pf{float} \cite{float} & 1.3d & 2001/11/08 & đã kiểm tra
+\end{tabular}
+\caption{Gói phụ thuộc}\label{tab:dependencies}
+\end{table}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Cài đặt}{Cai dat}}
+
+Bạn tải về các gói sau đây:
+
+\medskip
+\noindent
+{\small
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/powerdot.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/enumitem.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/xcolor.zip}\\
+\url{ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/xkeyval.zip}\\
+\url{ftp://ftp.jaist.ac.jp/pub/TeX/tex-archive/graphics/pstricks/latex/pstricks.sty}
+}
+
+\medskip
+Sau khi xả nén các tập tin |.zip| (vào cùng thư mục nào đó),
+bạn có được cấu trúc thư mục như sau.
+\begin{example}
+  enumitem
+  `-- enumitem.sty
+  powerdot
+  |-- doc
+  |-- run
+  |   |-- powerdot-*.sty
+  |   `-- powerdot.cls
+  `-- source
+      `-- powerdot.dtx
+  xcolor
+  |-- xcolor.ins
+  xkeyval
+  |-- doc
+  |-- run
+  |   |-- *.tex
+  |   |-- *.sty
+\end{example}
+
+Bạn phải làm công việc tương đối phức tạp sau đây: biên dịch 
+tập tin |xcolor.ins|. Nếu chương trình soạn thảo của bạn không
+hỗ trợ  việc biên dịch tập tin này, bạn thử chạy từ dòng lệnh
+(tại thư mục |xcolor|)
+\begin{example}
+  latex xcolor.ins
+\end{example}
+Việc biên dịch này đảm bảo rằng trong thư mục |xcolor| ở trên
+sẽ xuất hiện thêm các tập tin |.def|, |.sty| và |.pro|.
+
+Bây giờ hãy tìm đến thư mục |LocalTeXMF| trên hệ thống của bạn.
+Đó thường là |c:\localtexmf| đối với Mik\TeX{} hoặc là |~/texmf|
+đối với te\TeX. Hãy tạo các thư mục sau bên dưới thư mục |LocalTeXMF|
+\begin{example}
+  tex/latex/xcolor
+  tex/latex/enumitem
+  tex/latex/xkeyval
+  tex/latex/powerdot
+  tex/latex/pstricks
+  dvips/xcolor
+\end{example}
+Hãy chép các tập tin vào thư mục tương ứng
+\begin{example}
+  dvips/xcolor        <= xcolor/*.pro
+  tex/latex/xcolor    <= xcolor/*.def xcolor/*.sty
+  tex/latex/enumitem  <= enumitem/enumitem.sty
+  tex/latex/xkeyval   <= xkeyval/run/*
+  tex/latex/powerdot  <= powerdot/run/*
+  tex/latex/pstricks  <= pstricks.sty
+\end{example}
+Cuối cùng, hãy cập nhật hệ thống \TeX{} của bạn.
+Với te\TeX{}, bạn thi hành lệnh sau
+\begin{command}
+  $ texhash ~/texmf
+\end{command}
+còn với Mik\TeX{}, bạn chạy chương trình |mo.exe| (từ Menu |RUN|
+chẳng hạn) rồi chọn `\textbf{Refresh now}' để cập nhật hệ thống \TeX.
+
+% =====================================================================
+
+%\subsection{Creating and viewing output}
+\subsection{\texorpdfstring{Biên dịch và xem kết quả}{Bien dich va xem ket qua}}
+\label{sec:creation}
+
+%% To compile your presentation, run it with \LaTeX. The DVI that is
+%% produced this way can be viewed with MiK\TeX's DVI viewer
+%% YAP.\footnote{Unless you are using \pf{pstricks-add} which distorts
+%% the coordinate system in DVI.} Unfortunately, xdvi and kdvi (kile)
+%% do not support all PostScript specials and hence these will display
+%% the presentation incorrectly. If your DVI viewer does support
+%% this, make sure that your DVI display settings match that of the
+%% presentation. In case you are using the |screen| paper, you should
+%% set the DVI display setting to using the letter paper format. If
+%% your DVI viewer allows for custom paper formats, use 8.25 inch by 11
+%% inch.
+Để có được trình diễn thực sự, đầu tiên, bạn biên dịch tài liệu nguồn
+bằng \LaTeX. Kết quả |DVI| cho bởi bước này có thể xem bằng trình |YAP|
+của Mik\TeX.\footnote{Trừ khi bạn sử dụng gói \pf{pstricks-add} làm ảnh
+hưởng đến cách tính tọa độ của YAP.} Thật không may, các chương trình |xdvi|
+và |kdvi| trên hệ thống |*nix| không hỗ trợ tập tin |DVI| có nhúng mã
+lệnh |PostScript|, do đó, bạn không thể thấy kết quả như ý với các trình xem này.
+Nếu trình xem |DVI| hỗ trợ |PostScript|, hãy chắc rằng các cài đặt của trình xem
+đó khớp với các thuộc tính tương ứng của trình diễn. Khi bạn tạo ra trình diễn
+|screen|, bạn nên cài đặt để trình xem hiển thị khổ xem |letter|.
+Tốt hơn nữa, nếu trình xem cho phép, bạn hãy chỉnh cỡ trang xem là 8.25 inch
+và 11 inch.
+
+%% Note that certain things that are produced with PostScript or PDF
+%% techniques will not work in a DVI viewer. Examples are hiding of
+%% material via postscript layers (as is done, for instance, by
+%% |\pause|, see section~\ref{sec:overlays}) and hyperlinks, for
+%% instance in the table of contents.
+Chú ý rằng, các kết quả, hiệu ứng tạo với mã lệnh |PostScript| hoặc |PDF|
+không thể thấy được với trình xem |DVI|. Ví dụ, việc che giấu các phần
+tử của danh sách, việc tạm dừng |slide| bằng lệnh |\pause|, \ldots
+
+%% If you want to produce a postscript document, run dvips over the DVI
+%% \emph{without any particular command line options related to
+%% orientation or paper size}. \pf{powerdot} will write information to
+%% the DVI file that helps dvips and ps2pdf (ghostscript) to create a
+%% proper document. If you have some reason that this does not work for
+%% you and you want to specify the paper and orientation yourself, you
+%% should use the |nopsheaders| option that is described in
+%% section~\ref{sec:setup}. The PostScript document could, for
+%% instance, be used to put multiple slides on a page using the |psnup|
+%% utility.
+Nếu bạn muốn có kết quả |postscript| của tài liệu, sử dụng chương trình 
+|dvips| để chuyển từ tập tin |DVI| thu đưọc sang sạng |PS|. \emph{Nhớ
+đừng chỉ ra cỡ trang ghi gọi lệnh này}, bởi \pf{powerdot} đã ghi sẵn các
+mã lệnh |PostScript| để định cỡ trang.% Xem thêm ở Mục~\vref{sec:setup}.
+
+Cuối cùng, từ kết quả |PS|, bạn có thể có được kết quả |PDF| bằng cách
+sử dụng chương trình chuyển đổi |ps2pdf|.\footnote{Hãy xem thêm về các chương
+trình ps2pdf12, ps2pdf13, ps2pdf14. Theo mặc định, ps2pdf tương đương với ps2pdf12.}
+Để ý rằng, chương trình |ps2pdf| cần sử dụng các công cụ của |PostScript|.
+Trên hệ thống Slackware Linux chẳng hạn, sau khi cài te\TeX{},
+bạn có thể cài thêm các gói |espgs| và |gnu-gs-fonts|
+để đảm bảo chương trình |ps2pdf| làm việc tốt. Với hệ thống \TeX{} trên |Windows|,
+bạn phải cài thêm chương trình |ghostscript| chẳng hạn.
+
+Từ kết quả |PS|, bạn cũng có thể dùng chương trình |psnup|
+để đặt nhiều |slide| lên cùng một trang.
+
+Trong quá trình chuyển đổi |DVI| sang sạng |PS| rồi |PDF|,
+nếu bạn gặp trục trặc với cỡ trang hoặc hướng trang,
+thử dùng tuỳ chọn |nopsheader| như đã nói ở Mục~\vref{sec:classopts};
+khi đó, bạn nhớ chỉ ra thiết lập của mình ở dòng lệnh khi gọi các chương trình
+|dvips| hoặc |ps2pdf|.
+
+%% To create a PDF document for your presentation, run ps2pdf over the
+%% PS file created with dvips. Also here, you can \emph{leave out any
+%% command line arguments related to paper size or orientation}. If
+%% this is problematic for you somehow, use the |nopsheaders| option as
+%% before and specify the paper and orientation at each intermediate
+%% step yourself.
+
+Tóm lại, nếu bạn có tài liệu |foo.tex|, thì quá trình biên dịch
+để tạo trình diễn gồm các bước sau (dấu \$ chỉ dấu nhắc ở dòng lệnh)
+\begin{command}
+  $ latex foo
+  $ latex foo
+  $ dvips -o foo.ps foo.dvi
+  $ ps2pdf foo.ps
+\end{command}
+(phải biên dịch một, hai hoặc nhiều lần hơn bằng |latex| để các tham khảo chéo
+và bảng Mục lục được chính xác.)
+
+\endinput

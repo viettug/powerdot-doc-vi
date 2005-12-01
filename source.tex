@@ -1,0 +1,59 @@
+%\section{Source code documentation}
+\section{\texorpdfstring{Mã nguồn}{Ma nguon}}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot}
+\label{ssec:sande}
+
+%% In case you want regenerate the package files from the source or
+%% want to have a look at the source code description, locate
+%% |powerdot.dtx|, search in the file for |\OnlyDescription| and remove
+%% that and do
+Mã nguồn của lớp \pf{powerdot} là tập tin |powerdot.dtx|.
+Biên dịch mã nguồn này bạn thu được tài liệu đầy đủ nhất về \pf{powerdot},
+kể cả mã \LaTeX{} của lớp với các chú thích kỹ thuật.
+
+Bạn có thể biên dịch mã nguồn này theo các bước sau:
+\begin{command}
+  latex powerdot.dtx
+  latex powerdot.dtx
+  bibtex powerdot
+  makeindex -s gglo.ist -o powerdot.gls powerdot.glo
+  makeindex -s gind.ist -o powerdot.ind powerdot.idx
+  latex powerdot.dtx
+  latex powerdot.dtx
+\end{command}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Mã nguồn}{Ma nguon} powerdot-doc-vn}
+
+Mã nguồn tài liệu \pf{powerdot-doc-vn} có trong tập tin |powerdot-*-doc-vn-src-*.zip|.
+%% Có hai tập tin |*.tex| là |powerdot-doc-vn.tex| và |powerdot-doc-vn-tcvn.tex|.
+%% Bạn có thể biên dịch tập tin đầu tiên nếu gói |vntex| trên hệ thống của
+%% bạn hỗ trợ |UTF-8| (
+Tập tin |powerdot-doc-vn.tex| cần hỗ trợ UTF-8 của gói |vntex|.
+Có thể bạn phải thay |\usepackage[utf8x]| bởi |\usepackage[utf8]|
+nếu hệ thống của bạn không có gói |ucs|.
+%% Tập tin còn lại dùng với hỗ trợ |TCVN| của |vntex|.
+
+Việc biên dịch tập tin (|powerdot-doc-vn.tex|) để có bản |PDF| như sau:
+\begin{command}
+  latex powerdot-doc-vn
+  latex powerdot-doc-vn
+  latex powerdot-doc-vn
+  dvips -o powerdot-doc-vn.ps powerdot-doc-vn.dvi
+  ps2pdf powerdot-doc-vn.ps
+\end{command}
+
+Nếu bạn muốn có bản in (hai màu đen trắng), trước khi biên dịch như trên,
+tạo tập tin |printctl.tex| như sau:
+\begin{command}
+  echo '\printtrue' > printctl.tex
+\end{command}
+
+Tập in |Makefile| đi kèm với mã nguồn chỉ dành cho mục đích tham khảo!
+Nó có thể hoạt động không như ý, thậm chí phá hỏng hệ thống của bạn!
+
+\endinput

@@ -1,0 +1,522 @@
+%\section{Setting up the presentation}
+\section{\texorpdfstring{Thiết lập cho trình diễn}{Thiet lap cho trinh dien}}
+\label{sec:setup}
+
+% This section will describe all options that are available to control% the output of the presentation and the looks of it.
+Mục này mô tả các tuỳ chọn để điều khiển kết quả xuất của trình diễn.
+
+% =====================================================================
+
+%\subsection{Document class options}
+\subsection{\texorpdfstring{Tuỳ chọn cho lớp}{Tuy chon cho lop}}
+
+\label{sec:classopts}
+
+%% We will start with the class options that are typed in the |\documentclass|%% command as a comma-separated list. For each option, the default%% value will be mentioned in the description. This is the value that%% will be used if you decide to not give a value to the option or not%% use the option at all.
+Các tuỳ chọn được cho khi gọi lệnh |\documentclass|, cách nhau
+bởi dấu phảy. Với mỗi tuỳ chọn dưới đây, giá trị mặc định được nêu
+trong mô tả -- đó là giá trị sẽ được dùng khi bạn không nêu ra tuỳ chọn
+khi gọi lệnh |\documentclass|, hoặc khi bạn nêu tuỳ chọn đó nhưng không
+đi kèm giá trị nào.
+
+\DescribeOption{mode}
+%% This options controls the kind of output that we want to produce.%% The default value is |present|.
+Tuỳ chọn này xác định loại kết quả xuất, mặc định là |present|.
+\begin{description}
+\item\option{mode=present}\\
+%% This mode is used when you want to create the actual presentation. It%% will enable overlays and transition effects. You can read more about%% overlays in section~\ref{sec:overlays}.
+Dùng |present| nếu bạn muốn tạo trình diễn thật sự (thay vì chỉ để kiểm tra
+trên màn hình). Với tuỳ chọn này, bạn có thể dùng |overlay| hoặc các hiệu ứng
+biến đổi. Đọc thêm ở Mục~\vref{sec:overlays} về |overlay|.
+\item\option{mode=print}\\
+%% This mode can be used when printing the slides including their visual
+%% markup, but without any overlay or transition effects.
+Dùng |print| nếu bạn muốn in trình diễn của mình -- với bản in, hiển nhiên
+các hiệu ứng hoặc overlay sẽ bị bỏ qua.
+\item\option{mode=handout}\\
+%% This mode will produce a black and white overview of your slides that%% can be used to make personal notes on, for distribution to students,%% a personal guide during your talk, etcetera.
+Dùng |handout| để có được bản xem qua (|overview|) trình diễn, với hai màu
+đen và trắng. Bản này thích hợp cho mục đích cá nhân, để phân phối cho sinh viên,
+để minh họa trong khi bạn đang thuyết trình,...
+\begin{description}
+\item\option{nopagebreaks}\\
+%% By default, the handout mode produces a document with two slides per%% page. If you want to fit more slides on a page, specify this option%% in the |\documentclass| command and \pf{powerdot} will let \LaTeX\%% decide on the places to insert a page break, namely when a page is%% full.
+Theo mặc định, với bản |handout|, mỗi trang sẽ bố trí hai |slide|.
+Nếu bạn muốn có nhiều hơn hai |slide| trên một trang, bạn hãy dùng tuỳ chọn
+này (tuỳ chọn này không có giá trị) khi gọi |\documentclass|, nhờ đó
+\pf{powerdot} giúp \LaTeX{} lựa chọn cách ngắt trang thích hợp.
+\end{description}
+\end{description}
+
+\DescribeOption{paper}
+%% This option has three possible values. The default value is |screen|.
+Tuỳ chọn này có thể nhận ba giá trị sau. Mặc định là |screen|.
+\begin{description}
+\item\option{paper=screen}\\
+%% This is a special format with screen optimized ratio (4/3). The%% actual page dimensions will be 8.25 inch by 11 inch. This paper format%% is not available for print or handout mode. In these modes, \pf{powerdot}%% will switch to a4 paper and put a warning that it did this in the%% log file of your presentation.
+Trang trình diễn có tỷ lệ thông thường của màn hình (4/3).
+Kích thước trang thực sự là 8.25 inch -- 11 inch. Kiểu này không
+phù hợp với |mode=print| hoặc |mode=handout|. Nếu bạn cố dùng
+|paper=screen| cùng với một trong |mode| vừa nói, \pf{powerdot} sẽ
+tự động chuyển qua kiểu trang a4 kèm với lời nhắc nhở.
+\item\option{paper=a4paper}\\
+%A4 paper will be used for the presentation or handout.
+Trang trình diễn bằng khổ a4, dùng với |mode=present| hoặc |mode=handout|.
+\item\option{paper=letterpaper}\\
+%Letter size paper will be used.
+Trang trình diễn kiểu |letter|
+\end{description}
+%% Some important information with respect to paper size, compiling and%% viewing presentations is available in section~\ref{sec:compiling}.
+Vài thông tin quan trọng về cỡ trang, biên dịch và xem trình diễn
+đưọc cho ở Mục~\vref{sec:compiling}.
+
+\DescribeOption{orient}
+%% This controls the orientation of the%% presentation. The default value is |landscape|.
+Tuỳ chọn này điều khiển hướng của trang, mặc định là |landscape| (nằm ngang).
+\begin{description}
+\item\option{orient=landscape}\\
+%% The presentation will be in landscape format. This value is not%% available in handout mode. In that mode, \pf{powerdot} will switch%% to portrait orientation and will warn you about this in the log%% file.
+Trang trình diễn nằm ngang. Giá trị này không thích hợp với |mode=handout|.
+Nếu cố dùng |mode| đó với tuỳ chọn |landscape|, \pf{powerdot} sẽ tự động
+chuyển qua kiểu |portrait| kèm theo lời nhắc nhở.
+\item\option{orient=portrait}\\
+%% This produces slides in portrait%% format. Notice that not all styles support portrait orientation. Please%% refer to section~\ref{sec:styles} for information about which styles%% do support the portrait orientation.
+Bố trí trang theo chiều đứng. Chú ý rằng không phải mọi kiểu trình diễn
+đều hỗ trợ chiều này. Vui lòng xem Mục~\vref{sec:styles} để biết thêm chi tiết.
+\end{description}
+
+\DescribeOption{display}
+%% This controls the production of slides and%% notes. The default value is |slides|.
+Điều khiển việc xuất ra các trang trình diễn (|slide|) và ghi chú cá nhân (|note|).
+Mặc định là |slides|.
+\begin{description}
+\item\option{display=slides}\\
+%% This will only typeset the slides in your presentation.
+Chỉ trình bày các trang trình diễn.
+\item\option{display=slidesnotes}\\
+%% This will typeset both the slides and the notes in your%% presentation. See also section~\ref{sec:notes} for more information%% about notes.
+Trình bày đồng thời trang trình diễn và ghi chú cá nhân.
+Xem thêm ở Mục~\vref{sec:notes}.
+\item\option{display=notes}\\
+%% This will typeset the notes only. To%% be able to typeset the slide numbers of the notes correctly, one should%% first run the presentation in slidesnotes mode once.
+Chỉ xuất ra kết quả gồm các ghi chú cá nhân.
+Để có thể cho đúng số trang, bạn cần phải biên dịch ở chế độ |slidenotes| trước.
+\end{description}
+
+%Here are some more options to control the output.
+Dưới đây là vài tuỳ chọn khác điều khiển kết quả xuất.
+\begin{description}
+\item\DescribeOption{size}\option{size}\\
+%% This is the size of the normal text font in points. Possible values%% are 8, 9, 10, 11, 12, 14, 17, 20 and the default value is%% 11.\footnote{Note that sizes other than 10, 11 and 12 are%% non-standard and it is assumed that you have the \pf{extsizes}%% bundle \cite{extsizes} installed, which provides these sizes.}
+Xác định cỡ chữ (văn bản). Các giá trị có thể là 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt.
+Giá trị mặc định là 11pt.\footnote{Chú ý rằng, các cỡ không phải là 10pt, 11pt hay 12pt
+không phải là kiểu chuẩn -- nên nếu dùng, trên hệ thống của bạn
+phải có cài đặt gói \pf{extsizes} \cite{extsizes}.}
+
+\textbf{\underline{Chú ý quan trọng:}}\\
+Nếu dùng \pf{powerdot} phiên bản 1.0, các giá trị của |size|
+là các số 8, 9, \ldots Với \pf{powerdot} phiên bản 1.1 trở về sau,
+bạn chỉ ra 8pt, 9pt, \ldots khi dùng tuỳ chọn này.
+\item\DescribeOption{style}\option{style}\\
+%% This controls the style to be loaded for the presentation. By%% default, the \pf{default} style will be loaded. For more styles, see%% section~\ref{sec:styles}.
+Xác định kiểu trình diễn, mặc định là \pf{default}. Xem thêm Mục~\vref{sec:styles}
+để biết thêm chi tiết về các kiểu.
+\item\DescribeOption{fleqn}\option{fleqn}\\
+%% This option makes equations flushed left. It does the same as the%% equally named option for the article class.
+Đánh chỉ số cho phương trình ở bên trái.
+\item\DescribeOption{leqno}\option{leqno}\\
+% Put equation numbers at the left. Also the same as in the article class.
+Đánh chỉ số cho phương trình ở bên phải.
+\item\DescribeOption{nopsheader}\option{nopsheader}\\
+%% By default, \pf{powerdot} will write a postscript command to the ps%% file to make sure that post processors like ps2pdf know which paper%% to use without the need to specify it on the command line. See also%% section~\vref{sec:compiling}. If you experience problems with post%% processing or printing or you want to specify the paper size in the%% post processing steps yourself, use this option.
+Theo mặc định, \pf{powerdot} sẽ ghi các lệnh |postscript| vào kết quả
+xuất dạng |PS|, nhờ đó các chương trình tương tự |ps2pdf| khi chuyển
+kết quả xuất |PS| sang dạng |PDF| sẽ xác định đúng kiểu trang -- bạn không
+cần phải chỉ ra khi gọi các chương trình đó ở dòng lệnh. Xem thêm
+Mục~\vref{sec:compiling}. Nếu bạn gặp trở ngại khi chuyển sang dạng |PDF|
+với các chương trình đó, hoặc khi in ấn, bạn có thể dùng tuỳ chọn này --
+và khi đó bạn nhớ chỉ ra kiểu giấy khi gọi các chương trình chuyển.
+\item\DescribeOption{hlentries}\option{hlentries}\\
+%% This highlights table of contents entries when the entry matches%% with the current slide and is |true| by default. See also%% section~\vref{sec:structure}. If you don't want highlighting of table%% of contents entries (for instance in print mode), use%% |hlentries=false|.
+Ở Bảng Mục lục,\footnote{Liệt kê các mục và các slide của trình diễn;
+bảng Mục lục xuất hiện ở mọi slide, trừ vài trường hợp đặc biệt.}
+mỗi thành phần sẽ được tô màu nổi bật (|highlight|)
+nếu nó tương ứng với |slide| hiện tại. Nếu bạn không muốn điều này,
+hãy dùng |hlentries=false|. Mặc định là |hlentries=true|. Xem thêm
+ở Mục~\vref{sec:structure}.
+\item\DescribeOption{hlsections}\option{hlsections}\\
+%% This highlights table of contents sections when the section matches%% with the current section in the presentation and is |false| by%% default. See also section~\vref{sec:structure}. Specifying this%% option turns highlighting of sections on. This could be useful when%% you are using a style that implements a split table of contents.
+Tương tự như trên, nhưng là các thành phần tương đương với |section|.
+Giá trị mặc định là |false|. Giá trị |true| có ích khi bạn dùng các kiểu
+trình diễn chia nhỏ bản Mục lục.
+\item\DescribeOption{blackslide}\option{blackslide}\\
+%% This option inserts a black slide in the presentation on page 1 and%% will automatically advance to page 2 when opening the presentation%% in a PDF viewer like Acrobat (Reader). The black slide has an%% embedded target called |blackslide| and you can make a clickable%% link to this slide by using
+Với tuỳ chọn này, một trang |slide| đen sẽ chèn vào đầu trình diễn (như vậy
+|slide| đen ở trang 1); trình diễn của bạn sẽ tự động nhảy qua trang 2 khi 
+được mở trong chương trình xem PDF (ví dụ Acrobat Reader). Trang |slide| đen
+đã được nhúng trước một đích gọi là |blackslide| nhờ đó bạn có thể thêm
+ở trang |slide| khác, chẳng hạn liên kết sau
+\begin{example}
+ \hyperlink{blackslide}{Click here to go to the black slide}
+\end{example}
+%% When you click anywhere in the black slide, you will go back to the%% originating slide. This option can be used to temporarily pause a%% presentation, for instance, to do a proof on the black board.
+Khi bạn |click| ở bất kỳ vị trí nào của |slide| đen, bạn sẽ đi về đúng
+trang |slide| ban đầu. Tuỳ chọn này có ích, chẳng hạn khi bạn muốn tạm
+ngưng trình diễn để thuyết minh trên bảng đen.
+\item\DescribeOption{clock}\option{clock}\\
+%% This displays a small digital clock on slides which you can use to
+%% check the time left for your presentation.
+Khi dùng tùy chọn này, một đồng hồ điện tử nhỏ xuất hiện trên |slide|,
+giúp bạn kiểm tra thường xuyên thời gian cho trình diễn của mình.
+\end{description}
+
+%Here is an example of a |\documentclass| command.
+Dưới đây là vài ví dụ giúp bạn hình dung lại các điều đã nói.
+\begin{example}
+ \documentclass[
+   size=12pt,
+   paper=screen,
+   mode=present,
+   display=slidesnotes,
+   style=tycja,
+   nopagebreaks,
+   blackslide,
+   fleqn
+ ]{powerdot}
+\end{example}
+%% This example sets up a presentation in \pf{tycja} style, with a black%% slide, normal size 12 points and flushed left equations.
+Với ví dụ này, trình diễn sẽ dùng kiểu \pf{tycja}, với trang |slide| đen,
+cỡ chữ 12 điểm, các phương trình được đánh số bên trái.
+\begin{example}
+ \documentclass[
+   size=12pt,
+   paper=letterpaper,
+   mode=handout,
+   display=slidesnotes,
+   style=tycja,
+   nopagebreaks,
+   blackslide,
+   fleqn
+ ]{powerdot}
+\end{example}
+%% Changing the |paper| and |mode| options, now produces a handout with%% possibly more than two slides per page due to the |nopagebreaks|%% option.
+Ở ví dụ này, ta thay đổi kiểu trang (|paper|) và chọn |mode=handout|
+cùng với tuỳ chọn |nopagebreaks| -- nhờ đó nhiều hơn hai trang |slide|
+sẽ được bố trí trên một trang giấy!
+
+% =====================================================================
+
+%\subsection{Setup options}
+\subsection{\texorpdfstring{Thiết lập trình diễn}{Thiet lap trinh dien}}
+\label{sec:pdsetup}
+
+\DescribeMacro{\pdsetup}
+%% There are several extra options that can help customizing your%% presentation. These options are not available via the%% |\documentclass| command. This has a technical reason.\footnote{The%% interested reader is referred to the section about the \pf{xkvltxp}%% package in the \pf{xkeyval} package documentation \cite{xkeyval}.}%% The options can be accessed via the |\pdsetup| command, which can%% only be used in the preamble of your presentation. The command takes%% one argument, which should contain a comma-separated list of%% options. The available options are described below.
+Dưới đây là các tuỳ chọn giúp bạn điều khiển tốt hơn nữa trình diễn của mình.
+Các tuỳ chọn này không phải chỉ ra khi gọi lệnh |\documentclass|,
+mà được chỉ ra trong tham số của lệnh |\pdsetup|.
+Có sự phân biệt này là vì lý do kỹ thuật.\footnote{%
+Nếu bạn quan tâm, thử tìm đọc mục về \pf{xkvltxp}
+trong tài liệu \cite{xkeyval} về gói \pf{xkeyval}).}
+Lệnh |\pdsetup| chấp nhận chỉ một tham số, là chuỗi các tuỳ chọn cách
+nhau bằng dấu phảy.
+
+%We distinguish two types of options. Options that can only be set
+%globally (acting for the entire presentation) using the |\pdsetup|
+%command and options that can be accessed both globally (via
+%|\pdsetup|) and locally (via slide environments, see section~\ref{sec:slides}).
+Cần phân biệt hai loại tuỳ chọn dùng với |\pdfsetup|.
+Loại đầu tiên chỉ dùng để chỉ ra các thuộc tính toàn cục,
+ảnh hưởng đến toàn bộ trình diễn. Loại thứ hai vừa có tính toàn cục,
+vừa có tính địa phương. Như vậy, với loại sau, bạn có thể dùng chúng
+cho từng |slide|, như mô tả ở Mục~\vref{sec:slides}.
+
+Ví dụ về |\pdfsetup| có thể xem ở \ref{sec:pdsetup.example}.
+
+%\subsubsection{Global options}
+\subsubsection{\texorpdfstring{Tuỳ chọn toàn cục}{Tuy chon toan cuc}}
+\label{sec:gopts}
+
+\begin{description}
+\item\DescribeOption{palette}\option{palette}\\
+%This specifies the palette to be used. A palette is a set of colors
+%defined by a style. To find out which palettes are defined by each
+%style, see section~\ref{sec:styles}.
+Chọn |palette|. Mỗi |palette| là tập hợp các màu được cung cấp bởi kiểu
+trình diễn. Để biết các |palette| của các kiểu trình diễn khác nhau,
+xem Mục~\vref{sec:styles}.
+\item\DescribeOptions{lf,rf}\option{lf,rf}\\
+%This determines the content of the left footer. By default, this is empty.
+Nội dung của |footer| (chân trang) bên trái hoặc bên phải. Mặc định là rỗng.
+%\item\DescribeOption{rf}\option{rf}\\
+% This determines the content of the right footer. By default, this is empty.
+%Như trên, nhưng cho bên phải.
+\item\DescribeOption{theslide}\option{theslide}\\
+%% This option controls how the slide number appears on the slide. By%% default this has the value |\arabic{slide}~/~\pageref*{lastslide}|,%% which could appear like |5/22|. Notice that the |\arabic{slide}|%% typesets the number of the current slide and that%% |\pageref*{lastslide}| typesets the number of the last%% slide.\footnote{We use the starred version of \cs{pageref} which is%% defined by \pf{hyperref} and does not create a link to the page that%% it is referring to.}
+Tuỳ chọn này xác định cánh đáng số các |slide|. Giá trị mặc định là
+\begin{command}
+  `\cs{arabic}'{slide}~/~`\cs{pageref}'*{lastslide}
+\end{command}
+mà với nó, các |slide| sẽ đánh số tương tự như |5/22| (slide 5, tổng số slide 22).
+Chú ý rằng, |\arabic{slide}| cho biết |slide| hiện tại, và |\pageref*{lastslide}|
+tổng số |slide|.%
+\footnote{Ta phải dùng \cs{pageref*}, phiên bản có sao của \cs{pageref},
+được định nghĩa bởi \pf{hyperref} nhờ đó ta thu đưọc số trang chứ không phải
+là liên kết đến trang.}
+\item\DescribeOption{thenote}\option{thenote}\\
+%% This is similar to the |theslide| option, but typesets the slide%% numbers of notes. The default value is%% |note~\arabic{note}~of~slide~\arabic{slide}| and |\arabic{note}|%% here typesets the number of the current note that goes with the%% current slide. This could appear like |note 2 of slide 7|.
+Tương tự như tuỳ chọn |theslide|, nhưng dành cho các ghi chú.
+Giá trị mặc định là
+\begin{command}
+  note~`\cs{arabic}'{note}~of~slide~`\cs{arabic}'{slide}
+\end{command}
+ở đây |\arabic{note}| là số chỉ ghi chú hiện tại. Kết quả sẽ tương tự
+như |note 2 of slide 7|. Với người dùng Việt, có lẽ phải định nghĩa lại
+như sau:
+\begin{command}
+  thenote=ghi chu~`\cs{arabic}'{note}~/~`\cs{arabic}'{slide}
+\end{command}
+
+\item\DescribeOption{counters}\option{counters}\\
+%% The |counters| option lists counters that you might want to protect%% on overlays. As material on overlays (see%% section~\ref{sec:overlays}) is processed multiple times, also%% \LaTeX\ counters, like the |equation| counter, might be increased%% too often. To avoid that your equations get different numbers on%% every overlay, use this option. The |equation|, |table|, |figure|,%% |footnote| and |mpfootnote| counters are already protected for you.%% If you use extra counters, for instance for theorems, list them in%% this option. Example:
+Danh sách |counter| (bộ đếm) cần được bảo vệ khi |overlay|.
+Tại sao? Các phương trình chẳng hạn, khi |overlay| (xem Mục~\vref{sec:overlays})
+sẽ được xử lý nhiều lần, do đó, số đếm của chúng không ngừng tăng lên
+nếu không được bảo vệ. Các bộ đếm được bảo vệ theo mặc định là |equation|,
+|table|, |figure|, |footnote| và |mpfootnote|. Nếu bạn muốn bảo vệ thêm
+chẳng hạn |theorem| và |lemma|, hãy dùng như ví dụ sau:
+\begin{example}
+  counters={theorem,lemma}
+\end{example}
+\item\DescribeOption{list}\option{list}\\
+%% This option takes a list of options that will be passed on to the
+%% \pf{enumitem} package that controls the layout of lists created by%% the |enumerate| and |itemize| environments. Example:
+Tuỳ chọn này chấp nhận một tham số, là danh sách các tuỳ chọn
+dành riêng cho gói \pf{enumitem} để điều khiển kết quả của danh sách
+tạo bởi các môi trường |enumerate| và |itemize|. Ví dụ
+\begin{example}
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+\end{example}
+%% See for more information on controlling the layout of lists the%% \pf{enumitem} package \cite{enumitem}.
+Hãy xem tài liệu hướng dẫn của gói \pf{enumitem} để có thêm các tuỳ chọn.
+\item\DescribeOptions{enumerate,itemize}\option{enumerate} \option{itemize}\\
+%As the |list| option, but only control |enumerate| environments.
+Tương tự tuỳ chọn |list|, nhưng dành cho môi trường |enumerate| và |itemize|.
+%% \item\DescribeOption{itemize}\option{itemize}\\%% %As the |list| option, but only control |itemize| environments.
+%% Tương tự tuỳ chọn |list|, nhưng chỉ dành cho môi trường |itemize|.
+\end{description}
+
+% =====================================================================
+
+%\subsubsection{Global and local options}
+\subsubsection{\texorpdfstring{Tuỳ chọn toàn cục và địa phương}{Tuy chon toan cuc}}
+\label{sec:glopts}
+
+Các tuỳ chọn nói trong mục này vừa có tính toàn cục, vừa có tính địa phương:
+chúng được thiết lập nhờ |\pdsetup| hoặc nhờ chỉ ra trong phần tham số bổ
+sung của từng |slide| (xem Mục~\ref{sec:slides}).
+
+\begin{description}
+\item\DescribeOption{trans}\option{trans}\\
+%% This option sets the default transition effect to be used in the%% presentation. These transition effects only work after compiling the%% presentation to PDF format. See also section~\ref{sec:compiling}.%% The following transition effects are supported: |Split|, |Blinds|,%% |Box|, |Wipe|, |Dissolve|, |Glitter| and |Replace|. When you are using%% a viewer that understands PDF 1.5, you can also use |Fly|, |Push|,%% |Cover|, |Uncover| or |Fade|. It is important to notice that most%% viewers are case sensitive, so, for instance, |box| will not work.
+Xác định hiệu ứng biến đổi mặc định cho trình diễn. Các hiệu ứng này
+chỉ thấy được trong kết quả |PDF|. Xem thêm ở Mục~\vref{sec:compiling}.
+Các hiệu ứng được hỗ trợ bao gồm: |Split|, |Blinds|,
+|Box|, |Wipe|, |Dissolve|, |Glitter| và |Replace|.
+Nếu bạn dùng chương trình xem hiểu dạng |PDF| 1.5 trở lên, bạn
+có thêm các hiệu ứng |Fly|, |Push|, |Cover|, |Uncover| và |Fade|.
+Điều quan trọng cần phải nhớ là, hầu hết các trình xem |PDF| đều phân
+biệt hoa thường, nên bạn phải chỉ ra |Box| thay vì |box|,...
+%% The default effect is |Replace| which just replaces one slide with%% another when browsing the slides. Note that some PDF viewers (like%% Acrobat Reader 5 and higher) only produce the transition effect in%% full screen mode. If you want to use a custom transition effect that%% is not listed in the list above (for instance, a wipe effect with a%% custom wipe direction), then that is possible. However,%% \pf{powerdot} will put a warning in your log file that the effect%% that you have chosen, might not work in the PDF viewer. Here is an%% example that does work.
+Hiệu ứng mặc định là |Replace| -- theo đó, khi xem trình diễn, |slide|
+sau sẽ thay thế |slide| trước. Để ý rằng, vài trình xem |PDF| (ví dụ
+Acrobat Reader 5) chỉ tạo các hiệu ứng khi xem ở chế độ toàn màn hình.
+Nếu bạn dùng một hiệu ứng riêng không có trong danh sách trên (ví dụ
+hiệu ứng |Wipe| với hướng theo ý bạn), \pf{powerdot} sẽ nhắc nhở về
+hiệu ứng đó (rằng có thể chúng không xem được). Dưới đây là ví dụ
+\begin{example}
+  trans=Wipe /Di 0
+\end{example}
+%% In Acrobat (Reader), this wipes from left to right instead of the%% default top to bottom. For more information, see a PDF Reference%% Manual.
+Trong Acrobat (Reader), hiệu ứng |Wipe| khai báo như trên sẽ có hướng
+từ trái sang phải, thay vì từ trên xuống dưới như mặc định.
+Để biết thêm chi tiết, xem tài liệu tham khảo về định dạng |PDF|.
+\item\DescribeOption{method}\option{method}\\
+%% This option can be used when a slide contains special material that
+%% does not get treated in the `usual' way by \LaTeX. Verbatim material
+%% is an example of this. Possible values are |normal| (the default),
+%% |direct| and |file|. We will come back to this option in detail in
+%% section~\ref{sec:verbatim}.
+Tuỳ chọn này được dùng khi có |slide| nào đó chứa nội dung được \LaTeX{}
+xử lý đặc biệt -- ví dụ nội dung của môi trường |verbatim|. Các giá trị
+có thể của tuỳ chọn này là: |normal| (mặc định), |direct| và |file|.
+Xem Mục~\vref{sec:verbatim} để biết thêm chi tiết.
+\item\DescribeOptions{logohook,logopos,logocmd}
+\option{logohook} \option{logopos} \option{logocmd}\\
+%% If |logopos| is specified, a logo defined by the value of the
+%% |logocmd| option will be put on slides. For this process, the
+%% |\rput| command of \pf{pstricks} \cite{PSTricksWeb,PSTricks} is
+%% used. This command also allows to specify the point of the logo that
+%% should be positioned there. This point can be entered via the
+%% |logohook| option and can take the values |tl|, |t|, |tr|, |r|,
+%% |Br|, |br|, |b|, |bl|, |Bl|, |l|, |B| and |c|. For more information,
+%% consult the \pf{pstricks} documentation. Here is an example that
+%% integrates the flower of the \pf{default} style into the \pf{husky}
+%% style.
+Các tuỳ chọn này cho phép đặt |logo| của bạn vào |slide|, nhờ lệnh |\rput|
+của \pf{pstrics} \cite{PSTricksWeb,PSTricks}. Giá trị của |logopos| xác định
+vị trí |logo|; tuỳ chọn |logocmd| dùng để định nghĩa |logo| (ví dụ nạp một hình 
+vẽ); cuối cùng, |logohook| dùng để xác định độ lệch của |logo|,
+các giá trị có thể là |tl|, |t|, |tr|, |r|,
+|Br|, |br|, |b|, |bl|, |Bl|, |l|, |B| và |c| (trên-trái, trái, trên phải, phải,\ldots).
+Xem chi tiết về các sử dụng các giá trị này trong tài liệu \pf{pstricks}.
+Trong ví dụ dưới đây, ta sẽ dùng |logo| là hình ảnh đóa hoa (trong kiểu |default|)
+để thay thế cho |logo| của kiểu |husky|:
+\begin{example}
+  \documentclass[style=husky]{powerdot}
+  \pdsetup{
+    logohook=t,
+    logopos={.088\slidewidth,.99\slideheight},
+    logocmd={\includegraphics[height=.08\slideheight]{powerdot-default.ps}}
+  }
+  \begin{document}
+  ...
+  \end{document}
+\end{example}
+The default values for |logohook| and |logopos| are |tl| and
+|{0,\slideheight}| respectively.
+\end{description}
+% =====================================================================
+%% A special feature of \pf{powerdot}, which can be used to make
+%% presentations come alive, is the use of random dots. These dots will
+%% be placed anywhere on your slides and use the colors defined by the
+%% palette that you use. Overlays will carry the same dots. This
+%% feature uses |random.tex| \cite{random}. Several options are
+%% available to control the appearance of the random dots.
+\begin{version}{1.3}\space
+Một tính năng đặc biệt của \pf{powerdot}, được thêm vào từ bản 1.3,
+giúp cho trình diễn sống động hơn, đó là hỗ trợ \emph{chấm ngẫu nhiên}.
+Các dấu chấm sẽ xuất hiện ngẫu nhiên trên trình diễn, sử dụng chỉ ra trong
+|palette|. Các |overlay| sẽ sử dụng cùng các dấu chấm đó. Tính năng này
+sử dụng |random.tex| \cite{random}. Dưới đây là các tuỳ chọn điều khiển hiệu ứng này.
+\end{version}
+% =====================================================================
+\begin{description}
+\item\DescribeOption{randomdots}\option{randomdots}\\
+%% If set to |true|, random dots will be generated. |false| will turn
+%% off the feature. Default value is |true|.
+Giá trị mặc định là |true|, nghĩa là các dấu chấm sẽ được sinh ra.
+Dùng |false| nếu bạn muốn tắt hiệu ứng này.
+\item\DescribeOptions{dmindots,dmaxdots}\option{dmindots} \option{dmaxdots}\\
+%% The number of dots per slide is also random. These options set the
+%% minimum and maximum dots per slide. Default values are |5| and |40|,
+%% respectively.
+Số dấu chấm tối đa và tối thiểu được sinh ra trong mỗi |slide|.
+Giá trị mặc định là |5| và |40|.
+\item\DescribeOptions{dminsize,dmaxsize}\option{dminsize} \option{dmaxsize}\\
+%% The minimum and maximum radius of the dots. Default values are |5pt|
+%% and |40pt|, respectively.
+Bán kính tối đa và tối thiểu của dấu chấm. Mặc định là |5pt| và |40pt|.
+\item\DescribeOptions{dminwidth,dmaxwidth,dminheight,dmaxheight}\option{dminwidth}
+\option{dmaxwidth} \option{dminheight} \option{dmaxheight}\\
+%% These options determine the area on the slide that can be used for
+%% the random dots. By default, these values are set such that dots can
+%% cover the entire slide, but you might want to adjust that such that,
+%% for instance, only the text area can be filled with dots. The
+%% default values are |0pt|, |\slidewidth|, |0pt|, |\slideheight|.
+Xác định khu vực (miền) nơi các dấu chấm xuất hiện. Theo mặc định,
+các dấu chấm sẽ xuất hiện có thể xuất hiện ở vị trí bất kỳ trên |slide|,
+ứng với các giá trị: |0pt|, |\slidewidth|, |0pt|, |\slideheight|.
+Bạn có thể thay đổi như trong ví dụ sau:
+%% 
+%% Here is an example that allows dots in a smaller rectangle on the
+%% slide.
+\begin{example}
+ \pdsetup{
+   dminwidth=.1\slidewidth,maxwidth=.9\slidewidth,
+   dminheight=.2\slideheight,maxheight=.8\slideheight
+ }
+\end{example}
+\item\DescribeOption{dbright}\option{dbright}\\
+%% This option can be used to adjust the brightness of the dots. The
+%% number should be an integer between -100 and 100. If the number is
+%% negative, the color will be adjusted towards black, with -100 giving
+%% black. If the number is positive, the color will be adjusted towards
+%% white, with 100 giving white. With a light background, you may want
+%% to choose |bright| to be positive. With a dark background, you may
+%% want to set it negative. The default value is |60|, meaning a mixture
+%% of 40\% of the original color and 60\% white.
+Tuỳ chọn này điều khiển độ sáng |brightness| của các dấu chấm.
+Giá trị của tùy chọn này là số nguyên nằm trong khoảng |-100| đến |100|.
+Nếu dùng số âm, màu sẽ tối hơn so với bình thường; giá trị |-100| tương
+đương với màu đen. Tương tự cho các giá trị âm. Với màu nền tối, bạn
+nên chọn giá trị dương cho |dbright|. Mặc định là |60|, nghĩa là
+độ sáng của dấu chấm là tổ hợp gồm \verb!50%! màu gốc và \verb!60%! màu trắng.
+\item\DescribeOption{dots}\option{dots}\\
+%% This option is used for passing extra parameters to the |\psdot|
+%% command, which creates the random dots. You could, for instance,
+%% change the style of the dots or the line width. See for more
+%% information about |\psdot| the \pf{pstricks} documentation
+%% \cite{PSTricksWeb,PSTricks}. \pf{powerdot} defines two extra dot
+%% styles that can be used for the random dots. These styles are
+%% |ocircle| (open circle) and |osquare| (open square). The
+Tuỳ chọn này nhằm chuyển các tham số đến lệnh |\psdot|. % để tạo dấu chấm.
+Bạn dùng tuỳ chọn này, chẳng hạn khi muốn chọn kiểu của dấu chấm.
+Xem thông tin về lệnh |\psdot| trong tài liệu của \pf{pstricks}
+\cite{PSTricksWeb,PSTricks}. Gói \pf{powerdot} định nghĩa trước hai kiểu
+dấu chấm là |ocircle| (vòng tròn) và |osquare| (đường vuông\footnote{biên của hình vuông ;)}).
+
+%% Here are two examples for the use of random dots.
+Dưới đây là hai ví dụ:
+\begin{example}
+ \pdsetup{
+   randomdots,dots={dotstyle=osquare}
+ }
+\end{example}
+Trong ví dụ trên ta dùng các đường vuông thay vì các dấu chấm
+được tô đầy.
+\begin{example}
+ \pdsetup{
+   randomdots,dminsize=500pt,dmaxsize=600pt,dmindots=2,
+   dmaxdots=5,dots={dotstyle=ocircle,linewidth=.5pt}
+ }
+\end{example}
+%This example puts at most 5 big circles on slides. These circles do
+%not fit on the slides and you will only see parts of them in the
+%shape of curves.
+Bây giờ, ở mỗi |slide| xuất hiện tối thiểu |5| dấu chấm -- là
+các vòng tròn. Do ta chỉ ra kích thước quá lớn,
+bạn sẽ thấy trên màn hình xuất hiện một phần của mối dấu chấm đó mà thôi.
+\end{description}
+
+\subsubsection{\texorpdfstring{Ví dụ}{Vi du}}
+\label{sec:pdsetup.example}
+%% Here is an example of a |\pdsetup| command that one could use to set up%% the presentation.
+Dưới đây là ví dụ về cài đặt cho trình diễn dùng lệnh |\pdfsetup|.
+\begin{example}
+ \pdsetup{
+   lf=Trinh dien cua toi,
+   rf=VietTUG,
+   trans=Wipe,
+   theslide=\arabic{slide},
+   randomdots,dmaxdots=80
+ }
+\end{example}
+%% This sets the left and right footers and will initialize the%% transition effect to |Wipe|. Further, slide numbers will not include%% the number of the last slide, but only the number of the current%% slide.
+Với thiết lập như trên, sẽ có chân trang bên trái và bên phải,
+hiệu ứng mặc định cho trình diễn là |Wipe|; ngoài ra,
+chỉ số |slide| sẽ không bao gồm tổng số |slide| như mặc định,
+mà chỉ gồm số chỉ |slide| hiện tại.
+%%<<1.3>>
+%% Finally, slides will be covered with at most 80 random dots.
+Cuối cùng, ở mỗi |slide| sẽ xuất hiện nhiều nhất 80 dấu chấm.
+
+%% A small note is necessary with respect to the appearance of footers.%% The slide number (controlled by the |theslide| option) will be added%% to a footer. Most styles add it too the right footer. If both the%% footer and the slide number are non empty, |~--~| will be inserted%% in between them to separate them. Styles might modify this default%% behavior however.
+Một chú ý nhỏ về cách thể hiện ở chân trang (|footer|).
+Chỉ số |slide| (điều khiển bởi tuỳ chọn |theslide|) sẽ được thêm vào
+chân trang (|footer|). Hầu hết các kiểu trình diễn đều thêm vào bên phải.
+Nếu cả |footer| và chỉ số |slide| đều không rỗng, |~--~| sẽ được thêm
+vào để ngăn cách chúng. Khi thiết kế kiểu, ta có thể thay đổi
+cách xử lý này.
+
+\endinput

@@ -1,0 +1,147 @@
+
+\section{\texorpdfstring{Tạo trình diễn}{Tao trinh dien}}
+\label{sec:slides}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Trang tiêu đề}{Trang tieu de}}
+\label{sec:titleslide}
+
+\DescribeMacro{\title}
+\DescribeMacro{\author}
+\DescribeMacro{\and}
+\DescribeMacro{\date}
+\DescribeMacro{\maketitle}
+%% The title slide is created by the |\maketitle| command. Its use is%% the same as in the standard \LaTeX\ document classes. See an example%% below.
+Trang tiêu đề của trình diễn được tạo bởi |\maketitle|, tương tự như cách
+quen thuộc trong \LaTeX{} chuẩn. Từ phiên bản 1.3, lệnh này còn chấp nhận
+các tham số bổ sung:
+\begin{command}
+ `\cs{maketitle}\oarg{options}'
+\end{command}
+%Its use is the same as in the standard \LaTeX\ document classes. The
+%optional argument \meta{options} can contain any option from
+%section~\ref{sec:glopts}. Specifying such an option in the
+%|\maketitle| command will only have an effect on the title slide and
+%not on other slides. See an example below.
+Phần tham số bổ sung \meta{options} có thể chứa bất kỳ tùy chọn nào
+được nói đến trong Mục~\vref{sec:glopts}. Việc chỉ ra các bổ sung này
+tất nhiên chỉ ảnh hưởng đến |slide| tiêu đề mà thôi! Ví dụ
+\begin{example}
+ \documentclass{powerdot}
+   \title{Title}
+   \author{You \and me}
+   \date{September 14, 2005}
+ \begin{document}
+    \maketitle
+    ...
+ \end{document}
+\end{example}
+%% The |author|, |title| and |date| declarations provide the text to be%% used when making a title page. The design of the title page is%% specific to the style in use. Notice the use of |\and| for%% separating multiple authors. See a \LaTeX\ manual \cite{companion}%% for more information on commands such as |\title| and |\author|.
+Các khai báo |author|, |title| và |date| cho biết lần lượt
+tác giả, tiêu đề và ngày tháng cùa trình diễn. Trang tiêu đề được
+trình bày theo thiết kế của kiểu trình diễn. Xem tài liệu \cite{companion}
+về chi tiết của các lệnh |\title| và |\author|.
+
+% =====================================================================
+
+%\subsection{Other slides}
+\subsection{\texorpdfstring{Tạo slide}{Tao slide}}
+
+\label{sec:otherslides}
+
+\DescribeEnv{slide}
+%% The centerpiece of every presentation is the%% slide. In \pf{powerdot}, the content of each slide is placed in a%% |slide| environment.
+Phần trung tâm của mọi trình diễn là |slide|.
+Với \pf{powerdot}, nội dung của mỗi |slide| được đặt trong môi trường
+|slide|.
+\begin{command}
+ `\cs{begin}\texttt{\{slide\}}\oarg{options}\marg{slide title}'
+ `\meta{body}'
+ `\cs{end}\texttt{\{slide\}}'
+\end{command}
+
+%% In section~\ref{sec:overlays} we'll see how to give some life to the%% slides, but for now, let's look at a simple example.
+Ở Mục~\vref{sec:overlays}, bạn sẽ biết tinh chỉnh với tuỳ chọn |overlay|.
+Bây giờ, hãy xem một ví dụ đơn giản:
+\begin{example}
+ \begin{slide}{First slide}
+   Hello World.
+ \end{slide}
+\end{example}
+%% The slide environment has one required argument, namely the slide%% title. When a slide is created, the slide title is used to create an%% entry in the table of contents and in the list of bookmarks. The%% table of contents is a listing of the slides and section titles in%% the presentation that appears on each slide.
+Môi trường |slide| có một tham số bắt buộc, là tựa của |slide|.
+Khi một |slide| được tạo ra, tựa của nó sẽ được liệt kê trong
+Bảng Mục lục và trong danh sách các |bookmark|. Bảng Mục lục
+liệt kê tựa của tất cả các |slide| và các mục của trình diễn, và nó sẽ
+xuất hiện ở mọi |slide|.
+
+%% The table of contents is clickable (when the presentation is%% compiled into PDF) and serves as a nice way to jump from location to%% location within the presentation. The bookmark list is only present%% when compilation is taken all the way to the PDF file format. It%% also serves as a table of contents, but this list does not appear on%% \textit{any} of the slides, but in a separate window in a PDF%% viewer. In the example above, the entries in both table contents and%% the list of bookmarks would be titled |First slide|.
+Ở Bảng Mục lục, có các liên kết (khi biên dịch qua dạng |PDF|) nhờ đó
+bạn có thể dễ dàng tìm kiếm các |slide| trong trình diễn của mình.
+Trong khi đó, danh sách |bookmark| cũng tương tự như Bảng Mục lục, nhưng
+nó không xuất hiện bất kỳ |slide| nào, mà ở một cửa sổ đặc biệt của trình
+xem |PDF|. Trong ví dụ trên, tựa |First slide| sẽ xuất hiện trong cả
+Bảng Mục lục và danh sách |bookmark|. Danh sách |bookmark| chỉ có khi
+biên dịch kết quả thành dạng |PDF|.
+
+%% The \meta{options} for the |slide| environment allow the user to%% specify alternative titles for the table of contents and bookmark%% entries. There is also a |trans| option that works only for the%% current slide.
+%% Phần tham số bổ sung (hay tuỳ chọn) (\meta{options})
+%% của |slide| cho phép chỉ định tựa (tiêu đề) sẽ xuất hiện ở Bảng Mục lục
+%% và danh sách |bookmark|. Tuỳ chọn cũng giúp ta chỉ định hiệu ứng (|trans|)
+%% dùng riêng cho |slide| đó thôi.
+Phần tuỳ chọn này bao gồm bất kỳ tùy chọn nào được nói đến ở Mục~\vref{sec:glopts}
+và một trong các tuỳ chọn sau đây:
+%The \meta{options} for the |slide| environment can contain any
+%option listed in section~\ref{sec:glopts}. Additionally, these allow
+%the user to specify alternative titles for the table of contents and
+%bookmark entries.
+
+\begin{description}
+\item\DescribeOption{toc}\option{toc}\\
+%% When specified, the value is used for the entry in the table of%% contents; otherwise, the slide title is used. If |toc=| is%% specified, then no entry is created.
+Chỉ định tựa sẽ xuất hiện trong Bảng Mục lục, thay vì tựa của |slide|.
+Nếu dùng |toc=|, sẽ không có phần tử tương ứng nào được tạo ra ở
+Bảng Mục lục.
+\item\DescribeOption{bm}\option{bm}\\
+%% When specified, the value is used for the bookmark entry; otherwise,%% the slide title is used. If |bm=| is specified, then no entry is%% created.
+Tương tự như trên, nhưng cho danh sách |bookmark|.
+%%<<dropped since 1.3>>%% \item\DescribeOption{trans}\option{trans}\\%% %% This works the same as the |trans| option described in%% %% section~\ref{sec:pdsetup}, except that it sets the transition effect%% %% of the current slide only (when used in the slide \meta{options})%% %% and not for the entire presentation.
+%% Cách dùng tùy chọn này hoàn toàn tương tự như mô tả ở Mục~\vref{sec:pdsetup};
+%% các thay đổi mà tuỳ chọn này tạo ra chỉ có tác dụng trong |slide|
+%% đang xét, không phải cho toàn bộ trình diễn hay các |slide| khác.
+\end{description}
+
+%% These optional arguments are especially useful when the title of a%% slide is extremely long or when the title contains \LaTeX\ commands%% that do not render correctly in the bookmarks.\footnote{The%% bookmarking procedure uses \cs{pdfstringdef} from the \pf{hyperref}%% package, and it can process accented characters such as \cs{"i}.}%% When specifying entries, be sure to hide special characters `|,|'%% and `|=|' between curly brackets `|{|' and `|}|'. Let's look at an%% example that uses these optional arguments.
+Các tuỳ chọn |toc| và |bm| đặc biệt hữu ích nếu tựa của |slide|
+quá dài hoặc khi nó chứa các lệnh \LaTeX{} mà kết quả của lệnh đó
+không thể hiện tốt trong danh sách |bookmark|.\footnote{Các bookmark
+được tạo bằng cách dùng \cs{pdfstringdef} từ gói \pf{hyperref},
+có thể chấp nhận vài ký tự có dấu chẳng hạn \cs{"i}.}
+Khi dùng tuỳ chọn |toc| và |bm|, bạn nhớ đặt các ký tự đặc biệt
+`|,|' và `|=|' bên trong cặp dấu ngoặc `|{|' và `|}|'. Dưới đây là ví dụ:
+
+\begin{example}
+ \begin{slide}[toc=,bm={LaTeX, i*i=-1}]{\color{red}\LaTeX, $i^2=-1$}
+   My slide contents.
+ \end{slide}
+\end{example}
+
+%% In this example, the slide title will appear as {\color{red}\LaTeX,%% $i^2=-1$}. This text will not render correctly in a bookmark entry.%% An attempt is made to correct this, but often, the correction does%% not produce an equivalent text. This particular title would be%% rendered in the bookmark list as |redLaTeX, i2=-1|. On the other%% hand, the manually specified bookmark entry is rendered as:%% |LaTeX, i*i=-1|. Notice, no entry is created in the table of contents,%% because of the use of |toc=|.
+Ở ví dụ này, tựa của |slide| sẽ là {\color{red}\LaTeX, $i^2=-1$}.
+Kết quả này không thể nào thể hiện đúng trong danh sách |bookmark|.
+Đôi khi, việc cố gắng sửa chữa tựa có thể mang lại kết quả, nhưng
+thường thì cố gắng không như ý. Chính vì thế, ta đã dùng tuỳ chọn |bm|,
+nhờ đó kết quả thu được ở danh sách |bookmark| sẽ là |LaTeX, i*i=-1|.
+Chú ý rằng, không có tựa nào được tạo ra ở Bảng Mục lục, do ta đã chỉ
+định |toc=|.
+
+%% In addition to the |slide| environment, each individual style can%% define its own environments. Many styles have a |wideslide|%% environment. The idea is that one might have information that does%% not fit nicely on a slide with a table of contents listed, as this%% consumes some space. In such cases, it is preferable to use a slide%% that does not list the table of contents. The |wideslide|%% environment provides this functionality and has more space for the%% actual slide content. See section~\ref{sec:styles} for information%% on the various environments provided by the styles.
+Cùng với môi trường |slide|, các kiểu trình diễn có cung cấp các
+môi trường riêng để tạo |slide|. Phổ biến nhất là môi trường |wideslide|
+để giải quyết vấn đề: đôi khi, nội dung của |slide| quá khổ, không thể
+bố trí trên một trang cùng với Bảng Mục lục; môi trường |wideslide|
+cho ta |slide| đặc biệt ở đó không xuất hiện Mục lục. Xem thêm Mục~\vref{sec:styles}
+để biết thêm các môi trường cung cấp bởi các kiểu trình diễn.
+
+\endinput

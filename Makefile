@@ -1,9 +1,17 @@
+#
+# Makefile by kyanh <kyanh@o2.pl>
+# For `powerdot-doc-vn' bundle
+# (vietnamese version of powerdot documentation)
+#
+# WARNING: this Makefile may*NOT* work on your system
+#
+
 POWERDOT = 1.3
-DOC = powerdot-doc-vi
-DOCDIST = powerdot-$(POWERDOT)-doc-vi
-SRCDIST  = powerdot-$(POWERDOT)-doc-vi
+DOC = powerdot-doc-vn
+DOCDIST = powerdot-$(POWERDOT)-doc-vn
+SRCDIST  = powerdot-$(POWERDOT)-doc-vn
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
-EXAMPLE = powerdot-eg-vi
+EXAMPLE = powerdot-eg-vn
 
 default: latex
 
@@ -34,8 +42,8 @@ dist-doc:
 	$(DOC).pdf \
 	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 	README
-	@zip -9r distro/powerdot-$(POWERDOT)-styles-vi-$(VERSION).zip \
-	powerdot-eg-vi-paintings.pdf powerdot-eg-vi-*.jpg powerdot-eg-vi.tex \
+	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
+	powerdot-eg-vn-paintings.pdf powerdot-eg-vn-*.jpg powerdot-eg-vn.tex \
 	README.styles
 
 dist-src:
@@ -44,8 +52,8 @@ dist-src:
 	README TODO COPYING \
 	Makefile \
 	$(DOC).tex $(DOC).ktvnum \
-	pd-preamble-vi.tex \
-	powerdot-eg-vi.tex
+	pd-preamble-vn.tex \
+	powerdot-eg-vn.tex
 
 dist: dist-doc dist-src
 
@@ -56,7 +64,7 @@ clean:
 clean-all: example-clean-all clean
 
 backup:
-	@zip -9r ~/backup/powerdot-doc-vi.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
+	@zip -9r ~/backup/powerdot-doc-vn.zip ./ -x *.{dvi,ps,pdf,log,aux,toc,out,zip}
 
 all: clean doc example-all dist backup clean-all
 

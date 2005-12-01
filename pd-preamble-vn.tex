@@ -17,7 +17,11 @@
 \usepackage{varioref}
 \usepackage[varioref]{vnhook}
 %% \usepackage[dvips]{thumbpdf}
-\usepackage[colorlinks,draft=false,
+\usepackage[
+	ps2pdf,
+	naturalnames=true,
+	hypertexnames=false,
+	colorlinks,draft=false,
 	pdftitle={Powerdot Manual, Vietnamese edition},
 	pdfauthor={Hendri Adriaens - Christopher Ellison. Translator: kyanh <kyanh@o2.pl>},
 	pdfsubject={Presentation},
@@ -138,20 +142,20 @@
   \item[\ding{42}]%[\textbf{A\arabic{FAQ}}]%
 }
 \def\styleexample#1{%
-  \IfFileExists{powerdot-eg-vi-#1.1}{%
-    \IfFileExists{powerdot-eg-vi-#1.2}{%
+  \IfFileExists{powerdot-eg-vn-#1.1}{%
+    \IfFileExists{powerdot-eg-vn-#1.2}{%
       \hspace*{\stretch{1}}%
       \fbox{\includegraphics[scale=.16,angle=-90,clip]%
-        {powerdot-eg-vi-#1.1}}%
+        {powerdot-eg-vn-#1.1}}%
       \hspace*{\stretch{2}}%
       \fbox{\includegraphics[scale=.16,angle=-90,clip]%
-        {powerdot-eg-vi-#1.2}}%
+        {powerdot-eg-vn-#1.2}}%
       \hspace*{\stretch{1}}\par
     }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
   }{\textbf{Không tìm thấy hình cho kiểu \pf{#1}.}}%
 }%
 
-\def\styleexample#1{\centerline{xem \url{powerdot-eg-vi-#1.jpg}}}
+\def\styleexample#1{\centerline{xem \url{powerdot-eg-vn-#1.jpg}}}
 
 % =====================================================================
 
@@ -200,9 +204,9 @@
 
 \newenvironment{version}[1]{%
 \ifprint
-	\fcolorbox{black}{white}{\texttt{#1}\space }\color{black}
+	\fcolorbox{black}{white}{\texttt{#1}}\color{black}
 \else
-	\fcolorbox{black}{blue}{\texttt{#1}\space }\color{blue}
+	\fcolorbox{black}{blue}{\texttt{#1}}\color{blue}
 \fi
 }{}
 
@@ -222,6 +226,20 @@
 }
 \makeatother
 
+% =====================================================================
+
+\AtBeginDocument{
+\def\reftextfaceafter {%
+{\ohorn} trang \reftextvario{\dj\'\ocircumflex{}i di\d{\ecircumflex}n}{k\'\ecircumflex{} ti\'\ecircumflex{}p}}%
+\def\reftextfacebefore{%
+{\ohorn} trang \reftextvario{\dj{}\'\ocircumflex{}i di\d{\ecircumflex}n}{k\'\ecircumflex{} tr\uhorn\'\ohorn{}c}}%
+\def\reftextafter{trang \reftextvario{li\`\ecircumflex{}n sau}{sau}}%
+\def\reftextbefore{trang \reftextvario{li\`\ecircumflex{}n tr\uhorn\'\ohorn{}c}{tr\uhorn\'\ohorn{}c}}%
+\def\reftextcurrent{trang \reftextvario{n\`ay}{hi\d{\ecircumflex}n t\d{a}i}}%
+\def\reftextfaraway#1{trang~\pageref{#1}}%
+\def\reftextpagerange#1#2{c\'ac trang \pageref{#1}--\pageref{#2}}%
+\def\reftextlabelrange#1#2{\ref{#1} \dj\'\ecircumflex{}n \ref{#2}}%
+}
 % =====================================================================
 
 \endinput

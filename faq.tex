@@ -1,0 +1,179 @@
+\section{\texorpdfstring{Hỏi-Đáp}{Hoi-Dap}}
+
+\label{sec:questions}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Câu hỏi thường gặp}{Cau hoi thuong gap}}
+
+\label{sec:FAQ}
+
+%% This section is devoted to Frequently Asked Questions. Please read
+%% it carefully; your problem might be solved by this section.
+Dưới đây là các câu hỏi thường gặp. Hãy đọc kỹ, vì trục trặc của bạn
+có thể tìm thấy lời giải ở đây.
+\begin{itemize}[leftmargin=0pt]
+\question
+%Does \pf{powerdot} have example files? Where can I find them?
+Lớp \pf{powerdot} có cung cấp ví dụ? Tìm chúng ở đâu?
+\answer
+%% \pf{powerdot} comes with several examples that should be in the doc
+%% tree of your \LaTeX\ installation. More precisely:
+%% \url{/doc/latex/powerdot}. If you can't find them there, download
+%% them from \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
+Trong thư mục tài liệu |doc| của bộ cài đặt \LaTeX, bạn có thể
+tìm thấy các ví dụ cho \pf{powerdot}. Nếu không thấy ở đó, có thể
+tải chúng về từ \url{CTAN:/macros/latex/contrib/powerdot} \cite{CTAN}.
+\question %I'm getting errors on the simplest example!
+Sao tôi gặp lỗi chỉ với ví dụ đơn giản nhất?
+\answer %Did you read section~\ref{sec:dependencies}?
+Bạn đã đọc Mục~\vref{sec:dependencies} chưa?
+\question %% I made a typo in the slide code, ran the file, got an
+%% error, corrected the typo and reran, but now get an error that
+%% doesn't go away.
+Tôi gặp lỗi |typo| trong tài liệu nguồn, do đó gặp lỗi khi biên dịch
+tài liệu. Sau đó, tôi đã sửa lỗi |typo| đó và biên dịch, nhưng lỗi đã
+gặp vẫn xuất hiện.
+\answer %Remove the |.bm| and |.toc| files and try again.
+Hãy xóa các tập tin |.bm| và |.toc| và thử lại xem.
+\question
+%My figure/table produces the error: \texttt{Not in outer par mode}.
+Các môi trường |figure| và |table| sinh ra lỗi: \texttt{Note in outer par mode}.
+\answer
+%You have asked \LaTeX\ to float the figure or table using something like
+Bạn đã yêu cầu \LaTeX{} dùng các môi trường |float|, tương tự như ví dụ sau
+\begin{example}
+ \begin{figure}[htb]
+\end{example}
+%% \LaTeX\ has nowhere to float the figure or table to. Remove the
+%% optional argument (here |[htb]|) and the figure or table will work.
+Nguyên nhân sinh ra lỗi là \LaTeX{} không có chỗ để bố trí |float|.
+Vì thế, hãy thử bỏ đi tham số của môi trường |figure| hoặc |table|,
+trong ví dụ trên là |[htb]|.
+%% \question
+%% %How can I put verbatim text on slides?
+%% Làm thế nào để dùng môi trường |verbatim| trong |slide|?
+%% \answer
+%% %% You can do this by using a temporary box to store the material
+%% %% in or, for instance, the \pf{fancyvrb} package which has a special
+%% %% environment for this. See two examples below.
+%% Lưu nội dung của |verbatim| tạm thời vào một |box| hoặc sử dụng gói \pf{fancyvrb}.
+%% Hãy xem ví dụ sau đây\\
+%% \begin{minipage}[t]{.49\linewidth}
+%% \begin{example}
+%%   \documentclass{powerdot}
+%%   \usepackage{listings}
+%%   \newsavebox\someverb
+%%   \begin{document}
+%%   \begin{lrbox}{\someverb}
+%%     \begin{lstlisting}
+%%       Some text.
+%%     \end{lstlisting}
+%%   \end{lrbox}
+%%   \begin{slide}{Listing}
+%%     \usebox\someverb
+%%   \end{slide}
+%%   \end{document}
+%% \end{example}
+%% \end{minipage}\hfill
+%% \begin{minipage}[t]{.49\linewidth}
+%% \begin{example}
+%%   \documentclass{powerdot}
+%%   \usepackage{fancyvrb}
+%%   \begin{document}
+%%     \begin{SaveVerbatim}{someverb}
+%%       Some text.
+%%     \end{SaveVerbatim}
+%%     \begin{slide}{Verbatim}
+%%       \BUseVerbatim{someverb}
+%%     \end{slide}
+%%   \end{document}
+%% \end{example}
+%% \end{minipage}
+\question
+% |\pause| does not work in the |align| environment.
+Lệnh |\pause| không làm việc bên trong môi trường |align|?
+\answer
+%% |align| does several tricky things, which make it impossible
+%% to use |\pause|. Use |\onslide| instead. See section~\ref{sec:onslide}.
+Môi trường |align| có vài xử lý đặc biệt không tương thích với |\pause|.
+Sử dụng |\onslide| để thay thế cho |\pause|. Xem Mục~\vref{sec:onslide}.
+\question
+%Can I contribute to this project?
+Tôi có thể đóng góp cho dự án \pf{powerdot}?
+\answer
+%% Certainly. If you find bugs\footnote{Make sure that you confirm that
+%% the bug is really caused by \pf{powerdot} and not by another package
+%% that you use.} or typos, please send a message to the mailinglist
+%% (see section~\ref{sec:mailinglist}), If you have developed your own
+%% style and would like to see it included in \pf{powerdot}, please
+%% inform us by private e-mail. Notice that contributions will fall
+%% under the overall \pf{powerdot} license and copyright notice, but
+%% that your name will be included in the documentation when you make a
+%% contribution.
+Tất nhiên. Nếu bạn gặp (lỗi) |BUGS|\footnote{Hãy chắc rằng đó là lỗi do
+\pf{powerdot} sinh ra chứ không phải bởi gói khác.} hoặc lỗi |typo|, vui lòng
+gửi thư đến |mailinglist| (xem Mục~\vref{sec:mailinglist}). Nếu bạn thiết
+kế kiểu trình diễn riêng và muốn chúng có trong bản phân phối của \pf{powerdot},
+vui lòng gửi email riêng cho tác giả. Chú ý rằng, tác phẩm của bạn sẽ được
+phân phối theo |license| và |copyright| của \pf{powerdot}; tên của bạn
+sẽ được nêu trong tài liệu của \pf{powerdot}.
+\end{itemize}
+
+%% If your question has not been answered at this point, advance to the
+%% next section where to find more answers.
+Nếu bạn có các câu hỏi khác, không nằm trong danh sách trên, hãy xem
+Mục kế tiếp để biết cách tìm câu trả lời.
+
+% =====================================================================
+
+\subsection{Mailinglist}
+
+\label{sec:mailinglist}
+
+\pf{powerdot}
+%%has a mailinglist from \url{freelists.org} and has its
+%% website here:
+có |mailinglist| riêng ở
+\begin{center}
+\url{http://www.freelists.org/list/powerdot}
+\end{center}
+%% There is a link to `List Archive'. Please search this archive before
+%% posting a question. Your problem might already have been solved in
+%% the past.
+Với vấn đề bạn gặp phải, thử tìm kiếm ở phần lưu trữ (|archive|)
+của |mailinglist|.
+%%
+%% If that is not the case, use the box on the page to type your e-mail
+%% address, choose the action `Subscribe' and click `Go!'. Then follow
+%% the instructions that arrive to you by e-mail. At a certain moment,
+%% you can login for the first time using an authorization code sent to
+%% you by e-mail. After logging in, you can create a password for
+%% future sessions using the `Main Menu' button. The other buttons
+%% provide you some info and options for your account.
+Nếu không tìm ra, bạn có thể đăng ký làm thành viên của |mailinglist|
+bằng cách vào phần |subscribe| và nhấn nút |go|. Hãy kiểm tra hộp thư
+của bạn vào theo các hướng dẫn trong đó. Sau khi là thành viên của
+|mailinglist|, bạn có thể gửi các câu hỏi mới, bằng cách gửi email tới
+%địa chỉ
+%When you are all set, you can write to the list by sending an e-mail to
+%\begin{center}
+\url{powerdot@freelists.org}
+%\end{center}
+
+%% When writing to the list, please keep in mind the following very
+%% important issues.
+Khi gửi câu hỏi đến |mailinglist|, hãy nhớ kỹ những điều quan trọng sau
+\begin{dinglist}{44}%[leftmargin=0pt]
+\item %We are volunteers!
+Trả lời cho bạn là những người tình nguyện.
+\item %Always supply a \emph{minimal} example demonstrating your problem.
+Luôn cung cấp ví dụ đơn giản nhất có thể để minh họa cho trục trặc của bạn.
+\item %Don't send big files over the list.
+Không gửi kèm các tập tin kích thước lớn đến |mailinglist|.
+\end{dinglist}
+
+%We hope you will enjoy this service.
+Hy vọng rằng |mailinglist| sẽ giúp ích cho bạn.
+
+\endinput

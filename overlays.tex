@@ -1,0 +1,367 @@
+\section{Overlay}
+\label{sec:overlays}
+
+%% It is often the case that you don't want all the information on the%% slide to appear at once. Rather, the information should appear one%% item at a time. In \pf{powerdot}, this is achieved with overlays.%% Each slide can be comprised of many overlays, and the overlays are%% displayed one at a time.
+Với trình diễn, nhiều khi bạn không muốn mọi thông tin trên |slide|
+xuất hiện cùng một lúc, mà tuần tự từng ý từng ý một. Với \pf{powerdot},
+bạn có thể đạt kết quả này nhờ |overlay|. Mỗi |slide| hiển nhiên
+có thể gồm nhiều |overlay|; tại mỗi thời điểm, chỉ có một |overlay|
+được thể hiện.
+
+% =====================================================================
+
+%\subsection{The \cs{pause} command}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{pause}}
+
+\label{sec:pause}
+
+\DescribeMacro{\pause}
+%% The easiest way to display information%% sequentially is to use the |\pause| command.
+Cách đơn giản nhất để tuần tự hóa thông tin trên |slide|
+là dùng lệnh |\pause|.
+\begin{command}
+ `\cs{pause}\oarg{number}'
+\end{command}
+Dưới đây là ví dụ đơn giản:
+\begin{example}
+ \begin{slide}{Simple overlay}
+   power\pause dot
+ \end{slide}
+\end{example}
+%% The slide's information is displayed and continues until the%% |\pause| command is encountered. No further output within the same%% slide is displayed until the click of the mouse or the touch of the%% keyboard. Then, the content will continue to display until all the%% information is displayed or until another |\pause| command is%% encountered. In this example, |power| is displayed on the first%% overlay, and |powerdot| is the displayed on the second overlay.  The%% |\pause| command is often used within the |itemize| and |enumerate|%% environments. For example,
+Thông tin của |slide| được thể hiện và tiếp tục cho đến khi gặp lệnh |\pause|
+đầu tiên. Không có thêm kết quả nào xuất hiện cho đến khi bạn |click|
+chuột hoặc gõ phím bất kỳ. Sau đó, nội dung |slide| sẽ được thể hiện
+cho đến khi mọi thông tin đều xuất hiện hoặc cho tới khi gặp lệnh |\pause|
+kế tiếp. Trong ví dụ trên, |power| sẽ xuất hiện trong |overlay| đầu tiên,
+và |powerdot| sẽ xuất hiện ở |overlay| tiếp theo. Lệnh |\pause| thường được
+dùng cùng với các môi trường |itemize| hoặc |enumerate|. Ví dụ
+\begin{example}
+ \begin{slide}{Multiple pauses}
+   power\pause dot \pause
+   \begin{itemize}
+     \item Let me pause\ldots \pause
+     \item \ldots while I talk \pause and chew bubble gum. \pause
+     \item Perhaps you'll be persuaded.
+     \item Perhaps not.
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% Since |\pause| was used before the |itemize| environment, no item%% will appear until the third overlay. Then, each item will be%% displayed one at a time, each on their own overlay. More information%% on using lists will follow in the next section.
+Bởi vì |\pause| được dùng trước môi trường |itemize|, không có
+phần tử nào của danh sách xuất hiện cho tới |overlay| thứ ba.
+Sau đó, các phần tử sẽ lần lượt xuất hiện trong các |overlay|
+kế tiếp. Việc điều khiển danh sách sẽ được bàn kỹ hơn ở Mục kế tiếp.
+
+%% The optional argument of the |\pause| command specifies the number%% of overlays to pause. An example usage is:
+Lệnh |\pause| chấp nhận tham số bổ sung cho biết phải dừng bao nhiêu |overlay|.
+\begin{example}
+ \begin{slide}{Pause longer}
+   \begin{itemize}
+     \item A \pause
+     \item B \pause[2]
+     \item C
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% In the example above, item |C| will appear on the fourth overlay.%% The usefulness of this option will become more apparent in the next%% section; so we will revisit a similar example at that time.
+Trong ví dụ trên, phần tử |C| của danh sách xuất hiện ở |overlay|
+thứ bốn. Tuỳ chọn có vẻ vô dụng này sẽ được đề cập lại ở Mục tiếp theo,
+ở đó ta sẽ gặp lại ví dụ tương tự ví dụ trên đây.
+
+% =====================================================================
+
+%\subsection{List environments}
+\subsection{\texorpdfstring{Tạo danh sách}{Tao danh sach}}
+
+\label{sec:lists}
+
+%% The list environments, |itemize| and |enumerate|, have special%% treatments in \pf{powerdot}. They have an optional argument that%% will be taken care off by the \pf{enumitem} package (see%% \cite{enumitem}). \pf{powerdot} supplies an extra key for this%% optional argument. In the examples that follow, features will be%% described using the |itemize| environment but they also apply to the%% |enumerate| environment.
+Các môi trường tạo danh sách |itemize| và |enumerate| được xử lý
+đặc biệt trong \pf{powerdot}. Chúng đều có tham số tuỳ chọn điều khiển
+bởi gói \pf{enumitem} (xem \cite{enumitem}). Lớp \pf{powerdot} cung
+cấp nhiều khóa cho tuỳ chọn này. Trong các ví dụ sau đây, các tính năng
+được minh họa với môi trường |itemize|, nhưng bạn cũng có thể áp dụng
+cách làm tương tự cho môi trường |enumerate|.
+
+%Here is the typical usage of the |itemize| environment:
+Dưới đây là ví dụ đơn giản nhất về cách dùng môi trường |itemize|:
+\begin{example}
+ \begin{slide}{Basic itemize}
+   \begin{itemize}
+     \item A \pause
+     \item B \pause
+     \item C
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% The display is simple, each item appears one at a time with each%% overlay.
+Kết quả của ví dụ là danh sách đơn giản, mỗi phần tử của nó
+được thể hiện ở một |overlay|.
+
+\DescribeOption{type}
+%% Suppose we wanted every item to show, but we only wanted one item to%% appear `active' at once. This can be accomplished via the |type|%% option for the |itemize| environment. The default value is |0|.
+Giả định rằng ta muốn mọi phần tử của danh sách sẽ được thể hiện,
+nhưng tại mỗi thời điểm chỉ một và một phần tử của danh sách xuất hiện
+ở |slide|. Điều này có thể đạt được bằng cách chỉ định kiểu với |type|
+trong phần tham số bổ sung của môi trường (giá trị mặc định là |0|).
+\begin{example}
+ \begin{slide}{Type 1 itemize}
+   \begin{itemize}[type=1]
+     \item A \pause
+     \item B \pause
+     \item C
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% Now, every item will be displayed in the \emph{inactive%% color}\index{inactive color} (which is defined by the style that you%% use), and the item's font color will become the active one on the%% overlay that it would normally appear on. The default behavior is%% given by |type=0|.
+Bây giờ, mọi phần tử đều được thể hiện với \emph{màu nhạt}\index{inactive color}
+(màu được định nghĩa bởi kiểu trình diễn); khi |overlay| của một phần
+tử được thể hiện, phần tử đó sẽ được tô đậm để làm nổi bật nó so
+với các phần tử khác. Sự phân biệt của hai |type| có thể minh họa như
+sau (dấu |*| chỉ màu nhạt):
+\begin{example}
+     type=0        type=1
+  1: x------       x------
+  2: xx-----       *x----- 
+  3: xxx----       **x---- 
+  4: xxxx---       ***x--- 
+  5: xxxxx--       ****x--
+  6: xxxxxx-       *****x-
+\end{example}
+
+%% Lists can also be nested to create complicated structures. When a%% list is nested, it inherits the setting of the |type| option from%% the `parent' list, but that can be overruled by specifying the%% |type| option in the optional argument of the nested list. We%% present here one example, but many more can be created by nesting%% lists of different types in different ways.
+Các danh sách có thể lồng nhau. Khi xảy ra trường hợp này, các danh sách
+thứ cấp sẽ thừa hưởng giá trị của |type| ở môi trường mẹ.
+Tất nhiên, với bất kỳ danh sách nào, ta cũng có thể đặt lại giá trị cho |type|.
+Dưới đây là ví dụ về hai danh sách lồng nhau:
+\begin{example}
+ \begin{slide}{Nested lists}
+   \begin{itemize}
+     \item A\pause
+     \begin{itemize}[type=1]
+       \item B\pause
+     \end{itemize}
+     \item C
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% This displays |A| and |B| on the first overlay, but |B| is inactive.%% On overlay 2, |B| will become active and on overlay 3, |C| will%% become visible.
+Kết quả là phần tử |A| và |B| được thể hiện ở |overlay| đầu tiên,
+nhưng phần tử |B| được tô màu nhạt. Ở |overlay| thứ hai, phần tử |B|
+sẽ được tô màu đậm, và ở |overlay| thứ ba, |C| sẽ được tô đậm.
+
+% =====================================================================
+
+%\subsection{The \cs{item} command}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{item}}
+
+\DescribeMacro{\item}
+%% The |\item| command has an extra \emph{optional} argument in%% \pf{powerdot} which allows for creating overlays in a more flexible%% way then |\pause| provides.
+Lệnh |\item| để tạo phần tử cho danh sách có thể nhận tham số bổ sung (\emph{optional})
+cho phép tạo các |overlay| linh hoạt hơn lệnh |\pause|.
+\begin{command}
+ `\cs{item}\oarg{label}\larg{overlays}'
+\end{command}
+%% This optional argument should contain an overlay specification%% stating on which overlays you want the item to appear. This%% specification is a comma separated list where each item can used the%% notation as in table~\ref{tab:item}.
+Tham số bổ sung \meta{overlays} này là danh sách các |overlay|
+mà phần tử sẽ xuất hiện (có nghĩa, một phần tử
+có thể xuất hiện ở một hay nhiều |overlay| được chỉ ra). Trong
+danh sách này, các |overlay| được cho bởi số, cách nhau bởi dấu phảy.
+\begin{table}[htb]\centering
+\begin{tabular}{d}
+Cú pháp&Ý nghĩa\\\hline
+\texttt{x}&Chỉ ở |overlay| \texttt{x}\\
+\texttt{-x}&Các |overlay| nhỏ hơn hoặc bằng \texttt{x}\\
+\texttt{x-}&Các |overlay| lớn hơn hoặc bằng \texttt{x}\\
+\texttt{x-y}&Các |overlay| từ \texttt{x} đến \texttt{y},
+bao gồm cả \texttt{x} và \texttt{y}\\
+\end{tabular}
+%\caption{\cs{item} and \cs{onslide} notation}
+\caption{Quy ước cho \cs{item} và \cs{onslide}}
+\label{tab:item}
+\end{table}
+%% The \meta{label} argument is the standard optional argument for%% |\item| in \LaTeX. A \LaTeX\ manual \cite{companion} can tell you%% more about this argument.
+Tham số \meta{label} được hiểu tương tự như trong \LaTeX{} chuẩn,
+xem chi tiết ở chẳng hạn \cite{companion}.
+
+%Here is an example.
+Dưới đây là ví dụ
+\begin{example}
+ \begin{slide}{Active itemize}
+   \begin{itemize}[type=1]
+    \item<1> A
+    \item<2> B
+    \item<3> C
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% Here we have said that |A| should only be active on overlay 1, |B|%% should only be active on overlay 2, and |C| should only be active on%% overlay 3. Again, when the item is not active, it appears in the%% inactive color because of |type=1|.
+Với ví dụ này, phần tử |A| chỉ xuất hiện với màu tô đậm ở |overlay 1|,
+phần tử |B| chỉ xuất hiện và được tô đậm ở |overlay| thứ hai,... Để ý rằng,
+do chỉ định |type=1|, nếu phần tử không phải là phần tử hiện tại,
+màu của nó được tô nhạt. Ta có thể minh họa như sau (chữ THƯỜNG chỉ màu nhạt):
+\begin{example}
+  1: --A---- 
+  2: --aB--- 
+  3: --abC--
+\end{example}
+%% If |type=0| is specified and if each item is given an overlay%% option, then each item will appear only when it is active. When the%% item is not active, then it will not show on the slide at all. More%% examples demonstrating the syntax for \meta{overlays} will be%% discussed in the next section.
+Nếu chỉ định |type=0| và nếu mỗi phần tử của danh sách đều có thêm
+tham số bổ sung chỉ định |overlay|, thì một phần tử sẽ bị giấu
+hoàn toàn chứ không phải được tô màu nhạt. Ví dụ:
+\begin{example}
+  1: --A---- 
+  2: ---B--- 
+  3: ----C--
+\end{example}
+
+Ví dụ nhiều hơn về cú pháp của \meta{overlays} được cho ở Mục tiếp theo.
+
+% =====================================================================
+
+%\subsection{The \cs{onslide} command}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{onslide}}
+\label{sec:onslide}
+
+\DescribeMacro{\onslide}
+%Overlays can also be achieved using the |\onslide| command.
+Các |overlay| có thể thu được nhờ lệnh |\onslide|.
+\begin{command}
+ `\cs{onslide}\marg{overlays}\marg{text}'
+\end{command}
+%% This command takes an \meta{overlays} specification as first%% argument and the \meta{text} to apply it to as second argument. The%% \meta{overlays} on which the text will appear are specified as a%% comma separated list with syntax as in table~\ref{tab:item}. We%% start off with a simple example.
+Ở lệnh này, tham số \meta{overlays} ở vị trí thứ nhất;
+tham số \meta{text} ở vị trí thứ hai chỉ nội dung cần biểu diễn.
+Tham số \meta{overlays} là danh sách các |overlay|,
+với cú pháp được nêu ở Bảng~\vref{tab:item}. Xét ví dụ sau đây.
+\begin{example}
+ \begin{slide}{Simple onslide}
+   \onslide{1,2}{power}\onslide{2}{dot}
+ \end{slide}
+\end{example}
+%% We have instructed |power| to appear on overlays one and two, and%% |dot| to appear only on overlay two. As you might guess, this%% example has the same output as our first |\pause| example. Yet, it%% is clearly the case that our syntax is more complicated. However,%% this slight ``complication'' also allows for much more flexibility.
+Ở đây, chúng ta muốn |power| xuất hiện ở |overlay| thứ nhất và hai,
+và |dot| chỉ xuất hiện ở |overlay| thứ hai. Bạn có thể đoán được rằng,
+kết quả của ví dụ trên giống như khi dùng lệnh |\pause| ở ví dụ đầu tiên.
+Bạn có thể ngạc nhiên là, nếu vậy thì việc đưa ra lệnh |\oneslide|
+có vẻ rắc rối. Thực tế thì điều này có dụng ý, giúp cho bạn linh hoạt
+hơn trong quá trình tạo |overlay|.
+
+\DescribeMacro{\onslide+}
+%% Consider the above example with the following modifications:
+Ta hãy xét ví dụ trên, nhưng với một chút thay đổi như sau:
+\begin{example}
+ \begin{slide}{Simple onslide+}
+   \onslide+{1}{power}\onslide+{2}{dot}
+ \end{slide}
+\end{example}
+%% The |\onslide+| command displays its content in a different manner%% altogether. Now, |dot| appears on every overlay, but it is in%% inactive color\index{inactive color} and matches the normal font%% color \textit{only} on overlay two. This is comparable to the%% |type=1| behavior for lists (see section~\ref{sec:lists}).
+%Lệnh |\onslide+| cho phép biểu diễn nội dung của nó nhiều cách khác nhau.
+Bây giờ, cụm từ |dot| xuất hiện ở mọi |overlay|, nhưng nó
+có màu tô nhạt,\index{inactive color} và được tô màu bình thường
+chỉ khi nó xuất hiện ở |overlay| thứ hai. Điều này có nét tương
+tự như khi dùng |type=1| đối với danh sách (xem Mục~\vref{sec:lists}).
+Để ý rằng, ở đây ta nói đến các |overlay| tổng quát, không chỉ đơn
+giản là danh sách. Ta minh họa kết quả trên như sau đây, chữ HOA
+chỉ rằng chữ được tô màu bình thường, còn chữ THƯỜNG chỉ màu nhạt
+\begin{example}
+  1: POWERdot
+  2: powerDOT
+\end{example}
+%% When executing this example, we will also notice that the |\onslide|%% command does hide material, but still reserves the right amount of%% space for it: on overlay 2, the |dot|s appear right above each%% other. The next command does not reserve space.
+Ta để ý rằng, mặc dù thực hiện 'giấu' (|\oneslide|)
+hoặc tô màu nhạt (|\oneslide+|) cho nội dung \meta{text}, nó vẫn giữ một khoảng
+trắng cho phần nội dung đó -- hệt như khi nội dung đó xuất hiện.
+Lệnh |\onslide*| trong được mô tả sau đây sẽ không làm như vậy.
+
+\DescribeMacro{\onslide*}
+%% Instead of hiding and reserving space%% (|\onslide|) or putting \meta{text} in the inactive color%% (|\onslide+|) when the overlay doesn't match \meta{overlays}, this%% command just eats the material altogether. To understand the%% differences, consider the following example:
+Thay vì 'giấu' (hoặc tô màu nhạt) cho phần nội dung \meta{text},
+nếu nội dung \meta{text} không được thiết lập để hiển thị ở \meta{overlay},
+lệnh này bỏ qua hoàn toàn nội dung đó. Để rõ hơn, ta hãy xét ví dụ sau đây:
+\begin{example}
+ \begin{slide}{Simple onslide*}
+   \onslide{1}{power}\onslide{2}{dot}\\
+   \onslide+{1}{power}\onslide+{2}{dot}\\
+   \onslide*{1}{power}\onslide*{2}{dot}
+ \end{slide}
+\end{example}
+%% The output of the first two lines, we are already familiar with. The%% third line displays |power| on overlay 1 and |dot| on overlay 2, but%% no space for |power| is reserved on overlay 2. Hence |dot| will%% start on the cursor position that |power| started on overlay 1 and%% it is not aligned below the other two |dots|.
+Kết quả của hai dòng đầu tiên chúng ta đã quen thuộc. Hãy xét dòng thứ ba.
+Chữ |power| xuất hiện ở |overlay| thứ nhất, còn |dot| ở |overlay| thứ hai.
+Tuy nhiên, không có khoảng trắng nào được dành cho |power| ở |overlay| thứ
+hai. Do đó, |dot| sẽ xuất hiện ở vị trí mà |power| xuất hiện. Kết quả có
+thể minh họa như sau (chữ HOA: tô màu thường, chữ THƯỜNG: tô màu nhạt;
+mỗi chữ x tượng trưng cho một vị trí bỏ trống).
+\begin{example}
+  1: POWERxxx   2: xxxxxDOT
+  1: POWERdot   2: powerDOT
+  1: POWERxxx   2: DOTxxxxx
+\end{example}
+%% We finish with an example of the syntax that is possible with%% |\item| and |\onslide|. Remember that these commands take a comma%% separated list for the \meta{overlays} specification and that each%% element can used the syntax as explained in table~\ref{tab:item}.%% The various variations are demonstrated in the example below.
+Ta kết thúc mục này với ví dụ phức tạp. Nhớ rằng những lệnh
+|\item| và |\onslide| nhận tham số \meta{overlays} là danh sách
+các |overlay| theo cú pháp ở Bản~\vref{tab:item}.
+\begin{example}
+ \begin{slide}{Lists}
+   \onslide{10}{chi o overlay 10}\par
+   \onslide{-5}{cac onverlay <= 5}\par
+   \onslide{5-}{cac overlay >= 5}\par
+   \onslide{2-5}{cac overlay 2,3,4,5}\par
+   \onslide{-3,5-7,9-}{overlay >= 1, tru 4 va 8}
+ \end{slide}
+\end{example}
+
+% =====================================================================
+
+%\subsection{Relative overlays}
+\subsection{Overlay \texorpdfstring{tương đối}{tuong doi}}
+%% Sometimes it is a pain to keep track of when an item should appear%% or become active. You might, for example, just care that some text%% appears on the overlay \textit{after} some other item. This%% functionality is provided through the use of relative overlays which%% should not be used outside list environments that use |\item|. Let's%% consider a simple, illuminating example.
+Thật phiền phải nhớ thứ tự các |overlay| để biểu diễn đúng nội dung nào
+trước, nội dung nội sau. 
+Trong thực tế, ta chỉ cần nhớ, chẳng hạn chữ |power| sẽ xuất hiện
+trước chữ |dot| là đủ. Điều này có thể thực hiện nhờ |overlay| tương đối
+và môi trường tạo danh sách. Hãy xem ví dụ đơn giản sau đây
+
+\begin{example}
+ \begin{slide}{Relative overlays}
+   \begin{itemize}
+     \item A \pause
+     \item B \onslide{+1}{(visible 1 overlay after B)}\pause
+     \item C \onslide{+2-}{(appears 2 overlays after C, visible until the end)}
+     \pause
+     \item D \onslide{+1-6}{(appears 1 overlay after D, visible until overlay 6)}
+     \pause
+     \item E \pause
+     \item F \pause
+     \item G \onslide{+1-+3}{(appears 1 overlay after G for 3 overlays)}\pause
+     \item H \pause
+     \item I \pause
+     \item J \pause
+     \item K
+   \end{itemize}
+ \end{slide}
+\end{example}
+%% As you can see, we still use |\onslide|. The only change is with the%% syntax of the list of overlays. Now, we can specify a `|+|' symbol%% in the list. In its simplest usage, |\onslide{+1}| will make text%% display one overlay after the overlay it would \textit{normally}%% appear on. You can still use the syntax in table~\ref{tab:item}.%% These are demonstrated in the above example. Notice,%% |\onslide{+1-6}| means that the text will appear one overlay after%% the overlay it would normally appear on and that the text should%% remain shown until overlay seven. To make text appear for a range of%% relative overlays, see the final demonstration in the above example.Ở đây, ta vẫn dùng |\oneslide|, nhưng với cú pháp mới của cho các |overlay|.
+Đó là ta có thể sử dụng dấu `|+|' trong danh sách. Ở ví dụ đơn giản nhất,
+|\onslide{+1}| sẽ thể hiện nội dung ở một |\overlay| kế tiếp. Ta vẫn có thể
+dùng cú pháp đã nêu ở Bảng~\vref{tab:item}. Ví dụ, |\onslide{+1-6}{power}|
+sẽ thể hiện chữ |power| ở các |overlay| kế tiếp cho đến |overlay| \underline{mang số 6}.
+Ở ví dụ cuối cùng, |\onslide{+1-+3}{power}|, chữ |power| sẽ xuất hiện ở |overlay|
+kế tiếp và sẽ tiếp tục xuất hiện thêm ở 3 |overlay| nữa. Ta minh họa kết quả
+trên như sau đây (dấu |*| đại diện cho tham số của các lệnh |\onslide| ở trên:
+\begin{example}
+  1: A
+  2: A_B
+  3: A_B*_C
+  4: A_B__C__D
+  5: A_B__C*_D*_E
+  6: A_B__C*_D*_E_F
+  7: A_B__C*_D__E_F_G_
+  8: A_B__C*_D__E_F_G*_H
+  9: A_B__C*_D__E_F_G*_H_I
+ 10: A_B__C*_D__E_F_G*_H_I_J
+ 11: A_B__C*_D__E_F_G__H_I_J_K
+\end{example}
+\endinput

@@ -1,0 +1,378 @@
+
+%\section{Miscellaneous}
+\section{Linh tinh}
+
+% =====================================================================
+
+\subsection{\texorpdfstring{Ghi chú}{Ghi chu}}\label{sec:notes}
+
+\DescribeEnv{note}
+%% The |note| environment can be used to make personal notes that
+%% accompany a slide. You can control displaying notes using the
+%% |display| option (see section~\ref{sec:classopts}). Here is an
+%% example.
+Môi trường |note| dùng để có các ghi chú (cá nhân) đi cùng với trình diễn.
+Có thể điều làm xuất hiện các ghi chú này nhờ tuỳ chọn |display|
+đã nói ở Mục~\ref{sec:classopts}. Dưới đây là ví dụ
+\begin{example}
+ \begin{slide}{Chewing gum}
+ ...
+ \end{slide}
+ \begin{note}{Reminder for chewing gum}
+   Don't forget to mention that chewing gum is sticky.
+ \end{note}
+\end{example}
+
+% =====================================================================
+
+\subsection{Slide \texorpdfstring{trắng}{trang}}
+
+\label{sec:emptyslides}
+
+\DescribeEnv{emptyslide}
+%% The |emptyslide| environment creates a totally empty slide. The text
+%% box on the slide can be used for special things like displaying
+%% photos. This allows for creating a dia show. Example:
+Môi trường |emptyslide| tạo ra một |slide| trắng (không có nội dung gì).
+Nhờ đó, bạn có thể nạp vào hình vẽ chẳng hạn. Nên nhớ rằng, nếu
+không dùng |slide| trắng, bạn phải chỉ ra tựa đề của |slide|
+và điều này sẽ ảnh hưởng đến Bảng Mục lục cũng như danh sách |bookmakr|.
+Ví dụ
+\begin{example}
+ \begin{emptyslide}{}
+   \centering
+   \vspace{\stretch{1}}
+   \includegraphics[height=0.8\slideheight]{me_chewing_gum.eps}
+   \vspace{\stretch{1}}
+ \end{emptyslide}
+\end{example}
+%% The |\includegraphics| command is defined by the \pf{graphicx}
+%% package \cite{graphics}. The |\stretch| command is used to
+%% vertically center the picture. Both commands are described in your
+%% favorite \LaTeX\ manual, for instance \cite{companion}. Note that
+%% you can use the lengths |\slideheight| and |\slidewidth| to scale
+%% pictures to fit nicely on the slide.
+Lệnh |\includegraphics| được lấy từ gói \pf{graphicx} \cite{graphics}.
+Lệnh |\stretch| dùng để canh hình vẽ theo chiều đứng. Cả hai lệnh này
+đưọc mô tả trong \cite{companion}. Chú ý rằng, các biến độ dài
+|\slideheight| và |slidewidth| được dùng để bố trí hình vẽ
+vừa vẹn lên |slide|.
+
+% =====================================================================
+
+\subsection{Slide \texorpdfstring{tài liệu tham khảo}{tai lieu tham khao}}
+
+\label{sec:bib}
+
+\DescribeEnv{thebibliography}
+\pf{powerdot}
+%% redefines the standard \pf{article}
+%% |thebibliography| environment to suppress the creation of a section
+%% heading and running headers. All other properties are maintained.
+%% You can do either of the next two (depending whether you are
+%% using BiB\TeX\ or not):\\
+định nghĩa lại môi trường |thebibliography| của lớp chuẩn \pf{article}
+để tạo trang tài liệu tham khảo. Sự khác biệt là môi trường mới không
+tạo ra tựa đề và không tạo các dòng chữ ở đầu trang (|header|); các
+tính chất khác đều được bảo toàn. Bạn có thể dùng một trong hai cách
+sau đây (tuỳ thuộc bạn có dùng BiB\TeX{} hay không):\\
+\begin{minipage}[t]{.49\linewidth}
+\begin{example}
+ \begin{slide}{Slide}
+   \cite{someone}
+  \end{slide}
+ \begin{slide}{References}
+   \begin{thebibliography}{1}
+   \bibitem{someone} Article of someone.
+   \end{thebibliography}
+ \end{slide}
+\end{example}
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\linewidth}
+\begin{example}
+ \begin{slide}{Slide}
+   \cite{someone}
+ \end{slide}
+ \begin{slide}{References}
+   \bibliographystyle{plain}
+   \bibliography{YourBib}
+ \end{slide}
+\end{example}
+\end{minipage}
+
+%% In case you have a big reference list that you want to spread over
+%% multiple slides, have a look at the packages \pf{natbib} and
+%% \pf{bibentry} \cite{natbib}. Using both packages allows you to do:
+Trong trường hợp bạn có một danh sách rất dài các tài liệu tham khảo,
+bạn có thể muốn chia danh sách đó thành nhiều |slide|, giống như cách làm
+của gói \pf{natbib} và \pf{bibentry} \cite{natbib}. Việc dùng cả hai
+gói đó sẽ làm bạn vừa ý:
+\begin{example}
+ \begin{slide}{References (1)}
+   \bibliographystyle{plain}
+   \nobibliography{YourBib}
+   \bibentry{someone1}
+   \bibentry{someone2}
+ \end{slide}
+ \begin{slide}{References (2)}
+   \bibentry{someone3}
+ \end{slide}
+\end{example}
+%% Have a look at your favorite \LaTeX\ manual for more information
+%% about citations and bibliographies.
+Nên tìm kiếm tài liệu về việc trích dẫn và các tạo danh sách
+tài liệu tham khảo trong \cite{companion}.
+
+% =====================================================================
+
+%% \subsection{Verbatim on slides}
+\subsection{Verbatim}
+
+\label{sec:verbatim}\DescribeOption{verbatim}
+%% \pf{powerdot} has three different methods of processing slides, from
+%% which two have mainly been developed to make the inclusion of
+%% verbatim content\footnote{And other content that needs catcode
+%% changes when processing.} on slides easier. These methods can be
+%% accessed by the |method| key which is available in slide
+%% environments and the |\pdsetup| command (see
+%% section~\ref{sec:glopts}).
+Lớp \pf{powerdot} có ba cách khác nhau để xử lý các |slide|,
+trong đó có hai cách dùng để điều khiển các môi trường tựa |verbatim|.
+Các cách này được thay đổi nhờ tuỳ chọn |method|,
+như đã nói ở ~\vref{sec:glopts}.
+\begin{description}
+\item\option{method=normal}\\
+%% This is the default method for processing slides. It is fast and
+%% allows for overlays, but it does not allow for
+%% verbatim.\footnote{Except when it has been saved in a box outside
+%% the slide.}
+Đây là các xử lý thông thường, mặc định. Cách này nhanh, cho phép
+|overlay| nhưng không cho phép các môi trường |verbatim|\footnote{Trừ khi
+nội dung của |verbatim| được lưu trong một |box| bên ngoài |slide|.}.
+\item\option{method=direct}\\
+%% This method is also fast, but does not allow for overlays. Overlays
+%% will silently be disabled. However, it does allow for verbatim
+%% content on slides.
+Cách này cũng nhanh, nhưng không cho phép |overlay|. Các thiết lập |overlay|
+sẽ được bỏ qua tự động. Tuy nhiên, cách này cho phép sử dụng môi trường
+tựa |verbatim|.
+\item\option{method=file}\\
+%% This method uses a temporary file to export the slide body to and
+%% read it back in. This method does allow for verbatim content and
+%% overlays, but could be slow when many slides use this method because
+%% the filesystem is used.
+Cách này sử dụng các tập tin tạm để lưu nội dung của |slide| rồi sau đó
+đọc ngược trở lại. Cách này cho phép sử dụng đồng thời |overlay| và các
+môi trường |verbatim|, nhưng lại khá chậm khi có nhiều |slide|.
+\end{description}
+
+%% Below is an example demonstrating the use of all three different
+%% methods of slide processing.
+Dưới đây là ví dụ cách dùng các |method|
+\begin{example}
+  \documentclass{powerdot}
+  \usepackage{listings}
+  \lstnewenvironment{code}{%
+    \lstset{frame=single,escapeinside=`',
+    backgroundcolor=\color{yellow!20},
+    basicstyle=\footnotesize\ttfamily}
+  }{}
+  \begin{document}
+  \begin{slide}{Slide 1}
+    Normal \pause content.
+  \end{slide}
+  \begin{slide}[method=direct]{Slide 2}
+    Steps 1 and 2:
+  \begin{code}
+    compute a;`\pause'
+    compute b;
+  \end{code}
+  \end{slide}
+  \begin{slide}[method=file]{Slide 3}
+    Steps 1 and 2:
+  \begin{code}
+    compute a;`\pause'
+    compute b;
+  \end{code}
+  \end{slide}
+  \end{document}
+\end{example}
+%% The first slide shows the default behavior for normal content. It
+%% produces two overlays. The second slide does not produce overlays,
+%% despite the use of the |\pause| command. This command has been
+%% disabled by choosing the |direct| method to process the verbatim
+%% content. The third slide has the same body as the second slide, but
+%% now does create two overlays, because the method using a temporary
+%% file has been chosen. Notice that we used |\pause| inside the listing,
+%% but that it can also be used outside the listing.
+|Slide| đầu tiên sử dụng các xử lý mặc định, có hai |overlay|.
+|Slide| thứ hai không có |overlay| nào, do trong đó ta cần thể hiện
+môi trường |code| -- vì lý do đó, ta đã dùng |\pause| thay cho |overlay|.
+|Slide| cuối cùng có nội dung tương tự như ở |slide| thứ hai, nhưng
+lại có hai |overlay|. Chú ý rằng ta đã dùng |\pause| bên trong môi trường
+|listing|, nhưng lệnh đó cũng có thể dùng bên ngoài |listing|.
+
+% =====================================================================
+
+%\subsection{The \cs{twocolumn} command}
+\subsection{\texorpdfstring{Lệnh}{Lenh} \cs{twocolumn} \texorpdfstring{chia cột}{chia cot}}
+
+\label{sec:twocolumn}
+
+\DescribeMacro{\twocolumn}
+%The |\twocolumn| macro allows to split content into two columns.
+Lệnh |\twocolumn| cho phép bố trí nội dung ở hai cột của trang.
+\begin{command}
+ `\cs{twocolumn}\marg{options}\marg{left}\marg{right}'
+\end{command}
+%% This typesets \meta{left} and \meta{right} in two columns. The
+%% dimensions of those columns can be controlled by \meta{options}.
+%% Below are the available options.
+Lệnh này sẽ bố trí \meta{left} và \meta{right} vào hai cột bên trái
+và bên phải của |slide|. Kích thước của các cột được cho ở tuỳ chọn
+\meta{options}.
+\begin{description}
+\item\DescribeOption{lineheight}\option{lineheight}\\
+%% If |lineheight| is specified, a line of the specified height will be
+%% created using |\psline| in between the two columns. Example:
+%% |lineheight=6cm|.
+Nếu |lineheight| được chỉ ra, một dòng kẻ (tạo ra nhờ lệnh |\psline|)
+với chiều cao chỉ định được chèn để phân cách hai cột. Ví dụ |lineheight=6cm|.
+\item\DescribeOption{lineprop}\option{lineprop}\\
+%Any \pf{pstricks} declaration to specify the line properties. Example:
+Các khai báo \pf{pstricks} để chỉ thuộc tính của dòng kẻ. Ví dụ
+\begin{example}
+ lineprop={linestyle=dotted,linewidth=3pt}
+\end{example}
+\item\DescribeOptions{lfrheight,lfrprop}\option{lfrheight} \option{lfrpop}\\
+%% Creates a frame of the specified height around the left column.
+Tạo ra một khung (|frame|) với chiều cao chỉ định xung quanh cột bên trái.
+%% \item\DescribeOption{lfrprop}\option{lfrprop}\\
+%As |lineprop|, but for the left frame.
+Tuỳ chọn |lfrprop| cũng như |lineprop|, nhưng cho đường kẻ của khung bên trái.
+\item\DescribeOptions{rfrheight,rfrprop}\option{rfrheight} \option{rfrprop}\\
+%% Creates a frame of the specified height around the right column.
+%Tạo khung bên phải với chiều cao chỉ định.
+Như |lfrheight| và |lfrprop|, nhưng cho khung bên phải.
+%\item\DescribeOption{rfrprop}\option{rfrprop}\\% As |lineprop|, but for the left frame.
+%Như |lineprop| nhưng dành cho đường kẻ của khung phải.
+\item\DescribeOption{frsep}\option{frsep}\\
+% Space between text and the frames. Default: |1.5mm|.
+Khoảng cách giữa nội dung và khung (|frame|). Mặc định |1.5mm|.
+\item\DescribeOption{colsep}\option{colsep}\\
+% Space between the two columns. Default: |0.06\linewidth|.
+Khoảng cách giữa hai cột. Mặc định |0.06\linewidth|.
+\item\DescribeOptions{lcolwidth,rcolwidth}\option{lcolwidth} \option{rcolwidth}\\
+%Width of the left column. Default: |0.47\linewidth|.
+Chiều rộng của khung bên trái và phải. Mặc định |0.47\linewidth|.
+%\item\DescribeOption{rcolwidth}\option{rcolwidth}\\%Width of the right column. Default: |0.47\linewidth|.
+%Chiều rộng của khung bên phải. Mặc định |0.47\linewidth|.
+\item\DescribeOptions{topsep,bottomsep}\option{topsep} \option{bottomsep}\\
+%% The extra space (additional to |\baselineskip|) between text above
+%% the columns and the text within the columns. Default: |0cm|.
+Khoảng trắng thêm vào bên trên cột và bên trên các dòng nội dung
+(cộng thêm vào giá trị đã có của |\baselineskip|). Mặc định |0cm|.
+Tương tự, |bottomsep| chỉ khoảng cách bên dưới cột và dòng.
+%\item\DescribeOption{bottomsep}\option{bottomsep}\\
+%Idem for the bottom of the columns. Default: |0cm|.
+%Nhưng trên, nhưng cho bên dưới cột và dòng. Mặc định |0cm|.
+\item\DescribeOption{indent}\option{indent}\\
+%Horizontal indent left to the left column. Default: |0cm|.
+Khoảng cách thụt đầu dòng so với cột bên trái.\footnote{Horizontal indent left to the left column}
+Mặc định |0cm|.
+\end{description}
+%% The dimensions described above are represented graphically in
+%% figure~\ref{fig:twocolumndim}.
+Mô tả hình học của các tuỳ chọn trên được cho ở Hình~\vref{fig:twocolumndim}.
+\begin{figure}[htb]
+\centering
+\begin{pspicture}(0,.5)(13,10.5)
+\psline(0,0.5)(0,10)
+\rput[tl](.05,9.95){Top}
+\psframe[dimen=middle](1,9)(7,2)
+\psline{C-C}(8.5,9)(11,9)
+\psline{C-C}(8.5,2)(8.5,9)
+\psline{C-C}(8.5,2)(11,2)
+\qdisk(1.7,8.3){.1cm}
+\psset{linestyle=dashed}
+\psline{C-C}(1.7,8.3)(6.3,8.3)
+\psline{C-C}(1.7,8.3)(1.7,3)
+\psline{C-C}(6.3,5)(6.3,8.3)
+\psline{C-C}(11,9)(12,9)
+\psline{C-C}(11,2)(12,2)
+\psline{C-C}(11,7)(12,7)
+\psline{C-C}(9.2,8.3)(12,8.3)
+\psline{C-C}(9.2,8.3)(9.2,3)
+\rput[tl](1.75,8.25){Nội dung bên trái}
+\rput[tl](9.25,8.25){Nội dung bên phải}
+\rput[tl](.05,1){Bottom}
+\psset{linestyle=dotted,dotsep=2pt}
+\psline(0,8.3)(1.7,8.3)
+\psline(0,9.6)(1,9.6)
+\psline(0,2)(1,2)
+\psline(0,1.1)(1,1.1)
+\psset{linestyle=solid}
+\psline{<->}(.2,8.33)(.2,9.57)
+\psline{<->}(4,8.33)(4,8.97)
+\psline{<->}(1.73,7)(6.27,7)
+\psline{<->}(1.03,6.5)(1.67,6.5)
+\psline{<->}(0.03,5.5)(1.67,5.5)
+\psline{<->}(6.33,7.4)(9.17,7.4)
+\psline{<->}(8.53,6.5)(9.17,6.5)
+\psline{<->}(6.33,6.5)(6.97,6.5)
+\psline{<->}(10.7,8.33)(10.7,8.97)
+\psline{<->}(7.3,8.97)(7.3,2.03)
+\psline{<->}(.2,1.13)(.2,1.97)
+\psline{->}(1.7,9.3)(1.7,8.45)
+\psline{<-}(9.23,7)(11,7)
+\cput(4,6.6){\small 1}
+\cput(11.1,6.6){\small 2}
+\cput(8,7){\small 3}
+\cput(7.7,3){\small 4}
+\cput(4.4,8.65){\small 5}
+\cput(1.35,6.1){\small 5}
+\cput(8.85,6.1){\small 5}
+\cput(11.1,8.65){\small 5}
+\cput(6.65,6.1){\small 5}
+\cput(0.6,8.95){\small 6}
+\cput(0.6,5.1){\small 7}
+\cput(0.6,1.55){\small 8}
+\cput(1.7,9.6){\small 9}
+\end{pspicture}
+\begin{tabular}{c p{4cm}cl}
+\multicolumn{4}{c}{Ý nghĩa của nhãn}\\\hline
+1&|lcolwidth|&5&|frsep|\\
+2&|rcolwidth|&6&|topsep|\\
+3&|colsep|&7&|indent|\\
+4&|lfrheight|, |rfrheight|,&8&|bottomsep|\\
+&|lineheight|&9&Điểm tham khảo
+\end{tabular}
+\caption{Các kích thước ở chế độ  hai cột.}\label{fig:twocolumndim}
+\end{figure}
+%% Important to notice is that the |\twocolumn| macro uses the current%% cursor position as the reference point to position the first line of%% text of the left column (see also figure~\ref{fig:twocolumndim}). This%% means that optional frames can extend to the text on the previous%% line. Use for instance |topsep=0.3cm| in that case to add extra%% space between the two lines of text. The default value of |topsep|%% is based on the situation that there is no text on top of the two%% columns. In that case, it is best to locate the first line of text%% of the left column at the same spot as text that is not created by%% |\twocolumn| on other slides. The setting |topsep=0cm| does exactly%% this. However, with a combination of |topsep| and |indent| you can%% change this behavior and position the first line of text of the left%% column anywhere you want.
+Điều chú ý quan trọng là, lệnh |\twocolumn| dùng vị trí hiện tại của
+con trỏ như  là điểm tham khảo đến dòng đầu tiên của nội dung ở cột
+bên trái (xem ở Bảng~\vref{fig:twocolumndim}). Điều này có nghĩa rằng,
+khung được tạo ra sẽ ảnh hưởng đến dòng trước đó. Hãy dùng chẳng hạn |topsep=0.3cm|
+để thêm khoảng trắng thích hợp vào giữa hai dòng này. Giá trị mặc định của |topsep|
+là |0cm| được lấy với giả định rằng không có nội dung nào
+trước khi bắt đầu chế độ hai cột. Trong trường hợp này, dòng đầu tiên
+của cột bên trái có vị trí như các dòng (đầu tiên) tạo ở các |slide| khác.
+Việc cài đặt |topsep=0cm| bảo đảm điều này. Tuy nhiên, việc phối hợp
+hai giá trị |topsep| và |indent| cho phép bạn định vị dòng đầu tiên của
+cột bên trái theo ý bạn.
+
+%% The |\twocolumn| macro computes the height of the construction to%% position text below the construction correctly. The computation is%% done by taking the maximum height of |lfrheight|, |rfrheight|,%% |lineheight| (if requested) and the left and right column content.%% Hence when frames nor a line is requested, |bottomsep| is the%% vertical space between the lowest line of text in the columns and%% the text below the columns (additional to |\baselineskip|). Here is%% an example.
+Lệnh |\twoclumn| tính toán chiều cao của cột dựa trên nội dung của nó,
+nhờ đó mới có thể bố trí đúng nội dung vào các cột. Việc tính toán này
+đưọc tinh chỉnh nhờ lấy giá trị lớn nhất trong hai giá trị |lfrheight| và |rfrheight|.
+\begin{example}
+ \begin{slide}{Two columns}
+   Here are two columns.
+   \twocolumn{lfrprop={linestyle=dotted,linewidth=3pt},
+     lfrheight=4cm,rfrheight=5cm,lineheight=3cm,topsep=0.3cm
+   }{left}{right}
+   That were two columns.
+ \end{slide}
+\end{example}
+\endinput

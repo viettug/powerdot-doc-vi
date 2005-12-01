@@ -1,0 +1,188 @@
+%\section{Available styles}
+\section{\texorpdfstring{Các kiểu trình diễn}{Cac kieu trinh dien}}
+\label{sec:styles}
+
+Lớp \pf{powerdot}
+%% comes with a number of styles which are listed in the
+%% overview below. The characteristics of each style are described
+%% shortly.
+%<<1.3>>
+%shortly and a sample of a title slide and a normal slide is provided
+%for each style. Styles support the |wideslide| environment, have a
+%table of contents on the left part of the paper in landscape
+%orientation and on the bottom part in portrait orientation and
+%support portrait orientation unless states otherwise.
+được phân phối cùng với một số kiểu (|style|, xì-tin :) được mô tả
+dưới đây. Bạn nên thử qua chúng để chọn lấy kiểu ưa thích.
+Nếu không có ghi chú đặc biệt, ta hiểu các kiểu hỗ trợ môi trường |wideslide|,
+bảng mục lục ở bên trái |slide| khi xem ở chế độ |landscape|,
+ở bên dưới |slide| khi xem ở chế độ |portrait|.
+
+Việc lựa chọn kiểu đã nói đến trong Mục~\vref{sec:classopts}.
+
+\medskip
+%% Có thể xem hình ảnh minh họa cho các kiểu này có trong tập tin
+%% |powerdot-styles.zip| (tải về từ \url{http://download.viettug.org}).
+Hình ảnh minh họa cho các kiểu này có thể xem trong tập tin\\
+\centerline{\texttt{powerdot-\pdversion-styles-vn.zip}}
+tải về từ \url{http://download.viettug.org}.
+
+\begin{description}
+\item\pf{default}\\
+%% This style has as main colors light blue and white. A flower in the
+%% top left corner decorates the slide. The style supports a
+%% |wideslide| and portrait orientation. Slides have a table of
+%% contents on the left part of the paper in landscape orientation and
+%% on the bottom part in portrait orientation. The style requires the
+%% \pf{pifont} package.
+%%<<1.3>>
+%% Kiểu mặc định, chỉ với màu xanh sáng và trắng. Một bông hoa ở góc trên
+%% bên trái của mỗi |slide|. Kiểu này cung cấp môi trường |wideslide| và hướng
+%% |portrait|. Mỗi |slide| có Bảng Mục lục ở bên trái (chế dộ |landscape|)
+%% hoặc bên dưới (chế độ |portrait|). Kiểu này đòi hỏi gói \pf{pifont}.
+%<<1.3>>
+%This style provides six different palettes. A flower in the top left
+%corner decorates the slides for all palettes. The default palette is
+%\texttt{blue} which has as main colors light blue and white. You can
+%see an example of that palette below. Other available palettes are
+%\texttt{red}, \texttt{green}, \texttt{yellow}, \texttt{brown} and
+%\texttt{purple}.\\
+Kiểu này cung cấp sáu |palette| khác nhau, gồm |red|, |green|, |yellow|
+|brown| và |purple|; mặc định là |palette| màu xanh (|blue|) với hai màu chính
+là xanh sáng và trắng.
+\\\styleexample{default}
+\item\pf{simple}\\
+%% This is a simple style in black and white. The style supports a
+%% |wideslide| and portrait orientation. A table of contents is present
+%% on slides at the left hand side in landscape mode and in the bottom
+%% of the slide in portrait mode. It requires the \pf{amssymb} and
+%% \pf{pifont} packages.
+Kiểu đơn giản chỉ với hai màu đen, trắng.
+%%  Hỗ trợ môi trường |wideslide|
+%% và hướng |portrait|. Bảng Mục lục được bố trí bên trái (|landscape|) hoặc
+%% bên dưới (|portrait|) của |slide|. Kiều này cần gói \pf{amssymb}
+%% và gói \pf{pifont}.
+Kiể này có ích khi bạn muốn in trình diễn của mình.
+\\\styleexample{simple}
+\item\pf{tycja}\\
+%% This style is set in shades of yellow and dark blue. The table of
+%% contents on slides is on the right side of the paper in landscape
+%% orientation and on the bottom part in portrait.\\
+Kiểu này được thiết kế với đường viền vàng và xanh sẫm.
+Bảng Mục lục được bố trí bên phải (chế độ |landscape|) hoặc bên dưới
+(chế độ |portrait|).
+\\\styleexample{tycja}
+\item\pf{ikeda}\\
+%% This style uses dark shades of red and blue and a light text color.
+%% It has nice patterns on the slide for decoration.
+Đường viền màu đỏ và xanh tối, màu chữ sáng.
+Kiểu có mẫu trang trí khá đẹp.
+\\\styleexample{ikeda}
+\item\pf{fyma}\\
+%% This style was originally created by Laurent Jacques for
+%% \pf{prosper}. Based on that style, he created a version for
+%% \pf{HA-prosper} with extended features. With his kind permission,
+%% this style has been converted by Shun'ichi J. Amano for
+%% \pf{powerdot}. The style has an elegant design with a light blue and
+%% white gradient background in the default \texttt{blue} palette.
+%% Other available palettes are \texttt{green}, \texttt{gray},
+%% \texttt{brown} and \texttt{orange}. It has special templates for
+%% sections on slides and sections on wide slides. Below is a sample of
+%% the blue palette.\\
+Nguyên được viết cho \pf{propser} bởi Laurent Jaques.
+Dựa trên bản đó, L. Jaques viết một bản tương ứng cho \pf{HA-prosper}
+với vài tính năng mở rộng. Kiểu này được Shun'ichi J. Amano 
+viết lại cho \pf{powerdot}. Kiểu có màu xanh sáng, với màu nền
+|gradient| trắng. Các |palette| được hỗ trợ: |green|, |gray|,
+|blue| (mặc định), |brown| và |orange|. Kiểu này có một |template|
+(mẫu) đặc biệt để bố trí các mục trên |slide|.
+\\\styleexample{fyma}
+\item\pf{ciment}\\
+%% This style was originally created by Mathieu Goutelle for
+%% \pf{prosper} and \pf{HA-prosper}. With his kind permission, this style
+%% has been converted for \pf{powerdot}. The style has a background
+%% that is hatched with light gray horizontal lines. Titles and table
+%% of contents highlighting are done with dark red.
+Kiểu này nguyên được viết bởi Mathieu Goutelle cho \pf{prosper} và \pf{HA-prosper}.
+Được phép của tác giả, kiểu này được viết lại cho \pf{powerdot}.
+Kiểu có màu nền có các đường thẳng ngang màu sáng bạc.
+Tiêu đề và trang mục lục có màu đỏ tối.
+\\\styleexample{ciment}
+\item\pf{elcolors}\\
+%% This is a style using light shades of the elementary colors red,
+%% blue and yellow.
+Đường viền màu sáng, các màu cơ bản gồm đỏ, xanh và vàng.
+\\\styleexample{elcolors}
+\item\pf{aggie}\\
+%% This style was created by Jack Stalnaker for \pf{HA-prosper} and he
+%% has converted this style for \pf{powerdot}. The style uses dark red
+%% and light brown colors.
+Tác giả Jack Stalnaker đã từ chuyển kiểu tương ứng ông viết cho \pf{HA-propsper}.
+Kiểu có màu đỏ tối và nâu sáng.
+\\\styleexample{aggie}
+\item\pf{husky}\\
+%% This style is created by Jack Stalnaker and has a background of
+%% light gray sun beams combined with dark red highlights.
+Tác giả là Jack Stalnaker.% Kiểu có màu nền sáng bạc
+\\\styleexample{husky}
+\item\pf{sailor}\\
+%% This style is contributed by Mael Hill\'ereau and supplies five
+%% different palettes: \texttt{Sea} (the default), \texttt{River},
+%% \texttt{Wine}, \texttt{Chocolate} and \texttt{Cocktail}. Below is a
+%% sample of the palette \texttt{Sea}.
+Kiểu này được đóng góp bởi Mael Hill\'ereau. Các |palette| màu
+gồm có: |Sea| (mặc định), |River|, |Wine|, |Chocolate| và |Cocktail|.
+\\\styleexample{sailor}
+\item\pf{upen}\\
+%% This style has a nice dark blue background and text in yellow. It is
+%% contributed by Piskala Upendran.
+Đóng góp bởi Piskal Upendran. Kiểu có  màu nền xanh tối, chữ vàng.
+\\\styleexample{upen}
+\item\pf{bframe}\\
+%% The \pf{bframe} style has blue frames on the slide in which text is
+%% positioned. The style is contributed by Piskala Upendran.
+Đóng góp bởi Piskala Upendran. Kiểu có các khung viền màu xanh.
+\\\styleexample{bframe}
+\item\pf{horatio}\\
+%% The \pf{horatio} style has been contributed by Michael Lundholm and
+%% is a more conservative blue style.
+Đóng góp bởi Michael Lundholm.
+\\\styleexample{horatio}
+\item\pf{paintings}\\
+%% This is a simple style without a table of contents on slides. It has
+%% been contributed by Thomas Koepsell and provides 10 different
+%% palettes. The colors used in the palettes are drawn from famous
+%% paintings.\footnote{The style defines a color \texttt{pdcolor7}
+%% which is not used in the style but comes from the same painting and
+%% complements the other colors. It can be used, for example, to
+%% highlight text against the main background color.} If you are
+%% interested, open the style file to read which paintings have been
+%% used. The available palettes are: \texttt{Syndics} (the default),
+%% \texttt{Skater}, \texttt{GoldenGate}, \texttt{Lamentation},
+%% \texttt{HolyWood}, \texttt{Europa}, \texttt{Moitessier},
+%% \texttt{MayThird}, \texttt{PearlEarring} and \texttt{Charon} (all
+%% case sensitive). Below is a sample of the \texttt{Syndics}
+%% palette.
+Đây là kiểu đơn giản, đóng góp bởi Thomas Koepsell, không có bảng Mục lục.
+Gồm 10 |palette| khác nhau, các màu của |palette| được lấy từ các tác phẩm
+hội họa nổi tiếng\footnote{%
+Kiểu này còn cung cấp màu \texttt{pdcolor7}. Màu này thực ra không dùng trong
+thiết kế của kiểu, nhưng bổ sung cho các màu khác và được lấy cũng từ các tác phẩm
+hội họa. Màu này có ích, chẳng hạn khi bạn muốn đánh dấu một đoạn văn, làm
+nó nổi bật so với màu nền}. Nếu thích, bạn có thể mở tập tin định nghĩa kiểu này
+để biết tác phẩm tương ứng với mỗi |palette|. Các |palette| đó là:
+|Syndics| (mặc định), |Skater|, |GoldenGate|, |Lamentation|,
+|HolyWood|, |Europa|, |Moitessier|, |MayThird|, |PearlEarring| và |Charon|.
+\\\styleexample{paintings}
+\item\pf{klope}\\
+%% The \pf{klope} style implements a horizontal table of contents that
+%% only lists the sections. The style is available in the following
+%% palettes: \texttt{Spring}, \texttt{PastelFlower}, \texttt{BlueWater}
+%% and \texttt{BlackWhite}. The \texttt{Spring} palette is the default
+%% and you can see a sample of that below.
+Kiểu này bố trí bảng Mục lục nằm ngang, trong đó chỉ liệt kê các Mục lớn.
+Các |palette| được hỗ trợ: |Spring| (mặc định), |PastelFlower|, |BlueWater|
+và |BlackWhite|.
+\\\styleexample{klope}
+\end{description}
+\endinput
