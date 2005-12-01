@@ -1,0 +1,136 @@
+%%
+%% This file is part of `powerdot-doc-vi' bundle
+%% See `powerdot-doc-vi.tex' for details
+%%
+\ifx\style\undefined
+	\def\style{default}
+\fi
+\documentclass[
+	style=\style,
+	clock,
+	size=11pt,
+	paper=screen,
+	orient=landscape
+]{powerdot}
+
+\usepackage[utf8x]{vietnam}
+
+\title{Ví dụ kiểu \style}
+\author{kyanh}
+\date{\today}
+
+% =====================================================================
+
+\pddefinetemplate[slide]{slide}{tocpos}{}
+\pdsetup{lf=left footer,rf=right footer,randomdots,dots={dotstyle=ocircle}}
+
+% =====================================================================
+
+\makeatletter
+\def\textheightrule{\raisebox\baselineskip{\rule{1cm}\pd@@textheight}}
+\makeatother
+
+% =====================================================================
+
+\begin{document}
+
+\newpage
+
+\maketitle
+
+\begin{slide}{Ví dụ về slide}
+  Công thức Newton:
+  \begin{equation}\label{binomium}
+    (a+b)^n=\sum_{k=0}^n{n\choose k}a^{n-k}b^k
+  \end{equation}
+  Ta sẽ chứng minh (\ref{binomium}) trên bảng đen.\\
+  \begin{itemize}
+    \item Đây
+    \begin{itemize}
+      \item là
+      \begin{itemize}
+        \item danh
+        \begin{itemize}
+          \item sách
+        \end{itemize}
+        \item với
+      \end{itemize}
+      \item bảy
+    \end{itemize}
+    \item phần tử
+  \end{itemize}
+\end{slide}
+
+% =====================================================================
+
+\begin{slide}{Một slide bình thường}
+  Một chiều đi trên con đường này. Hoa điệp vàng trải dưới chân tôi.
+  Ngập ngừng trong tôi như thầm hỏi. Đường về trường ôi sao lạ quá...
+
+  Để ý đến màu của chỉ số phương trình!
+  \begin{equation}
+    (a+b)^n=\sum_{k=0}^n{n\choose k}a^{n-k}b^k
+  \end{equation}
+\end{slide}
+
+\begin{slide}{Kiểm tra danh sách}
+  Đường về trường ôi sao lạ quá...
+  \pause
+  \begin{itemize}
+    \item mức 1\pause
+    \begin{itemize}
+      \item mức 2\pause
+      \begin{itemize}
+        \item mức 3\pause
+        \begin{itemize}
+          \item mức 4
+        \end{itemize}
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  Đường về trường ôi sao lạ quá...
+  \footnote{Thay đổi textheight để đặt footnote đúng chỗ.}
+\end{slide}
+
+\section{Mục bình thường}
+
+\begin{slide}{Kiểm tra danh sách thứ tự}
+  Đường về trường ôi sao lạ quá...
+  \pause
+  \begin{enumerate}[type=1]
+    \item mức 1\pause
+    \begin{enumerate}
+      \item mức 2\pause
+      \begin{enumerate}
+        \item mức 3\pause
+        \begin{enumerate}
+          \item mức 4
+        \end{enumerate}
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+  Đường về trường ôi sao lạ quá...
+\end{slide}
+
+\begin{slide}{Thước có độ cao \texttt{textheight}}
+  \textheightrule
+\end{slide}
+
+\section[template=wideslide]{Mục với slide khổ rộng}
+
+\begin{wideslide}{Kiểm tra wideslide}
+  Một chiều đi trên con đường này. Hoa điệp vàng trải dưới chân tôi.
+  Ngập ngừng trong tôi như thầm hỏi. Đường về trường ôi sao lạ quá...
+  \footnote{Thay đổi textheight để đặt footnote đúng chỗ.}
+
+  Để ý đến màu của chỉ số phương trình!
+  \begin{equation}
+    (a+b)^n=\sum_{k=0}^n{n\choose k}a^{n-k}b^k
+  \end{equation}
+\end{wideslide}
+
+\begin{wideslide}{Thước có độ cao \texttt{textheight}}
+  \textheightrule
+\end{wideslide}
+
+\end{document}
