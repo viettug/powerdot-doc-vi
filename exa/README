@@ -1,8 +1,0 @@
-To compile this presentation:
-
-  latex example-1
-  latex example-1
-  dvips -o example-1.ps example-1.dvi
-  ps2pdf example-1.ps
-
-Enjoy!
