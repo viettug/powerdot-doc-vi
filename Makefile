@@ -7,6 +7,8 @@
 # (vietnamese version of powerdot documentation)
 #
 # WARNING: this Makefile may*NOT* work on your system
+# You should use it to know *HOWTO* compile.
+# DO*NOT*COMPILE* the files using this `Makefile'
 #
 
 POWERDOT = 1.3
