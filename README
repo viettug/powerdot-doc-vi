@@ -6,4 +6,37 @@ translator: kyanh <kyanh at o2 dot pl>
 license: LPPL ( http://www.latex-project.org/lppl.txt )
 
 URL: http://www.viettug.org/
-CTAN: ctan://contrib/doc/latex/powerdot-doc-vn
+URL: http://download.viettug.org/mirror1.php?files=powerdot-1.3
+URL: http://download.viettug.org/mirror2.php?files=powerdot-1.3
+
+CTAN: ctan:/macros/latex/contrib/powerdot/contrib/doc-vn
+
+
+FILE DESCRIPTION
+================
+
+	* powerdot-doc-vn.pdf: the documentation
+	* README: this file
+	* powerdot-eg-vn.tex: example, encoding=UTF-8
+	* powerdot-eg-tcvn.tex: example, encoding=TCVN3
+
+
+HOW TO COMPILE THE EXAMPLE
+==========================
+
+To compile the file `powerdot-eg-vn.tex':
+
+	$latex '\def\style{elcolors}\input{powerdot-eg-vn}'
+	$dvips powerdot-eg-vn.dvi -opowerdot-eg-vn-elcolors.ps
+	$ps2pdf powerdot-eg-vn-elcolors.ps
+
+The following styles require `urwvn' packacge
+
+	fyma
+	aggie
+	usky
+	sailor
+	upen
+
+(See http://www.vntex.org/ for details on `urwvn'.)
+

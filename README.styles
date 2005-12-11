@@ -9,30 +9,18 @@ URL: http://download.viettug.org/
 FILE DESCRIPTION
 ================
 
-powerdot-eg-vi-***.jpg:
+powerdot-eg-vn-***.jpg:
 	screenshot for the `***' style
 	(the title and the first page)
 
-powerdot-eg-vi-paintings.pdf:
+powerdot-eg-vn-paintings.pdf:
 	a presentation with the `paintings' style
 
-powerdot-eg-vi.tex:
-	the source file
-	
-HOW TO COMPILE IT
-=================
-	
-	$latex '\def\style{elcolors}\input{powerdot-eg-vi}'
-	$dvips powerdot-eg-vi.dvi -opowerdot-eg-vi-elcolors.ps
-	$ps2pdf powerdot-eg-vi-elcolors.ps
-	
-The following styles require `urwvn' packacge
-	fyma
-	aggie
-	usky
-	sailor
-	upen
-(See http://www.vntex.org/ for details on `urwvn'.)
+See the `Makefile' in the `powerdot-doc-vn-src' package
+and the `README' in the `powerdot-doc-vn' package to know
+how to generate these `*.jpg' and `*.pdf' files.
 
 -----
-kyanh, 2005/11/24
+kyanh
+
+$Id$

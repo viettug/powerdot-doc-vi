@@ -52,7 +52,6 @@ dist-doc:
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
 		$(EXAMPLE)-paintings.pdf \
 		$(EXAMPLE)-*.jpg \
-		$(EXAMPLE).tex $(EXAMPLETCVN).tex \
 		README.styles
 
 dist-src:
