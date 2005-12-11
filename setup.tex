@@ -363,10 +363,15 @@ Xem Mục~\vref{sec:verbatim} để biết thêm chi tiết.
 %% consult the \pf{pstricks} documentation. Here is an example that
 %% integrates the flower of the \pf{default} style into the \pf{husky}
 %% style.
+%% specified relative to the width and height of the slide. |{0,0}| is
+%% the lower left corner of the paper and |{\slidewidth,\slideheight}|
+%% is the upper right corner. For positioning the logo, the |\rput|
 Các tuỳ chọn này cho phép đặt |logo| của bạn vào |slide|, nhờ lệnh |\rput|
-của \pf{pstrics} \cite{PSTricksWeb,PSTricks}. Giá trị của |logopos| xác định
-vị trí |logo|; tuỳ chọn |logocmd| dùng để định nghĩa |logo| (ví dụ nạp một hình 
-vẽ); cuối cùng, |logohook| dùng để xác định độ lệch của |logo|,
+của \pf{pstrics} \cite{PSTricksWeb,PSTricks}.
+Giá trị của |logopos| xác định vị trí |logo|;
+|{0,0}| là góc dưới bên trái, |{\slidewidth,\slideheight}| là góc trên bên phải.
+Tuỳ chọn |logocmd| dùng để định nghĩa |logo| (ví dụ nạp một hình vẽ);
+cuối cùng, |logohook| dùng để xác định độ lệch của |logo|,
 các giá trị có thể là |tl|, |t|, |tr|, |r|,
 |Br|, |br|, |b|, |bl|, |Bl|, |l|, |B| và |c| (trên-trái, trái, trên phải, phải,\ldots).
 Xem chi tiết về các sử dụng các giá trị này trong tài liệu \pf{pstricks}.
@@ -406,7 +411,9 @@ sử dụng |random.tex| \cite{random}. Dưới đây là các tuỳ chọn đi�
 %% If set to |true|, random dots will be generated. |false| will turn
 %% off the feature. Default value is |true|.
 Giá trị mặc định là |true|, nghĩa là các dấu chấm sẽ được sinh ra.
-Dùng |false| nếu bạn muốn tắt hiệu ứng này.
+Dùng |false| nếu bạn muốn tắt hiệu ứng này. Bạn cũng có thể dùng
+tuỳ chọn này tương tự như tuỳ chọn |dots| (xem bên dưới) để thay đổi
+cách thể hiện các dấu chấm.
 \item\DescribeOptions{dmindots,dmaxdots}\option{dmindots} \option{dmaxdots}\\
 %% The number of dots per slide is also random. These options set the
 %% minimum and maximum dots per slide. Default values are |5| and |40|,
@@ -433,8 +440,8 @@ Bạn có thể thay đổi như trong ví dụ sau:
 %% slide.
 \begin{example}
  \pdsetup{
-   dminwidth=.1\slidewidth,maxwidth=.9\slidewidth,
-   dminheight=.2\slideheight,maxheight=.8\slideheight
+   dminwidth=.1\slidewidth,dmaxwidth=.9\slidewidth,
+   dminheight=.2\slideheight,dmaxheight=.8\slideheight
  }
 \end{example}
 \item\DescribeOption{dbright}\option{dbright}\\
@@ -470,15 +477,16 @@ dấu chấm là |ocircle| (vòng tròn) và |osquare| (đường vuông\footnot
 Dưới đây là hai ví dụ:
 \begin{example}
  \pdsetup{
-   randomdots,dots={dotstyle=osquare}
+   randomdots={dotstyle=osquare},dminwidth=.2\slidewidth
  }
 \end{example}
 Trong ví dụ trên ta dùng các đường vuông thay vì các dấu chấm
-được tô đầy.
+được tô đầy, 20\% bề rộng của |slide| về phía bên trái sẽ không
+xuất hiện các dấu chấm.
 \begin{example}
  \pdsetup{
-   randomdots,dminsize=500pt,dmaxsize=600pt,dmindots=2,
-   dmaxdots=5,dots={dotstyle=ocircle,linewidth=.5pt}
+   randomdots={dotstyle=ocircle,dlinewidth=.5pt},
+   dminsize=500pt,dmaxsize=600pt,dmindots=2,dmaxdots=5
  }
 \end{example}
 %This example puts at most 5 big circles on slides. These circles do
