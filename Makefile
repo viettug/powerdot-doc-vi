@@ -1,5 +1,8 @@
 #
+# $Id$
+#
 # Makefile by kyanh <kyanh@o2.pl>
+#
 # For `powerdot-doc-vn' bundle
 # (vietnamese version of powerdot documentation)
 #
@@ -12,6 +15,7 @@ DOCDIST = powerdot-$(POWERDOT)-doc-vn
 SRCDIST  = powerdot-$(POWERDOT)-doc-vn
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 EXAMPLE = powerdot-eg-vn
+EXAMPLETCVN = powerdot-eg-tcvn
 
 default: latex
 
@@ -39,21 +43,26 @@ doc-fast:
 dist-doc:
 	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
-	$(DOC).pdf \
-	img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
-	README
+		$(DOC).pdf \
+		img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
+		README
+	@sed -e 's/utf8x/tcvn/' $(EXAMPLE).tex > tmp.tex
+	@uvconv --from UTF-8 --to TCVN3 tmp.tex > $(EXAMPLETCVN).tex
+	@rm -fv tmp.tex
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
-	powerdot-eg-vn-paintings.pdf powerdot-eg-vn-*.jpg powerdot-eg-vn.tex \
-	README.styles
+		$(EXAMPLE)-paintings.pdf \
+		$(EXAMPLE)-*.jpg \
+		$(EXAMPLE).tex $(EXAMPLETCVN).tex \
+		README.styles
 
 dist-src:
 	@rm -fv ./distro/$(SRCRIST)-src-$(VERSION).zip && \
 	zip -9r ./distro/$(SRCDIST)-src-$(VERSION).zip \
-	README TODO COPYING \
-	Makefile \
-	$(DOC).tex $(DOC).ktvnum \
-	pd-preamble-vn.tex \
-	powerdot-eg-vn.tex
+		README TODO COPYING \
+		Makefile \
+		$(DOC).tex $(DOC).ktvnum \
+		pd-preamble-vn.tex \
+		$(EXAMPLE).tex $(EXAMPLETCVN).tex
 
 dist: dist-doc dist-src
 
