@@ -1,4 +1,6 @@
 %%
+%% $Id$
+%%
 %% This file is part of `powerdot-doc-vi' bundle
 %% See `powerdot-doc-vi.tex' for details
 %%
@@ -22,7 +24,11 @@
 % =====================================================================
 
 \pddefinetemplate[slide]{slide}{tocpos}{}
-\pdsetup{lf=left footer,rf=right footer,randomdots,dots={dotstyle=ocircle}}
+\pdsetup{
+	lf=left footer,rf=right footer,
+	randomdots={dotstyle=ocircle},
+	dminwidth=.4\slidewidth
+}
 
 % =====================================================================
 
