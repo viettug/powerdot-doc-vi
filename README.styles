@@ -9,12 +9,13 @@ URL: http://download.viettug.org/
 FILE DESCRIPTION
 ================
 
-powerdot-eg-vn-***.jpg:
+img/powerdot-eg-vn-***.jpg:
 	screenshot for the `***' style
 	(the title and the first page)
 
 powerdot-eg-vn-paintings.pdf:
 	a presentation with the `paintings' style
+	(TIPS: open in Adobe Acrobat, FullScreen Mode)
 
 See the `Makefile' in the `powerdot-doc-vn-src' package
 and the `README' in the `powerdot-doc-vn' package to know
