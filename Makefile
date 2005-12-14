@@ -53,8 +53,8 @@ dist-doc:
 	@rm -fv tmp.tex
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
 		$(EXAMPLE)-paintings.pdf \
-		$(EXAMPLE)-*.jpg \
-		README.styles
+		README.styles \
+		img/powerdot-*.jpg
 
 dist-src:
 	@rm -fv ./distro/$(SRCRIST)-src-$(VERSION).zip && \
@@ -69,6 +69,7 @@ dist: dist-doc dist-src
 
 clean:
 	@0texclean
+	@rm -fv *-tcvn.tex
 	@rm -fv *.{bm,glo,bib,jdx,tmp,cls,tpt,gls} powerdot*.sty powerdot-example* powerdot-style*
 
 clean-all: example-clean-all clean
@@ -101,6 +102,7 @@ example-images: known-styles
 		sed -e 's/0\.6 setgray/1 setgray/g' $(EXAMPLE)-$$S.3 > $(EXAMPLE)-$$S.4 ; \
 		sed -e 's/0\.34 setgray/1 setgray/g' $(EXAMPLE)-$$S.4 > $(EXAMPLE)-$$S.0 ; \
 		convert -rotate 180 $(EXAMPLE)-$$S.0 $(EXAMPLE)-$$S.jpg ; \
+		mv -v $(EXAMPLE)-$$S.jpg img/ ; \
 		rm -fv powerdot-*.{1,2,3,4,0} ; \
 	done
 
@@ -114,7 +116,8 @@ example-all: example-compile example-images
 
 # i don't why... there are many `|hyperpage' that cause errors :(
 index:
-	@sed -e 's/|hyperpage//g' $(DOC).idx > $(DOC).jdx
+#	@sed -e 's/|hyperpage//g' $(DOC).idx > $(DOC).jdx
+	@sed -e 's/|usage//g' $(DOC).idx > $(DOC).jdx
 	@makeindex -s gind.ist -o $(DOC).ind $(DOC).jdx
 
 doc-print:
