@@ -30,7 +30,7 @@ $(DOC):
 	@rm -fv printctl.tex
 	@latex $@
 	@latex $@
-	@sed -e 's/|hyperpage//g' $(DOC).idx > $(DOC).jdx
+	@sed -e 's/|usage//g' $(DOC).idx > $(DOC).jdx
 	@makeindex -s gind.ist -o $(DOC).ind $(DOC).jdx
 	@latex $@
 	@dvips $@.dvi -o$@.ps
@@ -98,9 +98,11 @@ example-images: known-styles
 	@for S in $$(cat styles.tmp); do \
 		psselect -p1-2 $(EXAMPLE)-$$S.ps $(EXAMPLE)-$$S.1 ; \
 		psnup -2 $(EXAMPLE)-$$S.1 $(EXAMPLE)-$$S.2 ; \
-		sed -e 's/Submit//g' $(EXAMPLE)-$$S.2 > $(EXAMPLE)-$$S.3 ; \
-		sed -e 's/0\.6 setgray/1 setgray/g' $(EXAMPLE)-$$S.3 > $(EXAMPLE)-$$S.4 ; \
-		sed -e 's/0\.34 setgray/1 setgray/g' $(EXAMPLE)-$$S.4 > $(EXAMPLE)-$$S.0 ; \
+		sed -e 's/Submit//g' \
+			-e 's/0\.6 setgray/1 setgray/g' \
+			-e 's/0\.34 setgray/1 setgray/g' \
+			$(EXAMPLE)-$$S.2 \
+			> $(EXAMPLE)-$$S.0 ; \
 		convert -rotate 180 $(EXAMPLE)-$$S.0 $(EXAMPLE)-$$S.jpg ; \
 		mv -v $(EXAMPLE)-$$S.jpg img/ ; \
 		rm -fv powerdot-*.{1,2,3,4,0} ; \
