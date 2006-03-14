@@ -20,6 +20,23 @@ FILE DESCRIPTION
 	* powerdot-eg-vn.tex: example, encoding=UTF-8
 	* powerdot-eg-tcvn.tex: example, encoding=TCVN3
 
+PACKAGE DESCRIPTION
+===================
+
+	powerdot-1.3-doc-vn.zip
+		contains the main document, example's source
+	powerdot-1.3-doc-vn-src.zip
+		the source of the main document
+	powrdot-1.3-styles-vn.zip
+		contains example and screen shots
+
+
+HOW TO COMPILE THIS DOCUMENT
+============================
+
+To compile the file `powerdot-doc-vn.tex',
+please read the instructions in `powerdot-doc-vn.pdf'.
+
 
 HOW TO COMPILE THE EXAMPLE
 ==========================
