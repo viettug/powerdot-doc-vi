@@ -44,13 +44,15 @@ doc-fast:
 
 dist-doc:
 	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
-	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
-		$(DOC).pdf \
-		img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
-		README
 	@sed -e 's/utf8x/tcvn/' $(EXAMPLE).tex > tmp.tex
 	@uvconv --from UTF-8 --to TCVN3 tmp.tex > $(EXAMPLETCVN).tex
 	@rm -fv tmp.tex
+	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
+		$(DOC).pdf \
+		img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
+		README \
+		$(EXAMPLE).tex \
+		$(EXAMPLETCVN).tex
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
 		$(EXAMPLE)-paintings.pdf \
 		README.styles \
@@ -59,10 +61,28 @@ dist-doc:
 dist-src:
 	@rm -fv ./distro/$(SRCRIST)-src-$(VERSION).zip && \
 	zip -9r ./distro/$(SRCDIST)-src-$(VERSION).zip \
-		README TODO COPYING \
+		README COPYING \
 		Makefile \
 		$(DOC).tex $(DOC).ktvnum \
 		pd-preamble-vn.tex \
+		thanks.tex \
+		notes.tex \
+		introduction.tex \
+		setup.tex \
+		slides.tex \
+		overlays.tex \
+		structure.tex \
+		misc.tex \
+		styles.tex \
+		compile.tex \
+		createstyle.tex \
+		lyx.tex \
+		faq.tex \
+		source.tex \
+		bib.tex \
+		title.tex \
+		license.tex \
+		abstract.tex \
 		$(EXAMPLE).tex $(EXAMPLETCVN).tex
 
 dist: dist-doc dist-src
