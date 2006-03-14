@@ -141,8 +141,12 @@ bạn mới phải dùng thêm |EndSlide| như ví dụ sau đây:
 \end{example}
 %% You could use this, for instance, to have verbatim material on
 %% slides (see also section~\ref{sec:FAQ}).
-Trường hơp này xảy ra, ví dụ khi bạn cần sử dụng môi trường |verbatim|
-với |slide|. Xem thêm ở Mục~\vref{sec:FAQ}.
+%% %% Trường hơp này xảy ra, ví dụ khi bạn cần sử dụng môi trường |verbatim|
+%% %% với |slide|. Xem thêm ở Mục~\vref{sec:FAQ}.
+%% %% Options can be passed to slide environments by using%% \texttt{Insert\LyXarrow Short title} in front of the slide title.%% The following example uses the |direct| method (see%% section~\ref{sec:verbatim}) in the short title argument (delimited by%% square brackets) to allow for a |lstlisting| environment (defined by%% the \pf{listings} package) within the slide content.
+Tuỳ chọn có thể bổ sung cho môi trường |slide| bằng cách 
+\texttt{Insert\LyXarrow Short title} vào trước mỗi slide%% \begin{example}%%  Slide         [method=direct]Example of LaTeX source code%%  Standard      Here's the \HelloWorld command:%%  [ERT box:%%    \lstset{language=[LaTeX]TeX}%%    \begin{lstlisting}%%    \newcommand{\HelloWorld}{Hello World!}%%    \end{lstlisting}%%  ]%%  EndSlide%% \end{example}%% Note that you are not obliged to use a |verbatim| environment to%% type the |\HelloWord| text into the \LyX\ window because \LyX\%% directly supports standard verbatim.\footnote{\LyX\ translates%% special characters into their corresponding \LaTeX\ command. For%% instance, the backslash character is translated into%% \cs{textbackslash{}}. Resulting, the font is not the same as in true%% verbatim and you might want to change that via the%% \texttt{Layout\LyXarrow Character} dialog.} Consequently, the use of%% the slide processing methods |direct| and |file| is not necessary%% when you need standard verbatim, but it is necessary when doing more%% advanced things, like in the example above.
+
 
 \subsection{\texorpdfstring{Cú pháp được hỗ trợ}{Cu phap duoc ho tro}} % {Support of syntax}
 
