@@ -369,16 +369,28 @@ Xem Mục~\vref{sec:verbatim} để biết thêm chi tiết.
 %% the lower left corner of the paper and |{\slidewidth,\slideheight}|
 %% is the upper right corner. For positioning the logo, the |\rput|
 Các tuỳ chọn này cho phép đặt |logo| của bạn vào |slide|, nhờ lệnh |\rput|
-của \pf{pstrics} \cite{PSTricksWeb,PSTricks}.
+của \pf{pstricks} \cite{PSTricksWeb,PSTricks}.
 Giá trị của |logopos| xác định vị trí |logo|;
 |{0,0}| là góc dưới bên trái, |{\slidewidth,\slideheight}| là góc trên bên phải.
-Tuỳ chọn |logocmd| dùng để định nghĩa |logo| (ví dụ nạp một hình vẽ);
-cuối cùng, |logohook| dùng để xác định độ lệch của |logo|,
-các giá trị có thể là |tl|, |t|, |tr|, |r|,
-|Br|, |br|, |b|, |bl|, |Bl|, |l|, |B| và |c| (trên-trái, trái, trên phải, phải,\ldots).
-Xem chi tiết về các sử dụng các giá trị này trong tài liệu \pf{pstricks}.
-Trong ví dụ dưới đây, ta sẽ dùng |logo| là hình ảnh đóa hoa (trong kiểu |default|)
-để thay thế cho |logo| của kiểu |husky|:
+%% %|logocmd| option will be put on slides. The position can be%% %specified relative to the width and height of the slide. |{0,0}| is%% %the lower left corner of the paper and |{\slidewidth,\slideheight}|%% %is the upper right corner. For positioning the logo, the |\rput|%% %command of \pf{pstricks} \cite{PSTricksWeb,PSTricks} is used. This%% %command also allows to specify the point of the logo that should be%% %positioned there. This point can be entered via the |logohook|%% %option and can take the values |tl|, |t|, |tr|, |r|, |Br|, |br|,%% %|b|, |bl|, |Bl|, |l|, |B| and |c|. For more information about%% %|\rput|, consult the \pf{pstricks} documentation. Here is an example%% %that integrates the flower of the \pf{default} style into the%% %\pf{husky} style.
+Tuỳ chọn |logocmd| xác định vị trí tương đôi của logo.
+Vi dụ |{0,0}| ứng với góc dưới bên trái của |slide|,
+và |{\slidewidth,\slideheight}| ứng với góc trên bên phải.
+Để xác định vị trí của logo, lệnh |\rput| của \pf{pstricks} \cite{PSTricksWeb,PSTricks}
+được dùng. Lệnh này còn cho phép xác định điểm trên logo dùng để tính vị trí.
+Các điểm này có thể xác định nhờ tuỳ chọn|logohook|, với các giá trị có thể
+là |tl|, |t|, |tr|, |r|, |Br|, |br|,
+|b|, |bl|, |l|, |B| và |c|. Để biết thêm thông tin về lệnh |\rput|,
+bạn tham khảo tài liệu hướng dẫn của \pf{pstricks}. Dưới đây là ví dụ
+về việc đặt một đóa hoa (có ở kiểu \pf{default}) vào các |slide|
+được thiết lập kiểu \pf{husky}.
+%% %% Tuỳ chọn |logocmd| dùng để định nghĩa |logo| (ví dụ nạp một hình vẽ);
+%% %% cuối cùng, |logohook| dùng để xác định độ lệch của |logo|,
+%% %% các giá trị có thể là |tl|, |t|, |tr|, |r|,
+%% %% |Br|, |br|, |b|, |bl|, |Bl|, |l|, |B| và |c| (trên-trái, trái, trên phải, phải,\ldots).
+%% %% Xem chi tiết về các sử dụng các giá trị này trong tài liệu \pf{pstricks}.
+%% %% Trong ví dụ dưới đây, ta sẽ dùng |logo| là hình ảnh đóa hoa (trong kiểu |default|)
+%% %% để thay thế cho |logo| của kiểu |husky|:
 \begin{example}
   \documentclass[style=husky]{powerdot}
   \pdsetup{
