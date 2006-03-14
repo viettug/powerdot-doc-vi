@@ -43,16 +43,17 @@ doc-fast:
 	ps2pdf $(DOC).ps
 
 dist-doc:
-	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@sed -e 's/utf8x/tcvn/' $(EXAMPLE).tex > tmp.tex
 	@uvconv --from UTF-8 --to TCVN3 tmp.tex > $(EXAMPLETCVN).tex
 	@rm -fv tmp.tex
+	@rm -fv distro/$(DOCDIST)-$(VERSION).zip
 	@zip -9r distro/$(DOCDIST)-$(VERSION).zip \
 		$(DOC).pdf \
 		img/{lst-bookmarks,tab-contents,tab-slide-contents}.png \
 		README \
 		$(EXAMPLE).tex \
 		$(EXAMPLETCVN).tex
+	@rm -fv distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip
 	@zip -9r distro/powerdot-$(POWERDOT)-styles-vn-$(VERSION).zip \
 		$(EXAMPLE)-paintings.pdf \
 		README.styles \
